@@ -15,10 +15,13 @@ jobs:
       - name: Verify HTML
         run: cd docs && sphinx-build source -W -b linkcheck -d build/doctrees build/html  
       - name: Deploy
+        run: |
+          pwd && ls -la
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
+          publish_dir: kepler-doc
           force_orphan: true
+          
