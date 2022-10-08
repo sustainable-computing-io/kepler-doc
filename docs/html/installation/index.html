@@ -74,18 +74,6 @@
 <section id="prerequiste">
 <h2>Prerequiste<a class="headerlink" href="#prerequiste" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://go.dev/doc/install">go</a></p></li>
-<li><p><a class="reference external" href="https://cri-o.io/">crio</a> &amp; <a class="reference external" href="https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md#install-crictl">crictl</a></p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf module list cri-o
-<span class="nv">VERSION</span><span class="o">=</span><span class="m">1</span>.21
-sudo dnf module <span class="nb">enable</span> cri-o:<span class="nv">$VERSION</span>
-sudo dnf install -y crio
-sudo systemctl <span class="nb">enable</span> cri-o --now
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>podman</p></li>
 <li><p>Kubernetes  Any Kubernetes environment will work. For e.g. MicroShift. Refer <a class="reference external" href="https://microshift.io/docs/getting-started/#deploying-microshift">microshift</a> for installation</p></li>
 </ul>
 </section>
@@ -103,8 +91,6 @@ kubectl apply -f manifests/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/sustainable-computing-io/kepler.git
 <span class="nb">cd</span> kepler
 
-sudo dnf update -y <span class="o">&amp;&amp;</span>
-sudo dnf install -y bcc-devel.x86_64
 
 kubectl apply -f manifests/kubernetes/deployment.yaml
 kubectl apply -f manifests/kubernetes/keplerExporter-serviceMonitor.yaml

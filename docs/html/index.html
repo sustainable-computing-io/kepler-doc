@@ -72,8 +72,8 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p><em>Kubernetes-based Efficient Power Level Exporter</em> is a Prometheus exporter. It uses eBPF to probe CPU performance counters and Linux kernel tracepoints. These data and stats from cgroup and sysfs are fed into ML models to estimate energy consumption by Pods.</p>
-<p>Kepler is lightweight because it uses eBPF thereby reducing it’s own power consumption while making measurements. Kepler collects data based on eBPF programs that attach to Linux tracepoints and performance counters to collect information such as process id, cgroup id, cpu cycles, cpu time, cpu instructiona, cache misses etc. Kepler aggregrates this data in conjuction with other stats in the user space epler then exports these stats as Prometheus metrics.</p>
+<p><em>Kubernetes-based Efficient Power Level Exporter</em> is a Prometheus exporter. It uses eBPF to probe CPU performance counters and Linux kernel tracepoints.</p>
+<p>Kepler is lightweight because it uses eBPF thereby reducing it’s own power consumption while making measurements. Kepler collects data based on eBPF programs that attach to Linux tracepoints and performance counters to collect information such as process id, cgroup id, cpu cycles, cpu time, cpu instructions, cache misses etc. Kepler aggregrates this data in conjuction with other stats in the user space and  exports these stats as Prometheus metrics. The Kepler Model server uses the Prometheus metrics to train ML models for estimating energy consumption by pods.</p>
 <section id="kepler-power-consumption-estimate-agent">
 <h2>Kepler Power Consumption Estimate Agent<a class="headerlink" href="#kepler-power-consumption-estimate-agent" title="Permalink to this heading"></a></h2>
 <p>The agent runs as a daemonset on the nodes and exports the node energy metrics and the performance counters to the Kepler Collector.</p>
