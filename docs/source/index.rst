@@ -16,6 +16,7 @@ Overview
    self
    installation/index
    usage/index
+   design/index
 
 
 *Kubernetes Efficient Power Level Exporter*
