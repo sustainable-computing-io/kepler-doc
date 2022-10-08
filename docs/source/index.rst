@@ -17,9 +17,9 @@ Overview
    installation/index
    usage/index
 
-*Kubernetes-based Efficient Power Level Exporter* is a Prometheus exporter. It uses eBPF to probe CPU performance counters and Linux kernel tracepoints. These data and stats from cgroup and sysfs are fed into ML models to estimate energy consumption by Pods.
+*Kubernetes-based Efficient Power Level Exporter* is a Prometheus exporter. It uses eBPF to probe CPU performance counters and Linux kernel tracepoints. 
 
-Kepler is lightweight because it uses eBPF thereby reducing it's own power consumption while making measurements. Kepler collects data based on eBPF programs that attach to Linux tracepoints and performance counters to collect information such as process id, cgroup id, cpu cycles, cpu time, cpu instructiona, cache misses etc. Kepler aggregrates this data in conjuction with other stats in the user space epler then exports these stats as Prometheus metrics.
+Kepler is lightweight because it uses eBPF thereby reducing it's own power consumption while making measurements. Kepler collects data based on eBPF programs that attach to Linux tracepoints and performance counters to collect information such as process id, cgroup id, cpu cycles, cpu time, cpu instructiona, cache misses etc. Kepler aggregrates this data in conjuction with other stats in the user space and  exports these stats as Prometheus metrics. The Kepler Model server uses the Prometheus metrics to train ML models for estimating energy consumption by pods.
 
 Kepler Power Consumption Estimate Agent
 ---------------------------------------
