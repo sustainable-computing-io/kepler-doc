@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kepler Power Estimation &mdash; Kepler 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Kepler Power Model" href="../power_model/index.html" />
+    <link rel="prev" title="Usage" href="../../usage/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Kepler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kepler Power Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../power_model/index.html">Kepler Power Model</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kepler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kepler Power Estimation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/design/power_estimate/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kepler-power-estimation">
+<h1>Kepler Power Estimation<a class="headerlink" href="#kepler-power-estimation" title="Permalink to this heading"></a></h1>
+<p>In Kepler, we also provide a power estimation solution from the resource usages in the system that there is no power measuring tool installed or supported.
+There are two alternatives of estimators.</p>
+<ul class="simple">
+<li><p><strong>Local Linear Regression Estimator</strong>: This estimator estimates power using the trained weights multiplied by normalized value of usage metrics (Linear Regression Model).</p></li>
+<li><p><strong>General Estimator Sidecar</strong>: This estimator transforms the usage metrics and applies with the trained models which can be any regression models from scikit-learn library or any neuron networks from Keras (TensorFlow). To use this estimator, the <cite>Kepler General Estimator</cite> component needs to be enabled.</p></li>
+</ul>
+<p>On top of that, the trained models as well as weights can be updated periodically with online trainning routine by connecting the <cite>Kepler Model Server</cite> component.</p>
+<section id="deployment-scenarios">
+<h2>Deployment Scenarios<a class="headerlink" href="#deployment-scenarios" title="Permalink to this heading"></a></h2>
+<p><strong>Minimum Deployment</strong></p>
+<p>The minimum deployment is to use local linear regression estimator in Kepler main container with only offline-trained model weights.</p>
+<figure class="align-center">
+<img alt="../../_images/minimum_deploy.png" src="../../_images/minimum_deploy.png" />
+</figure>
+<p><strong>Deployment with General Estimator Sidecar</strong></p>
+<p>To enable general estimator for power inference, the estimator sidecar can be deployed as shown in the following figure.
+The connection between two containers is a unix domain socket which is lightweight and fast.
+Unlike the local estimator, the general estimator sidecar is instrumented with several inference-supportive libraries and dependencies.
+This additional overhead must be tradeoff to an increasing estimation accuracy expected from flexible choices of models.</p>
+<figure class="align-center">
+<img alt="../../_images/disable_model_server.png" src="../../_images/disable_model_server.png" />
+</figure>
+</section>
+<section id="deployment-without-online-model-server">
+<h2>Deployment without Online Model Server<a class="headerlink" href="#deployment-without-online-model-server" title="Permalink to this heading"></a></h2>
+<p><strong>Minimum deployment connecting to Kepler Model Server</strong></p>
+<p>To get the updated weights which is expected to provide better estimation accuracy, Kepler may connect to remote Kepler Model Server that performs online trainning using data from the system with the power measuring tool as below.</p>
+<figure class="align-center">
+<img alt="../../_images/disable_estimator_sidecar.png" src="../../_images/disable_estimator_sidecar.png" />
+</figure>
+<p><strong>Full deployment</strong></p>
+<p>The following figure shows the deployment that Kepler General Estimator is enabled and it is also connecting to remote Kepler Model Server.
+The Kepler General Estimator sidecar can update the model from the Kepler Model Server on the fly and expect the most accurate model.</p>
+<figure class="align-center">
+<img alt="../../_images/full_integration.png" src="../../_images/full_integration.png" />
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../usage/index.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../power_model/index.html" class="btn btn-neutral float-right" title="Kepler Power Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Parul Singh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
