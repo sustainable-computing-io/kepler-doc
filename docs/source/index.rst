@@ -12,12 +12,12 @@ Overview
    :hidden:
    :titlesonly:
    :includehidden:
+   :maxdepth: 2
 
    self
    installation/index
    usage/index
-   design/power_estimate/index
-   design/power_model/index
+   design/index
 
 
 *Kubernetes-based Efficient Power Level Exporter* is a Prometheus exporter. It uses eBPF to probe CPU performance counters and Linux kernel tracepoints. 
