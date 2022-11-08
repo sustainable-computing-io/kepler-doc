@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Kepler'
-copyright = '2022, Parul Singh'
-author = 'Parul Singh'
+copyright = '2022, Kepler Contributors'
+author = 'Kepler Contributors'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
