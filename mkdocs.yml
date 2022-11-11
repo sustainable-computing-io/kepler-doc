@@ -1,0 +1,25 @@
+site_name: Kepler
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+
+docs_dir: './docs'
+nav:
+    - Home: 'index.md'
+    - Design: 
+      - 'design/architecture.md'
+      - 'design/power_estimation.md'
+      - 'design/power_model.md'
+    - Installation:
+      - 'installation/kepler.md'
+    - Advanced:
+      - 'usage/general_config.md'
+      - 'usage/kepler_daemon.md'
+      - 'usage/model_server.md'
+
+extra:
+  version:
+    v0.4
