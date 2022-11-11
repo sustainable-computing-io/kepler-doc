@@ -27,8 +27,10 @@ pip install mkdocs
   - Kepler Power Model
 - Installation:
   - Kepler Installation
-- Usage:
-  - Kepler Configuration
+- Advanced:
+  - Configuration
+  - Kepler DaemonSet Customization
+  - Model Server Customziation
 ```
 
 #### References
