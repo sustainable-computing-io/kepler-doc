@@ -75,6 +75,8 @@ Kepler metrics for Container Energy Consumption:
 
     This metric is specific for the model server and might be updated any time.
 
+Note:
+    "system_process" is a special indicator that aggregate all the non-container workload into system process consumption metric.
 
 Kepler metrics for Container resource utilization:
 ==================================================
@@ -100,6 +102,8 @@ Kepler metrics for Container resource utilization:
     a good proxy for the memory access number. If an LLC read miss occurs, a read access to main memory
     should occur (but note that this is not necessarily the case for LLC write misses under a write-back cache policy).
 
+Note:
+    You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` kepler execution option.
 
 Kepler metrics for Node information:
 =====================================
