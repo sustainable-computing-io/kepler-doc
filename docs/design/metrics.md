@@ -1,6 +1,4 @@
-=====
-Monitoring Container Power Consumption with Kepler
-=====
+# Monitoring Container Power Consumption with Kepler
 
 Kepler Exporter exposes statistics from an application in a Prometheus-friendly format that can be
 scraped by any database that understands this format, such as `Prometheus`_ and `Sysdig`_.
@@ -9,15 +7,12 @@ Kepler exports a variety of container metrics to Prometheus, where the main ones
 to energy consumption. 
 
 
-***************
-Kepler metrics overview
-***************
+## Kepler metrics overview
 
 All the metrics specific to the Kepler Exporter are prefixed with `kepler_`.
 
 
-Kepler metrics for Container Energy Consumption:
-================================================
+## Kepler metrics for Container Energy Consumption:
 
 - **kepler_container_joules_total** (Counter)
     This metric is the aggregated package/socket energy consumption of CPU, dram, gpus, and other host components for a given container.
@@ -78,8 +73,7 @@ Kepler metrics for Container Energy Consumption:
 Note:
     "system_process" is a special indicator that aggregate all the non-container workload into system process consumption metric.
 
-Kepler metrics for Container resource utilization:
-==================================================
+## Kepler metrics for Container resource utilization:
 
 - **kepler_container_cpu_cycles_total** (Counter)
     This measures the total CPU cycles used by the container using hardware counters.
@@ -105,16 +99,14 @@ Kepler metrics for Container resource utilization:
 Note:
     You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` kepler execution option.
 
-Kepler metrics for Node information:
-=====================================
+## Kepler metrics for Node information:
 
 - **kepler_node_nodeInfo** (Counter)
     This metric shows the node metada like the node CPU architecture.
 
     Note that this metrics is deprecated and might be updated to `kepler_node_info` in the next release.
 
-Kepler metrics for Node energy consumption:
-=====================================
+## Kepler metrics for Node energy consumption:
 
 - **kepler_node_core_joules_total** (Counter)
     Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
@@ -150,9 +142,8 @@ Kepler metrics for Node energy consumption:
 
     This metric is specific to the model server and can be updated at any time.
 
-***************
-Exploring Node Exporter metrics through the Prometheus expression 
-***************
+## Exploring Node Exporter metrics through the Prometheus expression
+
 All the energy consumption metrics are defined as counter following the `Prometheus metrics guide <https://prometheus.io/docs/practices/naming/>`_ for energy related metrics.
 
 The `rate()` of joules gives the power in Watts since the rate function returns the average per second.
@@ -166,9 +157,7 @@ Therefore, for get the container energy consumption you can use the following qu
 
 Note that we report the node label in the container metrics because the OS metrics "system_process" will have the same name and namespace across all nodes and we do not want to aggregate them.
 
-***************
-RAPL power domain
-***************
+## RAPL power domain
 
 `RAPL power domains supported <https://zhenkai-zhang.github.io/papers/rapl.pdf>`_ in some 
 resent Intel microarchitecture (consumer-grade/server-grade):
