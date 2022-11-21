@@ -162,17 +162,12 @@ Note that we report the node label in the container metrics because the OS metri
 `RAPL power domains supported <https://zhenkai-zhang.github.io/papers/rapl.pdf>`_ in some 
 resent Intel microarchitecture (consumer-grade/server-grade):
 
-+-------------------+---------+------------+--------------+------+
 | Microarchitecture | Package | CORE (PP0) | UNCORE (PP1) | DRAM |
-+===================+=========+============+==============+======+
+|---|---|---|---|---|
 |      Haswell      |   Y/Y   |   Y/**N**  |    Y/**N**   |  Y/Y |
-+-------------------+---------+------------+--------------+------+
 |     Broadwell     |   Y/Y   |   Y/**N**  |    Y/**N**   |  Y/Y |
-+-------------------+---------+------------+--------------+------+
 |      Skylake      |   Y/Y   |     Y/Y    |    Y/**N**   |  Y/Y |
-+-------------------+---------+------------+--------------+------+
 |     Kaby Lake     |   Y/Y   |     Y/Y    |    Y/**N**   |  Y/Y |
-+-------------------+---------+------------+--------------+------+
 
 .. _Prometheus: https://prometheus.io
 
