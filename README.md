@@ -33,5 +33,4 @@ pip install mkdocs
 ```
 
 ## Talks & Demos
-- ["Sustainability in Computing: Energy Efficient Placements of Edge Workloads" - Kubernetes Edge Day NA 2022](./demos/Kubernetes-Edge-Day.pdf)
-- ["Green(ing) CI/CD: A Sustainability Journey with GitOps"](./demos/GitOpsCon22-Sustainability-Journey.pdf)
+[Demos](./demos/) contains a full list of presentations, such as talks and demos, that are either about Kepler or that reference Kepler.
