@@ -1,6 +1,6 @@
 # Monitoring Container Power Consumption with Kepler
 
-Kepler Exporter exposes statistics from an application in a Prometheus-friendly format that can be
+Kepler Exporter exposes statistics from an application running in a Kubernetes cluster in a Prometheus-friendly format that can be
 scraped by any database that understands this format, such as `Prometheus`_ and `Sysdig`_.
 
 Kepler exports a variety of container metrics to Prometheus, where the main ones are those related 
