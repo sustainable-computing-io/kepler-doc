@@ -1,37 +1,40 @@
 # Kepler Installation
-## Requirement
-Kernel 4.18+
+## Requirements
+- Kernel 4.18+
+- Access to a Kubernetes cluster
+- `kubectl` v1.21.0+
 
-## Prerequisites
-Need access to a Kubernetes cluster.
+## Deploy the Kepler Exporter
+Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
 
-## Deploy the Kepler exporter
-Deploying the Kepler exporter as a daemonset to run on all nodes. The following deployment will also create a service listening on
-port 9102.
+First, fork and clone this repo.
+
+Then, build the manifests file for either VM+Baremetal or Baremetal only with the following `make` command.
+
 ```
-# build manifests file for VM+Baremetal and Baremetal only
-# manifests are created in  _output/manifests/kubernetes/generated/ by default
-# kubectl v1.21.0 is minimum version that support build manifest
-# make build-manifest
+make build-manifest
 ```
+Manifests will be generated in  `_output/manifests/kubernetes/generated/` by default.
 
-if you are running with Baremetal only
+If you are deploying on Baremetal only:
 ```
 kubectl create -f _output/manifests/kubernetes/generated/bm/deployment.yaml
 ```
 
-if you are running with Baremetal and/or VM
+If you are deploying on Baremetal and/or VM:
 ```
 kubectl create -f _output/manifests/kubernetes/generated/vm/deployment.yaml
 ```
 
 ## Deploy the Prometheus operator and the whole monitoring stack
+If Prometheus is already installed in the cluster, skip this step. Otherwise, follow these steps to install it.
+
 1. Clone the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) project to your local folder.
 ```
 # git clone https://github.com/prometheus-operator/kube-prometheus
 ```
 
-2. Deploy the whole monitoring stack using the config in the `manifests` directory.
+1. Deploy the whole monitoring stack using the config in the `manifests` directory.
 Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
 ```
 # cd kube-prometheus

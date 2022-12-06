@@ -1,6 +1,10 @@
 # Components
 
 ## Kepler Exporter
+Kepler Exporter exposes a variety of metrics about the energy consumption of Kubernetes components such as Pods and Nodes.
+
+Monitor container power consumption with the [metrics](metrics.md) made available by the Kepler Exporter.
+
 ![](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/doc/kepler-arch.png)
 
 ## Kepler Model Server
