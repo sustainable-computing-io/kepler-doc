@@ -1,9 +1,8 @@
-# Documentaion for Kepler
------------------------
+# Documentation for Kepler
 
-Follow https://sustainable-computing.io/html/index.html to see documentation
+Follow https://sustainable-computing.io/ to see documentation
 
-### Installing MkDocs
+## Install MkDocs
 **Requirements:**
 - Python 3.8
   
@@ -33,6 +32,6 @@ pip install mkdocs
   - Model Server Customziation
 ```
 
-#### References
-[Kubernetes on Edge Day, Detroit NA 2022](demos/Kubernetes-Edge-Day.pdf)
-
+## Talks & Demos
+- ["Sustainability in Computing: Energy Efficient Placements of Edge Workloads" - Kubernetes Edge Day NA 2022](./demos/Kubernetes-Edge-Day.pdf)
+- ["Green(ing) CI/CD: A Sustainability Journey with GitOps"](./demos/GitOpsCon22-Sustainability-Journey.pdf)
