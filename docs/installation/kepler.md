@@ -7,9 +7,9 @@
 ## Deploy the Kepler Exporter
 Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
 
-First, fork and clone this repo.
+First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
 
-Then, build the manifests file for either VM+Baremetal or Baremetal only with the following `make` command.
+Then, build the manifests file that suit your environment, either VM+Baremetal or Baremetal only, with the following `make` command:
 
 ```
 make build-manifest
