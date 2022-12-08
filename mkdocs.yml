@@ -13,6 +13,7 @@ nav:
       - 'design/architecture.md'
       - 'design/power_estimation.md'
       - 'design/power_model.md'
+      - 'design/metrics.md'
     - Installation:
       - 'installation/kepler.md'
     - Advanced:

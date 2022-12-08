@@ -1,7 +1,7 @@
 # Kepler DaemonSet Customization
 Kepler enables a function to hybrid read environment variable from attributes directly (container.env) and from the ConfigMap. Note that, all steps will be operated by [Kepler Operator](https://github.com/sustainable-computing-io/kepler-operator) if the operator is installed.
 
-To set environments by ConfigMap,
+To set environments by ConfigMap:
 
 1. Create/Generate ConfigMap
 
@@ -24,7 +24,7 @@ data:
     POD_COMPONENT_INIT_URL=https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models/DynComponentPower/CgroupOnly/ScikitMixed.zip
 ```
 
-2. Mount the confimap to DeamonSet
+2. Mount the confimap to DeamonSet:
 ```yaml
   spec:
     containers:
