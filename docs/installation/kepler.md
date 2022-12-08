@@ -1,13 +1,15 @@
 # Kepler Installation
-## Requirement
+## Requirements
 - Kernel 4.18+
-
-## Prerequisites
-Need access to a Kubernetes cluster.
+- Access to a Kubernetes cluster
+- `kubectl` v1.21.0+
 
 ## Deploy the Kepler
-Deploying the Kepler exporter as a daemonset to run on all nodes. The following deployment will also create a service listening on
-port 9102.
+Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
+
+First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
+
+Then, build the manifests file that suit your environment and deploy it with the following steps:
 
 ### Build manifests
 ```bash
@@ -17,6 +19,7 @@ make build-manifest OPTS="<deployment options>"
 # deployment with sidecar on openshift: 
 # > make build-manifest OPTS="ESTIMATOR_SIDECAR_DEPLOY OPENSHIFT_DEPLOY"
 ```
+Manifests will be generated in  `_output/manifests/kubernetes/generated/` by default.
 
 Deployment Option|Description|Dependency
 ---|---|---
@@ -42,12 +45,14 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
 ```
 
 ## Deploy the Prometheus operator and the whole monitoring stack
+If Prometheus is already installed in the cluster, skip this step. Otherwise, follow these steps to install it.
+
 1. Clone the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) project to your local folder.
 ```
 # git clone https://github.com/prometheus-operator/kube-prometheus
 ```
 
-2. Deploy the whole monitoring stack using the config in the `manifests` directory.
+1. Deploy the whole monitoring stack using the config in the `manifests` directory.
 Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
 ```
 # cd kube-prometheus
