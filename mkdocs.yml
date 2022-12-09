@@ -20,6 +20,7 @@ nav:
       - 'usage/general_config.md'
       - 'usage/kepler_daemon.md'
       - 'usage/model_server.md'
+      - 'usage/trouble_shooting.md'
 
 extra:
   version:
