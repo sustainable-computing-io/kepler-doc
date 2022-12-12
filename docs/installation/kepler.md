@@ -4,14 +4,47 @@
 - Access to a Kubernetes cluster
 - `kubectl` v1.21.0+
 
-## Deploy the Kepler
+## Deployments
+### Deploy using Helm Chart
+
+First, fork the [kepler-helm-chart](https://github.com/sustainable-computing-io/kepler-helm-chart) repository and clone it.
+
+Then, use the following steps to install Kepler helm chart in your environment.
+
+```
+cd kepler-helm-chart
+helm install kepler . --values values.yaml  --create-namespace  --namespace <namespace>
+```
+
+You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/values.yaml) file.
+
+The following table lists the configurable parameters for this chart and their default values.
+
+Parameter|Description| Default
+---|---|---
+global.namespace| Kubernete namespace for kepler |kepler
+image.repository|Repository for Kepler Image| quay.io/sustainable\_computing\_io/kepler
+image.pullPolicy|Pull policy for Kepler|Always
+image.tag|Image tag for Kepler Image |latest
+serviceAccount.name|Service acccount name for Kepler|kepler-sa
+service.type|Kepler service type|ClusterIP
+service.port|Kepler service exposed port|9102
+
+#### Uninstall the kepler
+To uninstall this chart, use the following steps
+
+```bash
+helm delete --purge kepler --tiller-namespace <namespace>
+```
+
+### Deploy from source codes
 Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
 
 First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
 
 Then, build the manifests file that suit your environment and deploy it with the following steps:
 
-### Build manifests
+#### Build manifests
 ```bash
 make build-manifest OPTS="<deployment options>"
 # minimum deployment: 
@@ -38,7 +71,7 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
  -  manifest sources and outputs will be in  `_output/generated-manifests` by default
 
 
-### Deploy
+#### Deploy using Kubectl
 
 ```
 # kubectl apply -f _output/generated-manifests/deployment.yaml
@@ -60,6 +93,3 @@ Create the namespace and CRDs, and then wait for them to be available before cre
 # until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
 # kubectl apply -f manifests/
 ```
-
-
-
