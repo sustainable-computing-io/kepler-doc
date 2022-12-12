@@ -18,16 +18,5 @@ pip install mkdocs
 * `mkdocs -h` - Print help message and exit.
 
 ## Layout
-```
-- Home
-- Design: 
-  - Components:
-  - Kepler Power Estimation
-  - Kepler Power Model
-- Installation:
-  - Kepler Installation
-- Advanced:
-  - Configuration
-  - Kepler DaemonSet Customization
-  - Model Server Customziation
-```
+
+The website layout can be found in [./mkdocs.yml](mkdocs.yml).
