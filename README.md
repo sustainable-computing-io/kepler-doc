@@ -31,6 +31,3 @@ pip install mkdocs
   - Kepler DaemonSet Customization
   - Model Server Customziation
 ```
-
-## Talks & Demos
-[Demos](./demos/) contains a full list of presentations, such as talks and demos, that are either about Kepler or that reference Kepler.
