@@ -23,6 +23,7 @@ nav:
       - 'usage/trouble_shooting.md'
     - Project:
       - 'project/resources.md'
+      - 'project/contributing.md'
 
 extra:
   version:
