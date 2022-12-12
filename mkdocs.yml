@@ -21,6 +21,9 @@ nav:
       - 'usage/kepler_daemon.md'
       - 'usage/model_server.md'
       - 'usage/trouble_shooting.md'
+    - Project:
+      - 'project/resources.md'
+      - 'project/contributing.md'
 
 extra:
   version:
