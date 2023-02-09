@@ -68,13 +68,13 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
     -  kubectl v1.21+
     -  make
     -  go
- -  manifest sources and outputs will be in  `_output/generated-manifests` by default
+ -  manifest sources and outputs will be in  `_output/generated-manifest` by default
 
 
 #### Deploy using Kubectl
 
 ```
-# kubectl apply -f _output/generated-manifests/deployment.yaml
+# kubectl apply -f _output/generated-manifest/deployment.yaml
 ```
 
 ## Deploy the Prometheus operator and the whole monitoring stack
