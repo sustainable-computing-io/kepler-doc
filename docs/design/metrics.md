@@ -51,7 +51,7 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler_`.
 
 - **kepler_container_other_host_components_joules_total** (Counter)
     This measures the cumulative energy consumption on other host components besides the CPU and DRAM.
-    The vast majority of moderboards have a energy consumption sensor that can be accessed via the kernel acpi or ipmi.
+    The vast majority of motherboards have a energy consumption sensor that can be accessed via the kernel acpi or ipmi.
     This sensor reports the energy consumption of the entire system.
     In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
     "System on a chipt" (SOC).
@@ -129,7 +129,7 @@ Note:
 - **kepler_node_platform_joules_total** (Counter)
    This metric represents the total energy consumption of the host.
 
-    The vast majority of moderboards have a energy consumption sensor that can be accessed via the acpi or ipmi kernel.
+    The vast majority of motherboards have a energy consumption sensor that can be accessed via the acpi or ipmi kernel.
     This sensor reports the energy consumption of the entire system.
     In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
     "System on a chipt" (SOC).
