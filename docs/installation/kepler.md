@@ -7,16 +7,42 @@
 ## Deployments
 ### Deploy using Helm Chart
 
-First, fork the [kepler-helm-chart](https://github.com/sustainable-computing-io/kepler-helm-chart) repository and clone it.
+The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub ](https://artifacthub.io/packages/helm/kepler/kepler)
 
-Then, use the following steps to install Kepler helm chart in your environment.
+For Installation [Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
+The chart is accessible using the following commands:
+
+Add the helm repo
+
+```bash
+helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
 ```
-cd kepler-helm-chart
-helm install kepler . --values values.yaml  --create-namespace  --namespace <namespace>
+
+You can see the latest version by using the folllowing command:
+
+```bash
+helm search repo kepler
 ```
 
-You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/values.yaml) file.
+If you would like to test and look at the manifest files before deploying you can run:
+
+```bash
+helm install kepler kepler/kepler --namespace kepler --create-namespace --dry-run --devel
+```
+
+Then to install run the following:
+
+```bash
+helm install kepler kepler/kepler --namespace kepler --create-namespace
+```
+
+You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/values.yaml) file use the following command.
+
+```bash
+helm install kepler kepler/kepler --values values.yaml --namespace kepler --create-namespace
+```
 
 The following table lists the configurable parameters for this chart and their default values.
 
@@ -37,7 +63,7 @@ To uninstall this chart, use the following steps
 helm delete --purge kepler --tiller-namespace <namespace>
 ```
 
-### Deploy from source codes
+### Deploy from source code
 Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
 
 First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
