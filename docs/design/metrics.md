@@ -87,7 +87,7 @@ Note:
     On systems where processors run at a fixed frequency, CPU cycles and total CPU time are roughly equivalent.
     On systems where processors run at varying frequencies, CPU cycles and total CPU time will have different values.
     
-- **kepler_container_cpu_instr_total** (Counter)
+- **kepler_container_cpu_instructions_total** (Counter)
     This measure the total cpu instructions used by the container using hardware counters.
 
     CPU instructions are the de facto metric for accounting for CPU utilization.
