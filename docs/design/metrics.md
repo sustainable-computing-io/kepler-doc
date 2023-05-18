@@ -34,6 +34,9 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler_`.
 
     In case `RAPL`_ is not available, kepler might estimate this metric using the model server.
 
+- **kepler_container_dram_joules_total** (Counter)
+    This metric describes the total energy spent in DRAM by a container.
+
 - **kepler_container_uncore_joules_total** (Counter)
     This measures the cumulative energy consumed by certain uncore components, which are typically the last level cache,
     integrated GPU and memory controller, but the number of components may vary depending on the system.
