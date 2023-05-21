@@ -20,3 +20,19 @@ pip install mkdocs
 ## Layout
 
 The website layout can be found in [./mkdocs.yml](mkdocs.yml).
+
+## Running in GitHub Codespaces
+
+GitHub codespaces is a pre-configured, virtual, temporary and throwaway environment that you can use to build, modify and contribute to the Kepler docs.
+GitHub codespaces [provides a generous free tier](https://github.com/features/codespaces) but always delete your environment after use to avoid bill shock.
+
+1. Fork this repo
+1. In your fork, click the green `Code` button
+1. Switch across to the Codespaces tab
+1. Click "Create codespace on main"
+1. A new tab will open and your environment will be built
+1. Once built, type `mkdocs serve`
+1. A box will appear informing you that the site is available on port `8000`. Click the link to view the site
+1. Make your changes as normal to the files within the `docs/` folder. The preview site will live reload
+1. When you're satisfied with your updates, commit them to your fork: `git add -A && git commit -sm "docs: a commit message here" && git push`
+1. Create a PR and you're done
