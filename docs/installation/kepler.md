@@ -108,14 +108,17 @@ If Prometheus is already installed in the cluster, skip this step. Otherwise, fo
 
 1. Clone the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) project to your local folder.
 ```
-# git clone https://github.com/prometheus-operator/kube-prometheus
+git clone https://github.com/prometheus-operator/kube-prometheus
 ```
 
 1. Deploy the whole monitoring stack using the config in the `manifests` directory.
-Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
+Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources.
+During the `until` loop, a response of `No resources found` is to be expected.
+This statement checks whether the resource API is created but doesn't expect the resources to be there.
+
 ```
-# cd kube-prometheus
-# kubectl apply --server-side -f manifests/setup
-# until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
-# kubectl apply -f manifests/
+cd kube-prometheus
+kubectl apply --server-side -f manifests/setup
+until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
+kubectl apply -f manifests/
 ```
