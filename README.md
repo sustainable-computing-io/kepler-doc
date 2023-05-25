@@ -8,6 +8,7 @@ Follow https://sustainable-computing.io/ to see documentation
   
 ```bash
 pip install mkdocs
+pip install mkdocs-material
 ```
 
 ## Commands

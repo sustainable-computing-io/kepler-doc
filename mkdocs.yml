@@ -1,6 +1,10 @@
 site_name: Kepler
 theme:
-    name: readthedocs
+    name: material
+    logo: logo.png
+    custom_dir: overrides
+    features:
+    - navigation.footer
     highlightjs: true
     hljs_languages:
         - yaml
@@ -27,7 +31,9 @@ nav:
     - Project:
       - 'project/resources.md'
       - 'project/contributing.md'
+      - 'project/support.md'
 
 extra:
   version:
     v0.4
+
