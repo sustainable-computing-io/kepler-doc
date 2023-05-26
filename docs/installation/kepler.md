@@ -38,7 +38,7 @@ Then to install run the following:
 helm install kepler kepler/kepler --namespace kepler --create-namespace
 ```
 
-You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/values.yaml) file use the following command.
+You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/chart/kepler/values.yaml) file use the following command.
 
 ```bash
 helm install kepler kepler/kepler --values values.yaml --namespace kepler --create-namespace
