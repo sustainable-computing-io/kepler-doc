@@ -7,7 +7,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter)是一个prometheus expo
 
 
 项目的Github地址 ➡️ [Kepler](https://github.com/sustainable-computing-io/kepler).
-
+目前中文文档依旧在施工中，欢迎贡献。
 
 </br></br></br></br></br></br></br></br>
 <p style="text-align: center;">
