@@ -37,3 +37,14 @@ extra:
   version:
     v0.4
 
+plugins:
+  - i18n:
+      default_language: en
+      languages:
+        en:
+          name: English
+          build: true
+        zh:
+          name: Chinese
+          build: true
+
