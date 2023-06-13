@@ -25,6 +25,8 @@ nav:
       - 'usage/kepler_daemon.md'
       - 'usage/model_server.md'
       - 'usage/trouble_shooting.md'
+    - Hardware Engagement:
+      - 'hardwareengagement/index.md'
     - Model Training:
       - 'model_training/pipeline.md'
       - 'model_training/model_profile.md'
