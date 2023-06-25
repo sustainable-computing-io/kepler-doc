@@ -10,10 +10,10 @@ Currently kepler container image is from a GPU image to support GPU case. Consid
 
 1. Find a linux OS.
 1. Install kepler dependencies as ebpf golang(BCC), linux header and build kepler(from main branch or latest release branch) binary.
-1. (Optional)Modify dockerfile to build the contaienr image.
+1. (Optional)Modify [dockerfile](https://github.com/sustainable-computing-io/kepler/tree/main/build) to build the contaienr image.
 
 ### Power consumption API.
-Currently, we use power consumption API as RAPL or ACPI. For some of the devices, you may need to find your own way to get power consumption, and implement in golang for kepler usage. For further plan, please ref [here]()
+Currently, we use power consumption API as RAPL or ACPI. For some of the devices, you may need to find your own way to get power consumption, and implement in golang for kepler usage. For further plan, please ref [here](https://github.com/sustainable-computing-io/kepler/issues/644)
 
 ### ebpf/cgroup data.
 Currently, we relays on ebpf and cgroup to characterization a process/pod. Hence, you can ref to our dependency as BCC or cgroup. To test those golang package works well on your device.
