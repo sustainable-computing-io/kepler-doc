@@ -5,6 +5,7 @@ theme:
     custom_dir: overrides
     features:
     - navigation.footer
+  
     highlightjs: true
     hljs_languages:
         - yaml
@@ -18,13 +19,18 @@ nav:
       - 'design/power_estimation.md'
       - 'design/power_model.md'
       - 'design/metrics.md'
+      - 'design/ebpf_in_kepler.md'
     - Installation:
       - 'installation/kepler.md'
+      - 'installation/kepler-helm.md'
+      - 'installation/kepler-operator.md'
+      - 'installation/kepler-rpm.md'
     - Advanced:
       - 'usage/general_config.md'
       - 'usage/kepler_daemon.md'
       - 'usage/model_server.md'
       - 'usage/trouble_shooting.md'
+      - 'usage/deep_dive.md'
     - Hardware Engagement:
       - 'hardwareengagement/index.md'
     - Model Training:
@@ -34,6 +40,10 @@ nav:
       - 'project/resources.md'
       - 'project/contributing.md'
       - 'project/support.md'
+
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 extra:
   version:

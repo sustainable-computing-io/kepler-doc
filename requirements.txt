@@ -1,0 +1,3 @@
+mkdocs
+mkdocs-static-i18n
+mkdocs-material

@@ -7,8 +7,7 @@ Follow https://sustainable-computing.io/ to see documentation
 - Python 3.8
   
 ```bash
-pip install mkdocs
-pip install mkdocs-material
+pip install -r requirements.txt
 ```
 
 ## Commands

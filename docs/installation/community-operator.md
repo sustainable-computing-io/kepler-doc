@@ -1,0 +1,1 @@
+# Kepler Community Operator on OpenShift
