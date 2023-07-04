@@ -51,6 +51,16 @@ kubectl apply -f _output/generated-manifest/deployment.yaml
 
 You can follow the same steps listed in the [Prometheus deployment section below](https://sustainable-computing.io/installation/kepler/#deploy-the-prometheus-operator-and-the-whole-monitoring-stack) to deploy Prometheus and Grafana to the `kind` cluster.
 
+The default Grafana deployment can be accessed with the credentials `admin:admin`.
+
+You can expose the web-based UI locally using: 
+
+```sh
+kubectl -n monitoring port-forward svc/grafana 3000
+```
+
+Login with the credentials mentioned above. You can skip the window where Grafana asks to input a new password. If you followed the Kepler dashboard deployment steps, you can access the Kepler dashboard by navigating to http://localhost:3000/d/NhnADUW4z/kepler-exporter-dashboard.
+
 ### Deploy using Helm Chart
 
 The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)
