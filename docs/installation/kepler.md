@@ -1,13 +1,71 @@
 # Kepler Installation
 ## Requirements
 - Kernel 4.18+
-- Access to a Kubernetes cluster
 - `kubectl` v1.21.0+
 
 ## Deployments
+### Local cluster
+
+Kepler runs on Kubernetes. If you already have access to a cluster, you can skip this section. To deploy a local cluster, you can use [kind](https://kind.sigs.k8s.io/). `kind` is a tool for running local Kubernetes clusters using Docker container "nodes". It was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+
+To install `kind`, please [see the instructions here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). 
+
+We need to configure our cluster to run Kepler. Specifically, we need to mount `/proc` (to expose information about processes running on the host) and `/usr/src` (to expose kernel headers allowing dynamic eBPF program compilation - this dependency [might be removed in future releases](https://github.com/sustainable-computing-io/kepler/issues/716)) into the node containers. Below is a minimal single-node example configuration:
+
+```yaml
+# ./local-cluster-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: my-cluster
+nodes:
+- role: control-plane
+  image: kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
+  extraMounts:
+  - hostPath: /proc
+    containerPath: /proc-host
+  - hostPath: /usr/src
+    containerPath: /usr/src
+```
+
+We can then spin up a cluster with:
+
+```sh
+export $CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
+kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
+```
+
+Note that `kind` automatically switches your current `kubeconfig` context to the newly created cluster.
+
+#### Running Kepler on a local kind cluster
+
+To run Kepler on `kind`, we need to build it locally with specific flags. The full details of local builds are covered in the section below. To deploy to a local `kind` cluster, you need to use the `CI_DEPLOY` and `PROMETHEUS_DEPLOY` flags:
+
+```sh
+git clone --depth 1 git@github.com:sustainable-computing-io/kepler.git
+cd ./kepler
+make build-manifest OPTS="CI_DEPLOY PROMETHEUS_DEPLOY"
+kubectl apply -f _output/generated-manifest/deployment.yaml
+```
+
+#### Monitoring stack on a local kind cluster
+
+You can follow the same steps listed in the [Prometheus deployment section below](https://sustainable-computing.io/installation/kepler/#deploy-the-prometheus-operator-and-the-whole-monitoring-stack) to deploy Prometheus and Grafana to the `kind` cluster.
+
+The default Grafana deployment can be accessed with the credentials `admin:admin`.
+
+You can expose the web-based UI locally using: 
+
+```sh
+kubectl -n monitoring port-forward svc/grafana 3000
+```
+
+Login with the credentials mentioned above. You can skip the window where Grafana asks to input a new password. If you followed the Kepler dashboard deployment steps, you can access the Kepler dashboard by navigating to http://localhost:3000/d/NhnADUW4z/kepler-exporter-dashboard.
+
+![](../fig/grafana_dashboard.png)
+
 ### Deploy using Helm Chart
 
-The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub ](https://artifacthub.io/packages/helm/kepler/kepler)
+The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)
 
 For Installation [Helm](https://helm.sh) must be installed to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
@@ -56,7 +114,7 @@ serviceAccount.name|Service acccount name for Kepler|kepler-sa
 service.type|Kepler service type|ClusterIP
 service.port|Kepler service exposed port|9102
 
-#### Uninstall the kepler
+#### Uninstall Kepler
 To uninstall this chart, use the following steps
 
 ```bash
@@ -103,21 +161,45 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
 # kubectl apply -f _output/generated-manifest/deployment.yaml
 ```
 
-## Deploy the Prometheus operator and the whole monitoring stack
+## Deploy the Prometheus operator (bundled with Grafana)
+
 If Prometheus is already installed in the cluster, skip this step. Otherwise, follow these steps to install it.
 
-1. Clone the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) project to your local folder.
-```
-git clone https://github.com/prometheus-operator/kube-prometheus
-```
+1. Clone the [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) project to your local folder, and enter the `kube-prometheus` directory.
 
-1. Deploy the whole monitoring stack using the config in the `manifests` directory.
-Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources.
-During the `until` loop, a response of `No resources found` is to be expected.
-This statement checks whether the resource API is created but doesn't expect the resources to be there.
-
-```
+```sh
+git clone --depth 1 https://github.com/prometheus-operator/kube-prometheus
 cd kube-prometheus
+```
+
+2. This step is optional. You can later manually add the [Kepler Grafana dashboard](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/grafana-dashboards/Kepler-Exporter.json) through the Grafana UI. To automatically do that, fetch the `kepler-exporter` Grafana dashboard and inject in the Prometheus Grafana deployment. This step uses [yq](https://github.com/mikefarah/yq), a YAML processor:
+
+```sh
+KEPLER_EXPORTER_GRAFANA_DASHBOARD_JSON=`curl -fsSL https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/grafana-dashboards/Kepler-Exporter.json | sed '1 ! s/^/         /'`
+mkdir -p grafana-dashboards
+cat > ./grafana-dashboards/kepler-exporter-configmap.yaml<<-EOF
+apiVersion: v1
+data:
+    kepler-exporter.json: |-
+        $KEPLER_EXPORTER_GRAFANA_DASHBOARD_JSON
+kind: ConfigMap
+metadata:
+    labels:
+        app.kubernetes.io/component: grafana
+        app.kubernetes.io/name: grafana
+        app.kubernetes.io/part-of: kube-prometheus
+        app.kubernetes.io/version: 9.5.3
+    name: grafana-dashboard-kepler-exporter
+    namespace: monitoring
+EOF
+yq -i e '.items += [load("./grafana-dashboards/kepler-exporter-configmap.yaml")]' ./manifests/grafana-dashboardDefinitions.yaml
+yq -i e '.spec.template.spec.containers.0.volumeMounts += [ {"mountPath": "/grafana-dashboard-definitions/0/kepler-exporter", "name": "grafana-dashboard-kepler-exporter", "readOnly": false} ]' ./manifests/grafana-deployment.yaml
+yq -i e '.spec.template.spec.volumes += [ {"configMap": {"name": "grafana-dashboard-kepler-exporter"}, "name": "grafana-dashboard-kepler-exporter"} ]' ./manifests/grafana-deployment.yaml
+```
+
+3. Finally, apply the objects in the `manifests` directory. This will create the `monitoring` namespace and CRDs, and then wait for them to be available before creating the remaining resources. During the `until` loop, a response of `No resources found` is to be expected. This statement checks whether the resource API is created but doesn't expect the resources to be there.
+
+```sh
 kubectl apply --server-side -f manifests/setup
 until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
 kubectl apply -f manifests/
