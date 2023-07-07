@@ -1,6 +1,6 @@
 site_name: Kepler
 theme:
-    name: mkdocs
+    name: material
     logo: logo.png
     custom_dir: overrides
     features:
