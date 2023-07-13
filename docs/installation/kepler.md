@@ -1,44 +1,22 @@
-# Kepler Installation
-## Requirements
-- Kernel 4.18+
-- `kubectl` v1.21.0+
+# Deploy using Manifests
 
-## Deployments
-### Local cluster
+## Getting Started
 
-Kepler runs on Kubernetes. If you already have access to a cluster, you can skip this section. To deploy a local cluster, you can use [kind](https://kind.sigs.k8s.io/). `kind` is a tool for running local Kubernetes clusters using Docker container "nodes". It was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+Before you deploy kepler make sure:
 
-To install `kind`, please [see the instructions here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). 
+- you have a Kubernetes cluster running. If you want to do local cluster set up [follow this](./local-cluster.md#install-kind) 
+- the Monitoring stack, i.e. Prometheus with Grafana is set up. [Steps here](#deploy-the-prometheus-operator)
 
-We need to configure our cluster to run Kepler. Specifically, we need to mount `/proc` (to expose information about processes running on the host) and `/usr/src` (to expose kernel headers allowing dynamic eBPF program compilation - this dependency [might be removed in future releases](https://github.com/sustainable-computing-io/kepler/issues/716)) into the node containers. Below is a minimal single-node example configuration:
-
-```yaml
-# ./local-cluster-config.yaml
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-name: my-cluster
-nodes:
-- role: control-plane
-  image: kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
-  extraMounts:
-  - hostPath: /proc
-    containerPath: /proc-host
-  - hostPath: /usr/src
-    containerPath: /usr/src
-```
-
-We can then spin up a cluster with:
+>The default Grafana deployment can be accessed with the credentials `admin:admin`. You can expose the web-based UI locally using: 
 
 ```sh
-export $CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
-kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
+kubectl -n monitoring port-forward svc/grafana 3000
 ```
 
-Note that `kind` automatically switches your current `kubeconfig` context to the newly created cluster.
 
 #### Running Kepler on a local kind cluster
 
-To run Kepler on `kind`, we need to build it locally with specific flags. The full details of local builds are covered in the section below. To deploy to a local `kind` cluster, you need to use the `CI_DEPLOY` and `PROMETHEUS_DEPLOY` flags:
+To run Kepler on `kind`, we need to build it locally with specific flags. The full details of local builds are covered in the [section below](#build-manifests). To deploy on a local `kind` cluster, you need to use the `CI_DEPLOY` and `PROMETHEUS_DEPLOY` flags.
 
 ```sh
 git clone --depth 1 git@github.com:sustainable-computing-io/kepler.git
@@ -47,31 +25,20 @@ make build-manifest OPTS="CI_DEPLOY PROMETHEUS_DEPLOY"
 kubectl apply -f _output/generated-manifest/deployment.yaml
 ```
 
-#### Monitoring stack on a local kind cluster
+The following deployment will also create a service listening on port `9102`.
 
-You can follow the same steps listed in the [Prometheus deployment section below](https://sustainable-computing.io/installation/kepler/#deploy-the-prometheus-operator-and-the-whole-monitoring-stack) to deploy Prometheus and Grafana to the `kind` cluster.
+>If you followed the Kepler dashboard deployment steps, you can access the Kepler dashboard by navigating to [http://localhost:3000/](http://localhost:3000/) Login using `admin:admin`. Skip the window where Grafana asks to input a new password.
 
-The default Grafana deployment can be accessed with the credentials `admin:admin`.
-
-You can expose the web-based UI locally using: 
-
-```sh
-kubectl -n monitoring port-forward svc/grafana 3000
-```
-
-Login with the credentials mentioned above. You can skip the window where Grafana asks to input a new password. If you followed the Kepler dashboard deployment steps, you can access the Kepler dashboard by navigating to http://localhost:3000/d/NhnADUW4z/kepler-exporter-dashboard.
 
 ![](../fig/grafana_dashboard.png)
 
 
-### Deploy from source code
-Follow the steps below to deploy the Kepler exporter as a Daemonset to run on all Nodes. The following deployment will also create a service listening on port `9102`.
-
+#### Build manifests
 First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
 
 Then, build the manifests file that suit your environment and deploy it with the following steps:
 
-#### Build manifests
+
 ```bash
 make build-manifest OPTS="<deployment options>"
 # minimum deployment: 
@@ -85,7 +52,7 @@ Deployment Option|Description|Dependency
 ---|---|---
 BM_DEPLOY|baremetal deployment patched with node selector feature.node.kubernetes.io/cpu-cpuid.HYPERVISOR to not exist|-
 OPENSHIFT_DEPLOY|patch openshift-specific attribute to kepler daemonset and deploy SecurityContextConstraints|-
-PROMETHEUS_DEPLOY|patch prometheus-related resource (ServiceMonitor, RBAC role, rolebinding) |require prometheus deployment which can be OpenShift integrated or [custom deploy](https://github.com/sustainable-computing-io/kepler#deploy-the-prometheus-operator-and-the-whole-monitoring-stack)
+PROMETHEUS_DEPLOY|patch prometheus-related resource (ServiceMonitor, RBAC role, rolebinding) |require prometheus deployment which can be OpenShift integrated or [custom deploy](#deploy-the-prometheus-operator)
 CLUSTER_PREREQ_DEPLOY|deploy prerequisites for kepler on openshift cluster| OPENSHIFT_DEPLOY option set
 CI_DEPLOY|update proc path for kind cluster using in CI|-
 ESTIMATOR_SIDECAR_DEPLOY|patch estimator sidecar and corresponding configmap to kepler daemonset|-
@@ -98,13 +65,7 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
  -  manifest sources and outputs will be in  `_output/generated-manifest` by default
 
 
-#### Deploy using Kubectl
-
-```
-# kubectl apply -f _output/generated-manifest/deployment.yaml
-```
-
-## Deploy the Prometheus operator (bundled with Grafana)
+## Deploy the Prometheus operator
 
 If Prometheus is already installed in the cluster, skip this step. Otherwise, follow these steps to install it.
 
