@@ -29,6 +29,7 @@ nav:
       - 'installation/local-cluster.md'
       - 'installation/kepler.md'
       - 'installation/kepler-helm.md'
+      - 'installation/community-operator.md'
       - 'installation/kepler-operator.md'
       - 'installation/kepler-rpm.md'
     - Advanced:
