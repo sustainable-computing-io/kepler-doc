@@ -1,15 +1,19 @@
 site_name: Kepler
 theme:
+    palette:
+      primary: teal
     name: material
     logo: logo.png
     custom_dir: overrides
     features:
     - navigation.footer
+    - toc.integrate 
   
     highlightjs: true
     hljs_languages:
         - yaml
         - rust
+  
 
 docs_dir: './docs'
 nav:
@@ -21,6 +25,8 @@ nav:
       - 'design/metrics.md'
       - 'design/ebpf_in_kepler.md'
     - Installation:
+      - 'installation/strategy.md' 
+      - 'installation/local-cluster.md'
       - 'installation/kepler.md'
       - 'installation/kepler-helm.md'
       - 'installation/kepler-operator.md'
@@ -50,6 +56,9 @@ extra:
     v0.4
 
 plugins:
+  - search:
+      lang:
+        - en
   - i18n:
       default_language: en
       languages:
