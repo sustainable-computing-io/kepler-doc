@@ -10,6 +10,6 @@ Check out the project on GitHub ➡️ [Kepler](https://github.com/sustainable-c
 </br></br></br></br></br></br></br></br>
 <p style="text-align: center;">
 We are a Cloud Native Computing Foundation sandbox project.
-
+</br>
 <img src="cncf-color-bg.svg" width="40%" height="20%">
 </p>

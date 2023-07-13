@@ -2,12 +2,12 @@
 
 The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)
 
+## Install Helm
 For Installation [Helm](https://helm.sh) must be installed to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
-The chart is accessible using the following commands:
 
-Add the helm repo
+## Add the Kepler Helm repo
 
 ```bash
 helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
@@ -25,13 +25,15 @@ If you would like to test and look at the manifest files before deploying you ca
 helm install kepler kepler/kepler --namespace kepler --create-namespace --dry-run --devel
 ```
 
-Then to install run the following:
+## Install Kepler
+
+To install run the following:
 
 ```bash
 helm install kepler kepler/kepler --namespace kepler --create-namespace
 ```
 
-You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/chart/kepler/values.yaml) file use the following command.
+>You may want to override [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/chart/kepler/values.yaml) file use the following command.
 
 ```bash
 helm install kepler kepler/kepler --values values.yaml --namespace kepler --create-namespace
@@ -49,7 +51,7 @@ serviceAccount.name|Service acccount name for Kepler|kepler-sa
 service.type|Kepler service type|ClusterIP
 service.port|Kepler service exposed port|9102
 
-#### Uninstall Kepler
+## Uninstall Kepler
 To uninstall this chart, use the following steps
 
 ```bash
