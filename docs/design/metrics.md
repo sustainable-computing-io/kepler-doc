@@ -137,7 +137,7 @@ Note:
     In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
     "System on a chipt" (SOC).
 
-    Generally, this metric is the host energy consumption (from acpi).
+    Generally, this metric is the host energy consumption from Redfish BMC or acpi.
 
 - **kepler_node_energy_stat** (Counter)
     This metric contains multiple metrics from nodes labeled with container resource utilization cgroup metrics
