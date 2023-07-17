@@ -36,8 +36,24 @@ The following deployment will also create a service listening on port `9102`.
 #### Build manifests
 First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
 
-Then, build the manifests file that suit your environment and deploy it with the following steps:
+If you want to use Redfish BMC and IPMI, you need to add Redfish and IPMI credentials of each of the kubelet node to the `redfish.csv` under the `kepler/manifests/config/exporter` directory. The format of the file is as follows:
 
+```csv
+kubelet_node_name_1,redfish_username_1,redfish_password_2,https://redfish_ip_or_hostname_1
+kubelet_node_name_2,redfish_username_2,redfish_password_2,https://redfish_ip_or_hostname_2
+```
+
+where, `kubelet_node_name` in the first column is the name of the node where the kubelet is running. You can get the name of the node by running the following command:
+
+```bash
+kubectl get nodes
+```
+
+`redfish_username` and `redfish_password` in the second and third columns are the credentials to access the Redfish API from each node. 
+While `https://redfish_ip_or_hostname` in the fourth column is the Redfish endpoint in IP address or hostname.
+
+
+Then, build the manifests file that suit your environment and deploy it with the following steps:
 
 ```bash
 make build-manifest OPTS="<deployment options>"
@@ -58,11 +74,12 @@ CI_DEPLOY|update proc path for kind cluster using in CI|-
 ESTIMATOR_SIDECAR_DEPLOY|patch estimator sidecar and corresponding configmap to kepler daemonset|-
 MODEL_SERVER_DEPLOY|deploy model server and corresponding configmap to kepler daemonset|-
 TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY option set
- -  build-manifest requirements:
-    -  kubectl v1.21+
-    -  make
-    -  go
- -  manifest sources and outputs will be in  `_output/generated-manifest` by default
+
+`build-manifest` requirements:
+-  kubectl v1.21+
+-  make
+-  go
+
 
 
 ## Deploy the Prometheus operator
