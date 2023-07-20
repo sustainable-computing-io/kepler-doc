@@ -24,6 +24,7 @@ nav:
       - 'design/power_model.md'
       - 'design/metrics.md'
       - 'design/ebpf_in_kepler.md'
+      - 'design/kepler-energy-sources.md'
     - Installation:
       - 'installation/strategy.md' 
       - 'installation/local-cluster.md'
