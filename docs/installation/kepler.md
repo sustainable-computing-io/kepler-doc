@@ -78,7 +78,7 @@ TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY o
 Following options are available for Redfish client, you can set them as environment variables of kepler-exporter. They affect all of Redfish access from Kepler Exporter.
 
 Option|Default value|Description
----|---
+---|---|---
 REDFISH_PROBE_INTERVAL_IN_SECONDS|60|Interval in seconds to get power consumption via Redfish.
 REDFISH_SKIP_SSL_VERIFY|true|`true` if TLS verification is disabled on connecting to Redfish endpoint.
 
