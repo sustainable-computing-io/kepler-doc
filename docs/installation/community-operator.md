@@ -30,13 +30,13 @@ cd kepler-exporter
 
 ### Deploy the Grafana Operator
 
-The current API Bearer token needs to be updated in the `GrafanaDataSource` manifest so that the `GrafanaDataSource` can autenticated to the Prometheus. The following command will update the manifest and deploy Grafana Operator in the namespace `kepler-operator-system`
+The current API Bearer token needs to be updated in the `GrafanaDataSource` manifest so that the `GrafanaDataSource` can authenticate to the Prometheus. The following command will update the manifest and deploy Grafana Operator in the namespace `kepler-operator-system`
 
 ```sh
-export BEARER_TOKEN=$(oc whoami --show-token)
-hack/dashboard/openshift/deploy-grafana.sh
+BEARER_TOKEN=$(oc whoami --show-token)
+hack/dashboard/openshift/deploy-grafana.shhack/dashboard/openshift/deploy-grafana.sh
 ```
-> Note: The script requires that you are in the top-level directory so make sure you are in `kepler-operator` root directory
+> Note: The script requires that you are in the top-level directory so make sure you are in `kepler-operator` root directory. Use command `cd $(git rev-parse --show-toplevel)`
 
 ### Access the Garafana Console Route
 Go to Networking > Routes.
