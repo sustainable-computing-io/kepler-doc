@@ -34,7 +34,7 @@ The current API Bearer token needs to be updated in the `GrafanaDataSource` mani
 
 ```sh
 BEARER_TOKEN=$(oc whoami --show-token)
-hack/dashboard/openshift/deploy-grafana.shhack/dashboard/openshift/deploy-grafana.sh
+hack/dashboard/openshift/deploy-grafana.sh
 ```
 > Note: The script requires that you are in the top-level directory so make sure you are in `kepler-operator` root directory. Use command `cd $(git rev-parse --show-toplevel)`
 
