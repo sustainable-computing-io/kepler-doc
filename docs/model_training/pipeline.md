@@ -9,21 +9,31 @@ For each `node_type`, there are two kinds of power model (output), *AbsPower* an
 
 **DynPower:** the predicted power is per-process/per-container power that excludes nearly-static power at idling state.
 
+### Power source
+
+Power source|Power components
+---|---
+[rapl](../design/kepler-energy-sources.md#rapl---running-average-power-limit)|package, core, uncore, dram
+[acpi](../design/kepler-energy-sources.md#using-kernel-driver-xgene-hwmon)|platform
+
 ## Model Features
 The features are groupped by the metric sources.
 
-**Feature group:**
+### Feature group
 
-Group Name|Features|Metric Source(s)
+Group Name|Features|Kepler Metric Source(s)
 ---|---|---
-CounterOnly|COUNTER_FEAUTRES|Hardware Counter
-CgroupOnly|CGROUP_FEATURES|cGroups
-BPFOnly|BPF_FEATURES|BPF
-KubeletOnly|KUBELET_FEATURES|Kubelet
-IRQOnly|IRQ_FEATURES|BPF
+CounterOnly|COUNTER_FEAUTRES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
+CgroupOnly|CGROUP_FEATURES|[cGroups](../design/metrics.md#cgroups-metrics)
+BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md#base-metric)
+KubeletOnly|KUBELET_FEATURES|[Kubelet](../design/metrics.md#kubelet-metrics)
+IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md#irq-metrics)
 CounterIRQCombined|COUNTER_FEAUTRES, IRQ_FEATURES|BPF and Hardware Counter
+Basic|COUNTER_FEAUTRES, CGROUP_FEATURES, BPF_FEATURES, KUBELET_FEATURES|All except IRQ and node information
 WorkloadOnly|COUNTER_FEAUTRES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, KUBELET_FEATURES|All except node information
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
+
+> node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information) metric.
 
 ## Pipeline
 
