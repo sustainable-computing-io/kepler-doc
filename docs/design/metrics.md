@@ -78,7 +78,14 @@ Note:
 
 ## Kepler metrics for Container resource utilization:
 
-- **kepler_container_cpu_cycles_total** (Counter)
+### Base metric
+
+- ***kepler_container_bpf_cpu_time_us_total**
+    This measures the total CPU time used by the container using BPF tracing. This is a minimum exposed metric.
+
+### Hardware counter metrics
+
+- **kepler_container_cpu_cycles_total** 
     This measures the total CPU cycles used by the container using hardware counters.
     To support fine-grained analysis of performance and resource utilization, hardware counters are particularly desirable
     due to its granularity and precision..
@@ -87,12 +94,12 @@ Note:
     On systems where processors run at a fixed frequency, CPU cycles and total CPU time are roughly equivalent.
     On systems where processors run at varying frequencies, CPU cycles and total CPU time will have different values.
     
-- **kepler_container_cpu_instructions_total** (Counter)
+- **kepler_container_cpu_instructions_total** 
     This measure the total cpu instructions used by the container using hardware counters.
 
     CPU instructions are the de facto metric for accounting for CPU utilization.
 
-- **kepler_container_cache_miss_total** (Counter)
+- **kepler_container_cache_miss_total** 
     This measures the total cache miss that has occurred for a given container using hardware counters.
 
     As there is no event counter that measures memory access directly, the number of last-level cache misses gives
@@ -100,7 +107,38 @@ Note:
     should occur (but note that this is not necessarily the case for LLC write misses under a write-back cache policy).
 
 Note:
-    You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` kepler execution option.
+    You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` kepler execution option or `EXPOSE_HW_COUNTER_METRICS` environment value.
+
+### cGroups metrics
+
+- **kepler_container_cgroupfs_cpu_usage_us_total**
+    This measures the total CPU time used by the container reading from cGroups stat. 
+- **kepler_container_cgroupfs_memory_usage_bytes_total**
+    This measures the total memory in bytes used by the container reading from cGroups stat. 
+- **kepler_container_cgroupfs_system_cpu_usage_us_total**
+    This measures the total CPU time in kernelspace used by the container reading from cGroups stat.
+- **kepler_container_cgroupfs_user_cpu_usage_us_total**
+    This measures the total CPU time in userspace used by the container reading from cGroups stat.
+
+Note:
+    You can enable/disable expose of those metrics through `EXPOSE_CGROUP_METRICS` environment value.
+
+### Kubelet metrics
+
+- **kepler_container_kubelet_cpu_usage_total** This measures the total CPU time used by the container observed by kubelet.
+- **kepler_container_kubelet_memory_bytes_total** This measures the total memory in bytes used by the container observed by kubelet.
+
+Note:
+    You can enable/disable expose of those metrics through `EXPOSE_KUBELET_METRICS` environment value.
+
+### IRQ metrics
+
+- **kepler_container_bpf_net_tx_irq_total** This measures the total transmitted packets to network cards of the container using BPF tracing.
+- **kepler_container_bpf_net_rx_irq_total** This measures the total packets received from network cards of the container using BPF tracing.
+- **kepler_container_bpf_block_irq_total** This measures block I/O called of the container using BPF tracing.
+
+Note:
+    You can enable/disable expose of those metrics through `EXPOSE_IRQ_COUNTER_METRICS` environment value.
 
 ## Kepler metrics for Node information:
 
