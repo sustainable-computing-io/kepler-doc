@@ -23,14 +23,14 @@ The features are groupped by the metric sources.
 
 Group Name|Features|Kepler Metric Source(s)
 ---|---|---
-CounterOnly|COUNTER_FEAUTRES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
+CounterOnly|COUNTER_FEATURES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
 CgroupOnly|CGROUP_FEATURES|[cGroups](../design/metrics.md#cgroups-metrics)
 BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md#base-metric)
 KubeletOnly|KUBELET_FEATURES|[Kubelet](../design/metrics.md#kubelet-metrics)
 IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md#irq-metrics)
-CounterIRQCombined|COUNTER_FEAUTRES, IRQ_FEATURES|BPF and Hardware Counter
-Basic|COUNTER_FEAUTRES, CGROUP_FEATURES, BPF_FEATURES, KUBELET_FEATURES|All except IRQ and node information
-WorkloadOnly|COUNTER_FEAUTRES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, KUBELET_FEATURES|All except node information
+CounterIRQCombined|COUNTER_FEATURES, IRQ_FEATURES|BPF and Hardware Counter
+Basic|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES, KUBELET_FEATURES|All except IRQ and node information
+WorkloadOnly|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, KUBELET_FEATURES|All except node information
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
 
 > node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information) metric.
@@ -71,9 +71,9 @@ The pipeline with *ProfileIsolator* will be applied first if the profile that ma
 
 3. call implemented `(iv) train` and save the checkpoint via `(v) save_checkpoint`
 
-4. check whether to achive the model and push to database via `(vi) should_archive`. If yes, 
+4. check whether to archive the model and push to database via `(vi) should_archive`. If yes, 
       
-      4.1.  get triner-specific basic metdata via `(vii) get_basic_metadata`
+      4.1.  get trainer-specific basic metadata via `(vii) get_basic_metadata`
 
       4.2. fill with required metadata, save it as metadata file (metadata.json)
 

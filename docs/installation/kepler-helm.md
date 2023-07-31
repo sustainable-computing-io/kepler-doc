@@ -13,7 +13,7 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
 ```
 
-You can see the latest version by using the folllowing command:
+You can see the latest version by using the following command:
 
 ```bash
 helm search repo kepler
@@ -43,11 +43,11 @@ The following table lists the configurable parameters for this chart and their d
 
 Parameter|Description| Default
 ---|---|---
-global.namespace| Kubernete namespace for kepler |kepler
+global.namespace| Kubernetes namespace for kepler |kepler
 image.repository|Repository for Kepler Image| quay.io/sustainable\_computing\_io/kepler
 image.pullPolicy|Pull policy for Kepler|Always
 image.tag|Image tag for Kepler Image |latest
-serviceAccount.name|Service acccount name for Kepler|kepler-sa
+serviceAccount.name|Service account name for Kepler|kepler-sa
 service.type|Kepler service type|ClusterIP
 service.port|Kepler service exposed port|9102
 
