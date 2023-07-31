@@ -24,7 +24,7 @@ data:
     POD_COMPONENT_INIT_URL=https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models/DynComponentPower/CgroupOnly/ScikitMixed.zip
 ```
 
-2. Mount the confimap to DeamonSet:
+2. Mount the ConfigMap to DaemonSet:
 ```yaml
   spec:
     containers:

@@ -23,7 +23,7 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler_`.
 
 - **kepler_container_core_joules_total** (Counter)
     This measures the total energy consumption on CPU cores that  a certain container has used.
-    Generally, when the system has access to `RAPL`_ metrics, this metric will reflect the porportinal container energy consumption of the RAPL
+    Generally, when the system has access to `RAPL`_ metrics, this metric will reflect the proportional container energy consumption of the RAPL
     Power Plan 0 (PP0), which is the energy consumed by all CPU cores in the socket.
     However, this metric is processor model specific and may not be available on some server CPUs.
     The RAPL CPU metric that is available on all processors that support RAPL is the package, which we will detail
@@ -143,7 +143,7 @@ Note:
 ## Kepler metrics for Node information:
 
 - **kepler_node_nodeInfo** (Counter)
-    This metric shows the node metada like the node CPU architecture.
+    This metric shows the node metadata like the node CPU architecture.
 
     Note that this metrics is deprecated and might be updated to `kepler_node_info` in the next release.
 
