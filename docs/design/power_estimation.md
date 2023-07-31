@@ -8,7 +8,7 @@ There are two alternatives of estimators.
 
 - **General Estimator Sidecar**: This estimator transforms the usage metrics and applies with the trained models which can be any regression models from scikit-learn library or any neuron networks from Keras (TensorFlow). To use this estimator, the [Kepler General Estimator](./architecture/#kepler-estimator-sidecar) component needs to be enabled.
 
-On top of that, the trained models as well as weights can be updated periodically with online trainning routine by connecting the [Kepler Model Server]((./architecture/#kepler-model-server)) component.
+On top of that, the trained models as well as weights can be updated periodically with online training routine by connecting the [Kepler Model Server]((./architecture/#kepler-model-server)) component.
 
 
 ## Deployment Scenarios
@@ -30,7 +30,7 @@ This additional overhead must be tradeoff to an increasing estimation accuracy e
 
 **Minimum deployment connecting to Kepler Model Server**
 
-To get the updated weights which is expected to provide better estimation accuracy, Kepler may connect to remote Kepler Model Server that performs online trainning using data from the system with the power measuring tool as below.
+To get the updated weights which is expected to provide better estimation accuracy, Kepler may connect to remote Kepler Model Server that performs online training using data from the system with the power measuring tool as below.
 
 ![](../fig/disable_estimator_sidecar.png)
 

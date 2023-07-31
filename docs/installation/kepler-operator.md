@@ -37,7 +37,7 @@ kubectl apply -k config/samples/
 
 ## Set up Grafana Dashboard
 
-Using `GRAFANA_ENABLE=true` configured the `kube-prometheus` monitoring stack in the namesapce `monitoring`.
+Using `GRAFANA_ENABLE=true` configured the `kube-prometheus` monitoring stack in the namespace `monitoring`.
 To access the Grafana Console locally on the browser port-forward on 3000 using the following command:
 
 ```sh

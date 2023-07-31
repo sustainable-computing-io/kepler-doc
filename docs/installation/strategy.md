@@ -1,6 +1,6 @@
 # Installation Strategies
 
-While you are free to explore any deployments but the recommended stratgies are :
+While you are free to explore any deployments but the recommended strategies are :
 
 | *OCP 4.13*      | *Microshift*     | *RHEL*  |  *ROSA* | *Kind* |
 | ------------- | -------------  | ----- | ----- | ----|

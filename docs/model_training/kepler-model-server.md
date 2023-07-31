@@ -4,7 +4,7 @@ Kepler model server is a supplementary project of Kepler that facilitates power 
 ![](../fig/model-server-components-simplified.png)
 
 
-**Pipeline Input:** Prometheus query results during the trainning workload war running.
+**Pipeline Input:** Prometheus query results during the training workload war running.
 
 **Pipeline Output:** A directory that contains archived absolute and dynamic power models trained by each available feature group which is labeled by each available energy source.
 
@@ -16,7 +16,7 @@ Kepler model server is a supplementary project of Kepler that facilitates power 
 - [**Energy/Power source**](./pipeline.md#power-source) a power meter source of power label.
 - [**Model type**](./pipeline.md#model-output-type) a type of model with or without background isolation.
 - [**Feature group**](./pipeline.md#feature-group) a utilization metric source of model input.
-- **Archived model** a folder and zip file in the format`[trainer name]_[node type]` where trainer is a name of training solution such as `GradientBoostingRegressor` and `node_type` is a catogorized [profile](./model_profile.md) of the server used for training. The folder contains 
+- **Archived model** a folder and zip file in the format`[trainer name]_[node type]` where trainer is a name of training solution such as `GradientBoostingRegressor` and `node_type` is a categorized [profile](./model_profile.md) of the server used for training. The folder contains 
     - metadata.json
     - model files
     - weight.json (model weight for local estimator supported models such as linear regression (LR))

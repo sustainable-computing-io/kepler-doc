@@ -19,7 +19,7 @@ To set environments by ConfigMap,
           PROM_SSL_DISABLE: 'true'
           INITIAL_MODELS_LOC: https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models
 
-2. Mount the confimap to DeamonSet
+2. Mount the ConfigMap to DaemonSet
 
         spec:
           containers:
