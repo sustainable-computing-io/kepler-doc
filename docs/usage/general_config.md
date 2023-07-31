@@ -9,8 +9,8 @@ Kepler DaemonSet Deployment|daemon.exporter.port|Metric exporter port|9102|
 Kepler DaemonSet Deployment|daemon.estimator-sidecar.enabled|[Kepler Estimator Sidecar](./../design/architecture/#kepler-estimator-sidecar) patch|false|
 Kepler DaemonSet Deployment|daemon.estimator-sidecar.image|Kepler estimator sidecar image|quay.io/sustainable_computing_io/kepler-estimator:latest
 Kepler DaemonSet Deployment|daemon.estimator-sidecar.mnt-path|Mount path between main container and the sidecar for unix domain socket|/tmp
-Kepler DaemonSet Enviroment (METRIC_PATH)|daemon.exporter.path|Path to export metrics|/metrics
-Kepler DaemonSet Enviroment (MODEL_SERVER_ENABLE)|model-server.enaled|[Kepler Model Server Pod Pod](./../design/architecture/#kepler-model-server) connection|false
+Kepler DaemonSet Environment (METRIC_PATH)|daemon.exporter.path|Path to export metrics|/metrics
+Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enaled|[Kepler Model Server Pod Pod](./../design/architecture/#kepler-model-server) connection|false
 *[*model-server.enaled*]*|
 Model Server Pod Pod Environment (MODEL_SERVER_PORT)|model-server.port|Model serving port of model server|8100 
 Model Server Pod Pod Environment (PROM_SERVER)|model-server.prom|Endpoint to Prometheus metric server |http://prometheus-k8s.monitoring.svc.cluster.local:9090
@@ -32,12 +32,12 @@ Kepler DaemonSet Environment (KUBELET_METRICS)|kubelet|List of performance metri
 Kepler DaemonSet Environment (GPU_METRICS)|gpu|List of performance metrics to enable from gpu source| * (enable all available metrics from gpu source)
 ***ExportMetric CR*** (single item: default)|||
 Kepler DaemonSet Environment (PERF_METRICS)|perf|List of performance metrics to export | * (enable all collected performance metrics)
-Kepler DaemonSet Environment (EXPORT_NODE_TOTAL_POWER)|node_total_power|Trigger whether to export node total power| true
-Kepler DaemonSet Environment (EXPORT_NODE_COMPONENT_POWERS)|node_component_powers|Trigger whether to export node powers by components| true
-Kepler DaemonSet Environment (EXPORT_POD_TOTAL_POWER)|pod_total_power|Trigger whether to export pod total power| true
-Kepler DaemonSet Environment (EXPORT_POD_COMPONENT_POWERS)|pod_component_powers|Trigger whether to export pod powers by components| true
+Kepler DaemonSet Environment (EXPORT_NODE_TOTAL_POWER)|node_total_power|Toggle whether to export node total power| true
+Kepler DaemonSet Environment (EXPORT_NODE_COMPONENT_POWERS)|node_component_powers|Toggle whether to export node powers by components| true
+Kepler DaemonSet Environment (EXPORT_POD_TOTAL_POWER)|pod_total_power|Toggle whether to export pod total power| true
+Kepler DaemonSet Environment (EXPORT_POD_COMPONENT_POWERS)|pod_component_powers|Toggle whether to export pod powers by components| true
 ***EstimatorConfig CR*** (multiple items: node-total-power, node-component-powers, pod-total-power, pod-component-powers)|||
-Kepler DaemonSet Environment (MODEL_CONFIG.[MODEL_ITEM]_ESTIMATOR)|use-sidecar|Triggle whether to use estimator sidecar for power estimation|false
+Kepler DaemonSet Environment (MODEL_CONFIG.[MODEL_ITEM]_ESTIMATOR)|use-sidecar|Toggle whether to use estimator sidecar for power estimation|false
 Kepler DaemonSet Environment (MODEL_CONFIG.[MODEL_ITEM]_MODEL)|fixed-model|Specify model name| (auto-selected)
 Kepler DaemonSet Environment (MODEL_CONFIG.[MODEL_ITEM]_FILTERS)|filters|Specify model filter conditions in string|  (auto-selected)
 Kepler DaemonSet Environment (MODEL_CONFIG.[MODEL_ITEM]_INIT_URL)|init-url|URL to initial model location| -
@@ -56,4 +56,4 @@ Kepler DaemonSet Environment (GPU_USAGE_METRIC)|core_metric|Specify metric for c
     For example,
     
     * *NODE_TOTAL_POWER*: archived model to estimate node total power used by estimator sidecar
-    * *POD_COMPONENTS_MODEL_WEIGHT*: model weight to estimate pod component powers used by linear regressor embbed in Kepler main component.
+    * *POD_COMPONENTS_MODEL_WEIGHT*: model weight to estimate pod component powers used by linear regressor embedded in Kepler main component.
