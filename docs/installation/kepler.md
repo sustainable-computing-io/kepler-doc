@@ -74,6 +74,7 @@ CI_DEPLOY|update proc path for kind cluster using in CI|-
 ESTIMATOR_SIDECAR_DEPLOY|patch estimator sidecar and corresponding ConfigMap to kepler daemonset|-
 MODEL_SERVER_DEPLOY|deploy model server and corresponding ConfigMap to kepler daemonset|-
 TRAIN_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY option set
+QAT_DEPLOY|update proc path for Kepler to enable accelerator QAT|Intel QAT installed
 
 Following options are available for Redfish client, you can set them as environment variables of kepler-exporter. They affect all of Redfish access from Kepler Exporter.
 
