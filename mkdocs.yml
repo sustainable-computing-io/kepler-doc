@@ -20,7 +20,6 @@ nav:
     - Home: 'index.md'
     - Design: 
       - 'design/architecture.md'
-      - 'design/power_estimation.md'
       - 'design/power_model.md'
       - 'design/metrics.md'
       - 'design/ebpf_in_kepler.md'
@@ -36,14 +35,15 @@ nav:
     - Advanced:
       - 'usage/general_config.md'
       - 'usage/kepler_daemon.md'
-      - 'usage/model_server.md'
       - 'usage/trouble_shooting.md'
       - 'usage/deep_dive.md'
     - Hardware Engagement: 'hardwareengagement/index.md'
-    - Model Training:
-      - 'model_training/kepler-model-server.md'
-      - 'model_training/pipeline.md'
-      - 'model_training/model_profile.md'
+    - Kepler Model Server:
+      - 'kepler_model_server/get_started.md'
+      - 'kepler_model_server/architecture.md'
+      - 'kepler_model_server/pipeline.md'
+      - 'kepler_model_server/node_profile.md'
+      - 'kepler_model_server/power_estimation.md'
     - Project:
       - 'project/resources.md'
       - 'project/contributing.md'

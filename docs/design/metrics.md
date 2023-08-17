@@ -52,7 +52,7 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler_`.
 
     When `RAPL`_ is not available, kepler might estimate this metric using the model server.
 
-- **kepler_container_other_host_components_joules_total** (Counter)
+- **kepler_container_other_joules_total** (Counter)
     This measures the cumulative energy consumption on other host components besides the CPU and DRAM.
     The vast majority of motherboards have a energy consumption sensor that can be accessed via the kernel acpi or ipmi.
     This sensor reports the energy consumption of the entire system.

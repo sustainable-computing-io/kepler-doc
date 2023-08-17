@@ -1,4 +1,4 @@
-# Kepler Power Estimation
+# Kepler Power Estimation Deployment
 
 In Kepler, we also provide a power estimation solution from the resource usages in the system that there is no power measuring tool installed or supported. 
 There are two alternatives of estimators.
@@ -6,9 +6,9 @@ There are two alternatives of estimators.
 ## Estimators
 - **Local Linear Regression Estimator**: This estimator estimates power using the trained weights multiplied by normalized value of usage metrics (Linear Regression Model).
 
-- **General Estimator Sidecar**: This estimator transforms the usage metrics and applies with the trained models which can be any regression models from scikit-learn library or any neuron networks from Keras (TensorFlow). To use this estimator, the [Kepler General Estimator](./architecture/#kepler-estimator-sidecar) component needs to be enabled.
+- **General Estimator Sidecar**: This estimator transforms the usage metrics and applies with the trained models which can be any regression models from scikit-learn library or any neuron networks from Keras (TensorFlow). To use this estimator, the Kepler estimator needs to be enabled.
 
-On top of that, the trained models as well as weights can be updated periodically with online training routine by connecting the [Kepler Model Server]((./architecture/#kepler-model-server)) component.
+On top of that, the trained models as well as weights can be updated periodically with online training routine by connecting the Kepler model server API.
 
 
 ## Deployment Scenarios
