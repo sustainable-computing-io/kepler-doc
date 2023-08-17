@@ -6,11 +6,11 @@ This is a list of configurable values of Kepler System. The configuration can be
 ***Kepler CR*** (single item: default)|||
 Kepler DaemonSet Deployment|daemon.exporter.image|Kepler main image|quay.io/sustainable_computing_io/kepler:latest|
 Kepler DaemonSet Deployment|daemon.exporter.port|Metric exporter port|9102|
-Kepler DaemonSet Deployment|daemon.estimator-sidecar.enabled|[Kepler Estimator Sidecar](./../design/architecture/#kepler-estimator-sidecar) patch|false|
-Kepler DaemonSet Deployment|daemon.estimator-sidecar.image|Kepler estimator sidecar image|quay.io/sustainable_computing_io/kepler-estimator:latest
+Kepler DaemonSet Deployment|daemon.estimator-sidecar.enabled|[Kepler Estimator Sidecar](./../kepler_model_server/get_started.md#step-3-learn-how-to-use-the-power-model) patch|false|
+Kepler DaemonSet Deployment|daemon.estimator-sidecar.image|Kepler estimator sidecar image
 Kepler DaemonSet Deployment|daemon.estimator-sidecar.mnt-path|Mount path between main container and the sidecar for unix domain socket|/tmp
 Kepler DaemonSet Environment (METRIC_PATH)|daemon.exporter.path|Path to export metrics|/metrics
-Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enaled|[Kepler Model Server Pod Pod](./../design/architecture/#kepler-model-server) connection|false
+Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enaled|[Kepler Model Server Pod](./../kepler_model_server/get_started.md#step-2-learn-how-to-obtain-power-model) connection|false
 *[*model-server.enaled*]*|
 Model Server Pod Pod Environment (MODEL_SERVER_PORT)|model-server.port|Model serving port of model server|8100 
 Model Server Pod Pod Environment (PROM_SERVER)|model-server.prom|Endpoint to Prometheus metric server |http://prometheus-k8s.monitoring.svc.cluster.local:9090

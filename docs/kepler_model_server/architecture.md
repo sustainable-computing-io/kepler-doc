@@ -1,7 +1,8 @@
-# Kepler Model Server
+# Kepler Model Server Architecture
 Kepler model server is a supplementary project of Kepler that facilitates power model training and serving. This provides an ecosystem of Kepler to collect metrics from one environment, train a power model with [pipeline framework](./pipeline.md), and serve back to another environment that a power meter (energy measurement) is not available. 
 
 ![](../fig/model-server-components-simplified.png)
+
 
 
 **Pipeline Input:** Prometheus query results during the training workload war running.
@@ -13,10 +14,10 @@ Kepler model server is a supplementary project of Kepler that facilitates power 
 ```
 
 - **Pipeline name** a unique name for different composition of modeling approach such as different extractor, isolator, set of trainers, supported feature groups, and supported energy sources.
-- [**Energy/Power source**](./pipeline.md#power-source) a power meter source of power label.
-- [**Model type**](./pipeline.md#model-output-type) a type of model with or without background isolation.
-- [**Feature group**](./pipeline.md#feature-group) a utilization metric source of model input.
-- **Archived model** a folder and zip file in the format`[trainer name]_[node type]` where trainer is a name of training solution such as `GradientBoostingRegressor` and `node_type` is a categorized [profile](./model_profile.md) of the server used for training. The folder contains 
+- [**Energy/Power source**](./pipeline.md#labeling-energy-source) a power meter source of power label.
+- [**Model type**](./pipeline.md#idle-powercontrol-plane-power) a type of model with or without background isolation.
+- [**Feature group**](./pipeline.md#available-metrics) a utilization metric source of model input.
+- **Archived model** a folder and zip file in the format`[trainer name]_[node type]` where trainer is a name of training solution such as `GradientBoostingRegressor` and `node_type` is a categorized [profile](./node_profile.md) of the server used for training. The folder contains 
     - metadata.json
     - model files
     - weight.json (model weight for local estimator supported models such as linear regression (LR))

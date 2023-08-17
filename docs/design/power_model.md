@@ -7,7 +7,7 @@ In Kepler, with respective to available measurements, we provide a pod-level pow
 
 - **Power Estimation Modeling**: This modeling estimates a power by using usage metrics as input features of the trained model. This modeling can be used even if the power metric cannot be measured. The estimation can be done in three levels: Node total power (including fan, power supply, etc.), Node internal component powers (such as CPU, Memory), Pod power. 
 
-    also see [Kepler Power Estimation](./power_estimation.md).
+    also see [Get started with Kepler Model Server](../kepler_model_server/get_started.md)
 
 ## Usage Scenario
 
@@ -22,3 +22,4 @@ VM with node info and power passthrough from BM (x86 but no power meter)|Power E
 VM with node info and power passthrough from BM (non-x86 with power meter)|Measurement + VM Mapping|Power Estimation|Power Ratio
 VM with node info|Power Estimation|Power Estimation|Power Ratio
 Pure VM|\-|\-|Power Estimation
+|||
