@@ -183,6 +183,12 @@ Note:
 
     This metric is specific to the model server and can be updated at any time.
 
+## Kepler metrics for Node resource utilization:
+
+### Accelerator metrics
+
+- **kepler_node_accelerator_intel_qat** This measures the utilization of the accelerator Intel QAT on a certain node. When the system has Intel QATs, kepler can calculate the utilization of the node's QATs through telemetry.
+
 ## Exploring Node Exporter metrics through the Prometheus expression
 
 All the energy consumption metrics are defined as counter following the `Prometheus metrics guide <https://prometheus.io/docs/practices/naming/>`_ for energy related metrics.
