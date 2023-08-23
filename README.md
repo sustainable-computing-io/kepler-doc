@@ -31,6 +31,13 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
 1. Switch across to the Codespaces tab
 1. Click "Create codespace on main"
 1. A new tab will open and your environment will be built
+1. Create `virtualenv` to install `mkdocs`
+```bash
+virtualenv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 1. Once built, type `mkdocs serve`
 1. A box will appear informing you that the site is available on port `8000`. Click the link to view the site
 1. Make your changes as normal to the files within the `docs/` folder. The preview site will live reload
