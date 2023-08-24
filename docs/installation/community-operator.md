@@ -146,6 +146,11 @@ Sign in to the Grafana dashboard using the credentials `kepler:kepler`.
 The dashboard can also be accessed through the OCP UI, Go to Networking ❯ Routes.
 ![](../fig/ocp_installation/operator_installation_ocp_7_0.6.z.png)
 
+## Grafana Deployment Overview
+
+Refer to the [Grafana Deployment Overview](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
+
+![](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
 
 ---
 
