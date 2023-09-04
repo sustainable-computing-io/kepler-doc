@@ -101,7 +101,8 @@ This `on_cpu_time_delta` is used to accumulate the `process_run_time` metrics fo
 ## Calculate task CPU cycles <a name="calculate-total-cpu-cycle"></a>
 For task cpu cycles, the bpf program maintains an array named `cpu_cycles`, indexed by `cpuid`. This contains values from perf array `cpu_cycles_hc_reader`, which is a perf event type array.
 
-On each task switch,
+On each task switch:
+
 - current value is read from perf counter array cpu_cycles_hc_reader, 
 - the previous value from cpu_cycles is retrieved
 - delta is calculated by subtracting prev value from current value
