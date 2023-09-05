@@ -165,4 +165,4 @@ cython_debug/
 */.DS_Store
 
 # generated adopters site
-project/adopters.md
+docs/project/adopters.md
