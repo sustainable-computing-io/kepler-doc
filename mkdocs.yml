@@ -62,12 +62,12 @@ plugins:
       lang:
         - en
   - i18n:
-      default_language: en
+      docs_structure: suffix
       languages:
-        en:
+        - locale: en
+          default: true
           name: English
           build: true
-        zh:
+        - locale: zh
           name: Chinese
           build: true
-
