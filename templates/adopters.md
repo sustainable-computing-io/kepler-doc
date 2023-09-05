@@ -7,7 +7,7 @@ description: >
 
 # Kepler Adopters
 
-Organisations below all are using the Kepler.
+Organisations below all are using Kepler.
 
 To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
 
