@@ -13,9 +13,9 @@ To join this list, please follow [these instructions](https://sustainable-comput
 
 {{- range (datasource "adopters").adopters.companies }}
 {{ if has . "logo" }}
-<img src="../../data/{{ .logo }}" alt="{{.name}}" width="300px"/>
+<img src="../../fig/{{ .logo }}" alt="{{.name}}" width="300px"/>
 {{ else }}
-<img src="../../data/logos/default.svg" alt="{{.name}}" width="300px"/>
+<img src="../../fig/logos/default.svg" alt="{{.name}}" width="300px"/>
 {{ end }}
 [{{.name}}]({{.url}})
 {{ end }}
