@@ -13,5 +13,5 @@ Kepler (Kubernetes-based Efficient Power Level Exporter)是一个prometheus expo
 <p style="text-align: center;">
 目前该项目已经成为Cloud Native Computing Foundation sandbox project.
 
-<img src="cncf-color-bg.svg" width="40%" height="20%">
+<img src="../cncf-color-bg.svg" width="40%" height="20%">
 </p>
