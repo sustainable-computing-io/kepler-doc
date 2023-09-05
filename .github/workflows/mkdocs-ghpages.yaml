@@ -13,7 +13,7 @@ jobs:
       - uses: teaxyz/setup@v0
         with:
           +: |
-            +gomplate.ca^v3.11.4
+            gomplate.ca^v3.11.4
       - run: pip install mkdocs-material mkdocs-static-i18n
       - run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
       - run: mkdocs gh-deploy --force
