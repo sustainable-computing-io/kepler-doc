@@ -45,6 +45,7 @@ nav:
       - 'kepler_model_server/node_profile.md'
       - 'kepler_model_server/power_estimation.md'
     - Project:
+      - 'project/adopters.md'
       - 'project/resources.md'
       - 'project/contributing.md'
       - 'project/support.md'
