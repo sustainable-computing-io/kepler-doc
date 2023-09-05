@@ -1,4 +1,4 @@
-# Documentation for Kepler
+# Documentation for Kepler-Doc
 
 Follow https://sustainable-computing.io/ to see documentation
 
@@ -8,6 +8,17 @@ Follow https://sustainable-computing.io/ to see documentation
   
 ```bash
 pip install -r requirements.txt
+```
+
+## Rendering adopters
+
+- uses gomplate 3.11.4, either install it or use tea.xyz:
+```
+sh <(curl https://tea.xyz) +gomplate.ca^v3.11.4 sh
+```
+- template adopters via:
+```
+gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
 ```
 
 ## Commands
