@@ -44,6 +44,7 @@ nav:
       - 'kepler_model_server/pipeline.md'
       - 'kepler_model_server/node_profile.md'
       - 'kepler_model_server/power_estimation.md'
+      - 'kepler_model_server/api.md'
     - Project:
       - 'project/adopters.md'
       - 'project/resources.md'
