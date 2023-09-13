@@ -5,6 +5,7 @@
 /tmp/estimator.socket
 ```
 Parameters of [PowerRequest](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/estimate/estimator.py)
+
 |key|value|description
 |---|---|---|
 |metrics|list of string|list of available input features (measured metrics)
@@ -20,6 +21,7 @@ POST
 ```
 
 Parameters of [ModelRequest](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/server/model_server.py)
+
 |key|value|description
 |---|---|---|
 |metrics|list of string|list of available input features (measured metrics)
@@ -36,6 +38,7 @@ Parameters of [ModelRequest](https://github.com/sustainable-computing-io/kepler-
 POST
 ```
 Parameters of [TrainRequest](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/train/offline_trainer.py)
+
 |key|value|description
 |---|---|---|
 |name|string|pipeline/model name
@@ -44,6 +47,7 @@ Parameters of [TrainRequest](https://github.com/sustainable-computing-io/kepler-
 |prome_response|json|prom response with workload for power model training
 
 - TrainAttribute
+
     |key|value|description
     |---|---|---|
     |abs_trainers|list of [available trainer class names](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/train/trainer)|trainer classes in the pipeline to train for absolute power
