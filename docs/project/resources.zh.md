@@ -1,12 +1,12 @@
 # Resources
 
-## Talks & Demos
+## 演讲和演示
 
-We really appreciate talks and demos about Kepler from the community. If you have made a presentation that demonstrated or referenced Kepler, please open a PR to add it to this page!
+我们非常感谢来自社区的关于开普勒的讲座和演示。如果您做了演示或引用开普勒的演示，请打开PR将其添加到此页面！
 
-### Kepler Demos
+### 演示
 
-The list below contains talks that demo Kepler, its capabilities, and how to gather energy metrics of various Kubernetes resources.
+下面的列表包含演示kepler、其功能以及如何收集各种Kubernetes资源的能量指标的讲座。
 
 - "Sustainability the Container Native Way", Huamin Chen (Red Hat) & Chen Wang (IBM), Open Source Summit NA 2022 [[slides]](https://github.com/sustainable-computing-io/kepler/blob/main/doc/OSS-NA22.pdf)
 
@@ -16,9 +16,9 @@ The list below contains talks that demo Kepler, its capabilities, and how to gat
 
 - "Green(ing) CI/CD: A Sustainability Journey with GitOps", Niki Manoledaki (Weaveworks), GitOpsCon NA 2022 [[slides]](https://github.com/sustainable-computing-io/kepler-doc/blob/main/demos/GitOpsCon22-Sustainability-Journey.pdf)
 
-### Kepler References
+### Kepler参考资料
 
-The list below contains talks that reference Kepler in discussions on energy efficiency and cloud-native environmental sustainability.
+下面的列表包含了在讨论能源效率和云原生环境可持续性时提到开普勒的谈话。
 
 - "Panel Discussion: Moving Towards Environmentally Sustainable Operations with Cloud Native Tools", Niki Manoledaki (Weaveworks), Chris Lavery (Weaveworks), Marlow Weston (Intel), William Caban (Red Hat) [[recording]](https://www.youtube.com/watch?v=2_Sx9ElD3o8)
 
@@ -30,8 +30,8 @@ The list below contains talks that reference Kepler in discussions on energy eff
 
 - 在特定平台上，开普勒准确吗？ | Is Kepler Accurate on Specific Platforms? - Jie Ren & Ken Lu, Intel, KubeCon China 2023 [link](https://sched.co/1PTHu)
 
-- [kepler 101](https://www.bilibili.com/video/BV1vu411A735), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
+- [kepler 101](https://www.bilibili.com/video/BV1vu411A735), Sam Yuan(IBM), KubeCon China 2023 kiosk
 
-- [kepler deployment](https://www.bilibili.com/video/BV1DN411n7ku), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
+- [kepler 部署](https://www.bilibili.com/video/BV1DN411n7ku), Sam Yuan(IBM), KubeCon China 2023 kiosk
 
-- [build kepler](https://www.bilibili.com/video/BV1Fj411k7ro), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
+- [kepler 构建](https://www.bilibili.com/video/BV1Fj411k7ro), Sam Yuan(IBM), KubeCon China 2023 kiosk
