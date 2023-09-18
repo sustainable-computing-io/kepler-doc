@@ -35,3 +35,5 @@ The list below contains talks that reference Kepler in discussions on energy eff
 - [kepler deployment](https://www.bilibili.com/video/BV1DN411n7ku), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
 
 - [build kepler](https://www.bilibili.com/video/BV1Fj411k7ro), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
+
+- [kepler model training](https://www.bilibili.com/video/BV1rP411t79b), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
