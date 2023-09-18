@@ -35,3 +35,5 @@
 - [kepler 部署](https://www.bilibili.com/video/BV1DN411n7ku), Sam Yuan(IBM), KubeCon China 2023 kiosk
 
 - [kepler 构建](https://www.bilibili.com/video/BV1Fj411k7ro), Sam Yuan(IBM), KubeCon China 2023 kiosk
+
+- [kepler 能耗模型训练](https://www.bilibili.com/video/BV1rP411t79b), Sam Yuan(IBM), KubeCon China 2023 kiosk, recording in Chinese
