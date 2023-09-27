@@ -55,5 +55,5 @@ service.port|Kepler service exposed port|9102
 To uninstall this chart, use the following steps
 
 ```bash
-helm delete --purge kepler --tiller-namespace <namespace>
+helm delete kepler --namespace kepler
 ```

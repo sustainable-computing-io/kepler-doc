@@ -58,5 +58,5 @@ service.port|Kepler service exposed port|9102
 ## 卸载 Kepler
 您可以通过以下命令卸载
 ```bash
-helm delete --purge kepler --tiller-namespace <namespace>
+helm delete kepler --namespace kepler
 ```
