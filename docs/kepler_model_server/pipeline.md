@@ -1,29 +1,21 @@
 # Training Pipeline
 
-As shown in the below figure, a power model can be attributed by the path it was trained. Training pipeline is an abstract of power model training that applies a set of learning methods to a different combination of energy source labels, available metrics, and idle/control plane power isolation choices to each specific group of nodes/machines. 
+Model server can provide various power models for different context and learning methods. Training pipeline is an abstract of power model training that applies a set of learning methods to a different combination of energy sources, power isolation methods, available energy-related metrics.  
 
-A training pipeline starts from reading the Kepler-exporting metrics from Prometheus query (prom) and finally submits an archived models to the model database (model DB). 
+## Pipeline
+`pipeline` is composed of three steps, `extract`, `isolate`, and `train`, as shown below. Kepler exports energy-related metrics as Prometheus counter, which provides accumulated number over time. The `extract` step is to convert the counter metrics to gauge metrics, similarly to the Prometheus `rate()` function, giving per-second values. The extract step also clean up the data separately for each `feature group`. The power consumption retrieved from the Prometheus query is the measured power which is composed of the power portion which is varied by the workload called dynamic power and the power portion which is consumed even if in the idling state called idle power. The `isolate` step is to calculate the idle power and isolate the dynamic power consumption of each `energy source`. The `train` step is to apply each `trainer` to create multiple choices of power models based on the preprocessed data. 
 
-From Kepler queries, the default extractor generates a dataframe with the following columns.
-
-timestamp|features|labels[unit]\_[#unit]\_[component]\_power|node type
----|---|---|---
-timestamp|e.g.,<br>cgroupfs_cpu_usage_us<br>cgroupfs_memory_usage_bytes<br>cgroupfs_system_cpu_usage_us<br>cgroupfs_user_cpu_usage_us|e.g.,<br>package_0_package_power<br>package_1_package_power<br>package_0_core_power<br>package_1_core_power<br>package_0_uncore_power<br>package_1_uncore_power<br>package_0_dram_power<br>package_1_dram_power|node_type
+> We have a roadmap to apply a pipeline to build power models separately for each node/machine type. Find more in [Node Type](#node-type) section.
 
 
-![](../fig/model-server-e2e.png)
+![](../fig/pipeline_plot.png)
 
-<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
+- Learn more about `energy source` from [Energy source](#energy-source) section.
+- Learn more about `feature group` from [Feature groups](#feature-groups) section.
+- Learn more about the `isolate` step and corresponding concepts of `AbsPower`, and `DynPower` power models from [Power isolation](#power-isolation) section.
+- Check available `trainer` in [Trainer](#learning-methods) section.
 
-- [Labeling energy source](#labeling-energy-source)
-- [Idle power/Control plane power](#idle-powercontrol-plane-power)
-- [Available metrics](#available-metrics)
-- [Learning methods](#learning-methods)
-- [Node Spec](#node-spec)
-
-<!-- /TOC -->
-
-## Labeling energy source
+## Energy source
 
 `energy source` or `source` refers to the source (power meter) that provides an energy number. Each source provides one or more `energy components`. Currently supported source are shown as below.
 
@@ -33,22 +25,9 @@ Energy/power source|Energy/power components
 [acpi](../design/kepler-energy-sources.md#using-kernel-driver-xgene-hwmon)|platform
 ||
 
-## Idle power/Control plane power
+## Feature group
 
-`isolate` is a mechanism to separate the power portion that is consumed on the node in an idle state or the power portion that is consumed by operating systems and control plane processes. These portions of power is more than zero even if the metric utilization of workload is zero. We called the models those are trained after isolating these power portions as `DynPower` models. At the same time, the models those are trained without isolation are called `AbsPower` models. `DynPower` model is used to estimate `container power` and `process power` while `AbsPower` model is used to estimate `node power`.
-
-There are two common available `isolators`: *ProfileIsolator* and *MinIdleIsolator*. 
-
-*ProfileIsolator* relies on profiled background powers (profiles) and removes resource usages by system processes from the training while *MinIdleIsolator* assumes minimum power as an idle power and includes resource usages by system processes in the training. 
-
-The pipeline with *ProfileIsolator* will be applied first if the profile that matches the training `node_type` is available. Otherwise, the other pipeline will be applied. 
-
-(check how profiles are generated [here](./node_profile.md))
-
-
-## Available metrics
-
-`feature group` is an abstract that groups available features based on origin of the resource utilization metrics. On some node environments, some origin can be inaccessible such as hardware counter on the virtual private cloud. The model are trained for each defined group as below.
+`feature group` is an abstraction of the available features based on the infrastructure context since some environments might not expose some metrics. For example, on the virtual machine in private cloud environment, hardware counter metrics are typically not available. Therefore, the models are trained for each defined resource utilization metric group as below.
 
 Group Name|Features|Kepler Metric Source(s)
 ---|---|---
@@ -64,36 +43,44 @@ WorkloadOnly|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, KUBE
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
 ||
 
-> node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information) metric.
+Node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information) metric.
 
-## Learning methods
+## Power isolation
 
-`trainer` is an abstract to define the learning method applies to each feature group with each given power labeling source. `Trainer` class has 9 abstract methods.
+The power consumption retrieved from the Prometheus query is the absolute power, which is the sum of idle and dynamic power (where idle represents the system at rest, dynamic is the incremental power with resource utilization, and absolute is idle + dynamic). Additionally, this power is also the total power consumption of all process, including the users' workload, background and OS processes. The `isolate` step applies a mechanism to separate idle power from absolute power, resulting in dynamic power  It also covers an implementation to separate the dynamic power consumed by background and OS processes (referred to as `system_processes`). It's important to note that both the idle and dynamic `system_processes` power are higher than zero, even when the metric utilization of the users' workload is zero. 
 
-1. load previous checkpoint model via implemented `(i) load_local_checkpoint` or `(ii) load_remote_checkpoint`. If the checkpoint cannot be loaded, initialize the model by calling implemented `(iii) init_model`.
+> We have a roadmap to identify and isolate a constant power portion which is significantly increased at a specific resource utilization called `activation power` to fully isolate all constant power consumption from the dynamic power.
 
-2. load and apply scaler to input data
+We refer to models trained using the isolate step as `DynPower` models. Meanwhile, models trained without the isolate step are called `AbsPower` models. Currently, the `DynPower` model does not include idle power information, but we plan to incorporate it in the future.
 
-3. call implemented `(iv) train` and save the checkpoint via `(v) save_checkpoint`
+There are two common available `isolators`: *ProfileIsolator* and *MinIdleIsolator*. 
 
-4. check whether to archive the model and push to database via `(vi) should_archive`. If yes, 
-      
-      4.1.  get trainer-specific basic metadata via `(vii) get_basic_metadata`
+*ProfileIsolator* relies on collecting data (e.g., power and resource utilization) for a specific period without running any user workload (referred to as profile data). This isolation mechanism also eliminates the resource utilization of `system_processes` from the data used to train the model.
 
-      4.2. fill with required metadata, save it as metadata file (metadata.json)
+On the other hand, *MinIdleIsolator* identifies the minimum power consumption among all samples in the training data, assuming that this minimum power consumption represents both the idle power and `system_processes` power consumption. While we should also remove the minimal resource utilization from the data used to train the model, this isolation mechanism includes the resource utilization by `system_processes` in the training data. However, we plan to remove it in the future.
 
-      4.3. call `(viii) save_model`
+If the `profile data` that matches a given `node_type` exist, the pipeline will use the *ProfileIsolator* to preprocess the training data. Otherwise, the the pipeline will applied another isolation mechanism, such as the *MinIdleIsolator*.
 
-      4.4. If `(iv) get_weight_dict` function is implemented (only for linear regression based trainer), the weight dict will be saved in the file named `weight.json`.
+(check how profiles are generated [here](./node_profile.md))
 
-      4.5. archive the model folder. The model name will be in the format `<trainer class>_<node_type>`.
+> The choice between using the `DynPower` or `AbsPower` model is still under investigation. In some cases, DynPower exhibits better accuracy than `AbsPower`. However, we currently utilize the `AbsPower` model to estimate node power for Platform, CPU and DRAM components, as the `DynPower` model lacks idle power information.
 
-      4.6. push the archived model and `weight.json` (if available) to the database
+> It's worth mentioning that exposing idle power on a VM in a public cloud environment is not possible. This is because the host's idle power must be distributed among all running VMs on the host, and it's impossible to determine the number of VMs running on the host in a public cloud environment. Therefore, we can only expose idle power if there is only one VM running on the node (for a very specific scenario), or if the power model is being used in Bare Metal environments.
 
-If the trainer is based on scikit-learn, consider implementing only `init_model` method of `ScikitTrainer`.
 
-The intermediate checkpoint and output of model will be saved locally in folder `MODEL_PATH/<PowerSource>/<ModelOutputType>/<FeatureGroup>`. The default `MODEL_PATH` is `src/models`.
+## Trainer
 
-## Node Spec
+`trainer` is an abstraction to define the learning method applies to each feature group with each given power labeling source. 
+
+Available trainer (v0.6):
+
+- PolynomialRegressionTrainer
+- GradientBoostingRegressorTrainer
+- SGDRegressorTrainer
+- KNeighborsRegressorTrainer
+- LinearRegressionTrainer
+- SVRRegressorTrainer
+
+## Node type
 
 Kepler forms multiple groups of machines (nodes) based on its benchmark performance and trains a model separately for each group. The identified group is exported as `node type`. 
