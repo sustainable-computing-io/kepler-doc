@@ -10,7 +10,6 @@ There are two alternatives of estimators.
 
 On top of that, the trained models as well as weights can be updated periodically with online training routine by connecting the Kepler model server API.
 
-
 ## Deployment Scenarios
 
 **Minimum Deployment**
@@ -42,3 +41,8 @@ The Kepler General Estimator sidecar can update the model from the Kepler Model 
 ![](../fig/full_integration.png)
 
 
+## Power model accuracy report
+
+version|machine ID|pipeline|feature group|component power source|total power source|Local LR MAE in watts (Node Components/Total)|Estimator Sidecar MAE in watts (Node Components/Total)|Reference Power Range in watts
+---|---|---|---|---|---|---|---|---
+[0.6](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models/v0.6)|[nx12](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models/v0.6/nx12)|[std_v0.6](https://github.com/sustainable-computing-io/kepler-model-db/blob/main/models/v0.6/.doc/std_v0.6.md)|BPFOnly|rapl|acpi|66.32/93.57|34.40/49.52|505.79
