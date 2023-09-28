@@ -58,15 +58,15 @@ kepler-operator.v0.5.0-230815081646   Kepler    0.5.0-230815081646              
 1. Go to Operators ❯ OperatorHub. Search for `Kepler`.
    Click on Kepler Operator tile, then select `Continue` and then `Install`
 
-![](../fig/ocp_installation/operator_installation_ocp_1_0.6.z.png)
+![](../fig/ocp_installation/kepler8-1-operator_installation_ocp.png)
 
 2. No changes need to be made to the operator install options, select `Install`
 
-![](../fig/ocp_installation/operator_installation_ocp_2_0.6.z.png)
+![](../fig/ocp_installation/kepler8-2-operator_installation_ocp.png)
 
 2. Allow the operator to install
 
-![](../fig/ocp_installation/operator_installation_ocp_3_0.6.z.png)
+![](../fig/ocp_installation/kepler8-3-operator_installation_ocp.png)
 
 Follow the link to `View installed Operators in Namespace openshift-operators`
 or use the UI to navigate to installed operators and select the Kepler
@@ -74,12 +74,12 @@ Operator.
 
 3. Select `Create instance` to Create a Custom Resource for Kepler
 
-![](../fig/ocp_installation/operator_installation_ocp_4_0.6.z.png)
+![](../fig/ocp_installation/kepler8-6-operator_installation_ocp.png)
 
 4. Select `Create`. There is a `Form` or `YAML` view, using the **YAML** view
 	 provides more detail. No changes need to be made.
 
-![](../fig/ocp_installation/operator_installation_ocp_5a_0.6.z.png)
+![](../fig/ocp_installation/kepler8-7-operator_installation_ocp.png)
 ![](../fig/ocp_installation/operator_installation_ocp_5b_0.6.z.png)
 
 5. Check that the Kepler Exporter pods are running in the `openshift-kepler-operator` namespace
