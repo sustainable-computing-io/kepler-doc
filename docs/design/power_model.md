@@ -9,6 +9,8 @@ In Kepler, with respective to available measurements, we provide a pod-level pow
 
     also see [Get started with Kepler Model Server](../kepler_model_server/get_started.md)
 
+- **Pre-trained Power Models**: We provide pre-trained power models for different deployment scenarios. Current x86_64 pretrained model are developed in [Intel® Xeon® Processor E5-2667 v3](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models). Models with other architectures are coming soon. You can find these models in [Kepler Model DB](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models/v0.6/nx12). These models support both power ratio modeling and power estimation modeling for both RAPL and ACPI power sources. The `AbsPower` models estimate both idle and dynamic power while the `DynPower` models only estimate dynamic power. The MAE (mean absolute error) of these models are also published. Kepler container image has preloaded [acpi/AbsPower/BPFOnly/SGDRegressorTrainer_1.json](https://github.com/sustainable-computing-io/kepler-model-db/blob/main/models/v0.6/nx12/std_v0.6/acpi/AbsPower/BPFOnly/SGDRegressorTrainer_1.json) model for node energy estimate and [rapl/AbsPower/BPFOnly/SGDRegressorTrainer_1.json](https://github.com/sustainable-computing-io/kepler-model-db/blob/main/models/v0.6/nx12/std_v0.6/rapl/AbsPower/BPFOnly/SGDRegressorTrainer_1.json) for Container absolute power estimate. 
+
 ## Usage Scenario
 
 Scenario | Node Total Power | Node Component Powers | Pod Power
