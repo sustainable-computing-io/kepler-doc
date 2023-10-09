@@ -69,6 +69,7 @@ Deployment Option|Description|Dependency
 BM_DEPLOY|baremetal deployment patched with node selector feature.node.kubernetes.io/cpu-cpuid.HYPERVISOR to not exist|-
 OPENSHIFT_DEPLOY|patch openshift-specific attribute to kepler daemonset and deploy SecurityContextConstraints|-
 PROMETHEUS_DEPLOY|patch prometheus-related resource (ServiceMonitor, RBAC role, rolebinding) |require prometheus deployment which can be OpenShift integrated or [custom deploy](#deploy-the-prometheus-operator)
+HIGH_GRANULARITY|sets the Prometheus scrape interval for Kepler to 3s (default is 30s)|PROMETHEUS_DEPLOY option set
 CLUSTER_PREREQ_DEPLOY|deploy prerequisites for kepler on openshift cluster| OPENSHIFT_DEPLOY option set
 CI_DEPLOY|update proc path for kind cluster using in CI|-
 ESTIMATOR_SIDECAR_DEPLOY|patch estimator sidecar and corresponding ConfigMap to kepler daemonset|-
