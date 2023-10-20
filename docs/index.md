@@ -6,6 +6,8 @@ These data and stats from cgroup and sysfs can then be fed into ML models to est
 
 Check out the project on GitHub ➡️ [Kepler](https://github.com/sustainable-computing-io/kepler).
 
+For a comprehensive overview, please check out ➡️ [this CNCF blog article](https://www.cncf.io/blog/2023/10/11/exploring-keplers-potentials-unveiling-cloud-application-power-consumption/).
+
 
 </br></br></br></br></br></br></br></br>
 <p style="text-align: center;">
