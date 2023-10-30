@@ -54,7 +54,7 @@ For `kube-prometheus` to scrape `kepler-exporter` service endpoint you need to c
 > Note: By default `kube-prometheus` does not let you scrape services deployed in namespaces other than `monitoring`. So if you are running Kepler outside `monitoring` [follow this to set up Prometheus to scrape all namespaces](#scrape-all-namespaces).
 
 ```
-kubectl apply -n monitoring -f - <<
+kubectl apply -n monitoring -f - << EOF
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
