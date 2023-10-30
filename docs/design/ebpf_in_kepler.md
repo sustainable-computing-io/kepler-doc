@@ -130,6 +130,10 @@ HZ = 1000
 
 This value is stored in array `cpu_freq_array`
 
+## Calculate 'page cache hit'
+
+The probe function in kepler `kprobe__set_page_dirty` and `kprobe__mark_page_accessed` are used to track page cache hit for write and read action respectively.
+
 ## Process Table
 
 The bpf program maintains a bpf hash named `processes`. This hash maintains data calculated for a process. Kepler reads values from this hash ( known as a `Table` in bcc ) and generates metrics.
