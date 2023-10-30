@@ -51,7 +51,7 @@ kubectl port-forward svc/grafana 3000:3000 -n monitoring
 > Note: 默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[请看考以下步骤](#scrape-all-namespaces).
 
 ```
-kubectl apply -n monitoring -f - <<
+kubectl apply -n monitoring -f - << EOF
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
