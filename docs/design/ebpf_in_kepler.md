@@ -84,7 +84,7 @@ Performance counters are accessed via special file descriptors. There's one file
 
 
 ## Calculate process (aka task) total CPU time <a name="calculate-total-cpu-time"></a>
-The ebpf program (`bpfassets/perf_event/perf_event.c`) maintains a mapping from a `<pid, cpuid>` pair to a timestamp. The timestamp signifies the moment `kprobe__finish_task_switch` was called for pid when this pid was to be scheduled on cpu `<cpuid>`
+The ebpf program (`bpfassets/bcc/bcc.c`) maintains a mapping from a `<pid, cpuid>` pair to a timestamp. The timestamp signifies the moment `kprobe__finish_task_switch` was called for pid when this pid was to be scheduled on cpu `<cpuid>`
 
 ```
 // <Task PID, CPUID> => Context Switch Start time
@@ -103,7 +103,7 @@ For task cpu cycles, the bpf program maintains an array named `cpu_cycles`, inde
 
 On each task switch:
 
-- current value is read from perf counter array cpu_cycles_hc_reader, 
+- current value is read from perf counter array cpu_cycles_hc_reader
 - the previous value from cpu_cycles is retrieved
 - delta is calculated by subtracting prev value from current value
 - the current value is copied back to cpu_cycles for next task switch
@@ -146,6 +146,7 @@ The bpf program maintains a bpf hash named `processes`. This hash maintains data
 |     | cpu_cycles       | Total CPU cycles consumed by process                                                          |
 |     | cpu_instr        | Total CPU instructions consumed by process                                                    |
 |     | cache_miss       | Total Cache miss by process                                                                   |
+|     | page_cache_hit   | Total hit of the page cache                                                                   |
 |     | vec_nr           | Total number of soft irq handles by process (max 10)                                          |
 |     | comm             | Process name (max length 16)                                                                  |
 
