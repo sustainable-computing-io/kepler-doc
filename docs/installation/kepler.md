@@ -108,7 +108,7 @@ cd kube-prometheus
 ```sh
 KEPLER_EXPORTER_GRAFANA_DASHBOARD_JSON=`curl -fsSL https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/grafana-dashboards/Kepler-Exporter.json | sed '1 ! s/^/         /'`
 mkdir -p grafana-dashboards
-cat > ./grafana-dashboards/kepler-exporter-configmap.yaml<<-EOF
+cat - > ./grafana-dashboards/kepler-exporter-configmap.yaml << EOF
 apiVersion: v1
 data:
     kepler-exporter.json: |-
