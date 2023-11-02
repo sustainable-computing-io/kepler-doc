@@ -1,4 +1,4 @@
-# Kepler Enery Sources
+# Kepler Energy Sources
 
 ## Background
 

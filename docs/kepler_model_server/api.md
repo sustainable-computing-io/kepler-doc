@@ -42,7 +42,7 @@ Parameters of [TrainRequest](https://github.com/sustainable-computing-io/kepler-
 |key|value|description
 |---|---|---|
 |name|string|pipeline/model name
-|energy_source|valid key in [PowerSourceMap](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/util/train_types.py)|target enery source to train for 
+|energy_source|valid key in [PowerSourceMap](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/src/util/train_types.py)|target energy source to train for 
 |trainer|TrainAttribute|attributes for training
 |prome_response|json|prom response with workload for power model training
 
