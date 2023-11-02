@@ -65,10 +65,10 @@ Kepler chooses to use one enenry sources in the following order of preference:
 
 ## Permissions required
 ### MSRs
-root access is required to use the msr driver
+Root access is required to use the msr driver
 
 ### Sysfs (powercap)
-Root access is not needed  to use powercap driver
+Root access is required to use powercap driver
 
 
 
