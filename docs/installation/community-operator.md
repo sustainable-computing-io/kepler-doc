@@ -238,16 +238,23 @@ oc get all -n openshift-kepler-operator
 
 ### How do I enable libbpf images?
 
-**NOTE:** This annotation will only exist until Kepler `0.7` is released which will default to `libbpf` and discontinue `bcc`
+**NOTE:** This method for enabling `libbpf` will only be applicable until the release of Kepler version `0.7`. Following this update, `libbpf` will become the default, and support for `bcc` will be phased out.
 
-You can specify **annotations** for Kepler at the time of creating the Instance.
-
-To specify in `YAML` view:
+To enable `libbpf` images, simply add the necessary **annotations** to your Kepler instance during its creation in `YAML` view:
 
 ```yaml
+apiVersion: kepler.system.sustainable.computing.io/v1alpha1
+kind: Kepler
 metadata:
   annotations:
-    kepler.sustainable.computing.io/bpf-attach-method: bcc/libbpf
+    kepler.sustainable.computing.io/bpf-attach-method: libbpf
+  labels:
+    app.kubernetes.io/name: kepler
+    app.kubernetes.io/instance: kepler
+    app.kubernetes.io/part-of: kepler-operator
+  name: kepler
+spec:
+  exporter:
+    deployment:
+      port: 9103
 ```
-
-Here `bcc` requires OCP 4.13 and above whereas `libbpf` can work with OCP 4.13 or below.
