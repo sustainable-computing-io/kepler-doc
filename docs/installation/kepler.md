@@ -62,7 +62,7 @@ make build-manifest OPTS="<deployment options>"
 # deployment with sidecar on openshift: 
 # > make build-manifest OPTS="ESTIMATOR_SIDECAR_DEPLOY OPENSHIFT_DEPLOY"
 ```
-Manifests will be generated in  `_output/manifests/kubernetes/generated/` by default.
+Manifests will be generated in  `_output/generated-manifest/` by default.
 
 Deployment Option|Description|Dependency
 ---|---|---
