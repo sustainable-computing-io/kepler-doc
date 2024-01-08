@@ -123,14 +123,6 @@ Note:
 Note:
     You can enable/disable expose of those metrics through `EXPOSE_CGROUP_METRICS` environment value.
 
-### Kubelet metrics
-
-- **kepler_container_kubelet_cpu_usage_total** This measures the total CPU time used by the container observed by kubelet.
-- **kepler_container_kubelet_memory_bytes_total** This measures the total memory in bytes used by the container observed by kubelet.
-
-Note:
-    You can enable/disable expose of those metrics through `EXPOSE_KUBELET_METRICS` environment value.
-
 ### IRQ metrics
 
 - **kepler_container_bpf_net_tx_irq_total** This measures the total transmitted packets to network cards of the container using BPF tracing.

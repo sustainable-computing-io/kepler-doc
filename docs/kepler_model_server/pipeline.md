@@ -34,7 +34,6 @@ Group Name|Features|Kepler Metric Source(s)
 CounterOnly|COUNTER_FEATURES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
 CgroupOnly|CGROUP_FEATURES|[cGroups](../design/metrics.md#cgroups-metrics)
 BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md#base-metric)
-KubeletOnly|KUBELET_FEATURES|[Kubelet](../design/metrics.md#kubelet-metrics)
 IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md#irq-metrics)
 AcceleratorOnly|ACCELERATOR_FEATURES|[Accelerator](../design/metrics.md#Accelerator-metrics)
 CounterIRQCombined|COUNTER_FEATURES, IRQ_FEATURES|BPF and Hardware Counter
