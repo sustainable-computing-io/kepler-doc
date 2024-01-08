@@ -28,7 +28,6 @@ Model Server Pod Environment (INITIAL_MODEL_NAMES.[MODEL_TYPE])|model-server.[MO
 Kepler DaemonSet Environment (COUNTER_METRICS)|counter|List of performance metrics to enable from counter source| * (enable all available metrics from counter source)
 Kepler DaemonSet Environment (CGROUP_METRICS)|cgroup|List of performance metrics to enable from cgroup source| * (enable all available metrics from cgroup source)
 Kepler DaemonSet Environment (BPF_METRICS)|bpf|List of performance metrics to enable from bpf (aka. ebpf) source| * (enable all available metrics from bpf source)
-Kepler DaemonSet Environment (KUBELET_METRICS)|kubelet|List of performance metrics to enable from kubelet source| * (enable all available metrics from kubelet source)
 Kepler DaemonSet Environment (GPU_METRICS)|gpu|List of performance metrics to enable from gpu source| * (enable all available metrics from gpu source)
 ***ExportMetric CR*** (single item: default)|||
 Kepler DaemonSet Environment (PERF_METRICS)|perf|List of performance metrics to export | * (enable all collected performance metrics)
