@@ -134,10 +134,8 @@ Note:
 
 ## Kepler metrics for Node information:
 
-- **kepler_node_nodeInfo** (Counter)
+- **kepler_node_info** (Counter)
     This metric shows the node metadata like the node CPU architecture.
-
-    Note that this metrics is deprecated and might be updated to `kepler_node_info` in the next release.
 
 ## Kepler metrics for Node energy consumption:
 
