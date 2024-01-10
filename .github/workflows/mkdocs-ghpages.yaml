@@ -10,10 +10,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11.0'
-      - uses: teaxyz/setup@v0
+      - uses: pkgxdev/setup@v1
         with:
-          +: |
-            gomplate.ca^v3.11.4
+          +: gomplate.ca@v3.11.4
       - run: pip install mkdocs
       - run: pip install mkdocs-material mkdocs-static-i18n
       - run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
