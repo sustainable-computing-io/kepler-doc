@@ -4,7 +4,7 @@
 
 Before you start make sure you have:
 
-- An OCP 4.13 cluster running
+- An OCP 4.13 or above cluster running
 - Signed in as `kubeadmin` or a user with `cluster-admin` role
 - `oc` installed.
 - Clone the [kepler-operator](https://github.com/sustainable-computing-io/kepler-operator/) repository.
@@ -19,13 +19,13 @@ cd kepler-operator
 ## Remove previously installed version of the Kepler Community Operator
 
 If you have previously installed the Kepler Community Operator this will need
-to be removed prior to the installation of the `v0.8.z` version of the operator.
+to be removed prior to the installation of the `v0.8.z` version or above of the operator.
 This is due to changes to the Kepler API that are backward incompatible.
 Please also note that `v1alpha` does not promise backward compatibility and backward incompatible changes are expected until the API matures to `v1beta1`.
 
 To remove the Kepler Operator use the [Uninstall Operator Script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/uninstall-operator.sh) in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler-operator)
 
-- Run the uninstall script to check the installed version of the operator
+- Run the uninstallation script to check the installed version of the operator
 
 ```sh
 ./hack/uninstall-operator.sh
@@ -76,15 +76,13 @@ operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
 
 ## Install Kepler Community Operator from Operator Hub
 
-- Go to Operators ❯ OperatorHub. Search for `Kepler`.
+- Go to Operators ❯ Operator Hub. Search for `Kepler`.
   Click on Kepler Operator tile, then select `Continue` and then `Install`
 
 ![](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
 
 - Choose `alpha` or `dev-preview` channel for deploying the `latest` or the `developer preview` version of the Operator respectively.
 - Click on `Install`
-
-**NOTE:** `dev-preview` channel will only be updated until developer-preview is finalized.
 
 ![](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
 
@@ -204,9 +202,9 @@ Refer to the [Grafana Deployment Overview](https://github.com/sustainable-comput
 
 ### Will Kepler work on earlier releases of OpenShift?
 
-Our recommendation is use `OCP 4.13` but Kepler has been installed on `OCP 4.11`
+Our recommendation is use `OCP 4.13`, but Kepler has been installed on `OCP 4.11`
 and `4.12`. In future the Operator may be updated to check the version of
-kubernetes that is installed e.g. `v1.25`.
+Kubernetes that is installed e.g. `v1.25`.
 
 ### How do I set nodeSelector and tolerations for Kepler?
 
@@ -234,27 +232,4 @@ Once Kepler Instance is created all the related resources like pods, daemonsets,
 
 ```sh
 oc get all -n openshift-kepler-operator
-```
-
-### How do I enable libbpf images?
-
-**NOTE:** This method for enabling `libbpf` will only be applicable until the release of Kepler version `0.7`. Following this update, `libbpf` will become the default, and support for `bcc` will be phased out.
-
-To enable `libbpf` images, simply add the necessary **annotations** to your Kepler instance during its creation in `YAML` view:
-
-```yaml
-apiVersion: kepler.system.sustainable.computing.io/v1alpha1
-kind: Kepler
-metadata:
-  annotations:
-    kepler.sustainable.computing.io/bpf-attach-method: libbpf
-  labels:
-    app.kubernetes.io/name: kepler
-    app.kubernetes.io/instance: kepler
-    app.kubernetes.io/part-of: kepler-operator
-  name: kepler
-spec:
-  exporter:
-    deployment:
-      port: 9103
 ```
