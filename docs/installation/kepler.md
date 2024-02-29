@@ -77,6 +77,7 @@ MODEL_SERVER_DEPLOY|deploy model server and corresponding ConfigMap to kepler da
 TRAINER_DEPLOY|patch online-trainer sidecar to model server| MODEL_SERVER_DEPLOY option set
 DEBUG_DEPLOY|patch KEPLER_LOG_LEVEL for debugging|-
 QAT_DEPLOY|update proc path for Kepler to enable accelerator QAT|Intel QAT installed
+DCGM_DEPLOY|Enable `hostNetwork: true` in Kepler container to access local DCGM service; use `latest-dcgm` Kepler container image to load DCGM library and dependencies|NVIDIA DCGM service must be installed on the node
 
 Following options are available for Redfish client, you can set them as environment variables of kepler-exporter. They affect all of Redfish access from Kepler Exporter.
 
