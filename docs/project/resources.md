@@ -20,6 +20,8 @@ The list below contains talks that demo Kepler, its capabilities, and how to gat
 
 The list below contains talks that reference Kepler in discussions on energy efficiency and cloud-native environmental sustainability.
 
+- "Cloud Native Sustainability Efforts in the Community - TAG Environmental Sustainability", Kristina Devochko(Independent), Antonio Di Turi (Data Reply Gmbh) KubeCon Europe 2024[[link]](https://youtu.be/UFa8hxOGKwQ?si=WU-Rx4S3LWETxIkL)
+
 - "Panel Discussion: Moving Towards Environmentally Sustainable Operations with Cloud Native Tools", Niki Manoledaki (Weaveworks), Chris Lavery (Weaveworks), Marlow Weston (Intel), William Caban (Red Hat) [[recording]](https://www.youtube.com/watch?v=2_Sx9ElD3o8)
 
 - "How to Get Involved in CNCF Environmental Sustainability TAG", Marlow Weston (Intel) & Huamin Chen (Red Hat), KubeCon NA 22 [[recording]](https://www.youtube.com/watch?v=XFZZ9YfOyI8)
