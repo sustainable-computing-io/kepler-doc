@@ -3,9 +3,9 @@
 The Kepler Helm Chart is available on [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) and [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)
 
 ## Install Helm
+
 For Installation [Helm](https://helm.sh) must be installed to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
-
 
 ## Add the Kepler Helm repo
 
@@ -52,6 +52,7 @@ service.type|Kepler service type|ClusterIP
 service.port|Kepler service exposed port|9102
 
 ## Uninstall Kepler
+
 To uninstall this chart, use the following steps
 
 ```bash
