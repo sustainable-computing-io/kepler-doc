@@ -45,15 +45,15 @@ To access the Grafana Console locally on the browser port-forward on 3000 using 
 kubectl port-forward svc/grafana 3000:3000 -n monitoring
 ```
 
-> Note: Grafana Console can be accessed on [http://localhost:3000](http://localhost:3000)
+> **Note**: Grafana Console can be accessed on [http://localhost:3000](http://localhost:3000)
 
 ### Service Monitor
 
 For `kube-prometheus` to scrape `kepler-exporter` service endpoint you need to configure a service monitor.
 
-> Note: By default `kube-prometheus` does not let you scrape services deployed in namespaces other than `monitoring`. So if you are running Kepler outside `monitoring` [follow this to set up Prometheus to scrape all namespaces](#scrape-all-namespaces).
+> **Note**: By default `kube-prometheus` does not let you scrape services deployed in namespaces other than `monitoring`. So if you are running Kepler outside `monitoring` [follow this to set up Prometheus to scrape all namespaces](#scrape-all-namespaces).
 
-```
+```cmd
 kubectl apply -n monitoring -f - << EOF
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -93,7 +93,7 @@ To set up the Grafana dashboard follow these steps:
 - Sign in [localhost:3000](http:localhost:3000) using `admin:admin`
 - Import default [dashboard](https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/v1alpha1/hack/dashboard/assets/kepler/dashboard.json) from Kepler operator repository
 
-![](../fig/ocp_installation/kind_grafana.png)
+![kind-grafana](../fig/ocp_installation/kind_grafana.png)
 
 ## Uninstall the operator
 
