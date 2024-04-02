@@ -35,6 +35,7 @@ data:
 ```
 
 ### Select power model
+
 ---
 
 There are two ways to obtain power model: static and dynamic.
