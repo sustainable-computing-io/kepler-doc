@@ -14,8 +14,8 @@ Kepler uses the following to collects power data:
 
 #### EBPF, Hardware Counters, cGroups
 
-Kepler can utilize a BPF program integrated into the kernel’s pathway to extract process-related resource utilization metrics or use metrics from Hardware Counters or cGroups.
-The type of metrics used to build the model can differ based on the system’s environment.
+Kepler can utilize a BPF program integrated into the kernel's pathway to extract process-related resource utilization metrics or use metrics from Hardware Counters or cGroups.
+The type of metrics used to build the model can differ based on the system's environment.
 For example, it might use hardware counters, or metrics from tools like eBPF or cGroups, depending on what is available in the system that will use the model.
 
 #### Real-time Component Power Meters
@@ -43,10 +43,10 @@ The Model Server trains its models using Prometheus metrics from a specific bare
 When creating the power model, the Model Server uses a regression algorithm. It keeps training the model until it reaches an acceptable level of accuracy.
 
 Once trained, the Model Server makes these models accessible through a github repository, where any Kepler deployment can download the model from.
-Kepler then uses these models to calculate how much power a node (VM) consumes based on the way its resources are being used. The type of metrics used to build the model can differ based on the system’s environment.
+Kepler then uses these models to calculate how much power a node (VM) consumes based on the way its resources are being used. The type of metrics used to build the model can differ based on the system's environment.
 For example, it might use hardware counters, or metrics from tools like eBPF or cGroups, depending on what is available in the system that will use the model.
 
-![](../fig/power_model_training.jpg)
+![Power model training](../fig/power_model_training.jpg)
 
 For details on the architecture follow the [documentation](https://sustainable-computing.io/kepler_model_server/architecture/) on Kepler Model Server.
 
@@ -55,7 +55,7 @@ For details on the architecture follow the [documentation](https://sustainable-c
 Depending on the environment that Kepler was deployed in, the system power consumption metrics collection will vary.
 For example, consider the figure below, Kepler can be deployed either through BMs or VMs environments.
 
-![](../fig/vms_versus_bms.jpg)
+![VMs vs BMs](../fig/vms_versus_bms.jpg)
 
 #### Direct Real-Time System Power Metrics (Bare Metals)
 
@@ -68,7 +68,7 @@ This concept is important because the idle and dynamic power are splitted differ
 
 In VM environments on public clouds, there is currently no direct way to measure the power that a VM consumes. Therefore, we need to estimate the power using a trained power model, which has some limitations that impact the model accuracy.
 
-Kepler can estimate the dynamic power consumption of VMs using trained power models. Then, after estimating each VM’s power consumption, Kepler applies the Ratio Power Model to estimate the processes’ power consumption.
+Kepler can estimate the dynamic power consumption of VMs using trained power models. Then, after estimating each VM's power consumption, Kepler applies the Ratio Power Model to estimate the processes' power consumption.
 However, since VMs usually do not provide hardware counters, Kepler uses eBPF metrics instead of hardware counters to calculate the ratios.
 It is important to highlight that trained power models used for VMs on a public cloud cannot split the idle power of a resource because we cannot know how many other VMs are running in the host.
 We provide more details in the limitation section in this blog. Therefore, Kepler does not expose the idle power of a container running on top of a VM.
@@ -89,11 +89,11 @@ Then, by using the VM power consumption, another Kepler instance within the VM c
 As explained earlier the dynamic power is directly related to the resource utilization and the idle power is the constant power that does not vary regardless if the system is at rest or with load.
 This concept is important because the idle and dynamic power are splitted differently across all processes. Now we can describe the Ratio Power model, which divides the dynamic power across all processes.
 
-The Ratio Power model calculates the ratio of a process’s resource utilization to the entire system’s resource utilization and then multiplying this ratio by the dynamic power consumption of a resource.
+The Ratio Power model calculates the ratio of a process's resource utilization to the entire system's resource utilization and then multiplying this ratio by the dynamic power consumption of a resource.
 This allows us to accurately estimate power usage based on actual resource utilization, ensuring that if, for instance, a program utilizes 10% of the CPU, it consumes 10% of the total CPU power.
 
 The idle power estimation follows the [GreenHouse Gas (GHG) protocol guideline](https://www.gesi.org/research/ict-sector-guidance-built-on-the-ghg-protocol-product-life-cycle-accounting-and-reporting-standard), which defines that the constant host idle power should be splitted among processes/containers based on their size (relative to the total size of other containers running on the host).
-Additionally, it’s important to note that different resource utilizations are estimated differently in Kepler.
+Additionally, it's important to note that different resource utilizations are estimated differently in Kepler.
 We utilize hardware counters to assess resource utilization in bare-metal environments, using CPU instructions to estimate CPU utilization, collecting cache misses for memory utilization, and assessing Streaming Multiprocessor (SM) utilization for GPUs utilization.
 
 ### How is the power consumption attribution done?
@@ -103,15 +103,15 @@ Now that we have explained how Kepler gathers data and train model and the Ratio
 Once all the data that is related to energy consumption and resource utilization are collected, Kepler can calculate the energy consumed by each process. This is done by dividing the power used by a given resource based on the ratio of the process and system resource utilization. We will detail this model later on in this blog.
 Then, with the power consumption of the processes, Kepler aggregates the power into containers and Kubernetes Pods levels. The data collected and estimated for the container are then stored by Prometheus.
 
-Kepler finds which container a process belongs to by using the Process ID (PID) information collected in the BPF program, and then using the container ID, we can correlate it to the pods’ name.
+Kepler finds which container a process belongs to by using the Process ID (PID) information collected in the BPF program, and then using the container ID, we can correlate it to the pods' name.
 More specifically, the container ID comes from `/proc/PID/cgroup`, and Kepler uses the Kubernetes APIServer to keep an updated list of pods that are created and removed from the node.
-The Process IDs that do not correlate with a Kubernetes container are classified as “system processes” (including PID 0).
+The Process IDs that do not correlate with a Kubernetes container are classified as `system processes` (including PID 0).
 
 ***In the future, processes that run VMs will be associated with VM IDs so that Kepler can also export VM metrics.***
 
 ### Pre-trained Power Model Limitations
 
-It’s important to note that pre-trained power models have their limitations when compared to power models using real-time power metrics.
+It's important to note that pre-trained power models have their limitations when compared to power models using real-time power metrics.
 
 - **System-Specific Models:** Pre-trained power models are system-specific and vary based on CPU models and architectures.
 While not perfect, generic models can offer insights into application power consumption, aiding energy-efficient decisions.
