@@ -1,11 +1,13 @@
 # Documentation for Kepler-Doc
 
-Follow https://sustainable-computing.io/ to see documentation
+Follow [sustainable-computing.io](https://sustainable-computing.io/) to see documentation
 
 ## Install MkDocs
+
 **Requirements:**
+
 - Python 3.8
-  
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -13,20 +15,23 @@ pip install -r requirements.txt
 ## Rendering adopters
 
 - uses gomplate 3.11.4, either install it or use tea.xyz:
-```
-sh <(curl https://tea.xyz) +gomplate.ca^v3.11.4 sh
-```
+
+    ```sh
+    sh <(curl https://tea.xyz) +gomplate.ca^v3.11.4 sh
+    ```
+
 - template adopters via:
-```
-gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
-```
+
+    ```sh
+    gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
+    ```
 
 ## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+- `mkdocs new [dir-name]` - Create a new project.
+- `mkdocs serve` - Start the live-reloading docs server.
+- `mkdocs build` - Build the documentation site.
+- `mkdocs -h` - Print help message and exit.
 
 ## Layout
 
@@ -43,11 +48,12 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
 1. Click "Create codespace on main"
 1. A new tab will open and your environment will be built
 1. Create `virtualenv` to install `mkdocs`
-```bash
-virtualenv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+
+    ```bash
+    virtualenv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    ```
 
 1. Once built, type `mkdocs serve`
 1. A box will appear informing you that the site is available on port `8000`. Click the link to view the site
