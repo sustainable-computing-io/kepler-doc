@@ -4,9 +4,12 @@ Kepler runs on Kubernetes. If you already have access to a cluster, you can skip
 
 ## Install kind
 
-To install `kind`, please [see the instructions here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation). 
+To install `kind`, please [see the instructions here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
 
-We need to configure our cluster to run Kepler. Specifically, we need to mount `/proc` (to expose information about processes running on the host) and `/usr/src` (to expose kernel headers allowing dynamic eBPF program compilation - this dependency [might be removed in future releases](https://github.com/sustainable-computing-io/kepler/issues/716)) into the node containers. Below is a minimal single-node example configuration:
+We need to configure our cluster to run Kepler. Specifically, we need to mount `/proc` (to expose
+information about processes running on the host) and `/usr/src` (to expose kernel headers allowing
+dynamic eBPF program compilation - this dependency [might be removed in future releases][1] into the
+node containers. Below is a minimal single-node example configuration:
 
 ```yaml
 # ./local-cluster-config.yaml
@@ -31,3 +34,5 @@ kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
 ```
 
 Note that `kind` automatically switches your current `kubeconfig` context to the newly created cluster.
+
+[1]: https://github.com/sustainable-computing-io/kepler/issues/716
