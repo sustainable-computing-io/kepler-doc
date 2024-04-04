@@ -1,8 +1,10 @@
+
 # Get Started with Kepler Model Server
 
 Model server project facilitates tools for power model training, exporting, serving, and utilizing based on Kepler-exporting energy-related metrics. Check the following steps to get started with the project.
 
 ## Step 1: Learn about Pipeline
+
 The first step is to understand about power model building concept from [training pipeline.](./pipeline.md)
 
 ## Step 2: Learn how to use the power model
@@ -11,9 +13,9 @@ The first step is to understand about power model building concept from [trainin
 
 ---
 
-There are two ways to use the models regarding the model format. If the model format can be processed directly inside the Kepler exporter such as Linear Regression weight in `json` format. There is no extra cofiguration. 
+There are two ways to use the models regarding the model format. If the model format can be processed directly inside the Kepler exporter such as Linear Regression weight in `json` format. There is no extra cofiguration.
 
-However, if the model is in the general format archived in `zip`, It is needed to enable the estimator sidecar via environment variable or Kepler config map. 
+However, if the model is in the general format archived in `zip`, It is needed to enable the estimator sidecar via environment variable or Kepler config map.
 
 ```bash
 export NODE_COMPONENTS_ESTIMATOR=true
@@ -35,10 +37,11 @@ data:
 ### Select power model
 ---
 
-There are two ways to obtain power model: static and dynamic. 
+There are two ways to obtain power model: static and dynamic.
 
 #### Static configuration
-A static way is to download the model directly from `INIT_URL`. It can be set via environment variable directly or via `kepler-cfm` Kepler config map. For example, 
+
+A static way is to download the model directly from `INIT_URL`. It can be set via environment variable directly or via `kepler-cfm` Kepler config map. For example,
 
 ```bash
 export NODE_COMPONENTS_INIT_URL= < Static URL >
@@ -57,9 +60,10 @@ data:
         NODE_COMPONENTS_INIT_URL= < Static URL >
 ```
 
-The static URL from standard pipeline v0.6 (std_v0.6) are listed [here](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models/v0.6/nx12).
+The static URL from provided pipeline v0.7 are listed [here](https://github.com/sustainable-computing-io/kepler-model-db/tree/main/models/v0.7).
 
 #### Dynamic via server API
+
 A dynamic way is to enable the model server to auto select the power model which has the best accuracy and supported the running cluster environment. Similarly, It can be set via the environment variable or set it via Kepler config map.
 
 ```bash
