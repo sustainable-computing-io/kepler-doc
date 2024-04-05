@@ -1,5 +1,4 @@
-Introduction
-==========================
+# Introduction
 
 Kepler (Kubernetes-based Efficient Power Level Exporter) is a Prometheus
 exporter. It uses eBPF to probe CPU performance counters and Linux
@@ -8,23 +7,28 @@ for collecting, processing, aggregating, and writing metrics.
 [\[2\]](#references)This document covers the steps for integrating
 Telegraf with Kepler.
 
-Benefits of Integrating Telegraf with Kepler
-===========================================================
+## Benefits of Integrating Telegraf with Kepler
 
-Integrating Telegraf with Kepler helps users to gather additional platform level metrics on top of Kepler metrics. Kepler provide useful container and Node metrics. On the other hand, through Telegraf, metrics like Power Supply Current output (%) can be gathered using IPMI Sensor plugin. Also, it can help to gather DPDK related metrics which is currently not possible through Kepler. By correlating power and CPU usage metrics from Kepler and DPDK metrics from Telegraf, user will gain a better understanding about the power usage of their packet processing application and can use these insights as inputs to identify opportunities for power optimization. Hence, Kepler and Telegraf metrics together can serve use cases that help end users to understand and optimize power usage by their various networking applications.
+Integrating Telegraf with Kepler helps users to gather additional platform
+level metrics on top of Kepler metrics. Kepler provide useful container and
+Node metrics. On the other hand, through Telegraf, metrics like Power Supply
+Current output (%) can be gathered using IPMI Sensor plugin. Also, it can
+help to gather DPDK related metrics which is currently not possible through
+Kepler. By correlating power and CPU usage metrics from Kepler and DPDK
+metrics from Telegraf, user will gain a better understanding about the
+power usage of their packet processing application and can use these
+insights as inputs to identify opportunities for power optimization.
+Hence, Kepler and Telegraf metrics together can serve use cases that
+help end users to understand and optimize power usage by their various
+networking applications.
 
-Setup
-====================
+## Setup
 
-![](../fig/Kepler-Telegraf.jpg)
+![Kepler-Telegraf](../fig/Kepler-Telegraf.jpg)
 
-
-Setup Details
-============================
+### Setup Details
 
 The Control plane server details are as follows:
-
-
 
 | Components  | Details |
 | ------------- |:-------------:|
@@ -34,15 +38,13 @@ The Control plane server details are as follows:
 | Total Cores      | 80     |
 | Software      | Ubuntu 22.04.1 LTS     |
 
-
-Download and Install kepler
-============================
+### Download and Install kepler
 
 There are various ways Kepler can be downloaded and installed. For more
 details on each steps please refer to the [Kepler
 documents.](https://sustainable-computing.io/installation/kepler/)
 
-```
+```sh
 root@: git clone https://github.com/sustainable-computing-io/kepler.git
 root@: cd kepler/
 root@: make build-manifest OPTS="BM_DEPLOY PROMETHEUS_DEPLOY"
@@ -50,19 +52,20 @@ root@: cd _output/generated-manifest/
 root@: vi deployment.yaml
 root@: kubectl apply -f _output/generated-manifest/deployment.yaml
 ```
+
 Installation of Kepler can be confirmed through following commands:
 
-```
+```sh
 root@: docker ps -a | grep 'kepler'
 
 530a71f0067f        quay.io/sustainable_computing_io/kepler           "/bin/sh –
-c '/usr/bi…"   33 seconds ago      Up 31 seconds                                   
+c '/usr/bi…"   33 seconds ago      Up 31 seconds
 k8s_kepler-exporter_kepler-exporter-bzj9b_kepler_827ee818-9f5a-460c-a368-
 fc90fde5d378_0
-decae0dc60e2        k8s.gcr.io/pause:3.3                              "/pause"                
-38 seconds ago      Up 35 seconds                                   
+decae0dc60e2        k8s.gcr.io/pause:3.3                              "/pause"
+38 seconds ago      Up 35 seconds
 k8s_POD_kepler-exporter-bzj9b_kepler_827ee818-9f5a-460c-a368-fc90fde5d378_0
- 
+
 root@:~# kubectl get pod -n kepler
 NAME                    READY   STATUS    RESTARTS   AGE
 kepler-exporter-8h8x7   1/1     Running   0          63s
@@ -71,8 +74,7 @@ root@:~# kubectl port-forward kepler-exporter-jdklk 9102:9102 -n kepler --addres
 
 ```
 
-Download and start the Telegraf
-==============================================
+### Download and start Telegraf
 
 Telegraf can be installed on the system in various ways. Here it has
 been done by downloading and building it from source.
@@ -80,31 +82,33 @@ been done by downloading and building it from source.
 Telegraf requires Go version \>=1.22 which can be installed : [Install
 Go](https://golang.org/doc/install) and the Makefile requires GNU make.
 
-Telegraf shares the same [minimum
-requirements](https://go.dev/wiki/MinimumRequirements) as Go:
+Telegraf shares the same [minimum
+requirements](https://go.dev/wiki/MinimumRequirements) as Go:
 
--   Linux kernel version 2.6.32 or later
-
--   Windows 10 or later
-
--   FreeBSD 12 or later
-
--   macOS 10.15 Catalina or later
+- Linux kernel version 2.6.32 or later
+- Windows 10 or later
+- FreeBSD 12 or later
+- macOS 10.15 Catalina or later
 
 Clone the Telegraf repository:
-```
+
+```sh
 root@:~# git clone https://github.com/influxdata/telegraf.git
 ```
+
 Run make build from the source directory
-```
+
+```sh
 root@:~# cd telegraf
 root@:~# make build
+```
 
-```
 Generate a Telegraf config file
-```
+
+```sh
 root@:~# telegraf config > telegraf.conf
 ```
+
 Edit the generated config file to enable required plugins. For this
 integration activity following plugins should be enabled:
 
@@ -125,7 +129,7 @@ Below is the sample config that have been used to enable all the
 above-mentioned plugins. Although, user can enable any other desired
 plugin by commenting out the respective section.
 
-```
+```sh
 root@:~# vi telegraf.conf
 
 # Global tags can be specified here in key="value" format.
@@ -339,13 +343,14 @@ root@:~# vi telegraf.conf
   # cache_path = ""
 
 ```
+
 Run Telegraf with the plugins defined in config file:
-```
+
+```sh
 root@:~#./telegraf --config telegraf.conf
 ```
 
-Download and start the Prometheus container
-==========================================================
+### Download and start the Prometheus container
 
 Prometheus can be installed on a system in various ways. Here it is
 downloaded and installed as a container.
@@ -354,7 +359,8 @@ Create a Prometheus configuration file that is scrapping from both
 Kepler and Telegraf instance:
 
 Sample Prometheus configuration file is as follows:
-```
+
+```yaml
 # my global config
 global:
 scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
@@ -365,35 +371,38 @@ evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every
 # Here it's Prometheus itself.
 scrape_configs:
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-	- job_name: 'kepler'
-	  static_configs:
-		- targets: ['xx.xx.xx:9102'] 
-	- job_name: 'telegraf'
-	  static_configs:
-		- targets: ['xx.xx.xx:9273']
+    - job_name: 'kepler'
+      static_configs:
+        - targets: ['xx.xx.xx:9102']
+    - job_name: 'telegraf'
+      static_configs:
+        - targets: ['xx.xx.xx:9273']
+```
 
-```
 Run the Prometheus container with the created Prometheus configuration file:
-```
+
+```sh
 root@:~# docker run -d -p 9090:9090 -v $PWD/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
+
 On the Prometheus GUI at localhost:9090, it can be confirmed that Prometheus is scrapping from Kepler and Telegraf.
 
-![](../fig/Kepler-Telegraf-Prometheus.png)
+![Kepler-Telegraf-Prometheus](../fig/Kepler-Telegraf-Prometheus.png)
 
-Download and start Grafana container
-==================================================
+### Download and start the Grafana container
 
 Like, Prometheus, Grafana can be installed on the system in various
 ways. Here, we are installing Grafana's container image.
-```
+
+```sh
 root@:~# docker run -d --network host --name grafana grafana/grafana
 ```
-Once Grafana container is running access the Grafana GUI at localhost:3000. Login with default credentials. After login, The Prometheus database needs to be added as a data source into Grafana GUI. Click on “DATA SOURCES” -> “Add your first data source”
-And select Prometheus - > Click “Save and Test”
 
-Dashboard
-=======================
+Once Grafana container is running access the Grafana GUI at localhost:3000. Login with default credentials.
+After login, The Prometheus database needs to be added as a data source into Grafana GUI. Click on
+`DATA SOURCES` -> `Add your first data source` and select Prometheus - > Click `Save and Test`
+
+#### Dashboard
 
 Once Prometheus has been added as a data source, create a dashboard by
 exporting
@@ -407,60 +416,55 @@ For example in below shown example, right hand shows Power related
 metrics collected by Telegraf whereas left hand shows Power related
 metrics by Kepler per namespace:
 
-![](../fig/Kepler-Telegraf-dashboard.png)
+![Kepler-Telegraf-dashboard](../fig/Kepler-Telegraf-dashboard.png)
 
 **On Kepler side:**
 
-**PKG-\>** Represents kepler\_container\_package\_joules\_total metrics
+**PKG->** Represents `kepler_container_package_joules_total` metrics
 which measures the cumulative energy consumed by the CPU socket,
 including all cores and uncore components (e.g. last-level cache,
 integrated GPU and memory controller).
 
-**DRAM-\>** Represents kepler\_container\_dram\_joules\_total metric which
+**DRAM->** Represents `kepler_container_dram_joules_total` metric which
 describes the total energy spent in DRAM by a container.
 
-**Other-\>** Represents kepler\_container\_other\_joules\_total metric
+**Other->** Represents `kepler_container_other_joules_total` metric
 measures the cumulative energy consumption on other host components
 besides the CPU and DRAM. Generally, this metric is the host energy
 consumption (from acpi) less the RAPL Package and DRAM.
 
 **On Telegraf side:**
 
-
 **Total PKG current Power->** Represents
-powerstat\_package\_current\_power\_consumptions metrics which showcase
+powerstat_package_current_power_consumptions metrics which showcase
 Current power consumption of processor package. On Grafana it is the sum
 of the metrics on both the sockets i.e.
-powerstat\_package\_current\_power\_consumptions of socket 0 +
-powerstat\_package\_current\_power\_consumptions of socket 1.
+powerstat_package_current_power_consumptions of socket 0 +
+powerstat_package_current_power_consumptions of socket 1.
 
 **Total DRAM power ->** Represents
-powerstat\_package\_current\_dram\_power\_consumptions metrics which
+powerstat_package_current_dram_power_consumptions metrics which
 describes the total energy spent in DRAM of both the sockets.
 
 **Total Thermal design Power ->** Represents
-powerstat\_package\_current\_thermal\_power\_consumptions metrics which
+powerstat_package_current_thermal_power_consumptions metrics which
 describes maximum Thermal Design Power (TDP) available for processor
 package. On Grafana it is the sum of the metrics on both the sockets
-i.e. powerstat\_package\_current\_thermal\
-\_power\_consumptions of socket 0 +
-powerstat\_package\_current\_thermal\_power\_consumptions of socket 1.
+i.e. powerstat_package_current_thermal\
+_power_consumptions of socket 0 +
+powerstat_package_current_thermal_power_consumptions of socket 1.
 
 **Total DRAM Power metrics number on Kepler side and Telegraf side
 aligns with each other(approximately).**
 
-Telegraf- IPMI metric
----------------------
+#### Telegraf- IPMI metric
 
 On Kepler dashboard, we are also pulling IPMI metrics which show Power
 Supply Current out %.
 
-![](../fig/Kepler-Telegraf-IPMI.png)
+![Kepler-Telegraf-IPMI](../fig/Kepler-Telegraf-IPMI.png)
 
-
-
-References:
------------
+## References
 
 \[1\] <https://sustainable-computing.io/>
 
