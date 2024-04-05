@@ -5,17 +5,17 @@ Please refer to enhancement [document](https://github.com/sustainable-computing-
 for the feature initiative and scope.
 
 Kepler should and will integrate with various of hardware platforms, the framework will first use Intel X86
-BareMetal platform as example to show the platform validaiton mechanism and workflows. Other platform owners
+BareMetal platform as example to show the platform validation mechanism and workflows. Other platform owners
 could use this document as reference to add their specific test cases and workflows to make Kepler better
 engage with their platforms.
 
 ## Mechanism and methodology
 
 Platform validation work should be done automatically, could follow the standard Github Action workflow
-mechanism and let the target platform be self-hosted runner. See Github action offical document for more
+mechanism and let the target platform be self-hosted runner. See Github action official document for more
 details about [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners).
 
-Platform validation cases should follow the curent Kepler's Ginkgo test framework.
+Platform validation cases should follow the current Kepler's Ginkgo test framework.
 
 We could leverage the Ginkgo [Reporting Infrastructure](https://onsi.github.io/ginkgo/#reporting-infrastructure)
 to generate test report in both human and machine readable formats, such as JSON.
@@ -28,7 +28,7 @@ collection and power consumption calculation tool called `validator`.
 The current work mechanism and features of `validator` are simple:
 
 1. It could detect the current platform's CPU model type.
-2. It could detect the current platform's inband RAPL components support status and OOB platform power source
+2. It could detect the current platform's in-band RAPL components support status and OOB platform power source
   support status.
 3. It uses specific sampling count(configurable, by default 20 sampling cycles) with specific sampling interval
   (configurable, by default 15 seconds) to collect the specific components' RAPL values and calculate the power
@@ -66,7 +66,7 @@ Platforms targeting the server segment support the following RAPL domain hierarc
 
 * DRAM
 
-We need to check the current hardware's component power souce support status and check if the exposed data is
+We need to check the current hardware's component power source support status and check if the exposed data is
 expected (zero or non-zero).
 
 ### Data accuracy check
@@ -78,10 +78,10 @@ Such power attribution mechanism accuracy should be checked.
 
 We need to introduce an independent and platform agnostic way to collect the node components power info.
 
-Due to the root priviledge limit on the access of the RAPL SYSFS files, we need to use priviledged container
+Due to the root privilege limit on the access of the RAPL SYSFS files, we need to use privileged container
 to perform the test.
 
-For node level power accuracy check, the comparison logic is simple and strightforward, while for pod/container
+For node level power accuracy check, the comparison logic is simple and straightforward, while for pod/container
 level power accuracy check, the logic is a little bit complicated and need some assumptions.
 
 1. RAPL energy is node/package level, so we could only use RAPL sampling delta to calculate the power change
