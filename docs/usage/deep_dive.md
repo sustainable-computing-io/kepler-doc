@@ -62,7 +62,7 @@ For example, consider the figure below, Kepler can be deployed either through BM
 In bare-metal environments that allow the direct collection of real-time system power metrics, Kepler can split the power consumption of a given system resource using the Ratio Power model.
 The APIs that expose the real-time power metrics export the absolute power, which is the sum of the dynamic and idle power.
 To be more specific, the dynamic power is directly related to the resource utilization and the idle power is the constant power that does not vary regardless if the system is at rest or with load.
-This concept is important because the idle and dynamic power are splitted differently across all processes.
+This concept is important because the idle and dynamic power are split differently across all processes.
 
 #### Estimated System Power Metrics (Virtual Machines)
 
@@ -87,12 +87,12 @@ Then, by using the VM power consumption, another Kepler instance within the VM c
 ### Ratio Power Model Explained
 
 As explained earlier the dynamic power is directly related to the resource utilization and the idle power is the constant power that does not vary regardless if the system is at rest or with load.
-This concept is important because the idle and dynamic power are splitted differently across all processes. Now we can describe the Ratio Power model, which divides the dynamic power across all processes.
+This concept is important because the idle and dynamic power are split differently across all processes. Now we can describe the Ratio Power model, which divides the dynamic power across all processes.
 
 The Ratio Power model calculates the ratio of a process's resource utilization to the entire system's resource utilization and then multiplying this ratio by the dynamic power consumption of a resource.
 This allows us to accurately estimate power usage based on actual resource utilization, ensuring that if, for instance, a program utilizes 10% of the CPU, it consumes 10% of the total CPU power.
 
-The idle power estimation follows the [GreenHouse Gas (GHG) protocol guideline](https://www.gesi.org/research/ict-sector-guidance-built-on-the-ghg-protocol-product-life-cycle-accounting-and-reporting-standard), which defines that the constant host idle power should be splitted among processes/containers based on their size (relative to the total size of other containers running on the host).
+The idle power estimation follows the [GreenHouse Gas (GHG) protocol guideline](https://www.gesi.org/research/ict-sector-guidance-built-on-the-ghg-protocol-product-life-cycle-accounting-and-reporting-standard), which defines that the constant host idle power should be split among processes/containers based on their size (relative to the total size of other containers running on the host).
 Additionally, it's important to note that different resource utilizations are estimated differently in Kepler.
 We utilize hardware counters to assess resource utilization in bare-metal environments, using CPU instructions to estimate CPU utilization, collecting cache misses for memory utilization, and assessing Streaming Multiprocessor (SM) utilization for GPUs utilization.
 
