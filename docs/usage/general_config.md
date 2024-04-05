@@ -11,7 +11,7 @@ This is a list of configurable values of Kepler System. The configuration can be
 |Kepler DaemonSet Deployment|daemon.estimator-sidecar.image|Kepler estimator sidecar image|-|
 |Kepler DaemonSet Deployment|daemon.estimator-sidecar.mnt-path|Mount path between main container and the sidecar for unix domain socket|/tmp|
 |Kepler DaemonSet Environment (METRIC_PATH)|daemon.exporter.path|Path to export metrics|/metrics|
-|Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enaled|[Kepler Model Server Pod](./../kepler_model_server/get_started.md#step-2-learn-how-to-obtain-power-model) connection|false|
+|Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enabled|[Kepler Model Server Pod](./../kepler_model_server/get_started.md#step-2-learn-how-to-obtain-power-model) connection|false|
 |**model-server.enabled**||||
 |Model Server Pod Pod Environment (MODEL_SERVER_PORT)|model-server.port|Model serving port of model server|8100|
 |Model Server Pod Pod Environment (PROM_SERVER)|model-server.prom|Endpoint to Prometheus metric server |`http://prometheus-k8s.monitoring.svc.cluster.local:9090`|
@@ -19,8 +19,8 @@ This is a list of configurable values of Kepler System. The configuration can be
 |Kepler DaemonSet Environment (MODEL_SERVER_ENDPOINT)|daemon.model-server|Endpoint to server container of model server|`http://kepler-model-server.monitoring.cluster.local:[model-server.port]/model`|
 |Model Server Pod Deployment|model-server.trainer|Model online trainer patch|false|
 |**model-server.trainer**||||
-|Model Server Pod Environment (PROM_QUERY_INTERVAL)|model-server.prom_interval|Interval to execute trainning pipelines in seconds|20|
-|Model Server Pod Environment (PROM_QUERY_STEP)|model-server.prom-step|Step of query data point in trainning pipelines in seconds|3|
+|Model Server Pod Environment (PROM_QUERY_INTERVAL)|model-server.prom_interval|Interval to execute training pipelines in seconds|20|
+|Model Server Pod Environment (PROM_QUERY_STEP)|model-server.prom-step|Step of query data point in training pipelines in seconds|3|
 |Model Server Pod Environment (PROM_HEADERS)|model-server.prom-header|For specify required header (such as authentication)|-|
 |Model Server Pod Environment (PROM_SSL_DISABLE)|model-server.prom-ssl|Disable ssl in Prometheus connection|true|
 |Model Server Pod Environment (INITIAL_MODELS_LOC)|model-server.init-loc|Root URL of offline models to use as initial models|`https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models`|
@@ -28,7 +28,7 @@ This is a list of configurable values of Kepler System. The configuration can be
 |***CollectMetric CR*** (single item: default)||||
 |Kepler DaemonSet Environment (COUNTER_METRICS)|counter|List of performance metrics to enable from counter source| * (enable all available metrics from counter source)|
 |Kepler DaemonSet Environment (CGROUP_METRICS)|cgroup|List of performance metrics to enable from cgroup source| * (enable all available metrics from cgroup source)|
-|Kepler DaemonSet Environment (BPF_METRICS)|bpf|List of performance metrics to enable from bpf (aka. ebpf) source| * (enable all available metrics from bpf source)|
+|Kepler DaemonSet Environment (BPF_METRICS)|bpf|List of performance metrics to enable from bpf (aka. eBPF) source| * (enable all available metrics from bpf source)|
 |Kepler DaemonSet Environment (GPU_METRICS)|gpu|List of performance metrics to enable from gpu source| * (enable all available metrics from gpu source)|
 |***ExportMetric CR*** (single item: default)||||
 |Kepler DaemonSet Environment (PERF_METRICS)|perf|List of performance metrics to export | * (enable all collected performance metrics)|
