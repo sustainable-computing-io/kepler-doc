@@ -5,9 +5,9 @@ description: >
   On this page you can see a selection of organisations who self-identified as using Kepler.
 ---
 
-# Kepler Adopters
+## Kepler Adopters
 
-Organisations below all are using Kepler.
+Organizations below all are using Kepler.
 
 To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
 
