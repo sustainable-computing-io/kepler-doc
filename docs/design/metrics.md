@@ -114,7 +114,7 @@ Note:
 - **kepler_container_cgroupfs_memory_usage_bytes_total**
     This measures the total memory in bytes used by the container reading from cGroups stat.
 - **kepler_container_cgroupfs_system_cpu_usage_us_total**
-    This measures the total CPU time in kernelspace used by the container reading from cGroups stat.
+    This measures the total CPU time in kernel space used by the container reading from cGroups stat.
 - **kepler_container_cgroupfs_user_cpu_usage_us_total**
     This measures the total CPU time in userspace used by the container reading from cGroups stat.
 
