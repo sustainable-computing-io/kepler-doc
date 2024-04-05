@@ -94,7 +94,7 @@ model, this isolation mechanism includes the resource utilization by `system_pro
 training data. However, we plan to remove it in the future.
 
 If the `profile data` that matches a given `node_type` exist, the pipeline will use the
-*ProfileIsolator* to preprocess the training data. Otherwise, the the pipeline will applied
+*ProfileIsolator* to pre-process the training data. Otherwise, the the pipeline will applied
 another isolation mechanism, such as the *MinIdleIsolator*.
 
 (check how profiles are generated [here](./node_profile.md))
