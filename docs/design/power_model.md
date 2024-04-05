@@ -16,7 +16,7 @@ powers (such as CPU, Memory), Pod power.
   > **Note**: Also see [Get started with Kepler Model Server](../kepler_model_server/get_started.md)
 
 - **Pre-trained Power Models**: We provide pre-trained power models for different deployment scenarios.
-   Current x86_64 pretrained model are developed in [Intel® Xeon® Processor E5-2667 v3][1]. Models with
+   Current x86_64 pre-trained model are developed in [Intel® Xeon® Processor E5-2667 v3][1]. Models with
    other architectures are coming soon. You can find these models in [Kepler Model DB][2]. These models
    support both power ratio modeling and power estimation modeling for both RAPL and ACPI power sources.
    The `AbsPower` models estimate both idle and dynamic power while the `DynPower` models only estimate
