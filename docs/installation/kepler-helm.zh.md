@@ -1,62 +1,104 @@
-# 通过Helm Chart部署kepler
+# 使用 Helm Chart 部署
 
-Kepler的Helm Chart目前在[GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main)和[ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)上可用了。
+Kepler Helm Chart 可在 [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) 和 [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler) 上找到。
 
-## 安装Helm
-作为准备工作您必须先安装[Helm](https://helm.sh)才可以使用Helm Chart来安装kepler。
-您可以参考Helm的[文档](https://helm.sh/docs/)来进行安装。
+## 安装 Helm
 
+必须安装 [Helm](https://helm.sh) 才能使用图表。
+请参阅 Helm 的[文档](https://helm.sh/docs/)以开始使用。
 
-## 添加Kepler Helm仓库
+## Prometheus 设置
 
-执行命令：
+Kepler 导出器需要已安装 [Prometheus节点导出器](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter) 。我们推荐使用 [Kube Prometheus Stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) Helm 图表，其中包括 Node Exporter，Grafana 和其他有用的东西，以便轻松操作利用 Prometheus 进行端到端的 Kubernetes 集群监控，使用 Prometheus 运营商。
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+helm install prometheus prometheus-community/kube-prometheus-stack \\
+    --namespace monitoring \\
+    --create-namespace \\
+    --wait
+```
+
+## 添加 Kepler Helm 仓库
 
 ```bash
 helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
+helm repo update
 ```
 
-您可以通过以下命令找到最新版本
+您可以使用以下命令查看最新版本：
 
 ```bash
 helm search repo kepler
 ```
 
-您可以执行以下命令来测试并检查生成的用于安装的配置文件。
+如果您想在部署前测试并查看清单文件，您可以运行：
 
 ```bash
 helm install kepler kepler/kepler --namespace kepler --create-namespace --dry-run --devel
 ```
 
-## 安装Kepler
+## 安装 Kepler
 
-执行命令：
+为了让 Prometheus 能够发现 Kepler 导出的指标，需要启用 `serviceMonitor` 并与您的 Prometheus 安装的发布名称标记。在我们的安装中，我们将 kube-prometheus-stack 安装命名为 `prometheus`：
 
 ```bash
-helm install kepler kepler/kepler --namespace kepler --create-namespace
+helm install kepler kepler/kepler \\
+    --namespace kepler \\
+    --create-namespace \\
+    --set serviceMonitor.enabled=true \\
+    --set serviceMonitor.labels.release=prometheus \\
 ```
 
->您也许需要改变环境变量来适配您的实际情况[values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/chart/kepler/values.yaml).
-
-并通过以下命令来使得改动生效
+或者，您也可以覆盖 [values.yaml](https://github.com/sustainable-computing-io/kepler-helm-chart/blob/main/chart/kepler/values.yaml) 文件来设置这些和以下值:
 
 ```bash
 helm install kepler kepler/kepler --values values.yaml --namespace kepler --create-namespace
 ```
 
-下表列出了配置参数的定义和默认值。
+以下表格列出了此图表的可配置参数及其默认值。
 
-Parameter|Description| Default
+参数| 描述 | 默认值
 ---|---|---
-global.namespace| Kubernetes namespace for kepler |kepler
-image.repository|Repository for Kepler Image| quay.io/sustainable\_computing\_io/kepler
-image.pullPolicy|Pull policy for Kepler|Always
-image.tag|Image tag for Kepler Image |latest
-serviceAccount.name|Service account name for Kepler|kepler-sa
-service.type|Kepler service type|ClusterIP
-service.port|Kepler service exposed port|9102
+global.namespace| Kepler的Kubernetes命名空间 |kepler
+image.repository|Kepler Image的存储库| quay.io/sustainable\\_computing\\_io/kepler
+image.pullPolicy|Kepler的拉取策略|总是
+image.tag|Kepler图像的图像标签|最新
+serviceAccount.name|Kepler的服务帐户名称|kepler-sa
+service.type|Kepler服务类型|ClusterIP
+service.port|Kepler暴露的服务端口|9102
+
+## 安装后
+
+安装后，您可以等待 Kepler 准备就绪：
+
+```bash
+KPLR_POD=$(
+    kubectl get pod \\
+        -l app.kubernetes.io/name=kepler \\
+        -o jsonpath=\"{.items[0].metadata.name}\" \\
+        -n kepler
+)
+kubectl wait --for=condition=Ready pod $KPLR_POD --timeout=-1s -n kepler
+```
+
+并将 [Kepler仪表盘](https://github.com/sustainable-computing-io/kepler/blob/main/grafana-dashboards/Kepler-Exporter.json) 添加到 Grafana：
+
+```bash
+GF_POD=$(
+    kubectl get pod \\
+        -n monitoring \\
+        -l app.kubernetes.io/name=grafana \\
+        -o jsonpath=\"{.items[0].metadata.name}\"
+)
+kubectl cp kepler_dashboard.json monitoring/$GF_POD:/tmp/dashboards/kepler_dashboard.json
+```
 
 ## 卸载 Kepler
-您可以通过以下命令卸载
+要卸载此图表，请使用以下步骤
+
 ```bash
 helm delete kepler --namespace kepler
 ```
