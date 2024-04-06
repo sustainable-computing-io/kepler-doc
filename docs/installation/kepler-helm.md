@@ -6,6 +6,7 @@ and [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler)
 
 ## Install Helm
 
+
 [Helm](https://helm.sh) must be installed to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
@@ -28,6 +29,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
     --create-namespace \
     --wait
 ```
+
 
 ## Add the Kepler Helm repo
 
@@ -111,6 +113,7 @@ kubectl cp kepler_dashboard.json monitoring/$GF_POD:/tmp/dashboards/kepler_dashb
 ```
 
 ## Uninstall Kepler
+
 To uninstall this chart, use the following steps
 
 ```bash

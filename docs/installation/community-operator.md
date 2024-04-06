@@ -79,16 +79,16 @@ operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
 - Go to Operators ❯ Operator Hub. Search for `Kepler`.
   Click on Kepler Operator tile, then select `Continue` and then `Install`
 
-![](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
 
 - Choose `alpha` or `dev-preview` channel for deploying the `latest` or the `developer preview` version of the Operator respectively.
 - Click on `Install`
 
-![](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
 
 - Wait until Operator gets installed
 
-![](../fig/ocp_installation/operator_installation_ocp_3_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_3_0.8.z.png)
 
 Follow the link to view installed Operators in `openshift-operators` Namespace
 or use the UI to navigate to installed operators and select the Kepler
@@ -96,20 +96,20 @@ Operator.
 
 - Select `Create instance` to Create a Custom Resource for Kepler
 
-![](../fig/ocp_installation/operator_installation_ocp_4_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_4_0.8.z.png)
 
 - There is a `Form` and `YAML` view, using the **YAML** view
   provides more detail.
 
-![](../fig/ocp_installation/operator_installation_ocp_5a_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5a_0.8.z.png)
 
-![](../fig/ocp_installation/operator_installation_ocp_5b_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5b_0.8.z.png)
 
 - Once Kepler is configured select `Create`.
 
-* Check that the Availability status of Kepler Instance should be `True`
+- Check that the Availability status of Kepler Instance should be `True`
 
-![](../fig/ocp_installation/operator_installation_ocp_6_0.8.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_6_0.8.z.png)
 
 - Check that the Kepler is deployed and available
 
@@ -136,9 +136,9 @@ To view the metrics directly from OpenShift Console
 - Configure user workload monitoring on the cluster. Refer to the official OpenShift [documentation](https://docs.openshift.com/container-platform/latest/monitoring/enabling-monitoring-for-user-defined-projects.html) for more information.
 - Navigate to Observe ❯ Dashboard
   - To view overall power consumption select `Power Monitoring / Overview` from dropdown.
-    ![](../fig/ocp_installation/operator_installation_ocp_7_0.8.z.png)
+    ![Operator installation](../fig/ocp_installation/operator_installation_ocp_7_0.8.z.png)
   - To view the power consumption by namespace select `Power Monitoring / Namespace` from dropdown.
-    ![](../fig/ocp_installation/operator_installation_ocp_8_0.8.z.png)
+    ![Operator installation](../fig/ocp_installation/operator_installation_ocp_8_0.8.z.png)
 
 ### Deploy the Grafana Dashboard
 
@@ -182,19 +182,19 @@ When the script successfully completes it provides the OpenShift Route to the Ke
 
 Sign in to the Grafana dashboard using the credentials `kepler:kepler`.
 
-![](../fig/ocp_installation/operator_installation_ocp_9_0.8.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_9_0.8.z.png)
 
 #### Access the Grafana Console Route
 
 The dashboard can also be accessed through the OCP UI, Go to Networking ❯ Routes.
 
-![](../fig/ocp_installation/operator_installation_ocp_10_0.8.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_10_0.8.z.png)
 
 #### Grafana Deployment Overview
 
 Refer to the [Grafana Deployment Overview](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
 
-![](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
+![Grafana deployment overview](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
 
 ---
 
@@ -208,7 +208,8 @@ Kubernetes that is installed e.g. `v1.25`.
 
 ### How do I set nodeSelector and tolerations for Kepler?
 
-You can specify **nodeSelector** and **toleration's** for Kepler at the time of creating Instance. You can specify both in `Form` and `YAML` view.
+You can specify **nodeSelector** and **toleration's** for Kepler at the time of creating Instance.
+You can specify both in `Form` and `YAML` view.
 
 - To specify in `YAML` view:
 

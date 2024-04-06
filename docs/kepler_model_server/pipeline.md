@@ -25,7 +25,8 @@ The `train` step is to apply each `trainer` to create multiple choices of power 
 
 ## Energy source
 
-`energy source` or `source` refers to the source (power meter) that provides an energy number. Each source provides one or more `energy components`. Currently supported source are shown as below.
+`energy source` or `source` refers to the source (power meter) that provides an energy number. Each
+source provides one or more `energy components`. Currently supported source are shown as below.
 
 Energy/power source|Energy/power components
 ---|---
@@ -34,7 +35,10 @@ Energy/power source|Energy/power components
 
 ## Feature group
 
-`feature group` is an abstraction of the available features based on the infrastructure context since some environments might not expose some metrics. For example, on the virtual machine in private cloud environment, hardware counter metrics are typically not available. Therefore, the models are trained for each defined resource utilization metric group as below.
+`feature group` is an abstraction of the available features based on the infrastructure context since
+some environments might not expose some metrics. For example, on the virtual machine in private cloud
+environment, hardware counter metrics are typically not available. Therefore, the models are trained
+for each defined resource utilization metric group as below.
 
 Group Name|Features|Kepler Metric Source(s)
 ---|---|---
@@ -48,7 +52,8 @@ Basic|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES|All except IRQ and node in
 WorkloadOnly|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, ACCELERATOR_FEATURES|All except node information
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
 
-Node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information) metric.
+Node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information)
+metric.
 
 ## Power isolation
 
@@ -58,19 +63,39 @@ The `isolate` step applies a mechanism to separate idle power from absolute powe
 
 It's important to note that both the idle and dynamic `system_processes` power are higher than zero, even when the metric utilization of the users' workload is zero.
 
-> We have a roadmap to identify and isolate a constant power portion which is significantly increased at a specific resource utilization called `activation power` to fully isolate all constant power consumption from the dynamic power.
+The `isolate` step applies a mechanism to separate idle power from absolute power, resulting in
+dynamic power. It also covers an implementation to separate the dynamic power consumed by background
+and OS processes (referred to as `system_processes`).
 
-We refer to models trained using the isolate step as `DynPower` models. Meanwhile, models trained without the isolate step are called `AbsPower` models. Currently, the `DynPower` model does not include idle power information, but we plan to incorporate it in the future.
+It's important to note that both the idle and dynamic `system_processes` power are higher than
+zero, even when the metric utilization of the users' workload is zero.
 
 There are two common available `isolators`: *ProfileIsolator* and *MinIdleIsolator*.
 
-*ProfileIsolator* relies on collecting data (e.g., power and resource utilization) for a specific period without running any user workload (referred to as profile data). This isolation mechanism also eliminates the resource utilization of `system_processes` from the data used to train the model.
+We refer to models trained using the isolate step as `DynPower` models. Meanwhile, models
+trained without the isolate step are called `AbsPower` models. Currently, the `DynPower` model
+does not include idle power information, but we plan to incorporate it in the future.
 
 On the other hand, *MinIdleIsolator* identifies the minimum power consumption among all samples in the training data, assuming that this minimum power consumption represents both the idle power and `system_processes` power consumption.
 
 While we should also remove the minimal resource utilization from the data used to train the model, this isolation mechanism includes the resource utilization by `system_processes` in the training data. However, we plan to remove it in the future.
 
-If the `profile data` that matches a given `node_type` exist, the pipeline will use the *ProfileIsolator* to preprocess the training data. Otherwise, the the pipeline will applied another isolation mechanism, such as the *MinIdleIsolator*.
+*ProfileIsolator* relies on collecting data (e.g., power and resource utilization) for a
+specific period without running any user workload (referred to as profile data). This
+isolation mechanism also eliminates the resource utilization of `system_processes` from
+the data used to train the model.
+
+On the other hand, *MinIdleIsolator* identifies the minimum power consumption among all
+samples in the training data, assuming that this minimum power consumption represents both
+the idle power and `system_processes` power consumption.
+
+While we should also remove the minimal resource utilization from the data used to train the
+model, this isolation mechanism includes the resource utilization by `system_processes` in the
+training data. However, we plan to remove it in the future.
+
+If the `profile data` that matches a given `node_type` exist, the pipeline will use the
+*ProfileIsolator* to pre-process the training data. Otherwise, the the pipeline will applied
+another isolation mechanism, such as the *MinIdleIsolator*.
 
 (check how profiles are generated [here](./node_profile.md))
 
@@ -98,3 +123,4 @@ Available trainer (v0.6):
 ## Node type
 
 Kepler forms multiple groups of machines (nodes) based on its benchmark performance and trains a model separately for each group. The identified group is exported as `node type`.
+
