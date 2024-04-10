@@ -1,6 +1,8 @@
 # Local cluster setup
 
-Kepler runs on Kubernetes. If you already have access to a cluster, you can skip this section. To deploy a local cluster, you can use [kind](https://kind.sigs.k8s.io/). `kind` is a tool for running local Kubernetes clusters using Docker container "nodes". It was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+Kepler runs on Kubernetes. If you already have access to a cluster, you can skip this section. To deploy a local cluster,
+you can use [kind](https://kind.sigs.k8s.io/). `kind` is a tool for running local Kubernetes clusters using Docker container
+"nodes". It was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
 
 ## Install kind
 
@@ -26,11 +28,17 @@ nodes:
     containerPath: /usr/src
 ```
 
-We can then spin up a cluster with:
+We can then spin up a cluster with either:
 
-```sh
-export $CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
-kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
+```console
+# export $CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
+# kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
+```
+
+or simply by running:
+
+```console
+# make cluster-up
 ```
 
 Note that `kind` automatically switches your current `kubeconfig` context to the newly created cluster.
