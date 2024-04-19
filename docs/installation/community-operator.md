@@ -21,7 +21,7 @@ cd kepler-operator
 If you have previously installed the Kepler Community Operator this will need
 to be removed prior to the installation of the `v0.8.z` version or above of the operator.
 This is due to changes to the Kepler API that are backward incompatible.
-Please also note that `v1alpha` does not promise backward compatibility and backward incompatible changes are expected until the API matures to `v1beta1`.
+Please also note that `v1alpha1` does not promise backward compatibility and backward incompatible changes are expected until the API matures to `v1beta1`.
 
 To remove the Kepler Operator use the [Uninstall Operator Script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/uninstall-operator.sh) in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler-operator)
 
@@ -81,7 +81,10 @@ operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
 
 ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
 
-- Choose `alpha` or `dev-preview` channel for deploying the `latest` or the `developer preview` version of the Operator respectively.
+- Choose `alpha` channel for deploying the `latest` version of the Operator.
+
+> **From OCP 4.15 onwards operator can be installed on Namespace other than `openshift-operators`**
+
 - Click on `Install`
 
 ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
@@ -106,10 +109,6 @@ Operator.
 ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5b_0.8.z.png)
 
 - Once Kepler is configured select `Create`.
-
-- Check that the Availability status of Kepler Instance should be `True`
-
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_6_0.8.z.png)
 
 - Check that the Kepler is deployed and available
 
@@ -194,7 +193,7 @@ The dashboard can also be accessed through the OCP UI, Go to Networking ❯ Rout
 
 Refer to the [Grafana Deployment Overview](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
 
-![Grafana deployment overview](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
+![Grafana's deployment overview](https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/v1alpha1/docs/developer/assets/grafana-deployment-overview.png)
 
 ---
 
@@ -202,7 +201,7 @@ Refer to the [Grafana Deployment Overview](https://github.com/sustainable-comput
 
 ### Will Kepler work on earlier releases of OpenShift?
 
-Our recommendation is use `OCP 4.13`, but Kepler has been installed on `OCP 4.11`
+Our recommendation is use `OCP 4.13` and above, but Kepler can be installed on `OCP 4.11`
 and `4.12`. In future the Operator may be updated to check the version of
 Kubernetes that is installed e.g. `v1.25`.
 
@@ -227,10 +226,35 @@ exporter:
         effect: NoExecute
 ```
 
+### How do I specify Redfish related configuration?
+
+You can specify Redfish related configuration for Kepler at the time of creating Instance.
+You can specify both in `Form` and `YAML` view.
+
+- To specify in `YAML` view:
+
+```yaml
+spec:
+  exporter:
+    deployment:
+      port: 9103
+      tolerations:
+        - operator: Exists
+    redfish:
+      secretRef: redfish-secret
+      probeInterval: 60s
+      skipSSLVerify: false
+```
+
+> Note: Once instance is created user need to manually create redfish secret `redfish-secret` in the namespace `kepler-operator`. Once secret is created operator will reconcile and Kepler will be able to connect to Redfish.
+
+For more info regarding specifying content of secret refer to [upstream manifest](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/manifests/config/exporter/redfish.csv).
+
 ### Where is Kepler exporter pods deployed?
 
-Once Kepler Instance is created all the related resources like pods, daemonsets, configmaps, secret's etc. are present inside `openshift-kepler-operator` namespace. To view the available resources:
+Once Kepler Instance is created all the related resources like pods, daemonsets, configmaps, secret's etc. are present inside `kepler-operator` namespace.
+To view the available resources:
 
 ```sh
-oc get all -n openshift-kepler-operator
+oc get all -n kepler-operator
 ```
