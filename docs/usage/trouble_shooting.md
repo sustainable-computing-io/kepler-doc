@@ -53,5 +53,3 @@ ls /sys/fs/cgroup/cgroup.controllers
 <!-- markdownlint-enable MD024 -->
 
 Enable cGroup v2 on the node by following [these Kubernetes instruction](https://kubernetes.io/docs/concepts/architecture/cgroups/).
-
-On OpenShift, apply [these cGroup v2 MachineConfiguration](https://github.com/sustainable-computing-io/kepler/tree/main/manifests/config/cluster-prereqs)

@@ -70,7 +70,7 @@ using `admin:admin`. Skip the window where Grafana asks to input a new password.
 First, fork the [kepler](https://github.com/sustainable-computing-io/kepler) repository and clone it.
 
 If you want to use Redfish BMC and IPMI, you need to add Redfish and IPMI credentials of each of the
-kubelet node to the `redfish.csv` under the `kepler/manifests/config/exporter` directory. The format of
+kubelet node to the `redfish.csv` under the `kepler/manifests/k8s/config/exporter` directory. The format of
 the file is as follows:
 
 ```csv
