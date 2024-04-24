@@ -32,6 +32,7 @@ nav:
       - 'installation/community-operator.md'
       - 'installation/kepler-operator.md'
       - 'installation/kepler-rpm.md'
+      - 'installation/Kepler-Telegraf-integration-steps.md'
     - Advanced:
       - 'usage/general_config.md'
       - 'usage/kepler_daemon.md'
