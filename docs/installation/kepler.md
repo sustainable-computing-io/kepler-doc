@@ -25,12 +25,12 @@ If the perquisites are met, then please proceed to the following sections.
 
 To deploy Kepler on `kind`, we need to build it locally with specific flags. The full details of local
 builds are covered in the [section below](#build-manifests). To deploy on a local `kind` cluster,
-you need to use the `CI_DEPLOY` and `PROMETHEUS_DEPLOY` flags.
+you need to use the `PROMETHEUS_DEPLOY` flags.
 
 ```console
 # git clone --depth 1 git@github.com:sustainable-computing-io/kepler.git
 # cd ./kepler
-# make build-manifest OPTS="CI_DEPLOY PROMETHEUS_DEPLOY"
+# make build-manifest OPTS="PROMETHEUS_DEPLOY"
 # kubectl apply -f _output/generated-manifest/deployment.yaml
 ```
 
