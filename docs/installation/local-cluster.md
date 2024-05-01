@@ -31,7 +31,7 @@ nodes:
 We can then spin up a cluster with either:
 
 ```console
-# export $CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
+# export CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
 # kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
 ```
 
