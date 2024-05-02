@@ -1,28 +1,8 @@
 # eBPF in Kepler
 
-## Contents
-
-- [Background](#background)
-  - [What is eBPF ?](#what-is-ebpf)
-  - [What is a kprobe?](#what-is-a-kprobe)
-    - [How to list all currently registered kprobes ?](#list-kprobes)
-  - [Hardware CPU Events Monitoring](#hardware-cpu-events-monitoring)
-    - [How to check if kernel supports perf_event_open?](#check-support-perf_event_open)
-- [Kernel routine probed by Kepler](#kernel-routine-probed-by-kepler)
-- [Hardware CPU events monitored by Kepler](#hardware-cpu-events-monitored-by-kepler)
-- [Calculate process (aka task) total CPU time](#calculate-total-cpu-time)
-- [Calculate task CPU cycles](#calculate-total-cpu-cycle)
-- [Calculate task Ref CPU cycles](#calculate-total-cpu-ref-cycle)
-- [Calculate task CPU instructions](#calculate-total-cpu-instr)
-- [Calculate task Cache misses](#calculate-total-cpu-cache-miss)
-- [Calculate 'On CPU Average Frequency'](#calculate-on-cpu-avg-freq)
-- [Process Table](#process-table)
-- [References](#references)
-
 ## Background
 
-<!-- markdownlint-disable MD033 -->
-### What is eBPF ? <a name="what-is-ebpf"></a>
+### What is eBPF?
 
 eBPF is a revolutionary technology with origins in the Linux kernel that can run sandboxed programs in a privileged context such as the operating system kernel. It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules. [1]
 
@@ -30,7 +10,7 @@ eBPF is a revolutionary technology with origins in the Linux kernel that can run
 
 KProbes is a debugging mechanism for the Linux kernel which can also be used for monitoring events inside a production system. KProbes enables you to dynamically break into any kernel routine and collect debugging and performance information non-disruptively. You can trap at almost any kernel code address, specifying a handler routine to be invoked when the breakpoint is hit.  [2]
 
-#### How to list all currently registered kprobes ? <a name="list-kprobes"></a>
+#### How to list all currently registered kprobes?
 
 ```bash
 sudo cat /sys/kernel/debug/kprobes/list
@@ -44,7 +24,7 @@ Using syscall `perf_event_open` [5], Linux allows to set up performance monitori
 This syscall takes `pid` and `cpuid` as parameters. Kepler uses `pid == -1` and `cpuid` as actual cpu id.
 This combination of pid and cpu allows measuring all process/threads on the specified cpu.
 
-#### How to check if kernel supports `perf_event_open`? <a name="check-support-perf_event_open"></a>
+#### How to check if kernel supports `perf_event_open`?
 
 Check presence of `/proc/sys/kernel/perf_event_paranoid` to know if kernel supports `perf_event_open` and what is allowed to be measured
 
@@ -91,7 +71,7 @@ Kepler opens monitoring for following hardware cpu events
 
 Performance counters are accessed via special file descriptors. There's one file descriptor per virtual counter used. The file descriptor is associated with the corresponding array. When bcc wrapper functions are used, it reads the corresponding fd, and return values.
 
-## Calculate process (aka task) total CPU time <a name="calculate-total-cpu-time"></a>
+## Calculate process (aka task) total CPU time
 
 The ebpf program (`bpfassets/bcc/bcc.c`) maintains a mapping from a `<pid, cpuid>` pair to a timestamp. The timestamp signifies the moment `kprobe__finish_task_switch` was called for pid when this pid was to be scheduled on cpu `<cpuid>`
 
@@ -107,7 +87,7 @@ Within the function `get_on_cpu_time`, the difference between the current timest
 
 This `on_cpu_time_delta` is used to accumulate the `process_run_time` metrics for the previous task.
 
-## Calculate task CPU cycles <a name="calculate-total-cpu-cycle"></a>
+## Calculate task CPU cycles
 
 For task cpu cycles, the bpf program maintains an array named `cpu_cycles`, indexed by `cpuid`. This contains values from perf array `cpu_cycles_hc_reader`, which is a perf event type array.
 
@@ -120,20 +100,19 @@ On each task switch:
 
 The delta thus calculated is the cpu cycles used by the process leaving the cpu
 
-## Calculate task Ref CPU cycles <a name="calculate-total-cpu-ref-cycle"></a>
+## Calculate task Ref CPU cycles
 
 Same process as calculating CPU cycles, difference being perf array used is `cpu_ref_cycles_hc_reader` and prev value is stored in `cpu_ref_cycles`
 
-## Calculate task CPU instructions <a name="calculate-total-cpu-instr"></a>
+## Calculate task CPU instructions
 
 Same process as calculating CPU cycles, difference being perf array used is `cpu_instr_hc_reader` and prev value is stored in `cpu_instr`
 
-## Calculate task Cache misses <a name="calculate-total-cpu-cache-miss"></a>
+## Calculate task Cache misses
 
 Same process as calculating CPU cycles, difference being perf array used is `cache_miss_hc_reader` and prev value is stored in `cache_miss`
 
-## Calculate 'On CPU Average Frequency' <a name="calculate-on-cpu-avg-freq"></a>
-<!-- markdownlint-enable MD033 -->
+## Calculate 'On CPU Average Frequency'
 
 ```c
 avg_freq = ((on_cpu_cycles_delta * CPU_REF_FREQ) / on_cpu_ref_cycles_delta) * HZ;
