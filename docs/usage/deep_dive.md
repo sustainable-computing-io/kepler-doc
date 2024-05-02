@@ -82,7 +82,8 @@ Kepler is first deployed in the bare-metal node (i.e. the cloud control plane), 
 Then, Kepler exposes this power data with the VM. This information can be made available to the VM through [“Hypervisor Hypercalls”](https://docs.kernel.org/virt/kvm/x86/hypercalls.html) or by saving the numbers in special files that the VM can access (e.g. cGroup file mounted in the VM).
 Then, by using the VM power consumption, another Kepler instance within the VM can apply the Ratio Power Model to estimate the power used by processes residing in the VMs.
 
->**Note:** The passthrough approach is still in exploratory and currently not available in Kepler.
+!!! note
+    The passthrough approach is still in exploratory and currently not available in Kepler.
 
 ### Ratio Power Model Explained
 
@@ -124,7 +125,10 @@ The power curve might show reduced power consumption when more CPUs are in use, 
 - **Dependency on Hypervisor Reporting:** Pre-trained power models for VMs rely on accurate reporting of CPU register values by the hypervisor.
 Overprovisioning of resources in certain public cloud VMs can impact the accuracy of resource utilization metrics, affecting the reliability of these power models.
 
-**Note:** For more detailed explanation on the limitations of pre-trained power model read the [blog](https://www.cncf.io/blog/2023/10/11/exploring-keplers-potentials-unveiling-cloud-application-power-consumption/) by Kepler's maintainers.
+!!! note
+    For more detailed explanation on the limitations of pre-trained power model read the
+    [blog](https://www.cncf.io/blog/2023/10/11/exploring-keplers-potentials-unveiling-cloud-application-power-consumption/)
+    by Kepler's maintainers.
 
 - [ ] Explain the [models](https://github.com/sustainable-computing-io/kepler-model-server/tree/main/tests/test_models). How the models are different and is there a right use case/scenario for when to apply a particular model over another?
 - [ ] AbsComponentModelWeight

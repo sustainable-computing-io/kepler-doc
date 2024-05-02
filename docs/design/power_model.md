@@ -13,7 +13,8 @@ of the trained model. This modeling can be used even if the power metric cannot 
 can be done in three levels: Node total power (including fan, power supply, etc.), Node internal component
 powers (such as CPU, Memory), Pod power.
 
-  > **Note**: Also see [Get started with Kepler Model Server](../kepler_model_server/get_started.md)
+    !!! note
+        Also see [Get started with Kepler Model Server](../kepler_model_server/get_started.md)
 
 - **Pre-trained Power Models**: We provide pre-trained power models for different deployment scenarios.
    Current x86_64 pre-trained model are developed in [Intel® Xeon® Processor E5-2667 v3][1]. Models with

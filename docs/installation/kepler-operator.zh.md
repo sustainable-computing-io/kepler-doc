@@ -25,11 +25,12 @@ prometheus-operator-6bd88c8bdf-9f69h   2/2     Running   0          48m
 ## 启动kepler-operator
 - 您可以通过quay.io上的image来部署kepler-operator.
 
-```sh
-make deploy IMG=quay.io/sustainable_computing_io/kepler-operator:latest
-kubectl config set-context --current --namespace=monitoring
-kubectl apply -k config/samples/
-```
+    ```sh
+    make deploy IMG=quay.io/sustainable_computing_io/kepler-operator:latest
+    kubectl config set-context --current --namespace=monitoring
+    kubectl apply -k config/samples/
+    ```
+
 - 通过`kubectl get pods -n monitoring`命令来验证`kepler-exporter`pod的部署情况。
 
 
@@ -48,7 +49,8 @@ kubectl port-forward svc/grafana 3000:3000 -n monitoring
 
 让`kube-prometheus` 使用 `kepler-exporter` 服务端口进行监控，您需要配置service monitor.
 
-> Note: 默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[请看考以下步骤](#scrape-all-namespaces).
+!!! note
+    默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[请看考以下步骤](#scrape-all-namespaces).
 
 ```
 kubectl apply -n monitoring -f - << EOF

@@ -155,9 +155,10 @@ The major steps in this job are as follows:
 
 8. Cleanup the test environment(undeploy Kepler exporter, the local-dev-cluster and the local registry).
 
-> **Note**: In specific test cases, the power data delta of step 4 and 2 could be comparison base for
-local-dev-cluster's power consumption; while the power data delta of step 6 and 4 could be the kepler
-exporter's power comparison base.
+!!! note
+    In specific test cases, the power data delta of step 4 and 2 could be comparison base for
+    local-dev-cluster's power consumption; while the power data delta of step 6 and 4 could be the kepler
+    exporter's power comparison base.
 
 ## Validation result evaluation
 
@@ -169,8 +170,9 @@ level cases, make analysis on any abnormal results and figure out RCAs for them.
 Manual/automation check for specific workloads on specific platforms, see example in (5) of
 `Data accuracy check` section above.
 
-**TODO**: There is an analyzer under developing for abnormality detection in platform validation test,
-it will be integrated into the current workflow when it is ready.
+!!! todo
+    There is an analyzer under developing for abnormality detection in platform validation test,
+    it will be integrated into the current workflow when it is ready.
 
 ## Further works
 

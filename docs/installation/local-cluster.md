@@ -14,7 +14,7 @@ dynamic eBPF program compilation - this dependency [might be removed in future r
 node containers. Below is a minimal single-node example configuration:
 
 ```yaml
-# ./local-cluster-config.yaml
+$ cat ./local-cluster-config.yaml
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 name: my-cluster
@@ -31,14 +31,14 @@ nodes:
 We can then spin up a cluster with either:
 
 ```console
-# export CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
-# kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
+export CLUSTER_NAME="my-cluster"  # we can use the --name flag to override the name in our config
+kind create cluster --name=$CLUSTER_NAME --config=./local-cluster-config.yaml
 ```
 
 or simply by running:
 
 ```console
-# make cluster-up
+make cluster-up
 ```
 
 Note that `kind` automatically switches your current `kubeconfig` context to the newly created cluster.

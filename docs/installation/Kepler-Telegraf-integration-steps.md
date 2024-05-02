@@ -38,7 +38,7 @@ The Control plane server details are as follows:
 | Total Cores      | 80     |
 | Software      | Ubuntu 22.04.1 LTS     |
 
-### Download and Install kepler
+### Download and Install Kepler
 
 There are various ways Kepler can be downloaded and installed. For more
 details on each steps please refer to the [Kepler
