@@ -39,6 +39,22 @@ The support for different power domains varies according to the processor model.
 
 ## Reading Energy values
 
+Kepler chooses to use one energy source in the following order of preference:
+
+1. Sysfs
+2. MSR
+3. Hwmon
+
+### Using RAPL Sysfs
+
+From Linux Kernel version 3.13 onwards, RAPL values can be read using `Power Capping Framework`[2].
+
+Linux Power Capping framework exposes power capping devices to user space via sysfs in the form of
+a tree of objects.
+
+This sysfs tree is mounted at `/sys/class/powercap/intel-rapl`. When RAPL is available, this path
+exists and Kepler reads energy values from this path.
+
 ### Using RAPL MSR (Model Specific Registers)
 
 The RAPL energy counters can be accessed through model-specific registers (MSRs). The counters are
@@ -56,45 +72,28 @@ There are basically two types of events that RAPL events report
 Static Events: thermal specifications, maximum and minimum power caps, and time windows.
 Dynamic Events: RAPL domain energy readings from the chip such as PKG, PP0, PP1 or DRAM
 
-### Using RAPL Sysfs
-
-From Linux Kernel version 3.13 onwards, RAPL values can be read using `Power Capping Framework`[2].
-
-Linux Power Capping framework exposes power capping devices to user space via sysfs in the form of
-a tree of objects.
-
-This sysfs tree is mounted at `/sys/class/powercap/intel-rapl`. When RAPL is available, this path
-exists and kepler reads energy values from this path.
-
 ### Using kernel driver xgene-hwmon
 
-Using Xgene-hwmon driver kepler reads power from APM X-Gene SoC. It supports reading CPU and IO
+Using Xgene-hwmon driver Kepler reads power from APM X-Gene SoC. It supports reading CPU and IO
 power in micro watts.
 
 ### Using eBpf perf events
 
-Not used in kepler
+Not used in Kepler.
 
 ### Using PAPI library
 
-Performance Application Programming Interface (PAPI)
-Not used in kepler
-
-Kepler chooses to use one enenry sources in the following order of preference:
-
-1. Sysfs
-2. MSR
-3. Hwmon
+Performance Application Programming Interface (PAPI) is not used in Kepler.
 
 ## Permissions required
 
-### MSRs
-
-Root access is required to use the msr driver
-
 ### Sysfs (powercap)
 
-Root access is required to use powercap driver
+Root access is required to use powercap driver.
+
+### MSRs
+
+Root access is required to use the msr driver.
 
 ## References
 

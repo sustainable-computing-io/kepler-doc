@@ -9,10 +9,10 @@ Before you start make sure you have:
 - `oc` installed.
 - Clone the [kepler-operator](https://github.com/sustainable-computing-io/kepler-operator/) repository.
 
-```sh
-git clone https://github.com/sustainable-computing-io/kepler-operator.git
-cd kepler-operator
-```
+    ```sh
+    git clone https://github.com/sustainable-computing-io/kepler-operator.git
+    cd kepler-operator
+    ```
 
 ---
 
@@ -21,56 +21,59 @@ cd kepler-operator
 If you have previously installed the Kepler Community Operator this will need
 to be removed prior to the installation of the `v0.8.z` version or above of the operator.
 This is due to changes to the Kepler API that are backward incompatible.
-Please also note that `v1alpha1` does not promise backward compatibility and backward incompatible changes are expected until the API matures to `v1beta1`.
+Please also note that `v1alpha1` does not promise backward compatibility and backward incompatible changes
+are expected until the API matures to `v1beta1`.
 
-To remove the Kepler Operator use the [Uninstall Operator Script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/uninstall-operator.sh) in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler-operator)
+To remove the Kepler Operator use the
+[Uninstall Operator Script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/uninstall-operator.sh)
+in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler-operator)
 
 - Run the uninstallation script to check the installed version of the operator
 
-```sh
-./hack/uninstall-operator.sh
-```
+    ```sh
+    ./hack/uninstall-operator.sh
+    ```
 
-Sample output of the command
+    Sample output of the command
 
-```sh
- 🔔 No operator version specified; finding the installed version
-   ✅ found kepler-operator csv: clusterserviceversion.operators.coreos.com/kepler-operator.v0.8.1
-   ✅ kepler-operator version: v0.8.1
-   ✅ Found - Kepler Operator version: v0.8.1
-
-
-   🔆🔆🔆  Resources of Kepler Operator - v0.8.1  🔆🔆🔆
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-NAME                     DISPLAY   VERSION   REPLACES                 PHASE
-kepler-operator.v0.8.1   Kepler    0.8.1     kepler-operator.v0.8.0   Succeeded
-
-
-   🔆🔆🔆  Going to delete the following  🔆🔆🔆
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- ❯ kubectl get ns kepler
-
-Error from server (NotFound): namespaces "kepler" not found
- ❯ kubectl get kepler -A
-
-NAME     PORT   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   AGE
-kepler   9103   17        17        17      17           17          12h
- ❯ kubectl get -n openshift-operators olm -l operators.coreos.com/kepler-operator.openshift-operators=
-
-NAME                                                            AGE
-operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
-....
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- 🔔 To delete all resources listed above, rerun with --delete option added.
-
-         ./hack/uninstall-operator.sh  --delete
-```
+    ```sh
+     🔔 No operator version specified; finding the installed version
+       ✅ found kepler-operator csv: clusterserviceversion.operators.coreos.com/kepler-operator.v0.8.1
+       ✅ kepler-operator version: v0.8.1
+       ✅ Found - Kepler Operator version: v0.8.1
+    
+    
+       🔆🔆🔆  Resources of Kepler Operator - v0.8.1  🔆🔆🔆
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    NAME                     DISPLAY   VERSION   REPLACES                 PHASE
+    kepler-operator.v0.8.1   Kepler    0.8.1     kepler-operator.v0.8.0   Succeeded
+    
+    
+       🔆🔆🔆  Going to delete the following  🔆🔆🔆
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     ❯ kubectl get ns kepler
+    
+    Error from server (NotFound): namespaces "kepler" not found
+     ❯ kubectl get kepler -A
+    
+    NAME     PORT   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   AGE
+    kepler   9103   17        17        17      17           17          12h
+     ❯ kubectl get -n openshift-operators olm -l operators.coreos.com/kepler-operator.openshift-operators=
+    
+    NAME                                                            AGE
+    operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
+    ....
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     🔔 To delete all resources listed above, rerun with --delete option added.
+    
+             ./hack/uninstall-operator.sh  --delete
+    ```
 
 - Once the above is verified, uninstall the operator and all the related resources by specifying the --delete flag.
 
-```sh
-./hack/uninstall-operator.sh  --delete
-```
+    ```sh
+    ./hack/uninstall-operator.sh  --delete
+    ```
 
 ---
 
@@ -79,47 +82,47 @@ operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
 - Go to Operators ❯ Operator Hub. Search for `Kepler`.
   Click on Kepler Operator tile, then select `Continue` and then `Install`
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
 
 - Choose `alpha` channel for deploying the `latest` version of the Operator.
 
-> **From OCP 4.15 onwards operator can be installed on Namespace other than `openshift-operators`**
+    > **From OCP 4.15 onwards operator can be installed on Namespace other than `openshift-operators`**
 
 - Click on `Install`
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_2_0.8.z.png)
 
 - Wait until Operator gets installed
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_3_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_3_0.8.z.png)
 
-Follow the link to view installed Operators in `openshift-operators` Namespace
-or use the UI to navigate to installed operators and select the Kepler
-Operator.
+    Follow the `View Operator` link to view installed Operators in `openshift-operators` Namespace
+    or use the UI to navigate to installed operators and select the Kepler
+    Operator.
 
 - Select `Create instance` to Create a Custom Resource for Kepler
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_4_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_4_0.8.z.png)
 
 - There is a `Form` and `YAML` view, using the **YAML** view
   provides more detail.
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5a_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5a_0.8.z.png)
 
-![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5b_0.8.z.png)
+    ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_5b_0.8.z.png)
 
 - Once Kepler is configured select `Create`.
 
 - Check that the Kepler is deployed and available
 
-```sh
-oc get kepler kepler
-```
+    ```sh
+    oc get kepler kepler
+    ```
 
-```console
-NAME     PORT   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   AGE
-kepler   9103   6         6         6       6            6           33s
-```
+    ```console
+    NAME     PORT   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   AGE
+    kepler   9103   6         6         6       6            6           33s
+    ```
 
 ---
 
@@ -141,14 +144,15 @@ To view the metrics directly from OpenShift Console
 
 ### Deploy the Grafana Dashboard
 
-The Kepler dashboard can be installed using the [deploy grafana script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/dashboard/openshift/deploy-grafana.sh)
+The Kepler dashboard can be installed using the
+[deploy grafana script](https://github.com/sustainable-computing-io/kepler-operator/blob/v1alpha1/hack/dashboard/openshift/deploy-grafana.sh)
 in the [kepler-operator repo](https://github.com/sustainable-computing-io/kepler-operator)
 
 - Run the Grafana deployment script
 
-```sh
-./hack/dashboard/openshift/deploy-grafana.sh
-```
+    ```sh
+    ./hack/dashboard/openshift/deploy-grafana.sh
+    ```
 
 The script takes a few minutes to complete. The script automates the following steps:
 
@@ -210,7 +214,7 @@ Kubernetes that is installed e.g. `v1.25`.
 You can specify **nodeSelector** and **toleration's** for Kepler at the time of creating Instance.
 You can specify both in `Form` and `YAML` view.
 
-- To specify in `YAML` view:
+To specify in `YAML` view:
 
 ```yaml
 spec:
@@ -231,7 +235,7 @@ exporter:
 You can specify Redfish related configuration for Kepler at the time of creating Instance.
 You can specify both in `Form` and `YAML` view.
 
-- To specify in `YAML` view:
+To specify in `YAML` view:
 
 ```yaml
 spec:
@@ -246,7 +250,9 @@ spec:
       skipSSLVerify: false
 ```
 
-> Note: Once instance is created user need to manually create redfish secret `redfish-secret` in the namespace `kepler-operator`. Once secret is created operator will reconcile and Kepler will be able to connect to Redfish.
+!!! note
+    Once instance is created user need to manually create redfish secret `redfish-secret` in the namespace `kepler-operator`.
+    Once secret is created operator will reconcile and Kepler will be able to connect to Redfish.
 
 For more info regarding specifying content of secret refer to [upstream manifest](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/manifests/config/exporter/redfish.csv).
 

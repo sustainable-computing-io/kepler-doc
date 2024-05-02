@@ -8,7 +8,7 @@
     - [How to list all currently registered kprobes ?](#list-kprobes)
   - [Hardware CPU Events Monitoring](#hardware-cpu-events-monitoring)
     - [How to check if kernel supports perf_event_open?](#check-support-perf_event_open)
-- [Kernel routine probed by kepler](#kernel-routine-probed-by-kepler)
+- [Kernel routine probed by Kepler](#kernel-routine-probed-by-kepler)
 - [Hardware CPU events monitored by Kepler](#hardware-cpu-events-monitored-by-kepler)
 - [Calculate process (aka task) total CPU time](#calculate-total-cpu-time)
 - [Calculate task CPU cycles](#calculate-total-cpu-cycle)
@@ -63,13 +63,13 @@ Check presence of `/proc/sys/kernel/perf_event_paranoid` to know if kernel suppo
 
 **CAP_SYS_ADMIN** is highest level of capability, it must have some security implications
 
-## Kernel routine probed by kepler
+## Kernel Routine Probed by Kepler
 
 Kepler traps into `finish_task_switch` kernel function [3], which is responsible for cleaning up after a task switch occurs. Since the probe is `kprobe` it is called before `finish_task_switch` is called (instead of a `kretprobe` which is called after the probed function returns).
 
 When a context switch occurs inside the kernel, the function `finish_task_switch` is called on the new task which is going to use the CPU. This function receives an argument of type `task_struct*` which contains all the information about the task which is leaving the CPU.[3]
 
-The probe function in kepler is
+The probe function in Kepler is
 
 ```c
 int kprobe__finish_task_switch(struct pt_regs *ctx, struct task_struct *prev)
@@ -146,7 +146,7 @@ This value is stored in array `cpu_freq_array`
 
 ## Calculate 'page cache hit'
 
-The probe function in kepler `kprobe__set_page_dirty` and `kprobe__mark_page_accessed` are used to track page cache hit for write and read action respectively.
+The probe function in Kepler `kprobe__set_page_dirty` and `kprobe__mark_page_accessed` are used to track page cache hit for write and read action respectively.
 
 ## Process Table
 

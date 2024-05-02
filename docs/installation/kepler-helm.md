@@ -76,7 +76,7 @@ The following table lists the configurable parameters for this chart and their d
 
 Parameter|Description| Default
 ---|---|---
-global.namespace| Kubernetes namespace for kepler |kepler
+global.namespace| Kubernetes namespace for Kepler |kepler
 image.repository|Repository for Kepler Image| quay.io/sustainable\_computing\_io/kepler
 image.pullPolicy|Pull policy for Kepler|Always
 image.tag|Image tag for Kepler Image |latest

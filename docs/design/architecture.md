@@ -14,7 +14,7 @@ The main feature of `Kepler Model Server` is to return a [power estimation model
 
 In addition, the online-trainer can be deployed as a sidecar container to the server (main container) to execute training pipelines and update the model on the fly when power metrics are available.
 
-`Kepler Estimator` is a client module to kepler model server running as a sidecar of Kepler Exporter (main container).
+`Kepler Estimator` is a client module to Kepler model server running as a sidecar of Kepler Exporter (main container).
 
 This python will serve a PowerRequest from model package in Kepler Exporter as defined in estimator.go via unix domain socket `/tmp/estimator.sock`.
 

@@ -1,6 +1,6 @@
 # Install Kepler as RPM
 
-To install the kepler rpm [download](https://github.com/sustainable-computing-io/kepler/releases/) the latest stable version, unpack and install:
+To install the Kepler RPM [download](https://github.com/sustainable-computing-io/kepler/releases/) the latest stable version, unpack and install:
 
 ```sh
 sudo dnf localinstall kepler-[version.arch].rpm

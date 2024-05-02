@@ -4,6 +4,7 @@ theme:
       primary: teal
     name: material
     logo: logo.png
+    language: en
     custom_dir: overrides
     features:
     - navigation.footer
@@ -13,7 +14,7 @@ theme:
     hljs_languages:
         - yaml
         - rust
-  
+
 
 docs_dir: './docs'
 nav:
@@ -53,8 +54,12 @@ nav:
       - 'project/support.md'
 
 markdown_extensions:
+  - admonition
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
 
 extra:
   version:

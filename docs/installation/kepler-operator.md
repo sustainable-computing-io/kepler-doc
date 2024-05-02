@@ -7,10 +7,11 @@ Before you start make sure you have:
 - `kubectl` installed
 - `kind` installed
 - Clone the `kepler-operator` [repository](https://github.com/sustainable-computing-io/kepler-operator)
-
-  **Note:** Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster kubectl cluster-info shows).
-
 - Sign in as `kubeadmin` or a user with `cluster-admin` role
+
+!!! note
+    Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster kubectl cluster-info shows).
+
 
 ## Run a kind cluster locally
 
@@ -23,18 +24,18 @@ make cluster-up
 
 - You can use the image from quay.io to deploy kepler-operator.
 
-```sh
-make deploy OPERATOR_IMG=quay.io/sustainable_computing_io/kepler-operator:[VERSION]
-kubectl apply -k config/samples/
-```
+    ```sh
+    make deploy OPERATOR_IMG=quay.io/sustainable_computing_io/kepler-operator:[VERSION]
+    kubectl apply -k config/samples/
+    ```
 
 - Alternatively, if you like to setup cluster, build and use your own images
 
-```sh
-make fresh
-```
+    ```sh
+    make fresh
+    ```
 
-The above will create a kind cluster build and push operator and bundle images to local registry.
+    The above will create a kind cluster build and push operator and bundle images to local registry.
 
 ## Set up Grafana Dashboard
 
@@ -45,13 +46,16 @@ To access the Grafana Console locally on the browser port-forward on 3000 using 
 kubectl port-forward svc/grafana 3000:3000 -n monitoring
 ```
 
-> **Note**: Grafana Console can be accessed on [http://localhost:3000](http://localhost:3000)
+!!! note
+    Grafana Console can be accessed on [http://localhost:3000](http://localhost:3000)
 
 ### Service Monitor
 
 For `kube-prometheus` to scrape `kepler-exporter` service endpoint you need to configure a service monitor.
 
-> **Note**: By default `kube-prometheus` does not let you scrape services deployed in namespaces other than `monitoring`. So if you are running Kepler outside `monitoring` [follow this to set up Prometheus to scrape all namespaces](#scrape-all-namespaces).
+!!! note
+    By default `kube-prometheus` does not let you scrape services deployed in namespaces other than `monitoring`.
+    So if you are running Kepler outside `monitoring` [follow this to set up Prometheus to scrape all namespaces](#scrape-all-namespaces).
 
 ```cmd
 kubectl apply -n monitoring -f - << EOF
@@ -93,7 +97,7 @@ To set up the Grafana dashboard follow these steps:
 - Sign in [localhost:3000](http:localhost:3000) using `admin:admin`
 - Import default [dashboard](https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/v1alpha1/hack/dashboard/assets/kepler/dashboard.json) from Kepler operator repository
 
-![kind-grafana](../fig/ocp_installation/kind_grafana.png)
+    ![kind-grafana](../fig/ocp_installation/kind_grafana.png)
 
 ## Uninstall the operator
 
