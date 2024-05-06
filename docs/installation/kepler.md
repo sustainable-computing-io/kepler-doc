@@ -61,7 +61,6 @@ using `admin:admin`. Skip the window where Grafana asks to input a new password.
 
 !!! note
     To forward ports simply run:
-
     ```console
     kubectl port-forward --address localhost -n kepler service/kepler-exporter 9102:9102 &
     kubectl port-forward --address localhost -n monitoring service/prometheus-k8s 9090:9090 &

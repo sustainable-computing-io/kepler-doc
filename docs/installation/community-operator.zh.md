@@ -13,16 +13,16 @@ git clone https://github.com/sustainable-computing-io/kepler-operator.git
 cd kepler-exporter
 ```
 ---
-## 从Operator Hub安装operator 
+## 从Operator Hub安装operator
 
-1. 选中Operators > OperatorHub. 搜索 `Kepler`. 点击 `Install` 
-![](../fig/ocp_installation/operator_installation_ocp_1_0.6.z.png)
+1. 选中Operators > OperatorHub. 搜索 `Kepler`. 点击 `Install`
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.6.z.png)
 
 2. 允许安装
-![](../fig/ocp_installation/operator_installation_ocp_7_0.6.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_7_0.6.z.png)
 
 3. 创建Kepler的Custom Resource
-![](../fig/ocp_installation/operator_installation_ocp_2_0.6.z.png)
+![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_2_0.6.z.png)
 > 注意：当前的OCP控制台可能会显示一个JavaScript错误（预计将在4.13.5中修复），但它不会影响其余步骤。修复程序目前可在4.13.0-0.nightly-2023-07-08-165124版本的OCP控制台上获得。
 
 ---
@@ -40,12 +40,12 @@ hack/dashboard/openshift/deploy-grafana.sh
 
 ### 访问Garafana Console
 配置Networking > Routes.
-![](../fig/ocp_installation/operator_installation_ocp_5a_0.6.z.png)
-![](../fig/ocp_installation/operator_installation_ocp_5b_0.6.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_5a_0.6.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_5b_0.6.z.png)
 
 ### Grafana Dashboard
 使用密钥`kepler:kepler`登陆Grafana Dashboard.
-![](../fig/ocp_installation/operator_installation_ocp_6_0.6.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_6_0.6.z.png)
 
 ---
 
@@ -53,4 +53,4 @@ hack/dashboard/openshift/deploy-grafana.sh
 
 > 注意：如果数据源出现问题，请检查API令牌是否已正确更新
 
-![](../fig/ocp_installation/operator_installation_ocp_3_0.6.z.png)
+![Operator installation](../fig/ocp_installation/operator_installation_ocp_3_0.6.z.png)

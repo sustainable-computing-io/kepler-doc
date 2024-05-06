@@ -22,4 +22,3 @@ VM with node info and power passthrough from BM (x86 but no power meter)|Power E
 VM with node info and power passthrough from BM (non-x86 with power meter)|Measurement + VM Mapping|Power Estimation|Power Ratio
 VM with node info|Power Estimation|Power Estimation|Power Ratio
 Pure VM|\-|\-|Power Estimation
-|||

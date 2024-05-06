@@ -1,15 +1,15 @@
 # 通过Kepler Operator在Kind上安装
 
-## 需求:
+## 需求
 
 在开始前请确认您已经安装了:
 
 - `kubectl`
-- 下载了`kepler-operator`[repository](https://github.com/sustainable-computing-io/kepler-operator)  
-- 目标k8s集群。您可以使用Kind来简单构建一个本地k8s集群来体验本教程。[local cluster for testing](#run-a-kind-cluster-locally), 或直接在您远端的k8s集群执行。注意您的controller将会自动使用当前的kubeconfig配置文件。您可以通过`kubectl cluster-info`来查看。
+- 下载了`kepler-operator`[repository](https://github.com/sustainable-computing-io/kepler-operator)
+- 目标k8s集群。您可以使用Kind来简单构建一个本地k8s集群来体验本教程。[启动一个本地kind集群](#run-a-kind-cluster-locally), 或直接在您远端的k8s集群执行。注意您的controller将会自动使用当前的kubeconfig配置文件。您可以通过`kubectl cluster-info`来查看。
 - 有`kubeadmin` 或者 `cluster-admin` 权限的用户。
 
-### 启动一个本地kind集群
+### 启动一个本地kind集群  <a name="run-a-kind-cluster-locally"></a>
 
 ``` sh
 cd kepler-operator
@@ -50,9 +50,9 @@ kubectl port-forward svc/grafana 3000:3000 -n monitoring
 让`kube-prometheus` 使用 `kepler-exporter` 服务端口进行监控，您需要配置service monitor.
 
 !!! note
-    默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[请看考以下步骤](#scrape-all-namespaces).
+    默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[监控所有的命名空间](#scrape-all-namespaces).
 
-```
+```cmd
 kubectl apply -n monitoring -f - << EOF
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -92,7 +92,7 @@ EOF
 - 登陆[localhost:3000](http:localhost:3000)默认用户名/密码为`admin:admin`
 - 倒入默认[dashboard](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/grafana-dashboards/Kepler-Exporter.json)
 
-![](../fig/ocp_installation/kind_grafana.png)
+![kind-grafana](../fig/ocp_installation/kind_grafana.png)
 
 ### 卸载operator
 通过以下命令卸载:
@@ -104,7 +104,7 @@ make undeploy
 
 ## 错误排查
 
-### 监控所有的命名空间
+### 监控所有的命名空间  <a name="scrape-all-namespaces"></a>
 
 kube-prometheus默认不会监控所有的命名空间，这是由于RBAC控制的。
 以下clusterrole `prometheus-k8s`的配置讲允许kube-prometheus监控所有命名空间。
@@ -130,7 +130,7 @@ PolicyRule:
 
 ```
 
-- 在创建[local cluster](#run-a-kind-cluster-locally)定制prometheus，请参考
+- 在创建[启动一个本地kind集群](#run-a-kind-cluster-locally)定制prometheus，请参考
 kube-prometheus文档[Customizing Kube-Prometheus](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizing.md)
 
 - 请确定您应用了[this jsonnet](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/monitoring-all-namespaces.md)保证prometheus监控所有命名空间。
