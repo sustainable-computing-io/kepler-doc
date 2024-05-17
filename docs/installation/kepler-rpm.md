@@ -15,7 +15,7 @@ Verify that podman starts a kepler container via
 
 `sudo podman ps`
 
-then via your browser pointing to the URL below on the preconfigured port [browser] http://localhost:8888/metrics
+then via your browser pointing to the URL below on the preconfigured port [browser](http://localhost:8888/metrics)
 
 or via a curl command:
 
