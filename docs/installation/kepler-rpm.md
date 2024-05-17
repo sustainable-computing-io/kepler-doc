@@ -5,7 +5,7 @@ The current rpm release is a systemd unit that starts a podman container.
 
 Download the latest stable release from the Kepler release URL [download](https://github.com/sustainable-computing-io/kepler/releases/)
 
-``` 
+```sh
 tar xvzf kepler.rpm.tar.gz
 yum install RPMS/noarch/container-kepler-0.7.10-1.noarch.rpm
 systemctl enable container-kepler --now
@@ -15,9 +15,9 @@ Verify that podman starts a kepler container via
 
 `sudo podman ps`
 
-then via your browser pointing to the URL below on the preconfigured port http://localhost:8888/metrics
+then via your browser pointing to the URL below on the preconfigured port [browser] http://localhost:8888/metrics
 
-or via a curl command: 
+or via a curl command:
 
 `curl localhost:8888/metrics | grep kepler_node_package_joules_total`
 
