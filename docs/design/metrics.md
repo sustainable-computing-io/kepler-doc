@@ -178,7 +178,7 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler`.
 
     Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
 
-- **kepler_node_other_host_components_joules_total** (Counter)
+- **kepler_node_other_joules_total** (Counter)
 
     Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
 
