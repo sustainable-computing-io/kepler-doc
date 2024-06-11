@@ -64,7 +64,7 @@ in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler
     operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
     ....
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     🔔 To delete all resources listed above, rerun with --delete option added.
+     🔔 To delete all resources listed above, rerun with the `--delete` option added.
     
              ./hack/uninstall-operator.sh  --delete
     ```
@@ -84,9 +84,9 @@ in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler
 
     ![Operator installation in OCP](../fig/ocp_installation/operator_installation_ocp_1_0.8.z.png)
 
-- Choose `alpha` channel for deploying the `latest` version of the Operator.
+- Choose `alpha` channel to deploy the `latest` version of the Operator.
 
-    > **From OCP 4.15 onwards operator can be installed on Namespace other than `openshift-operators`**
+    > **From OCP 4.15 onwards operator can be installed on Namespaces other than `openshift-operators`**
 
 - Click on `Install`
 
@@ -137,9 +137,9 @@ To view the metrics directly from OpenShift Console
 
 - Configure user workload monitoring on the cluster. Refer to the official OpenShift [documentation](https://docs.openshift.com/container-platform/latest/monitoring/enabling-monitoring-for-user-defined-projects.html) for more information.
 - Navigate to Observe ❯ Dashboard
-  - To view overall power consumption select `Power Monitoring / Overview` from dropdown.
+  - To view overall power consumption select `Power Monitoring / Overview` from the dropdown.
     ![Operator installation](../fig/ocp_installation/operator_installation_ocp_7_0.8.z.png)
-  - To view the power consumption by namespace select `Power Monitoring / Namespace` from dropdown.
+  - To view the power consumption by namespace select `Power Monitoring / Namespace` from the dropdown.
     ![Operator installation](../fig/ocp_installation/operator_installation_ocp_8_0.8.z.png)
 
 ### Deploy the Grafana Dashboard
@@ -206,7 +206,7 @@ Refer to the [Grafana Deployment Overview](https://github.com/sustainable-comput
 ### Will Kepler work on earlier releases of OpenShift?
 
 Our recommendation is use `OCP 4.13` and above, but Kepler can be installed on `OCP 4.11`
-and `4.12`. In future the Operator may be updated to check the version of
+and `4.12`. In the future the Operator may be updated to check the version of
 Kubernetes that is installed e.g. `v1.25`.
 
 ### How do I set nodeSelector and tolerations for Kepler?
@@ -251,14 +251,14 @@ spec:
 ```
 
 !!! note
-    Once instance is created user need to manually create redfish secret `redfish-secret` in the namespace `kepler-operator`.
-    Once secret is created operator will reconcile and Kepler will be able to connect to Redfish.
+    Once an instance is created, the user must manually create redfish secret `redfish-secret` in the namespace `kepler-operator`.
+    Once the secret is created, the operator will reconcile and Kepler will be able to connect to Redfish.
 
-For more info regarding specifying content of secret refer to [upstream manifest](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/manifests/config/exporter/redfish.csv).
+For more information regarding secret content specification refer to the [upstream manifest](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/manifests/config/exporter/redfish.csv).
 
-### Where is Kepler exporter pods deployed?
+### Where are Kepler exporter pods deployed?
 
-Once Kepler Instance is created all the related resources like pods, daemonsets, configmaps, secret's etc. are present inside `kepler-operator` namespace.
+Once a Kepler Instance is created all related resources like pods, daemonsets, configmaps, secrets etc. are present inside the `kepler-operator` namespace.
 To view the available resources:
 
 ```sh
