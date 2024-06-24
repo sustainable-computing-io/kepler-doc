@@ -10,3 +10,4 @@ While you are free to explore any deployments but the recommended strategies are
 
 - Kernel 4.18+
 - `kubectl` v1.21.0+
+- `docker` installed non-root by default
