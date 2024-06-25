@@ -14,7 +14,7 @@ dynamic eBPF program compilation - this dependency [might be removed in future r
 node containers. Below is a minimal single-node example configuration:
 
 ```yaml
-$ cat ./local-cluster-config.yaml
+$ cat - > ./local-cluster-config.yaml << EOF
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 name: my-cluster
@@ -26,6 +26,7 @@ nodes:
     containerPath: /proc-host
   - hostPath: /usr/src
     containerPath: /usr/src
+EOF
 ```
 
 We can then spin up a cluster with either:
