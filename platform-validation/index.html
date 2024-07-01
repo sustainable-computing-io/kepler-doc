@@ -1,0 +1,1276 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Platform Validation Framework - Kepler</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#platform-validation-framework" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Kepler" class="md-header__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kepler
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Platform Validation Framework
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../zh/platform-validation/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Kepler" class="md-nav__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
+    Kepler
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/power_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Power Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitoring Container Power Consumption with Kepler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/ebpf_in_kepler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eBPF in Kepler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/kepler-energy-sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Energy Sources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/local-cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Local cluster setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/kepler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy using Manifests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/kepler-helm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy using Helm Chart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/community-operator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Community Operator on OpenShift
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/kepler-operator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Operator on Kind
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/kepler-rpm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install Kepler as RPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/Kepler-Telegraf-integration-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/general_config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/kepler_daemon/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler DaemonSet Customization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/trouble_shooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trouble Shooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/deep_dive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Deep Dive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardwareengagement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware Engagement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kepler Model Server
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Model Server
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Started with Kepler Model Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Model Server Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/node_profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Profile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/power_estimation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Power Estimation Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler_model_server/api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Model Server API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/adopters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kepler Adopters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="platform-validation-framework">Platform Validation Framework</h1>
+<p>In this document, we will share the design and implementation of Kepler's platform validation framework.
+Please refer to enhancement <a href="https://github.com/sustainable-computing-io/kepler/blob/main/enhancements/platform-validation.md">document</a>
+for the feature initiative and scope.</p>
+<p>Kepler should and will integrate with various of hardware platforms, the framework will first use Intel X86
+BareMetal platform as example to show the platform validation mechanism and workflows. Other platform owners
+could use this document as reference to add their specific test cases and workflows to make Kepler better
+engage with their platforms.</p>
+<h2 id="mechanism-and-methodology">Mechanism and methodology</h2>
+<p>Platform validation work should be done automatically, could follow the standard Github Action workflow
+mechanism and let the target platform be self-hosted runner. See Github action official document for more
+details about <a href="https://docs.github.com/en/actions/hosting-your-own-runners">self-hosted runner</a>.</p>
+<p>Platform validation cases should follow the current Kepler's Ginkgo test framework.</p>
+<p>We could leverage the Ginkgo <a href="https://onsi.github.io/ginkgo/#reporting-infrastructure">Reporting Infrastructure</a>
+to generate test report in both human and machine readable formats, such as JSON.</p>
+<p>Platform validation cases should support both validity and accuracy check on Kepler/Prometheus exposed data.</p>
+<p>Take Intel X86 BareMetal platform's validation as example, we have introduced an independent RAPL-based energy
+collection and power consumption calculation tool called <code>validator</code>.</p>
+<p>The current work mechanism and features of <code>validator</code> are simple:</p>
+<ol>
+<li>It could detect the current platform's CPU model type.</li>
+<li>It could detect the current platform's in-band RAPL components support status and OOB platform power source
+  support status.</li>
+<li>It uses specific sampling count(configurable, by default 20 sampling cycles) with specific sampling interval
+  (configurable, by default 15 seconds) to collect the specific components' RAPL values and calculate the power
+  consumption of each sampling, then achieve the mean value of node components power among those sampling cycles.</li>
+</ol>
+<p>Test cases could use above sampling and calculation results as comparison base to check the Kepler exported and
+Prometheus aggregated query results.</p>
+<p>For other platforms, developers may use other specific measurement methods and tools to implement similar
+validation targets and logic.</p>
+<h3 id="data-validity-check">Data validity check</h3>
+<p>Intel X86 Platforms could have different CPU models which are exported by Kepler, this should be verified in
+independent way. The case setup and execution should have no extra dependencies on the platform OS and software
+packages/libraries.</p>
+<p>For Intel X86 CPUs, especially the new coming ones, the cpu model detail information comes with <code>cpuid</code> tool.
+On Linux Distros such as Ubuntu, the <code>cpuid</code> tool version is often not up-to-date, so it is better way to design
+an OS agnostic container to perform the test.</p>
+<p>For Intel X86 platforms, the specific RAPL domains available vary across product segments.</p>
+<p>Platforms targeting the client segment support the following RAPL domain hierarchy:</p>
+<ul>
+<li>
+<p>Package</p>
+</li>
+<li>
+<p>Two power planes: PP0 and PP1 (PP1 may reflect to uncore devices)</p>
+</li>
+</ul>
+<p>Platforms targeting the server segment support the following RAPL domain hierarchy:</p>
+<ul>
+<li>
+<p>Package</p>
+</li>
+<li>
+<p>Power plane: PP0</p>
+</li>
+<li>
+<p>DRAM</p>
+</li>
+</ul>
+<p>We need to check the current hardware's component power source support status and check if the exposed data is
+expected (zero or non-zero).</p>
+<h3 id="data-accuracy-check">Data accuracy check</h3>
+<p>For Intel X86 platforms, since the RAPL based system power collection is available on BareMetal, Kepler uses
+<a href="https://sustainable-computing.io/design/power_model/">Power Ratio Modeling</a>.</p>
+<p>Such power attribution mechanism accuracy should be checked.</p>
+<p>We need to introduce an independent and platform agnostic way to collect the node components power info.</p>
+<p>Due to the root privilege limit on the access of the RAPL SYSFS files, we need to use privileged container
+to perform the test.</p>
+<p>For node level power accuracy check, the comparison logic is simple and straightforward, while for pod/container
+level power accuracy check, the logic is a little bit complicated and need some assumptions.</p>
+<ol>
+<li>
+<p>RAPL energy is node/package level, so we could only use RAPL sampling delta to calculate the power change
+introduced by application deployment and undeployment.</p>
+</li>
+<li>
+<p>On the other hand, application power consumption data could be queried from Prometheus where Kepler's exported
+time-series metrics are aggregated.</p>
+</li>
+<li>
+<p>On a clean/idle platform, without other tenants' workloads interference, we could have a simple assumption that
+the power increase introduced by the specific application deployment is equal to the test container calculated power
+delta in (1).</p>
+</li>
+<li>
+<p>On a busy platform, with other tenants' workloads running in parallel, in container or in VM, for instance, the
+scenarios become complicated. Since the interference power may be fluctuated and unable to detect, the Kepler
+<code>Power Ratio Modeling</code> check criteria is unknown, now we just dump all the available data and leave the result for
+evaluation after platform validation test.</p>
+</li>
+<li>
+<p>On some CPU/GPU-intensive workloads deployment platform, such as AI/AIGC inference pipeline's worker node, the
+<code>validator</code> raw data could be used to measure the approximate power consumption contribution of those inferencing
+pods/containers. We can then compare the Kepler demonstrated power consumption data, either in PromQL query
+result(automation) or on Grafana Dashboard(manual test).</p>
+</li>
+</ol>
+<p>This is also meaningful test case for the carbon footprint accuracy check on AI/AIGC workloads.</p>
+<h2 id="validation-workflow">Validation workflow</h2>
+<p>See example Github action workflow <a href="https://github.com/sustainable-computing-io/kepler/blob/main/.github/workflows/platform-validation.yml">here</a>.</p>
+<p>The workflow is similar as the e2e integration test workflow, has two phases jobs:</p>
+<h3 id="artifacts-build">Artifacts build</h3>
+<p>Build both the <code>Kepler</code> container image and the <code>Validator</code> container image.</p>
+<p>The current Validator image refers to the Kepler image build mechanism to build from a GPU image to support GPU
+case. We may simply build it from UBI image later.</p>
+<p>Since it is an independent energy collector other than Kepler, those eBPF stuffs will not be bumped into the
+container.</p>
+<h3 id="platform-validation-test">Platform validation test</h3>
+<p>The major steps in this job are as follows:</p>
+<ol>
+<li>
+<p>Download artifacts and import images.</p>
+</li>
+<li>
+<p>Run <code>validator</code> image to collect energy and calculate node components power consumption data before deploying
+  local-dev-cluster(Kind in this example)</p>
+</li>
+<li>
+<p>Use Kepler action to deploy local-dev-cluster(Kind) with local registry support and full kube-prometheus
+  monitoring stack.</p>
+</li>
+<li>
+<p>Run <code>validator</code> image again to collect energy and calculate node components power consumption data before
+  deploying Kepler exporter.</p>
+</li>
+<li>
+<p>Deploy Kepler exporter in local-dev-cluster above and let it be monitored by Prometheus.</p>
+</li>
+<li>
+<p>Run <code>validator</code> image the 3rd time to collect energy and calculate node components power consumption data
+  after deploying Kepler exporter.</p>
+</li>
+<li>
+<p>Run platform-validation test scripts, do below things:</p>
+<ol>
+<li>
+<p><code>port forwarding</code> kepler-exporter and prometheus-k8s service to let their ports accessible to Ginkgo
+test code.</p>
+</li>
+<li>
+<p>Use <code>ginkgo</code> CLI to run <a href="https://github.com/sustainable-computing-io/kepler/blob/main/e2e/platform-validation">test suite</a>,
+execute cases described in section <a href="https://github.com/sustainable-computing-io/kepler-doc/blob/main/docs/platform-validation/index.md#mechanism-and-methodology">Mechanism and methodology</a>
+above and generate test report in <code>platform_validation_report.json</code> file assigned by <code>--json-report</code> parameter.</p>
+</li>
+<li>
+<p>Dump necessary test log and data for post-test evaluation use.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Cleanup the test environment(undeploy Kepler exporter, the local-dev-cluster and the local registry).</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In specific test cases, the power data delta of step 4 and 2 could be comparison base for
+local-dev-cluster's power consumption; while the power data delta of step 6 and 4 could be the kepler
+exporter's power comparison base.</p>
+</div>
+<h2 id="validation-result-evaluation">Validation result evaluation</h2>
+<p>Check validation report for any failure cases.</p>
+<p>Check accuracy cases comparison result. Node level cases should be more accurate than pod/container
+level cases, make analysis on any abnormal results and figure out RCAs for them.</p>
+<p>Manual/automation check for specific workloads on specific platforms, see example in (5) of
+<code>Data accuracy check</code> section above.</p>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>There is an analyzer under developing for abnormality detection in platform validation test,
+it will be integrated into the current workflow when it is ready.</p>
+</div>
+<h2 id="further-works">Further works</h2>
+<p>Identify issues based on the validation report on specific platforms and figure out solutions.</p>
+<p>Extend platform scenario from BareMetal to VM.</p>
+<p>Design validation cases for VM scenario and support more accurate power attribution among VM-based
+workloads and container/process-based workloads.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <html>
+    <body>
+        <p style="text-align:center;font-size:15px;">
+            Copyright Contributors to the Kepler's project.
+        </p>
+        <p style="text-align:center;font-size:20px;color:#4169E1;">  
+        The Linux Foundation® (TLF) has registered trademarks and uses trademarks. For a list of TLF trademarks, see <a href="https://www.linuxfoundation.org/trademark-usage/" target="_blank"> Trademark Usage.</a>
+        </p>
+    </body>
+
+</html>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "toc.integrate"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.4"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
