@@ -4,6 +4,7 @@
 
 Before you start make sure you have:
 
+- `docker` installed and configured to run as non-root by default
 - `kubectl` installed
 - `kind` installed
 - Clone the `kepler-operator` [repository](https://github.com/sustainable-computing-io/kepler-operator)
