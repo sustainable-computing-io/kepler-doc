@@ -135,7 +135,7 @@ Currently, we can visualize Kepler related metrics either via deploying Grafana 
 
 To view the metrics directly from OpenShift Console
 
-- Configure user workload monitoring on the cluster. Refer to the official OpenShift [documentation](https://docs.openshift.com/container-platform/latest/monitoring/enabling-monitoring-for-user-defined-projects.html) for more information.
+- Configure user workload monitoring on the cluster. Refer to the official OpenShift [documentation](https://docs.openshift.com/container-platform/latest/observability/monitoring/enabling-monitoring-for-user-defined-projects.html) for more information.
 - Navigate to Observe ❯ Dashboard
   - To view overall power consumption select `Power Monitoring / Overview` from the dropdown.
     ![Operator installation](../fig/ocp_installation/operator_installation_ocp_7_0.8.z.png)
@@ -176,7 +176,7 @@ When the script successfully completes it provides the OpenShift Route to the Ke
     * Increase data retention for in-depth analysis
     * Allocate more resources based on requirements
 
-💡 see: https://docs.openshift.com/container-platform/latest/monitoring/configuring-the-monitoring-stack.html#configuring-the-monitoring-stack_configuring-the-monitoring-stack
+💡 see: https://docs.openshift.com/container-platform/latest/observability/monitoring/configuring-the-monitoring-stack.html#configuring-the-monitoring-stack_configuring-the-monitoring-stack
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
