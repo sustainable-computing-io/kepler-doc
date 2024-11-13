@@ -12,11 +12,11 @@ Kepler, Kubernetes-based Efficient Power Level Exporter, offers a way to estimat
 
 Kepler uses the following to collects power data:
 
-#### EBPF, Hardware Counters, cGroups
+#### EBPF, Hardware Counters
 
-Kepler can utilize a BPF program integrated into the kernel's pathway to extract process-related resource utilization metrics or use metrics from Hardware Counters or cGroups.
+Kepler can utilize a BPF program integrated into the kernel's pathway to extract process-related resource utilization metrics or use metrics from Hardware Counters.
 The type of metrics used to build the model can differ based on the system's environment.
-For example, it might use hardware counters, or metrics from tools like eBPF or cGroups, depending on what is available in the system that will use the model.
+For example, it might use hardware counters, or metrics from tools like eBPF, depending on what is available in the system that will use the model.
 
 #### Real-time Component Power Meters
 
@@ -44,7 +44,7 @@ When creating the power model, the Model Server uses a regression algorithm. It 
 
 Once trained, the Model Server makes these models accessible through a github repository, where any Kepler deployment can download the model from.
 Kepler then uses these models to calculate how much power a node (VM) consumes based on the way its resources are being used. The type of metrics used to build the model can differ based on the system's environment.
-For example, it might use hardware counters, or metrics from tools like eBPF or cGroups, depending on what is available in the system that will use the model.
+For example, it might use hardware counters, or metrics from tools like eBPF, depending on what is available in the system that will use the model.
 
 ![Power model training](../fig/power_model_training.jpg)
 

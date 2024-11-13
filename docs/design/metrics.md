@@ -116,27 +116,6 @@ All the metrics specific to the Kepler Exporter are prefixed with `kepler`.
 !!! note
     You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` Kepler execution option or `EXPOSE_HW_COUNTER_METRICS` environment value.
 
-### cGroups Metrics
-
-- **kepler_container_cgroupfs_cpu_usage_us_total**
-
-    This measures the total CPU time used by the container reading from cGroups stat.
-
-- **kepler_container_cgroupfs_memory_usage_bytes_total**
-
-    This measures the total memory in bytes used by the container reading from cGroups stat.
-
-- **kepler_container_cgroupfs_system_cpu_usage_us_total**
-
-    This measures the total CPU time in kernel space used by the container reading from cGroups stat.
-
-- **kepler_container_cgroupfs_user_cpu_usage_us_total**
-
-    This measures the total CPU time in userspace used by the container reading from cGroups stat.
-
-!!! note
-    You can enable/disable expose of those metrics through `EXPOSE_CGROUP_METRICS` environment value.
-
 ### IRQ Metrics
 
 - **kepler_container_bpf_net_tx_irq_total**
