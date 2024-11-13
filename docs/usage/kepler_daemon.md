@@ -15,7 +15,6 @@ To set environments by ConfigMap:
     data:
       MODEL_SERVER_ENABLE: true
       COUNTER_METRICS: '*'
-      CGROUP_METRICS: '*'
       BPF_METRICS: '*'
       # KUBELET_METRICS: ''
       # GPU_METRICS: ''

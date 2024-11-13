@@ -27,7 +27,6 @@ This is a list of configurable values of Kepler System. The configuration can be
 |Model Server Pod Environment (INITIAL_MODEL_NAMES.[`MODEL_TYPE`])|model-server.[`MODEL_TYPE`]|Name of default pipeline for each model type|-|
 |***CollectMetric CR*** (single item: default)||||
 |Kepler DaemonSet Environment (COUNTER_METRICS)|counter|List of performance metrics to enable from counter source| * (enable all available metrics from counter source)|
-|Kepler DaemonSet Environment (CGROUP_METRICS)|cgroup|List of performance metrics to enable from cgroup source| * (enable all available metrics from cgroup source)|
 |Kepler DaemonSet Environment (BPF_METRICS)|bpf|List of performance metrics to enable from bpf (aka. eBPF) source| * (enable all available metrics from bpf source)|
 |Kepler DaemonSet Environment (GPU_METRICS)|gpu|List of performance metrics to enable from gpu source| * (enable all available metrics from gpu source)|
 |***ExportMetric CR*** (single item: default)||||

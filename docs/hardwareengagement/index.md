@@ -24,9 +24,12 @@ Currently, we use power consumption API as RAPL or ACPI.
 For some of the devices, you may need to find your own way to get power consumption, and implement in golang for Kepler usage.
 For further plan, please ref [here](https://github.com/sustainable-computing-io/kepler/issues/644)
 
-### eBPF/cgroup data
+### eBPF data
 
-Currently, we relays on eBPF and cgroup to characterization a process/pod. Hence, you can ref to our dependency as BCC or cgroup. To test those golang package works well on your device.
+Currently, we rely on eBPF to obtain key cpu, irq  and perf information about a process.
+Hence,  refer to the documentation of [cilium/ebpf](https://github.com/cilium/ebpf) to test whether these Go packages work well on your device.
+
+Please let us know if you need any further adjustments!
 
 ## Stage 1 Integration with ratio
 
@@ -39,7 +42,7 @@ You should know the scope of the Power consumption API. How many API do you have
 ### Interval
 
 You should know the intervals of the Power consumption API.
-As Kepler collects eBPF and cgroup data in each 3s by default, you should know the interval and make them in same time slot.
+As Kepler collects eBPF data in each 3s by default, you should know the interval and make them in same time slot.
 
 ### Verify
 

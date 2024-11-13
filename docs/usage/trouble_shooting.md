@@ -28,28 +28,3 @@ apt install linux-headers-$(uname -r)
 ```
 
 On OpenShift, install the MachineConfiguration [here](https://github.com/sustainable-computing-io/kepler/tree/main/manifests/config/cluster-prereqs)
-
-## Kepler energy metrics are zeroes
-
-<!-- markdownlint-disable MD024 -->
-### Background
-
-Kepler uses RAPL counters on x86 platforms to read energy consumption.
-VMs do not have RAPL counters and thus Kepler estimates energy consumption based on the pre-trained
-ML models. The models use either hardware performance counters or cGroup stats to estimate energy
-consumed by processes. Currently the cGroup based models use cGroup v2 features such as
-`cgroupfs_cpu_usage_us`, `cgroupfs_memory_usage_bytes`, `cgroupfs_system_cpu_usage_us`,
-`cgroupfs_user_cpu_usage_us`, `bytes_read`, and `bytes_writes`.
-
-### Diagnose
-
-The Kepler metrics are zeroes, check if cGroup version on the node:
-
-```bash
-ls /sys/fs/cgroup/cgroup.controllers
-```
-
-### Solution
-<!-- markdownlint-enable MD024 -->
-
-Enable cGroup v2 on the node by following [these Kubernetes instruction](https://kubernetes.io/docs/concepts/architecture/cgroups/).

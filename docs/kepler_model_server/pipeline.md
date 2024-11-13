@@ -43,13 +43,12 @@ for each defined resource utilization metric group as below.
 Group Name|Features|Kepler Metric Source(s)
 ---|---|---
 CounterOnly|COUNTER_FEATURES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
-CgroupOnly|CGROUP_FEATURES|[cGroups](../design/metrics.md#cgroups-metrics)
 BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md#base-metric)
 IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md#irq-metrics)
 AcceleratorOnly|ACCELERATOR_FEATURES|[Accelerator](../design/metrics.md#Accelerator-metrics)
 CounterIRQCombined|COUNTER_FEATURES, IRQ_FEATURES|BPF and Hardware Counter
-Basic|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES|All except IRQ and node information
-WorkloadOnly|COUNTER_FEATURES, CGROUP_FEATURES, BPF_FEATURES, IRQ_FEATURES, ACCELERATOR_FEATURES|All except node information
+Basic|COUNTER_FEATURES, BPF_FEATURES|All except IRQ and node information
+WorkloadOnly|COUNTER_FEATURES, BPF_FEATURES, IRQ_FEATURES, ACCELERATOR_FEATURES|All except node information
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
 
 Node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information)
