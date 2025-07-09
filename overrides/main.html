@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style>
+/* Watermark styling */
+.watermark {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) rotate(-45deg) !important;
+    font-size: 6rem !important;
+    font-weight: bold !important;
+    color: rgba(255, 107, 107, 0.25) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    font-family: Arial, sans-serif !important;
+    letter-spacing: 0.3em !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+@media screen and (max-width: 768px) {
+    .watermark {
+        font-size: 3rem !important;
+        letter-spacing: 0.2em !important;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Watermark div -->
+<div class="watermark">DEPRECATED</div>
+{{ super() }}
+{% endblock %}
+
