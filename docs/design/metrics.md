@@ -1,218 +1,375 @@
-# Monitoring Container Power Consumption with Kepler
+# Kepler Metrics
 
-Kepler Exporter exposes statistics from an application running in a Kubernetes cluster in a Prometheus-friendly format that can be
-scraped by any database that understands this format, such as [Prometheus][0] and [Sysdig][1].
+This document describes the metrics exported by Kepler for monitoring energy
+consumption at various levels (node, container, process, VM, pod).
 
-Kepler exports a variety of container metrics to Prometheus, where the main ones are those related
-to energy consumption.
+## Overview
 
-## Kepler Metrics Overview
+Kepler exports metrics in Prometheus format that can be scraped by Prometheus
+or other compatible monitoring systems. All metrics follow the Prometheus
+naming conventions and are prefixed with `kepler_`.
 
-All the metrics specific to the Kepler Exporter are prefixed with `kepler`.
+### Metric Types
 
-## Kepler Metrics for Container Energy Consumption
+- **COUNTER**: A cumulative metric that only increases over time (e.g., total energy consumption)
+- **GAUGE**: A metric that can increase and decrease (e.g., current power consumption)
 
-- **kepler_container_joules_total** (Counter)
+### Zone-Based Organization
 
-    This metric is the aggregated package/socket energy consumption of CPU, dram, gpus, and other host components for a given container.
-    Each component has individual metrics which are detailed next in this document.
+Kepler organizes energy metrics by zones, which correspond to different hardware components:
 
-    This metric simplifies the Prometheus metric for performance reasons. A very large promQL query typically introduces a
-    very high overhead on Prometheus.
+- **package**: CPU socket-level energy (includes cores and uncore components)
+- **core**: CPU core-level energy (available on some processors)
+- **uncore**: Uncore components (last-level cache, integrated GPU, memory controller)
+- **dram**: Memory energy consumption
 
-- **kepler_container_core_joules_total** (Counter)
+## Metrics Reference
+
+### Node Metrics
 
-    This measures the total energy consumption on CPU cores that  a certain container has used.
-    Generally, when the system has access to [RAPL][3] metrics, this metric will reflect the proportional container energy
-    consumption of the RAPL Power Plan 0 (PP0), which is the energy consumed by all CPU cores in the socket.
-    However, this metric is processor model specific and may not be available on some server CPUs.
-    The RAPL CPU metric that is available on all processors that support RAPL is the package, which we will detail
-    on another metric.
+These metrics provide energy and power information at the node level, representing the total consumption of the entire system.
 
-    In some cases where RAPL is available but core metrics are not, Kepler may use the energy consumption package.
-    But note that package energy consumption is not just from CPU cores, it is all socket energy consumption.
+#### kepler_node_cpu_joules_total
 
-    In case [RAPL][3] is not available, Kepler might estimate this metric using the model server.
-
-- **kepler_container_dram_joules_total** (Counter)
-
-    This metric describes the total energy spent in DRAM by a container.
-
-- **kepler_container_uncore_joules_total** (Counter)
-
-    This measures the cumulative energy consumed by certain uncore components, which are typically the last level cache,
-    integrated GPU and memory controller, but the number of components may vary depending on the system.
-    The uncore metric is processor model specific and may not be available on some server CPUs.
-
-    When [RAPL][3] is not available, Kepler can estimate this metric using the model server if the node CPU supports the uncore metric.
-
-- **kepler_container_package_joules_total** (Counter)
-
-    This measures the cumulative energy consumed by the CPU socket, including all cores and uncore components (e.g.
-    last-level cache, integrated GPU and memory controller).
-    RAPL package energy is typically the PP0 + PP1, but PP1 counter may or may not account for all energy usage
-    by uncore components. Therefore, package energy consumption may be higher than core + uncore.
-
-    When [RAPL][3] is not available, Kepler might estimate this metric using the model server.
-
-- **kepler_container_other_joules_total** (Counter)
-
-    This measures the cumulative energy consumption on other host components besides the CPU and DRAM.
-    The vast majority of motherboards have a energy consumption sensor that can be accessed via the kernel acpi or ipmi.
-    This sensor reports the energy consumption of the entire system.
-    In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
-    "System on a chipt" (SOC).
-
-    Generally, this metric is the host energy consumption (from acpi) less the RAPL Package and DRAM.
-
-- **kepler_container_gpu_joules_total** (Counter)
-
-    This measures the total energy consumption on the GPUs that  a certain container has used.
-    Currently, Kepler only supports NVIDIA GPUs, but this metric will also reflect other accelerators in the future.
-    So when the system has NVIDIA GPUs, Kepler can calculate the energy consumption of the container's gpu using the GPU's
-    processes energy consumption and utilization via NVIDIA nvml package.
-
-- **kepler_container_energy_stat** (Counter)
-
-    This metric contains several container metrics labeled with container resource utilization cgroup metrics
-    that are used in the model server for predictions.
-
-    This metric is specific for the model server and might be updated any time.
-
-## Kepler Metrics for Container Resource Utilization
-
-### Base Metric
-
-- **kepler_container_bpf_cpu_time_us_total**
-
-    This measures the total CPU time used by the container using BPF tracing. This is a minimum exposed metric.
-
-### Hardware Counter Metrics
-
-- **kepler_container_cpu_cycles_total**
-
-    This measures the total CPU cycles used by the container using hardware counters.
-    To support fine-grained analysis of performance and resource utilization, hardware counters are particularly desirable
-    due to its granularity and precision..
-
-    The CPU cycles is a metric directly related to CPU frequency.
-    On systems where processors run at a fixed frequency, CPU cycles and total CPU time are roughly equivalent.
-    On systems where processors run at varying frequencies, CPU cycles and total CPU time will have different values.
-
-- **kepler_container_cpu_instructions_total**
-
-    This measure the total cpu instructions used by the container using hardware counters.
-
-    CPU instructions are the de facto metric for accounting for CPU utilization.
-
-- **kepler_container_cache_miss_total**
-
-    This measures the total cache miss that has occurred for a given container using hardware counters.
-
-    As there is no event counter that measures memory access directly, the number of last-level cache misses gives
-    a good proxy for the memory access number. If an LLC read miss occurs, a read access to main memory
-    should occur (but note that this is not necessarily the case for LLC write misses under a write-back cache policy).
-
-!!! note
-    You can enable/disable expose of those metrics through `expose-hardware-counter-metrics` Kepler execution option or `EXPOSE_HW_COUNTER_METRICS` environment value.
-
-### IRQ Metrics
-
-- **kepler_container_bpf_net_tx_irq_total**
-
-    This measures the total transmitted packets to network cards of the container using BPF tracing.
-
-- **kepler_container_bpf_net_rx_irq_total**
-
-    This measures the total packets received from network cards of the container using BPF tracing.
-
-- **kepler_container_bpf_block_irq_total**
-
-    This measures block I/O called of the container using BPF tracing.
-
-!!! note
-    You can enable/disable expose of those metrics through `EXPOSE_IRQ_COUNTER_METRICS` environment value.
-
-## Kepler Metrics for Node Information
-
-- **kepler_node_info** (Counter)
-
-    This metric shows the node metadata like the node CPU architecture.
-
-## Kepler Metrics for Node Energy Consumption
-
-- **kepler_node_core_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_uncore_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_dram_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_package_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_other_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_gpu_joules_total** (Counter)
-
-    Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").
-
-- **kepler_node_platform_joules_total** (Counter)
-
-    This metric represents the total energy consumption of the host.
-
-    The vast majority of motherboards have a energy consumption sensor that can be accessed via the acpi or ipmi kernel.
-    This sensor reports the energy consumption of the entire system.
-    In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
-    "System on a chipt" (SOC).
-
-    Generally, this metric is the host energy consumption from Redfish BMC or acpi.
-
-- **kepler_node_energy_stat** (Counter)
-
-    This metric contains multiple metrics from nodes labeled with container resource utilization cgroup metrics
-    that are used in the model server.
-
-    This metric is specific to the model server and can be updated at any time.
-
-!!! note
-    "system_process" is a special indicator that aggregate all the non-container workload into system process consumption metric.
-
-## Kepler Metrics for Node Resource Utilization
-
-### Accelerator Metrics
-
-- **kepler_node_accelerator_intel_qat**
-
-    This measures the utilization of the accelerator Intel QAT on a certain node. When the system has Intel QATs,
-    Kepler can calculate the utilization of the node's QATs through telemetry.
-
-## Exploring Node Exporter Metrics Through the Prometheus Expression
-
-All the energy consumption metrics are defined as counter following the [Prometheus metrics guide](https://prometheus.io/docs/practices/naming/) for energy related metrics.
-
-The `rate()` of joules gives the power in Watts since the rate function returns the average per second.
-Therefore, for get the container energy consumption you can use the following query:
-
-```go
-sum by (pod_name, container_name, container_namespace, node)(irate(kepler_container_joules_total{}[1m]))
+- **Type**: COUNTER
+- **Description**: Total energy consumption of CPU at node level in joules
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_watts
+
+- **Type**: GAUGE
+- **Description**: Current power consumption of CPU at node level in watts
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_active_joules_total
+
+- **Type**: COUNTER
+- **Description**: Energy consumption of CPU in active state at node level in joules
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_active_watts
+
+- **Type**: GAUGE
+- **Description**: Power consumption of CPU in active state at node level in watts
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_idle_joules_total
+
+- **Type**: COUNTER
+- **Description**: Energy consumption of CPU in idle state at node level in joules
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_idle_watts
+
+- **Type**: GAUGE
+- **Description**: Power consumption of CPU in idle state at node level in watts
+- **Labels**:
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `path`: Hardware sensor path
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_usage_ratio
+
+- **Type**: GAUGE
+- **Description**: CPU usage ratio of a node (value between 0.0 and 1.0)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_node_cpu_info
+
+- **Type**: GAUGE
+- **Description**: CPU information from procfs
+- **Labels**:
+  - `processor`: Processor number
+  - `vendor_id`: CPU vendor ID
+  - `model_name`: CPU model name
+  - `physical_id`: Physical CPU ID
+  - `core_id`: Core ID
+
+### Container Metrics
+
+These metrics provide energy and power information for individual containers.
+
+#### kepler_container_cpu_joules_total
+
+- **Type**: COUNTER
+- **Description**: Total energy consumption of CPU at container level in joules
+- **Labels**:
+  - `container_id`: Container identifier
+  - `container_name`: Container name
+  - `runtime`: Container runtime (docker, containerd, cri-o, podman)
+  - `state`: Container state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `pod_id`: Pod identifier (if running in Kubernetes)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_container_cpu_watts
+
+- **Type**: GAUGE
+- **Description**: Current power consumption of CPU at container level in watts
+- **Labels**:
+  - `container_id`: Container identifier
+  - `container_name`: Container name
+  - `runtime`: Container runtime (docker, containerd, cri-o, podman)
+  - `state`: Container state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+  - `pod_id`: Pod identifier (if running in Kubernetes)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+### Process Metrics
+
+These metrics provide energy and power information for individual processes.
+
+#### kepler_process_cpu_joules_total
+
+- **Type**: COUNTER
+- **Description**: Total energy consumption of CPU at process level in joules
+- **Labels**:
+  - `pid`: Process ID
+  - `comm`: Process command name
+  - `exe`: Process executable path
+  - `type`: Process type (container, vm, regular)
+  - `state`: Process state (running, terminated)
+  - `container_id`: Container ID (if process runs in container)
+  - `vm_id`: VM ID (if process runs in VM)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_process_cpu_watts
+
+- **Type**: GAUGE
+- **Description**: Current power consumption of CPU at process level in watts
+- **Labels**:
+  - `pid`: Process ID
+  - `comm`: Process command name
+  - `exe`: Process executable path
+  - `type`: Process type (container, vm, regular)
+  - `state`: Process state (running, terminated)
+  - `container_id`: Container ID (if process runs in container)
+  - `vm_id`: VM ID (if process runs in VM)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_process_cpu_seconds_total
+
+- **Type**: COUNTER
+- **Description**: Total user and system CPU time at process level in seconds
+- **Labels**:
+  - `pid`: Process ID
+  - `comm`: Process command name
+  - `exe`: Process executable path
+  - `type`: Process type (container, vm, regular)
+  - `container_id`: Container ID (if process runs in container)
+  - `vm_id`: VM ID (if process runs in VM)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+### Virtual Machine Metrics
+
+These metrics provide energy and power information for virtual machines.
+
+#### kepler_vm_cpu_joules_total
+
+- **Type**: COUNTER
+- **Description**: Total energy consumption of CPU at VM level in joules
+- **Labels**:
+  - `vm_id`: Virtual machine identifier
+  - `vm_name`: Virtual machine name
+  - `hypervisor`: Hypervisor type (kvm, qemu)
+  - `state`: VM state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_vm_cpu_watts
+
+- **Type**: GAUGE
+- **Description**: Current power consumption of CPU at VM level in watts
+- **Labels**:
+  - `vm_id`: Virtual machine identifier
+  - `vm_name`: Virtual machine name
+  - `hypervisor`: Hypervisor type (kvm, qemu)
+  - `state`: VM state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+### Pod Metrics
+
+These metrics provide energy and power information for Kubernetes pods.
+
+#### kepler_pod_cpu_joules_total
+
+- **Type**: COUNTER
+- **Description**: Total energy consumption of CPU at pod level in joules
+- **Labels**:
+  - `pod_id`: Pod identifier
+  - `pod_name`: Pod name
+  - `pod_namespace`: Pod namespace
+  - `state`: Pod state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+#### kepler_pod_cpu_watts
+
+- **Type**: GAUGE
+- **Description**: Current power consumption of CPU at pod level in watts
+- **Labels**:
+  - `pod_id`: Pod identifier
+  - `pod_name`: Pod name
+  - `pod_namespace`: Pod namespace
+  - `state`: Pod state (running, terminated)
+  - `zone`: Energy zone (package, core, uncore, dram)
+- **Constant Labels**:
+  - `node_name`: Name of the node
+
+### Build Information Metrics
+
+#### kepler_build_info
+
+- **Type**: GAUGE
+- **Description**: A metric with a constant '1' value labeled with version information
+- **Labels**:
+  - `arch`: CPU architecture
+  - `branch`: Git branch
+  - `revision`: Git revision
+  - `version`: Kepler version
+  - `goversion`: Go version used to build
+
+## Power Attribution Algorithm
+
+Kepler distributes energy consumption from hardware sensors to workloads using the following algorithm:
+
+1. **Read Hardware Sensors**: Collect total energy from RAPL (Running Average Power Limit) zones
+2. **Calculate Node Usage**: Determine total CPU time and usage ratio from `/proc/stat`
+3. **Split Node Energy**: Divide total energy into Active and Idle based on CPU usage ratio
+4. **Process Attribution**: Calculate CPU time deltas for each workload
+5. **Distribute Active Energy**: Allocate Active energy proportionally based on CPU utilization ratios
+6. **Aggregate Workloads**: Sum process energy to container/VM/pod levels
+7. **Handle Edge Cases**: Manage idle power, new/terminated processes, and counter wraparound
+
+## Zone-Based Energy Sources
+
+### RAPL (Running Average Power Limit)
+
+RAPL is Intel's power capping mechanism that provides energy readings at different levels:
+
+- **Package**: Complete CPU socket energy (cores + uncore)
+- **Core (PP0)**: CPU cores energy (processor model dependent)
+- **Uncore (PP1)**: Uncore components (last-level cache, integrated GPU, memory controller)
+- **DRAM**: Memory energy consumption
+
+### Zone Availability by Architecture
+
+| Microarchitecture | Package | CORE (PP0) | UNCORE (PP1) | DRAM |
+|---|---|---|---|---|
+| Haswell | ✓ | ✓/✗ | ✓/✗ | ✓ |
+| Broadwell | ✓ | ✓/✗ | ✓/✗ | ✓ |
+| Skylake | ✓ | ✓ | ✓/✗ | ✓ |
+| Kaby Lake | ✓ | ✓ | ✓/✗ | ✓ |
+
+✓ = Available, ✗ = Not available (varies by consumer/server grade)
+
+## Prometheus Queries
+
+### Getting Power Consumption (Watts)
+
+To get current power consumption in watts, use the gauge metrics directly:
+
+```promql
+# Container power consumption
+kepler_container_cpu_watts{container_name="nginx"}
+
+# Node power consumption by zone
+kepler_node_cpu_watts{zone="package"}
 ```
 
-Note that we report the node label in the container metrics because the OS metrics "system_process" will have the
-same name and namespace across all nodes and we do not want to aggregate them.
+### Getting Energy Consumption Rate (Watts from Counters)
+
+To calculate power consumption from energy counters using rate functions:
+
+```promql
+# Container power consumption rate
+rate(kepler_container_cpu_joules_total[1m])
+
+# Node power consumption rate by zone
+rate(kepler_node_cpu_joules_total{zone="package"}[1m])
+```
+
+### Aggregating Pod Energy
+
+```promql
+# Total pod energy consumption
+sum by (pod_name, pod_namespace) (rate(kepler_pod_cpu_joules_total[1m]))
+```
+
+### Node Energy Breakdown
+
+```promql
+# Energy consumption by zone
+sum by (zone) (rate(kepler_node_cpu_joules_total[1m]))
+```
+
+## Configuration
+
+Energy metrics can be controlled through Kepler configuration:
+
+### Metrics Levels
+
+Configure which metric levels to export:
+
+```yaml
+exporter:
+  prometheus:
+    metricsLevel:
+      - node      # Node-level metrics
+      - process   # Process-level metrics  
+      - container # Container-level metrics
+      - vm        # VM-level metrics
+      - pod       # Pod-level metrics (requires Kubernetes)
+```
+
+### RAPL Zones
+
+Filter which RAPL zones to monitor:
+
+```yaml
+rapl:
+  zones: ["package", "core", "dram"]  # Empty array enables all available zones
+```
+
+For more configuration options, see the [Configuration Guide](../usage/general_config.md).
 
 ## RAPL Power Domain
 
 [RAPL power domains supported](https://zhenkai-zhang.github.io/papers/rapl.pdf) in some
-resent Intel microarchitecture (consumer-grade/server-grade):
+recent Intel microarchitecture (consumer-grade/server-grade):
 
 | Microarchitecture | Package | CORE (PP0) | UNCORE (PP1) | DRAM |
 |---|---|---|---|---|
@@ -221,6 +378,4 @@ resent Intel microarchitecture (consumer-grade/server-grade):
 |      Skylake      |   Y/Y   |     Y/Y    |    Y/**N**   |  Y/Y |
 |     Kaby Lake     |   Y/Y   |     Y/Y    |    Y/**N**   |  Y/Y |
 
-[0]: <https://prometheus.io>
-[1]:<https://sysdig.com/>
-[3]:<https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html>
+**Legend**: Y = Available, **N** = Not available (varies by consumer/server grade)
