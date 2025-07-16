@@ -1,0 +1,1384 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../node_profile/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Training Pipeline - Kepler</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<style>
+/* Watermark styling */
+.watermark {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) rotate(-45deg) !important;
+    font-size: 6rem !important;
+    font-weight: bold !important;
+    color: rgba(255, 107, 107, 0.25) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    font-family: Arial, sans-serif !important;
+    letter-spacing: 0.3em !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+@media screen and (max-width: 768px) {
+    .watermark {
+        font-size: 3rem !important;
+        letter-spacing: 0.2em !important;
+    }
+}
+</style>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#training-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      <!-- Deprecation Notice Banner -->
+<div style="background-color: #ff6b6b; color: white; padding: 12px; text-align: center; font-weight: bold; border-bottom: 3px solid #cc5252; position: relative; z-index: 1000;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+            <path d="M1,21H23L12,2M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"></path>
+        </svg>
+        <span style="font-size: 18px;">DEPRECATED: This documentation is deprecated and will be removed in a future version.</span>
+    </div>
+</div>
+
+<!-- Add some spacing after the deprecation banner -->
+<style>
+.md-header {
+    margin-top: 0 !important;
+}
+.md-content {
+    padding-top: 8px;
+}
+</style>
+
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kepler" class="md-nav__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Kepler
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Design
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/power_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/ebpf_in_kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eBPF in Kepler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/kepler-energy-sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Energy Sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/local-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local cluster setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Manifests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Helm Chart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/community-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Community Operator on OpenShift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Operator on Kind
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-rpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Kepler as RPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/Kepler-Telegraf-integration-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/general_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ⚙️ Kepler Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/kepler_daemon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler DaemonSet Customization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/trouble_shooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trouble Shooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/deep_dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Deep Dive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardwareengagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Engagement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Model Server
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get Started with Kepler Model Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Energy source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature group
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power isolation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trainer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node type
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node_profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Estimation Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/adopters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Adopters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+<!-- Watermark div -->
+<div class="watermark">DEPRECATED</div>
+
+                  
+
+
+
+<h1 id="training-pipeline">Training Pipeline</h1>
+<p>Model server can provide various power models for different context and learning methods. Training pipeline is an abstract of power model training that applies a set of learning methods to a different combination of energy sources, power isolation methods, available energy-related metrics.</p>
+<h2 id="pipeline">Pipeline</h2>
+<p><code>pipeline</code> is composed of three steps, <code>extract</code>, <code>isolate</code>, and <code>train</code>, as shown below. Kepler exports energy-related metrics as Prometheus counter, which provides accumulated number over time.</p>
+<p>The <code>extract</code> step is to convert the counter metrics to gauge metrics, similarly to the Prometheus <code>rate()</code> function, giving per-second values. The extract step also clean up the data separately for each <code>feature group</code>.</p>
+<p>The power consumption retrieved from the Prometheus query is the measured power which is composed of the power portion which is varied by the workload called dynamic power and the power portion which is consumed even if in the idling state called idle power.</p>
+<p>The <code>isolate</code> step is to calculate the idle power and isolate the dynamic power consumption of each <code>energy source</code>.</p>
+<p>The <code>train</code> step is to apply each <code>trainer</code> to create multiple choices of power models based on the preprocessed data.</p>
+<blockquote>
+<p>We have a roadmap to apply a pipeline to build power models separately for each node/machine type. Find more in <a href="#node-type">Node Type</a> section.</p>
+</blockquote>
+<p><img alt="Pipeline Plot" src="../../fig/pipeline_plot.png" /></p>
+<ul>
+<li>Learn more about <code>energy source</code> from <a href="#energy-source">Energy source</a> section.</li>
+<li>Learn more about <code>feature group</code> from <a href="#feature-group">Feature groups</a> section.</li>
+<li>Learn more about the <code>isolate</code> step and corresponding concepts of <code>AbsPower</code>, and <code>DynPower</code> power models from <a href="#power-isolation">Power isolation</a> section.</li>
+<li>Check available <code>trainer</code> in <a href="#trainer">Trainer</a> section.</li>
+</ul>
+<h2 id="energy-source">Energy source</h2>
+<p><code>energy source</code> or <code>source</code> refers to the source (power meter) that provides an energy number. Each
+source provides one or more <code>energy components</code>. Currently supported source are shown as below.</p>
+<table>
+<thead>
+<tr>
+<th>Energy/power source</th>
+<th>Energy/power components</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../design/kepler-energy-sources/#rapl---running-average-power-limit">rapl</a></td>
+<td>package, core, uncore, dram</td>
+</tr>
+<tr>
+<td><a href="../../design/kepler-energy-sources/#using-kernel-driver-xgene-hwmon">acpi</a></td>
+<td>platform</td>
+</tr>
+</tbody>
+</table>
+<h2 id="feature-group">Feature group</h2>
+<p><code>feature group</code> is an abstraction of the available features based on the infrastructure context since
+some environments might not expose some metrics. For example, on the virtual machine in private cloud
+environment, hardware counter metrics are typically not available. Therefore, the models are trained
+for each defined resource utilization metric group as below.</p>
+<table>
+<thead>
+<tr>
+<th>Group Name</th>
+<th>Features</th>
+<th>Kepler Metric Source(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CounterOnly</td>
+<td>COUNTER_FEATURES</td>
+<td><a href="../../design/metrics/#hardware-counter-metrics">Hardware Counter</a></td>
+</tr>
+<tr>
+<td>BPFOnly</td>
+<td>BPF_FEATURES</td>
+<td><a href="../../design/metrics/#base-metric">BPF</a></td>
+</tr>
+<tr>
+<td>IRQOnly</td>
+<td>IRQ_FEATURES</td>
+<td><a href="../../design/metrics/#irq-metrics">IRQ</a></td>
+</tr>
+<tr>
+<td>AcceleratorOnly</td>
+<td>ACCELERATOR_FEATURES</td>
+<td><a href="../../design/metrics/#Accelerator-metrics">Accelerator</a></td>
+</tr>
+<tr>
+<td>CounterIRQCombined</td>
+<td>COUNTER_FEATURES, IRQ_FEATURES</td>
+<td>BPF and Hardware Counter</td>
+</tr>
+<tr>
+<td>Basic</td>
+<td>COUNTER_FEATURES, BPF_FEATURES</td>
+<td>All except IRQ and node information</td>
+</tr>
+<tr>
+<td>WorkloadOnly</td>
+<td>COUNTER_FEATURES, BPF_FEATURES, IRQ_FEATURES, ACCELERATOR_FEATURES</td>
+<td>All except node information</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>WORKLOAD_FEATURES, SYSTEM_FEATURES</td>
+<td>All</td>
+</tr>
+</tbody>
+</table>
+<p>Node information refers to value from <a href="../../design/metrics/#kepler-metrics-for-node-information">kepler_node_info</a>
+metric.</p>
+<h2 id="power-isolation">Power isolation</h2>
+<p>The power consumption retrieved from the Prometheus query is the absolute power, which is the sum of idle and dynamic power (where idle represents the system at rest, dynamic is the incremental power with resource utilization, and absolute is idle + dynamic). Additionally, this power is also the total power consumption of all process, including the users' workload, background and OS processes.</p>
+<p>The <code>isolate</code> step applies a mechanism to separate idle power from absolute power, resulting in dynamic power  It also covers an implementation to separate the dynamic power consumed by background and OS processes (referred to as <code>system_processes</code>).</p>
+<p>It's important to note that both the idle and dynamic <code>system_processes</code> power are higher than zero, even when the metric utilization of the users' workload is zero.</p>
+<p>The <code>isolate</code> step applies a mechanism to separate idle power from absolute power, resulting in
+dynamic power. It also covers an implementation to separate the dynamic power consumed by background
+and OS processes (referred to as <code>system_processes</code>).</p>
+<p>It's important to note that both the idle and dynamic <code>system_processes</code> power are higher than
+zero, even when the metric utilization of the users' workload is zero.</p>
+<p>There are two common available <code>isolators</code>: <em>ProfileIsolator</em> and <em>MinIdleIsolator</em>.</p>
+<p>We refer to models trained using the isolate step as <code>DynPower</code> models. Meanwhile, models
+trained without the isolate step are called <code>AbsPower</code> models. Currently, the <code>DynPower</code> model
+does not include idle power information, but we plan to incorporate it in the future.</p>
+<p>On the other hand, <em>MinIdleIsolator</em> identifies the minimum power consumption among all samples in the training data, assuming that this minimum power consumption represents both the idle power and <code>system_processes</code> power consumption.</p>
+<p>While we should also remove the minimal resource utilization from the data used to train the model, this isolation mechanism includes the resource utilization by <code>system_processes</code> in the training data. However, we plan to remove it in the future.</p>
+<p><em>ProfileIsolator</em> relies on collecting data (e.g., power and resource utilization) for a
+specific period without running any user workload (referred to as profile data). This
+isolation mechanism also eliminates the resource utilization of <code>system_processes</code> from
+the data used to train the model.</p>
+<p>On the other hand, <em>MinIdleIsolator</em> identifies the minimum power consumption among all
+samples in the training data, assuming that this minimum power consumption represents both
+the idle power and <code>system_processes</code> power consumption.</p>
+<p>While we should also remove the minimal resource utilization from the data used to train the
+model, this isolation mechanism includes the resource utilization by <code>system_processes</code> in the
+training data. However, we plan to remove it in the future.</p>
+<p>If the <code>profile data</code> that matches a given <code>node_type</code> exist, the pipeline will use the
+<em>ProfileIsolator</em> to pre-process the training data. Otherwise, the the pipeline will applied
+another isolation mechanism, such as the <em>MinIdleIsolator</em>.</p>
+<p>(check how profiles are generated <a href="../node_profile/">here</a>)</p>
+<h3 id="discussion">Discussion</h3>
+<p>The choice between using the <code>DynPower</code> or <code>AbsPower</code> model is still under investigation. In some cases, DynPower exhibits better accuracy than <code>AbsPower</code>. However, we currently utilize the <code>AbsPower</code> model to estimate node power for Platform, CPU and DRAM components, as the <code>DynPower</code> model lacks idle power information.</p>
+<p>It's worth mentioning that exposing idle power on a VM in a public cloud environment is not possible. This is because the host's idle power must be distributed among all running VMs on the host, and it's impossible to determine the number of VMs running on the host in a public cloud environment.</p>
+<p>Therefore, we can only expose idle power if there is only one VM running on the node (for a very specific scenario), or if the power model is being used in Bare Metal environments.</p>
+<h2 id="trainer">Trainer</h2>
+<p><code>trainer</code> is an abstraction to define the learning method applies to each feature group with each given power labeling source.</p>
+<p>Available trainer (v0.6):</p>
+<ul>
+<li>PolynomialRegressionTrainer</li>
+<li>GradientBoostingRegressorTrainer</li>
+<li>SGDRegressorTrainer</li>
+<li>KNeighborsRegressorTrainer</li>
+<li>LinearRegressionTrainer</li>
+<li>SVRRegressorTrainer</li>
+</ul>
+<h2 id="node-type">Node type</h2>
+<p>Kepler forms multiple groups of machines (nodes) based on its benchmark performance and trains a model separately for each group. The identified group is exported as <code>node type</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <html>
+    <body>
+        <p style="text-align:center;font-size:15px;">
+            Copyright Contributors to the Kepler's project.
+        </p>
+        <p style="text-align:center;font-size:20px;color:#4169E1;">  
+        The Linux Foundation® (TLF) has registered trademarks and uses trademarks. For a list of TLF trademarks, see <a href="https://www.linuxfoundation.org/trademark-usage/" target="_blank"> Trademark Usage.</a>
+        </p>
+    </body>
+
+</html>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.4"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
