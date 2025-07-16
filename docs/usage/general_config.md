@@ -1,58 +1,306 @@
-# Configuration
+# ⚙️ Kepler Configuration Guide
 
-This is a list of configurable values of Kepler System. The configuration can be also applied by defining the following CR spec if Kepler Operator is installed.
+Kepler supports configuration through both command-line flags and a configuration file. This guide outlines all available configuration options for configuring Kepler.
 
-|Point of Configuration|Spec|Description|Default|
-|---|---|---|---|
-|***Kepler CR*** (single item: default)||||
-|Kepler DaemonSet Deployment|daemon.exporter.image|Kepler main image|quay.io/sustainable_computing_io/kepler:latest|
-|Kepler DaemonSet Deployment|daemon.exporter.port|Metric exporter port|9102|
-|Kepler DaemonSet Deployment|daemon.estimator-sidecar.enabled|[Kepler Estimator Sidecar](./../kepler_model_server/get_started.md#step-3-learn-how-to-use-the-power-model) patch|false|
-|Kepler DaemonSet Deployment|daemon.estimator-sidecar.image|Kepler estimator sidecar image|-|
-|Kepler DaemonSet Deployment|daemon.estimator-sidecar.mnt-path|Mount path between main container and the sidecar for unix domain socket|/tmp|
-|Kepler DaemonSet Environment (METRIC_PATH)|daemon.exporter.path|Path to export metrics|/metrics|
-|Kepler DaemonSet Environment (MODEL_SERVER_ENABLE)|model-server.enabled|[Kepler Model Server Pod](./../kepler_model_server/get_started.md#step-2-learn-how-to-obtain-power-model) connection|false|
-|**model-server.enabled**||||
-|Model Server Pod Pod Environment (MODEL_SERVER_PORT)|model-server.port|Model serving port of model server|8100|
-|Model Server Pod Pod Environment (PROM_SERVER)|model-server.prom|Endpoint to Prometheus metric server |`http://prometheus-k8s.monitoring.svc.cluster.local:9090`|
-|Model Server Pod Pod Environment (MODEL_PATH)|model-server.model-path|Path to keep models|models|
-|Kepler DaemonSet Environment (MODEL_SERVER_ENDPOINT)|daemon.model-server|Endpoint to server container of model server|`http://kepler-model-server.monitoring.cluster.local:[model-server.port]/model`|
-|Model Server Pod Deployment|model-server.trainer|Model online trainer patch|false|
-|**model-server.trainer**||||
-|Model Server Pod Environment (PROM_QUERY_INTERVAL)|model-server.prom_interval|Interval to execute training pipelines in seconds|20|
-|Model Server Pod Environment (PROM_QUERY_STEP)|model-server.prom-step|Step of query data point in training pipelines in seconds|3|
-|Model Server Pod Environment (PROM_HEADERS)|model-server.prom-header|For specify required header (such as authentication)|-|
-|Model Server Pod Environment (PROM_SSL_DISABLE)|model-server.prom-ssl|Disable ssl in Prometheus connection|true|
-|Model Server Pod Environment (INITIAL_MODELS_LOC)|model-server.init-loc|Root URL of offline models to use as initial models|`https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models`|
-|Model Server Pod Environment (INITIAL_MODEL_NAMES.[`MODEL_TYPE`])|model-server.[`MODEL_TYPE`]|Name of default pipeline for each model type|-|
-|***CollectMetric CR*** (single item: default)||||
-|Kepler DaemonSet Environment (COUNTER_METRICS)|counter|List of performance metrics to enable from counter source| * (enable all available metrics from counter source)|
-|Kepler DaemonSet Environment (BPF_METRICS)|bpf|List of performance metrics to enable from bpf (aka. eBPF) source| * (enable all available metrics from bpf source)|
-|Kepler DaemonSet Environment (GPU_METRICS)|gpu|List of performance metrics to enable from gpu source| * (enable all available metrics from gpu source)|
-|***ExportMetric CR*** (single item: default)||||
-|Kepler DaemonSet Environment (PERF_METRICS)|perf|List of performance metrics to export | * (enable all collected performance metrics)|
-|Kepler DaemonSet Environment (EXPORT_NODE_TOTAL_POWER)|node_total_power|Toggle whether to export node total power| true|
-|Kepler DaemonSet Environment (EXPORT_NODE_COMPONENT_POWERS)|node_component_powers|Toggle whether to export node powers by components| true|
-|Kepler DaemonSet Environment (EXPORT_POD_TOTAL_POWER)|pod_total_power|Toggle whether to export pod total power| true|
-|Kepler DaemonSet Environment (EXPORT_POD_COMPONENT_POWERS)|pod_component_powers|Toggle whether to export pod powers by components| true|
-|***EstimatorConfig CR*** (multiple items: node-total-power, node-component-powers, pod-total-power, pod-component-powers)||||
-|Kepler DaemonSet Environment (MODEL_CONFIG.[`MODEL_ITEM`]_ESTIMATOR)|use-sidecar|Toggle whether to use estimator sidecar for power estimation|false|
-|Kepler DaemonSet Environment (MODEL_CONFIG.[`MODEL_ITEM`]_MODEL)|fixed-model|Specify model name| (auto-selected)|
-|Kepler DaemonSet Environment (MODEL_CONFIG.[`MODEL_ITEM`]_FILTERS)|filters|Specify model filter conditions in string|  (auto-selected)|
-|Kepler DaemonSet Environment (MODEL_CONFIG.[`MODEL_ITEM`]_INIT_URL)|init-url|URL to initial model location| -|
-|***RatioConfig CR*** (single items: default)||||
-|Kepler DaemonSet Environment (CORE_USAGE_METRIC)|core_metric|Specify metric for compute core (mostly cpu) component of pod power by ratio modeling|cpu_instr|
-|Kepler DaemonSet Environment (DRAM_USAGE_METRIC)|dram_metric|Specify metric for computing dram component of pod power by ratio modeling|cache_miss|
-|Kepler DaemonSet Environment (UNCORE_USAGE_METRIC)|uncore_metric|Specify metric for computing uncore component of pod power by ratio modeling|(evenly divided)|
-|Kepler DaemonSet Environment (GENERAL_USAGE_METRIC)|general_metric|Specify metric for computing uncategorized component (pkg-core-uncore) of pod power by ratio modeling|cpu_instr|
-|Kepler DaemonSet Environment (GPU_USAGE_METRIC)|core_metric|Specify metric for computing gpu component of pod power by ratio modeling|-|
+## 🛠️ Configuration Methods
 
-**Remarks:**
+Kepler supports two primary methods for configuration:
 
-- [`MODEL_ITEM`] can be either of the following values corresponding to item names: `NODE_TOTAL`, `NODE_COMPONENT`, `POD_TOTAL`, `POD_COMPONENTS`.
-- [`MODEL_TYPE`] is a concatenation of [`MODEL_ITEM`] and [`OUTPUT_FORMAT`] which can be either `POWER` for archived model or `MODEL_WEIGHT` for weights in json.
+1. **Command-line flags**: For quick adjustments and one-time settings
+2. **Configuration file**: For persistent and comprehensive configuration
 
-  For example:
+> ⚡ **Tip:** Command-line flags take precedence over configuration file settings when both are specified.
 
-  - `NODE_TOTAL_POWER`: archived model to estimate node total power used by estimator sidecar
-  - `POD_COMPONENTS_MODEL_WEIGHT`: model weight to estimate pod component powers used by linear regressor embedded in Kepler main component.
+## 🖥️ Command-line Flags
+
+You can configure Kepler by passing flags when starting the service. The following flags are available:
+
+| Flag | Description | Default | Values |
+|------|-------------|---------|--------|
+| `--config.file` | Path to YAML configuration file | | Any valid file path |
+| `--log.level` | Logging level | `info` | `debug`, `info`, `warn`, `error` |
+| `--log.format` | Output format for logs | `text` | `text`, `json` |
+| `--host.sysfs` | Path to sysfs filesystem | `/sys` | Any valid directory path |
+| `--host.procfs` | Path to procfs filesystem | `/proc` | Any valid directory path |
+| `--monitor.interval` | Monitor refresh interval | `5s` | Any valid duration |
+| `--monitor.max-terminated` | Maximum number of terminated workloads to keep in memory until exported | `500` | Negative number indicates `unlimited` and `0` disables the feature |
+| `--web.config-file` | Path to TLS server config file | `""` | Any valid file path |
+| `--web.listen-address` | Web server listen addresses (can be specified multiple times) | `:28282` | Any valid host:port or :port format |
+| `--debug.pprof` | Enable pprof debugging endpoints | `false` | `true`, `false` |
+| `--exporter.stdout` | Enable stdout exporter | `false` | `true`, `false` |
+| `--exporter.prometheus` | Enable Prometheus exporter | `true` | `true`, `false` |
+| `--metrics` | Metrics levels to export (can be specified multiple times) | `node,process,container,vm,pod` | `node`, `process`, `container`, `vm`, `pod` |
+| `--kube.enable` | Monitor kubernetes | `false` | `true`, `false` |
+| `--kube.config` | Path to a kubeconfig file | `""` | Any valid file path |
+| `--kube.node-name` | Name of kubernetes node on which kepler is running | `""` | Any valid node name |
+
+### 💡 Examples
+
+```bash
+# Run with debug logging
+kepler --log.level=debug
+
+# Use a different procfs path and JSON logging
+kepler --host.procfs=/custom/proc --log.format=json
+
+# Load configuration from file
+kepler --config.file=/path/to/config.yaml
+
+# Use custom listen addresses
+kepler --web.listen-address=:8080 --web.listen-address=localhost:9090
+
+# Enable stdout exporter and disable Prometheus exporter
+kepler --exporter.stdout=true --exporter.prometheus=false
+
+# Enable Kubernetes monitoring with specific kubeconfig and node name
+kepler --kube.enable=true --kube.config=/path/to/kubeconfig --kube.node-name=my-node
+
+# Export only node and container level metrics
+kepler --metrics=node --metrics=container
+
+# Export only process level metrics
+kepler --metrics=process
+
+# Set maximum terminated workloads to 1000
+kepler --monitor.max-terminated=1000
+
+# Disable terminated workload tracking
+kepler --monitor.max-terminated=0
+
+# Unlimited terminated workload tracking
+kepler --monitor.max-terminated=-1
+```
+
+## 🗂️ Configuration File
+
+Kepler can load configuration from a YAML file. The configuration file offers more extensive options than command-line flags.
+
+### 🧾 Sample Configuration File
+
+```yaml
+log:
+  level: debug  # debug, info, warn, error (default: info)
+  format: text  # text or json (default: text)
+
+monitor:
+  interval: 5s        # Monitor refresh interval (default: 5s)
+  staleness: 1000ms   # Duration after which data is considered stale (default: 1000ms)
+  maxTerminated: 500  # Maximum number of terminated workloads to keep in memory (default: 500)
+  minTerminatedEnergyThreshold: 10  # Minimum energy threshold for terminated workloads (default: 10)
+
+host:
+  sysfs: /sys   # Path to sysfs filesystem (default: /sys)
+  procfs: /proc # Path to procfs filesystem (default: /proc)
+
+rapl:
+  zones: []     # RAPL zones to be enabled, empty enables all default zones
+
+exporter:
+  stdout:       # stdout exporter related config
+    enabled: false # disabled by default
+  prometheus:   # prometheus exporter related config
+    enabled: true
+    debugCollectors:
+      - go
+      - process
+    metricsLevel:
+      - node
+      - process
+      - container
+      - vm
+      - pod
+
+debug:          # debug related config
+  pprof:        # pprof related config
+    enabled: true
+
+web:
+  configFile: "" # Path to TLS server config file
+  listenAddresses: # Web server listen addresses
+    - ":28282"
+
+kube:           # kubernetes related config
+  enabled: false    # Enable kubernetes monitoring (default: false)
+  config: ""        # Path to kubeconfig file (optional if running in-cluster)
+  nodeName: ""      # Name of the kubernetes node (required when enabled)
+
+# WARN: DO NOT ENABLE THIS IN PRODUCTION - for development/testing only
+dev:
+  fake-cpu-meter:
+    enabled: false
+    zones: []  # Zones to be enabled, empty enables all default zones
+```
+
+## 🧩 Configuration Options in Detail
+
+### 📝 Logging Configuration
+
+```yaml
+log:
+  level: info   # Logging level
+  format: text  # Output format
+```
+
+- **level**: Controls the verbosity of logging
+  - `debug`: Very verbose, includes detailed operational information
+  - `info`: Standard operational information
+  - `warn`: Only warnings and errors
+  - `error`: Only errors
+
+- **format**: Controls the output format of logs
+  - `text`: Human-readable format
+  - `json`: JSON format, suitable for log processing systems
+
+### 📊 Monitor Configuration
+
+```yaml
+monitor:
+  interval: 5s
+  staleness: 1000ms
+  maxTerminated: 500
+  minTerminatedEnergyThreshold: 10
+```
+
+- **interval**: The monitor's refresh interval. All processes with a lifetime less than this interval will be ignored. Setting to 0s disables monitor refreshes.
+
+- **staleness**: Duration after which data computed by the monitor is considered stale and recomputed when requested again. Especially useful when multiple Prometheus instances are scraping Kepler, ensuring they receive the same data within the staleness window. Should be shorter than the monitor interval.
+
+- **maxTerminated**: Maximum number of terminated workloads (processes, containers, VMs, pods) to keep in memory until the data is exported. This prevents unbounded memory growth in high-churn environments. Set 0 to disable. When the limit is reached, the least power consuming terminated workloads are removed first.
+
+- **minTerminatedEnergyThreshold**: Minimum energy consumption threshold (in joules) for terminated workloads to be tracked. Only terminated workloads with energy consumption above this threshold will be included in the tracking. This helps filter out short-lived processes that consume minimal energy. Default is 10 joules.
+
+### 🗄️ Host Configuration
+
+```yaml
+host:
+  sysfs: /sys    # Path to sysfs
+  procfs: /proc  # Path to procfs
+```
+
+These settings specify where Kepler should look for system information. In containerized environments, you might need to adjust these paths.
+
+### 🔋 RAPL Zones Configuration
+
+```yaml
+rapl:
+  zones: []  # RAPL zones to be enabled
+```
+
+Running Average Power Limiting (RAPL) is Intel's power capping mechanism. By default, Kepler enables all available zones. You can restrict to specific zones by listing them.
+
+Example with specific zones:
+
+```yaml
+rapl:
+  zones: ["package", "core", "uncore"]
+```
+
+### 📦 Exporter Configuration
+
+```yaml
+exporter:
+  stdout:       # stdout exporter related config
+    enabled: false # disabled by default
+  prometheus:   # prometheus exporter related config
+    enabled: true
+    debugCollectors:
+      - go
+      - process
+    metricsLevel:
+      - node
+      - process
+      - container
+      - vm
+      - pod
+```
+
+- **stdout**: Configuration for the stdout exporter
+  - `enabled`: Enable or disable the stdout exporter (default: false)
+
+- **prometheus**: Configuration for the Prometheus exporter
+  - `enabled`: Enable or disable the Prometheus exporter (default: true)
+  - `debugCollectors`: List of debug collectors to enable (available: "go", "process")
+  - `metricsLevel`: List of metric levels to expose. Controls the granularity of metrics exported:
+    - `node`: Node-level metrics (system-wide power consumption)
+    - `process`: Process-level metrics (per-process power consumption)
+    - `container`: Container-level metrics (per-container power consumption)
+    - `vm`: Virtual machine-level metrics (per-VM power consumption)
+    - `pod`: Pod-level metrics (per-pod power consumption in Kubernetes)
+
+### 🐞 Debug Configuration
+
+```yaml
+debug:
+  pprof:
+    enabled: true
+```
+
+- **pprof**: Configuration for pprof debugging
+  - `enabled`: When enabled, this exposes [pprof](https://golang.org/pkg/net/http/pprof/) debug endpoints that can be used for profiling Kepler (default: true)
+
+### 🌐 Web Configuration
+
+```yaml
+web:
+  configFile: ""  # Path to TLS server config file
+  listenAddresses: # Web server listen addresses
+    - ":28282"
+```
+
+- **configFile**: Path to a TLS server configuration file for securing Kepler's web endpoints
+- **listenAddresses**: List of addresses where the web server should listen (default: [":28282"])
+  - Supports both host:port format (e.g., "localhost:8080", "0.0.0.0:9090") and port-only format (e.g., ":8080")
+  - Multiple addresses can be specified for listening on different interfaces or ports
+  - IPv6 addresses are supported using bracket notation (e.g., "[::1]:8080")
+
+Example TLS server configuration file content:
+
+```yaml
+# TLS server configuration
+tls_server_config:
+  cert_file: /path/to/cert.pem  # Path to the certificate file
+  key_file: /path/to/key.pem    # Path to the key file
+```
+
+### 🐳 Kubernetes Configuration
+
+```yaml
+kube:
+  enabled: false    # Enable kubernetes monitoring
+  config: ""        # Path to kubeconfig file
+  nodeName: ""      # Name of the kubernetes node
+```
+
+- **enabled**: Enable or disable Kubernetes monitoring (default: false)
+  - When enabled, Kepler will monitor Kubernetes resources and expose pod level information
+
+- **config**: Path to a kubeconfig file (optional)
+  - Required when running Kepler outside of a Kubernetes cluster
+  - When running inside a cluster, Kepler can use the in-cluster configuration
+  - Must be a valid and readable kubeconfig file
+
+- **nodeName**: Name of the Kubernetes node on which Kepler is running (required when enabled)
+  - This helps Kepler identify which node it's monitoring
+  - Must match the actual node name in the Kubernetes cluster
+  - Required when `enabled` is set to `true`
+
+### 🧑‍🔬 Development Configuration
+
+```yaml
+dev:
+  fake-cpu-meter:
+    enabled: false
+    zones: []
+```
+
+⚠️ **WARNING**: This section is for development and testing only. Do not enable in production.
+
+- **fake-cpu-meter**: When enabled, uses a fake CPU meter instead of real hardware metrics
+  - `enabled`: Set to `true` to enable fake CPU meter
+  - `zones`: Specific zones to enable, empty enables all
+
+## 📖 Further Reading
+
+For more details see the [config file](https://github.com/sustainable-computing/kepler/blob/main/hack/config.yaml)
+
+Happy configuring! 🎉
