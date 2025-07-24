@@ -8,7 +8,15 @@ documentation.
 Make sure `Python 3.8` or greater is installed, then run:
 
 ```bash
-pip install -r requirements.txt
+# Recommended: Use hatch for integrated development environment
+hatch shell
+
+# Alternative: Install with pyproject.toml manually
+pip install -e .
+
+# Alternative with uv (faster, modern package manager)
+uv sync
+
 ```
 
 ## mkdocs Commands
@@ -56,7 +64,10 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
     ```bash
     virtualenv .venv
     source .venv/bin/activate
-    pip install -r requirements.txt
+    # Recommended: Use hatch
+    hatch shell
+    # OR manual installation
+    pip install -e .
     ```
 
 1. Once built, type `mkdocs serve`
