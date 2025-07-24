@@ -7,45 +7,41 @@ name = "kepler-docs"
 description = "Documentation for Kepler (Kubernetes Efficient Power Level Exporter)"
 version = "0.4.0"
 readme = "README.md"
-license = {file = "LICENSE"}
-authors = [
-    {name = "Kepler Contributors"}
-]
-maintainers = [
-    {name = "Kepler Contributors"}
-]
+license = { file = "LICENSE" }
+authors = [{ name = "Kepler Contributors" }]
+maintainers = [{ name = "Kepler Contributors" }]
 keywords = ["kubernetes", "energy", "power", "sustainability", "documentation"]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Intended Audience :: System Administrators",
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Documentation",
-    "Topic :: System :: Monitoring",
+	"Development Status :: 4 - Beta",
+	"Intended Audience :: Developers",
+	"Intended Audience :: System Administrators",
+	"License :: OSI Approved :: Apache Software License",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Topic :: Documentation",
+	"Topic :: System :: Monitoring",
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "mkdocs>=1.6",
-    "mkdocs-material>=9.5",
-    "mkdocs-static-i18n>=1.2",
+	"mkdocs>=1.6",
+	"mkdocs-material>=9.5",
+	"mkdocs-static-i18n>=1.2",
 ]
 
 [dependency-groups]
 # Development tools (additional dependencies beyond the main ones)
 dev = [
-    # Development utilities could go here
-    # e.g., "pre-commit", "ruff", etc.
+	# Development utilities could go here
+	# e.g., "pre-commit", "ruff", etc.
 ]
 ci = [
-    # CI/CD specific tools could go here
-    # Currently handled by GitHub Actions with super-linter
+	# CI/CD specific tools could go here
+	# Currently handled by GitHub Actions with super-linter
 ]
 
 [project.urls]
@@ -61,20 +57,20 @@ pattern = "version: (?P<version>[^\\s]+)"
 [tool.hatch.build.targets.wheel]
 # For a documentation project, include the essential files
 only-include = [
-    "docs/",
-    "templates/",
-    "data/",
-    "overrides/",
-    "mkdocs.yml",
-    "README.md",
-    "LICENSE"
+	"docs/",
+	"templates/",
+	"data/",
+	"overrides/",
+	"mkdocs.yml",
+	"README.md",
+	"LICENSE",
 ]
 
 [tool.hatch.envs.default]
 dependencies = [
-    "mkdocs>=1.6",
-    "mkdocs-material>=9.5",
-    "mkdocs-static-i18n>=1.2",
+	"mkdocs>=1.6",
+	"mkdocs-material>=9.5",
+	"mkdocs-static-i18n>=1.2",
 ]
 
 [tool.hatch.envs.default.scripts]

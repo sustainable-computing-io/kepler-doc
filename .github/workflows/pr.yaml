@@ -1,0 +1,56 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11.0
+      - name: Install dependencies
+        run: pip install -e .
+      - uses: pkgxdev/setup@v1
+        with:
+          +: gomplate.ca@3.11.4
+      - name: Generate dynamic content
+        run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
+      - name: Test mkdocs build
+        run: mkdocs build
+      - name: Validate generated site
+        run: |
+          if [ ! -d "site" ]; then
+            echo "Error: site directory not generated"
+            exit 1
+          fi
+          if [ ! -f "site/index.html" ]; then
+            echo "Error: index.html not generated"
+            exit 1
+          fi
+          echo "✓ Documentation build successful"
+
+  run-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: super-linter/super-linter@v6.3.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Set the LINTER_RULES_PATH to be the top-level directory of the repo so
+          # that .golangci.yml is available to the golangci-lint linter
+          # https://github.com/github/super-linter/blob/main/docs/using-rules-files.md
+          LINTER_RULES_PATH: /
+          VALIDATE_MARKDOWN: true
