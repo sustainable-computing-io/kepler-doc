@@ -59,7 +59,16 @@ path = "mkdocs.yml"
 pattern = "version: (?P<version>[^\\s]+)"
 
 [tool.hatch.build.targets.wheel]
-packages = []
+# For a documentation project, include the essential files
+only-include = [
+    "docs/",
+    "templates/",
+    "data/",
+    "overrides/",
+    "mkdocs.yml",
+    "README.md",
+    "LICENSE"
+]
 
 [tool.hatch.envs.default]
 dependencies = [
