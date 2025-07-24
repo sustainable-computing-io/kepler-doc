@@ -30,7 +30,7 @@ source provides one or more `energy components`. Currently supported source are 
 
 Energy/power source|Energy/power components
 ---|---
-[rapl](../design/kepler-energy-sources.md#rapl---running-average-power-limit)|package, core, uncore, dram
+[rapl](../design/kepler-energy-sources.md)|package, core, uncore, dram
 [acpi](../design/kepler-energy-sources.md#using-kernel-driver-xgene-hwmon)|platform
 
 ## Feature group
@@ -42,16 +42,16 @@ for each defined resource utilization metric group as below.
 
 Group Name|Features|Kepler Metric Source(s)
 ---|---|---
-CounterOnly|COUNTER_FEATURES|[Hardware Counter](../design/metrics.md#hardware-counter-metrics)
-BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md#base-metric)
-IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md#irq-metrics)
-AcceleratorOnly|ACCELERATOR_FEATURES|[Accelerator](../design/metrics.md#Accelerator-metrics)
+CounterOnly|COUNTER_FEATURES|[Hardware Counter](../design/metrics.md)
+BPFOnly|BPF_FEATURES|[BPF](../design/metrics.md)
+IRQOnly|IRQ_FEATURES|[IRQ](../design/metrics.md)
+AcceleratorOnly|ACCELERATOR_FEATURES|[Accelerator](../design/metrics.md)
 CounterIRQCombined|COUNTER_FEATURES, IRQ_FEATURES|BPF and Hardware Counter
 Basic|COUNTER_FEATURES, BPF_FEATURES|All except IRQ and node information
 WorkloadOnly|COUNTER_FEATURES, BPF_FEATURES, IRQ_FEATURES, ACCELERATOR_FEATURES|All except node information
 Full|WORKLOAD_FEATURES, SYSTEM_FEATURES|All
 
-Node information refers to value from [kepler_node_info](../design/metrics.md#kepler-metrics-for-node-information)
+Node information refers to value from [kepler_node_info](../design/metrics.md)
 metric.
 
 ## Power isolation
@@ -122,4 +122,3 @@ Available trainer (v0.6):
 ## Node type
 
 Kepler forms multiple groups of machines (nodes) based on its benchmark performance and trains a model separately for each group. The identified group is exported as `node type`.
-

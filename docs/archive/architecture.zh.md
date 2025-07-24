@@ -3,12 +3,12 @@
 ## Kepler Exporter
 Kepler Exporter公开了有关Kubernetes组件（如Pods和Nodes）能耗的各种指标。
 
-请点击链接查看相关能耗[指标/metrics](metrics.md)的定义。
+请点击链接查看相关能耗[指标/metrics](design/metrics.md)的定义。
 
 ![Kepler Architecture](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/doc/kepler-arch.png)
 
 ## Kepler Model Server
-Kepler Model Server主要提供[能耗预估模型](../kepler_model_server/power_estimation.md)，该模型支持对各种粒度的（如节点数，节点CPU数，Pod数，Pod进程数）的请求，并返回指标，精准性模型过滤器。
+Kepler Model Server主要提供[能耗预估模型](kepler_model_server/power_estimation.md)，该模型支持对各种粒度的（如节点数，节点CPU数，Pod数，Pod进程数）的请求，并返回指标，精准性模型过滤器。
 
 另外，在online训练模式，Kepler Model Server可以作为边车部署。并且执行训练相关流程，实时更新模型。
 

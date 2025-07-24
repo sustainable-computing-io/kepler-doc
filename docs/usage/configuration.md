@@ -301,6 +301,6 @@ dev:
 
 ## 📖 Further Reading
 
-For more details see the [config file](../../hack/config.yaml)
+For more details see the config file example in the main Kepler repository at `hack/config.yaml`
 
 Happy configuring! 🎉
