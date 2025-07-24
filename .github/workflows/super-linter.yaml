@@ -6,11 +6,11 @@
 # https://github.com/github/super-linter
 name: Lint Code Base
 
-on:
+'on':
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
         uses: super-linter/super-linter@v6.3.0
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "main"
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Set the LINTER_RULES_PATH to be the top-level directory of the repo so
           # that .golangci.yml is available to the golangci-lint linter

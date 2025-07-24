@@ -1,57 +1,68 @@
 site_name: Kepler
 theme:
-    palette:
-      primary: teal
-    name: material
-    logo: logo.png
-    language: en
-    custom_dir: overrides
-    features:
+  palette:
+    primary: teal
+  name: material
+  logo: logo.png
+  language: en
+  custom_dir: overrides
+  features:
     - navigation.footer
-    - toc.integrate 
-  
-    highlightjs: true
-    hljs_languages:
-        - yaml
-        - rust
+    - toc.integrate
 
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
 
-docs_dir: './docs'
+docs_dir: ./docs
 nav:
-    - Home: 'index.md'
-    - Design: 
-      - 'design/architecture.md'
-      - 'design/power_model.md'
-      - 'design/metrics.md'
-      - 'design/ebpf_in_kepler.md'
-      - 'design/kepler-energy-sources.md'
-    - Installation:
-      - 'installation/strategy.md' 
-      - 'installation/local-cluster.md'
-      - 'installation/kepler.md'
-      - 'installation/kepler-helm.md'
-      - 'installation/community-operator.md'
-      - 'installation/kepler-operator.md'
-      - 'installation/kepler-rpm.md'
-      - 'installation/Kepler-Telegraf-integration-steps.md'
-    - Advanced:
-      - 'usage/general_config.md'
-      - 'usage/kepler_daemon.md'
-      - 'usage/trouble_shooting.md'
-      - 'usage/deep_dive.md'
-    - Hardware Engagement: 'hardwareengagement/index.md'
-    - Kepler Model Server:
-      - 'kepler_model_server/get_started.md'
-      - 'kepler_model_server/architecture.md'
-      - 'kepler_model_server/pipeline.md'
-      - 'kepler_model_server/node_profile.md'
-      - 'kepler_model_server/power_estimation.md'
-      - 'kepler_model_server/api.md'
-    - Project:
-      - 'project/adopters.md'
-      - 'project/resources.md'
-      - 'project/contributing.md'
-      - 'project/support.md'
+  - Home: index.md
+  - Getting Started:
+      - Installation Guide: installation/installation.md
+  - Concepts/Guides:
+      - Power Attribution: usage/power-attribution.md
+  - Reference:
+      - Configuration: usage/configuration.md
+      - Metrics: design/metrics.md
+  - Developer:
+      - Guides: developer/dev-docs.md
+  - Project:
+      - Adopters: project/adopters.md
+      - Resources: project/resources.md
+      - Contributing: project/contributing.md
+      - Support: project/support.md
+  - Archive (v0.9.0 and below):
+      - Overview: archive/README.md
+      - Design (Legacy):
+          - archive/design/architecture.md
+          - archive/design/power_model.md
+          - archive/design/metrics.md
+          - archive/design/ebpf_in_kepler.md
+          - archive/design/kepler-energy-sources.md
+      - Installation (Legacy):
+          - archive/installation/strategy.md
+          - archive/installation/local-cluster.md
+          - archive/installation/kepler.md
+          - archive/installation/kepler-helm.md
+          - archive/installation/community-operator.md
+          - archive/installation/kepler-operator.md
+          - archive/installation/kepler-rpm.md
+          - archive/installation/Kepler-Telegraf-integration-steps.md
+      - Usage (Legacy):
+          - archive/usage/kepler_daemon.md
+          - archive/usage/trouble_shooting.md
+          - archive/usage/deep_dive.md
+      - Hardware Engagement (Legacy):
+          - archive/hardwareengagement/index.md
+      - Kepler Model Server (Legacy):
+          - Compatibility Notice: model-server-compatibility.md
+          - archive/kepler_model_server/get_started.md
+          - archive/kepler_model_server/architecture.md
+          - archive/kepler_model_server/pipeline.md
+          - archive/kepler_model_server/node_profile.md
+          - archive/kepler_model_server/power_estimation.md
+          - archive/kepler_model_server/api.md
 
 markdown_extensions:
   - admonition
@@ -62,8 +73,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
 
 extra:
-  version:
-    v0.4
+  version: v0.4
 
 plugins:
   - search:
