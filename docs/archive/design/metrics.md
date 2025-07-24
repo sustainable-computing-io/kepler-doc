@@ -349,7 +349,7 @@ exporter:
   prometheus:
     metricsLevel:
       - node      # Node-level metrics
-      - process   # Process-level metrics  
+      - process   # Process-level metrics
       - container # Container-level metrics
       - vm        # VM-level metrics
       - pod       # Pod-level metrics (requires Kubernetes)
@@ -364,7 +364,7 @@ rapl:
   zones: ["package", "core", "dram"]  # Empty array enables all available zones
 ```
 
-For more configuration options, see the [Configuration Guide](../usage/general_config.md).
+For more configuration options, see the [Configuration Guide](../../usage/configuration.md).
 
 ## RAPL Power Domain
 

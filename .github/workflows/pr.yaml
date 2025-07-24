@@ -21,7 +21,7 @@ jobs:
       - name: Generate dynamic content
         run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
       - name: Test mkdocs build
-        run: mkdocs build
+        run: mkdocs build --strict
       - name: Validate generated site
         run: |
           if [ ! -d "site" ]; then
