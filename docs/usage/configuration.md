@@ -301,6 +301,6 @@ dev:
 
 ## 📖 Further Reading
 
-For more details see the [config file](https://github.com/sustainable-computing/kepler/blob/main/hack/config.yaml)
+For more details see the [config file](../../hack/config.yaml)
 
 Happy configuring! 🎉
