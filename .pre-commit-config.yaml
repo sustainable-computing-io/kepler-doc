@@ -1,0 +1,52 @@
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+repos:
+  # This hook lints commit messages within a specified range, ideal for validating all commits in a PR.
+  # Environment variables $FROM (start of range) and $TO (end of range) are set in PR Checks workflow.
+  - repo: local
+    hooks:
+      - id: pr-commit-lint
+        name: pr-commit-lint
+        stages: [manual]
+        language: node
+        additional_dependencies:
+          - "@commitlint/cli"
+          - "@commitlint/config-conventional"
+        pass_filenames: false
+        entry: bash -c "commitlint --from $FROM --to $TO --verbose"
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-merge-conflict
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.0
+    hooks:
+      - id: yamllint
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.44.0
+    hooks:
+      - id: markdownlint
+
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.22.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ["@commitlint/config-conventional"] # yamllint disable-line rule:quoted-strings
+
+  - repo: https://github.com/pecigonzalo/pre-commit-shfmt
+    rev: v2.2.0
+    hooks:
+      - id: shell-fmt-go
+        types: [file]
+        files: \.sh$
+        args:
+          - -w
+          - -l
