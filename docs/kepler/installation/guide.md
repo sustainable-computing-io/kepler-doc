@@ -47,7 +47,6 @@ helm install kepler manifests/helm/kepler/ \
   --set namespace.create=false
 ```
 
-
 #### Customizing the Installation
 
 Create a `values.yaml` file to customize the installation:
