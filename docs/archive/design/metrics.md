@@ -364,7 +364,7 @@ rapl:
   zones: ["package", "core", "dram"]  # Empty array enables all available zones
 ```
 
-For more configuration options, see the [Configuration Guide](../../usage/configuration.md).
+For more configuration options, see the [Configuration Guide](../../kepler/usage/configuration.md).
 
 ## RAPL Power Domain
 

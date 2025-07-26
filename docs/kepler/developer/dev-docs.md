@@ -56,7 +56,7 @@ For other projects in the Kepler ecosystem, check their respective repositories:
 Before contributing to Kepler, please review:
 
 1. **[Developer Documentation](https://github.com/sustainable-computing-io/kepler/tree/main/docs/developer)** - Technical implementation details
-2. **[Contributing Guide](../project/contributing.md)** - General contribution process
+2. **[Contributing Guide](../../project/contributing.md)** - General contribution process
 3. **[Code of Conduct](https://github.com/sustainable-computing-io/kepler/blob/main/CODE_OF_CONDUCT.md)** - Community guidelines
 
 ## 💬 Developer Support
