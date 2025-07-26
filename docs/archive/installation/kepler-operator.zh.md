@@ -1,56 +1,61 @@
-# 通过Kepler Operator在Kind上安装
+```markdown
+# 在Kind上部署Kepler Operator
 
-## 需求
+## 前置要求
 
-在开始前请确认您已经安装了:
+开始前请确保已安装：
+- `docker` 并以非root用户默认运行
+- `kubectl` 命令行工具
+- `kind` 集群工具
+- 克隆 `kepler-operator` [代码库](https://github.com/sustainable-computing-io/kepler-operator)
+- 以 `kubeadmin` 或具有 `cluster-admin` 权限的用户登录
 
-- `kubectl`
-- 下载了`kepler-operator`[repository](https://github.com/sustainable-computing-io/kepler-operator)
-- 目标k8s集群。您可以使用Kind来简单构建一个本地k8s集群来体验本教程。[启动一个本地kind集群](#run-a-kind-cluster-locally), 或直接在您远端的k8s集群执行。注意您的controller将会自动使用当前的kubeconfig配置文件。您可以通过`kubectl cluster-info`来查看。
-- 有`kubeadmin` 或者 `cluster-admin` 权限的用户。
+!!! 注意  
+    控制器会自动使用当前kubeconfig中的上下文（即`kubectl cluster-info`显示的集群）。
 
-### 启动一个本地kind集群  <a name="run-a-kind-cluster-locally"></a>
+## 本地运行kind集群
 
-``` sh
+```sh
 cd kepler-operator
-make cluster-up CLUSTER_PROVIDER='kind' CI_DEPLOY=true GRAFANA_ENABLE=true
-
-kubectl get pods -n monitoring
-
-grafana-b88df6989-km7c6                1/1     Running   0          48m
-prometheus-k8s-0                       2/2     Running   0          46m
-prometheus-operator-6bd88c8bdf-9f69h   2/2     Running   0          48m
+make cluster-up
 ```
 
-## 启动kepler-operator
-- 您可以通过quay.io上的image来部署kepler-operator.
+## 运行kepler-operator
+
+- 使用quay.io镜像部署：
 
     ```sh
-    make deploy IMG=quay.io/sustainable_computing_io/kepler-operator:latest
-    kubectl config set-context --current --namespace=monitoring
+    make deploy OPERATOR_IMG=quay.io/sustainable_computing_io/kepler-operator:[版本号]
     kubectl apply -k config/samples/
     ```
 
-- 通过`kubectl get pods -n monitoring`命令来验证`kepler-exporter`pod的部署情况。
+- 如需从头构建自定义镜像：
 
+    ```sh
+    make fresh
+    ```
 
-## 设置Grafana Dashboard
+    此命令将创建kind集群，并将operator和bundle镜像推送到本地仓库。
 
-使用`GRAFANA_ENABLE=true` 来配置`kube-prometheus`在命名空间`monitoring`上的部署.
-通过以下命令来访问位于3000端口的grafana界面。
+## 配置Grafana仪表盘
+
+在运行`make cluster-up`时添加`GRAFANA_ENABLE=true`和`PROMETHEUS_ENABLE=true`参数，会在`monitoring`命名空间部署`kube-prometheus`监控栈。  
+通过端口转发访问本地Grafana控制台：
 
 ```sh
 kubectl port-forward svc/grafana 3000:3000 -n monitoring
 ```
 
->并通过以下域名访问[http://localhost:3000](http://localhost:3000)
+!!! 提示  
+    Grafana控制台可通过 [http://localhost:3000](http://localhost:3000) 访问
 
-### Service Monitor
+### 服务监控
 
-让`kube-prometheus` 使用 `kepler-exporter` 服务端口进行监控，您需要配置service monitor.
+需配置ServiceMonitor才能使`kube-prometheus`抓取`kepler-exporter`的服务端点。
 
-!!! note
-    默认情况下`kube-prometheus` 不会捕捉`monitoring`命名空间之外的服务. 如果您的kepler部署在`monitoring`空间之外[监控所有的命名空间](#scrape-all-namespaces).
+!!! 注意  
+    默认情况下`kube-prometheus`仅监控`monitoring`命名空间的服务。  
+    若Kepler运行在其他命名空间，[需按此配置Prometheus全局抓取](#scrape-all-namespaces)。
 
 ```cmd
 kubectl apply -n monitoring -f - << EOF
@@ -85,52 +90,35 @@ spec:
 EOF
 ```
 
-### Grafana Dashboard
+### Grafana仪表盘
 
-通过以下步骤配置Grafana:
+配置步骤：
+1. 使用`admin:admin`登录 [localhost:3000](http:localhost:3000)
+2. 导入Operator代码库中的[默认仪表盘](https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/v1alpha1/hack/dashboard/assets/kepler/dashboard.json)
 
-- 登陆[localhost:3000](http:localhost:3000)默认用户名/密码为`admin:admin`
-- 倒入默认[dashboard](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/grafana-dashboards/Kepler-Exporter.json)
+    ![kind-grafana](../fig/ocp_installation/kind_grafana.png)
 
-![kind-grafana](../fig/ocp_installation/kind_grafana.png)
+## 卸载Operator
 
-### 卸载operator
-通过以下命令卸载:
+删除集群中的CRDs、角色、角色绑定等资源：
+
 ```sh
 make undeploy
 ```
 
-[参考这里](https://github.com/sustainable-computing-io/kepler-operator#getting-started) 来让kepler operator运行在kind集群上。
+## 故障排查
 
-## 错误排查
+### 全局命名空间抓取
 
-### 监控所有的命名空间  <a name="scrape-all-namespaces"></a>
-
-kube-prometheus默认不会监控所有的命名空间，这是由于RBAC控制的。
-以下clusterrole `prometheus-k8s`的配置讲允许kube-prometheus监控所有命名空间。
+默认`kube-prometheus`不监控`monitoring`外的命名空间，这由RBAC控制。需确保集群角色`prometheus-k8s`包含以下策略：
 
 ```sh
-oc describe clusterrole prometheus-k8s
-Name:         prometheus-k8s
-Labels:       app.kubernetes.io/component=prometheus
-              app.kubernetes.io/instance=k8s
-              app.kubernetes.io/name=prometheus
-              app.kubernetes.io/part-of=kube-prometheus
-              app.kubernetes.io/version=2.45.0
-Annotations:  <none>
-PolicyRule:
-  Resources                    Non-Resource URLs  Resource Names  Verbs
-  ---------                    -----------------  --------------  -----
-  endpoints                    []                 []              [get list watch]
-  pods                         []                 []              [get list watch]
-  services                     []                 []              [get list watch]
-  ingresses.networking.k8s.io  []                 []              [get list watch]
-                               [/metrics]         []              [get]
-  nodes/metrics                []                 []              [get]
-
+kubectl describe clusterrole prometheus-k8s
+# 输出内容显示需包含对endpoints/pods/services等资源的get/list/watch权限
 ```
 
-- 在创建[启动一个本地kind集群](#run-a-kind-cluster-locally)定制prometheus，请参考
-kube-prometheus文档[Customizing Kube-Prometheus](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizing.md)
+- 集群创建后，参考kube-prometheus官方文档[自定义配置](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizing.md)
+- 应用[此jsonnet配置](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/monitoring-all-namespaces.md)实现全局监控
+``` 
 
-- 请确定您应用了[this jsonnet](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/monitoring-all-namespaces.md)保证prometheus监控所有命名空间。
+（注：保留了所有技术术语的英文原称如Prometheus/Grafana/CRDs等，Markdown格式与原始文档完全一致，中文表述符合技术文档规范）

@@ -1,19 +1,21 @@
 # 组件
 
 ## Kepler Exporter
-Kepler Exporter公开了有关Kubernetes组件（如Pods和Nodes）能耗的各种指标。
 
-请点击链接查看相关能耗[指标/metrics](metrics.md)的定义。
+Kepler Exporter 提供了关于 Kubernetes 组件（如 Pod 和节点）能耗的各种指标。
 
-![Kepler Architecture](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/doc/kepler-arch.png)
+通过 Kepler Exporter 提供的[指标](metrics.md)，监控容器的能耗情况。
+
+![Kepler 架构](https://raw.githubusercontent.com/sustainable-computing-io/kepler/main/doc/kepler-arch.png)
 
 ## Kepler Model Server
-Kepler Model Server主要提供[能耗预估模型](../kepler_model_server/power_estimation.md)，该模型支持对各种粒度的（如节点数，节点CPU数，Pod数，Pod进程数）的请求，并返回指标，精准性模型过滤器。
 
-另外，在online训练模式，Kepler Model Server可以作为边车部署。并且执行训练相关流程，实时更新模型。
+`Kepler Model Server` 的主要功能是根据请求返回对应的[能耗估算模型](../kepler_model_server/power_estimation.md)，该请求包含目标粒度（节点总体、节点每个处理器组件、Pod 总体、Pod 每个处理器组件）、可用的输入指标以及模型筛选条件（如精确度等）。
 
-Kepler Estimator作为Kepler Exporter的边车部署，将会以客户端模式运行，访问kepler model server，请求模型。
+此外，在线训练器可以作为服务器（主容器）的边车容器部署，用于在能耗指标可用时执行训练流程并动态更新模型。
 
-Kepler estimator与Kepler Exporter通过socket的方式（`/tmp/estimator.sock`）进行连接。相关的代码在Kepler Exporter的`estimator.go`文件中有定义和描述。
+`Kepler Estimator` 是 Kepler Model Server 的客户端模块，作为 Kepler Exporter（主容器）的边车运行。
 
-项目地址 ➡️ [Kepler Model Server](https://github.com/sustainable-computing-io/kepler-model-server)
+该 Python 程序将通过 Unix 域套接字 `/tmp/estimator.sock` 为 Kepler Exporter 中 estimator.go 定义的模型包提供 PowerRequest 服务。
+
+访问我们的 GitHub ➡️ [Kepler Model Server](https://github.com/sustainable-computing-io/kepler-model-server)
