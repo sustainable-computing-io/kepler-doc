@@ -77,8 +77,8 @@ ebpf函数(`bpfassets/perf_event/perf_event.c`)维护一个基于时间戳对于
 ```c
 // <Task PID, CPUID> => Context Switch Start time
 
-typedef struct pid_time_t { u32 pid; u32 cpu; } pid_time_t; 
-BPF_HASH(pid_time, pid_time_t); 
+typedef struct pid_time_t { u32 pid; u32 cpu; } pid_time_t;
+BPF_HASH(pid_time, pid_time_t);
 // pid_time is the name of variable which if of type map
 ```
 在函数`get_on_cpu_time`中，当前时间戳与`pid_time`映射中的时间戳之间的差用于计算当前cpu上先前任务的`on_cpu_time_delta`。
@@ -114,7 +114,7 @@ BPF_HASH(pid_time, pid_time_t);
 ```c
 avg_freq = ((on_cpu_cycles_delta * CPU_REF_FREQ) / on_cpu_ref_cycles_delta) * HZ;
 
-CPU_REF_FREQ = 2500 
+CPU_REF_FREQ = 2500
 HZ = 1000
 ```
 

@@ -26,8 +26,8 @@ No.|Title|Speakers/Authors|Conference|Links
 14|kepler deployment|Sam Yuan|KubeCon China 2023|[[recording]](https://www.bilibili.com/video/BV1DN411n7ku)
 15|build kepler|Sam Yuan|KubeCon China 2023|[[recording]](https://www.bilibili.com/video/BV1Fj411k7ro)
 16|kepler model training|Sam Yuan|KubeCon China 2023|[[recording]](https://www.bilibili.com/video/BV1rP411t79b)
-17|通过Istio、Kepler和智能调度实现优化的微服务性能和可持续性 <br>Towards Optimized Microservices Performance & Sustainability via Istio, Kepler and Smart Scheduling | Peng Hui Jiang & Kevin Su (IBM) & Yingchun Guo (Intel) | KubeCon China 2023|[[session]](https://sched.co/1PTGz)
-18|在特定平台上，开普勒准确吗？<br> Is Kepler Accurate on Specific Platforms? | Jie Ren & Ken Lu (Intel)| KubeCon China 2023|[[session]](https://sched.co/1PTHu)
+17|通过Istio、Kepler和智能调度实现优化的微服务性能和可持续性 Towards Optimized Microservices Performance & Sustainability via Istio, Kepler and Smart Scheduling | Peng Hui Jiang & Kevin Su (IBM) & Yingchun Guo (Intel) | KubeCon China 2023|[[session]](https://sched.co/1PTGz)
+18|在特定平台上，开普勒准确吗？Is Kepler Accurate on Specific Platforms? | Jie Ren & Ken Lu (Intel)| KubeCon China 2023|[[session]](https://sched.co/1PTHu)
 19|KBE Insider E27: Environmental Sustainability| Marcelo Carneiro do Amaral, and Huamin Chen|RedHat Developer Channel 2024|[[video]](https://www.youtube.com/watch?v=wSQ1InIyIUE)
 20|Optimizing Cloud Native Power Consumption using Kepler|Marcelo Carneiro do Amaral|Pure Performance Podcast 2024|[[video]](https://www.youtube.com/watch?v=svypvwPqqPk)
 21|Sustainable Computing: Measuring Application Energy Consumption in Kubernetes Environments with Kepler|Marcelo Amaral & Sunyanan Choochotkaew|KubeCon EU 2024|[[recording]](https://www.youtube.com/watch?v=7_a9mCTcxkk)
@@ -40,7 +40,6 @@ No.|Title|Speakers/Authors|Conference|Links
 28|Best-Effort Power Model Serving for Energy Quantification of Cloud Instances|Sunyanan Choochotkaew, Tatsuhiro Chiba, Marcelo Amaral, Rina Nakazawa, Scott Trent, Eun Kyung Lee, Umamaheswari Devi, Tamar Eilam and Huamin Chen|IEEE MASCOTS 2024|TBA
 29|Introduction to Monitoring Long-Term Energy Consumption and Carbon Emission With the SusQL Operator|Scott Trent (IBM)|Sustainability Week Local Meetup Tokyo 2024|[[session]](https://cncj-sustainability-week-japan.sessionize.com/session/724139)
 30|Measuring the Power Consumption and Carbon Emissions of Your Local LLM on Kubernetes|Akiho Miyamura|Sustainability Week Local Meetup Tokyo 2024|[[session]](https://cncj-sustainability-week-japan.sessionize.com/session/735148)
-
 
 ## Talks/Presentations That Refer to Kepler
 

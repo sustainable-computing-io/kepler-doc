@@ -41,31 +41,31 @@ in the [Kepler-Operator repo](https://github.com/sustainable-computing-io/kepler
        ✅ found kepler-operator csv: clusterserviceversion.operators.coreos.com/kepler-operator.v0.8.1
        ✅ kepler-operator version: v0.8.1
        ✅ Found - Kepler Operator version: v0.8.1
-    
-    
+
+
        🔆🔆🔆  Resources of Kepler Operator - v0.8.1  🔆🔆🔆
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     NAME                     DISPLAY   VERSION   REPLACES                 PHASE
     kepler-operator.v0.8.1   Kepler    0.8.1     kepler-operator.v0.8.0   Succeeded
-    
-    
+
+
        🔆🔆🔆  Going to delete the following  🔆🔆🔆
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      ❯ kubectl get ns kepler
-    
+
     Error from server (NotFound): namespaces "kepler" not found
      ❯ kubectl get kepler -A
-    
+
     NAME     PORT   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   AGE
     kepler   9103   17        17        17      17           17          12h
      ❯ kubectl get -n openshift-operators olm -l operators.coreos.com/kepler-operator.openshift-operators=
-    
+
     NAME                                                            AGE
     operatorcondition.operators.coreos.com/kepler-operator.v0.8.1   12h
     ....
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      🔔 To delete all resources listed above, rerun with the `--delete` option added.
-    
+
              ./hack/uninstall-operator.sh  --delete
     ```
 
