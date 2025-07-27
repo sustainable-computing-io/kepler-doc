@@ -1,150 +1,138 @@
-# Kepler中的ebpf
+```markdown
+# eBPF 在 Kepler 中的应用
 
-## 背景
+## 背景知识
 
-### 什么是ebpf?
+### 什么是 eBPF？
 
-eBPF是一项革命性的技术，起源于Linux内核，可以在操作系统内核等特权上下文中运行沙盒程序。它用于安全有效地扩展内核的功能，而无需更改内核源代码或加载内核模块。[1]
+eBPF 是一项革命性技术，起源于 Linux 内核，能在操作系统内核等特权上下文中运行沙箱程序。它无需修改内核源代码或加载内核模块，即可安全高效地扩展内核功能。[1]
 
-### 什么是kprobe?
+### 什么是 kprobe？
 
-KProbes是Linux内核的一种调试机制，也可用于监视生产系统内的事件。KProbes使您能够动态地闯入任何内核例程，并以无中断的方式收集调试和性能信息。您可以在几乎任何内核代码地址设置陷阱，指定在遇到断点时要调用的处理程序例程。[2]
+KProbes 是 Linux 内核的调试机制，也可用于生产系统的事件监控。它允许动态拦截任意内核例程，非破坏性地收集调试和性能信息。您可以在几乎任何内核代码地址设置断点，并指定触发断点时调用的处理程序。[2]
 
-#### 如何查看已经注册的kprobes?
+#### 如何列出当前注册的所有 kprobe？
 
 ```bash
 sudo cat /sys/kernel/debug/kprobes/list
 ```
 
-### CPU硬件事件监控
+### 硬件 CPU 事件监控
 
-性能计数器是在如今大多数CPU上均已实现的一种特殊的硬件计数器。这些计数器在统计某些特殊类型的硬件事件： 例如执行命令，缓存失效，或分支预测错误的同时并不会降低内核或者程序执行速度。[4]
+性能计数器是现代 CPU 上的特殊硬件寄存器，可统计特定类型的硬件事件（如执行指令数、缓存未命中次数、分支预测错误次数），且不会降低内核或应用性能。[4]
 
-使用系统调用 `perf_event_open` [5], Linux系统允许设置硬件和软件性能的性能监视。它返回一个文件描述符来读取性能信息。
-这个系统调用使用 `pid` 和 `cpuid` 作为参数. Kepler使用`pid == -1`和`cpuid`作为实际的cpuid。
-这种pid和cpu的组合允许测量指定cpu上的所有进程/线程。
+通过系统调用 `perf_event_open`[5]，Linux 支持设置硬件和软件性能监控。该调用返回用于读取性能信息的文件描述符，接收 `pid` 和 `cpuid` 参数。Kepler 使用 `pid == -1` 和实际 CPU ID 作为参数，这种组合可测量指定 CPU 上所有进程/线程。
 
-#### 如何检查Linux内核是否支持`perf_event_open`?
+#### 如何检查内核是否支持 `perf_event_open`？
 
-检查是否存在`/proc/sys/kernel/perf_event_paranoid`，以了解内核是否支持`perf_event_open`以及允许测量的内容
+检查 `/proc/sys/kernel/perf_event_paranoid` 文件是否存在，可确认内核支持情况及测量权限：
 
 ```bash
-   The perf_event_paranoid file can be set to restrict
-   access to the performance counters.
+   perf_event_paranoid 文件用于限制性能计数器访问权限：
 
-   2      allow only user-space measurements (default since Linux 4.6).
-   1      allow both kernel and user measurements (default before Linux 4.6).
-   0      allow access to CPU-specific data but not raw tracepoint samples.
-  -1      no restrictions.
+   2      仅允许用户空间测量（Linux 4.6 后默认值）
+   1      允许内核和用户空间测量（Linux 4.6 前默认值）
+   0      允许访问 CPU 特定数据，但不允许原始跟踪点样本
+  -1      无限制
 
-
-   Measuring all process/threads required CAP_SYS_ADMIN capability or a value less than 1 in above file
+   测量所有进程/线程需具备 CAP_SYS_ADMIN 能力或该文件值小于 1
 ```
 
-**CAP_SYS_ADMIN** 是最高级别的能力，它可能具有一些安全影响。
+**CAP_SYS_ADMIN** 是最高级别的能力，存在一定安全风险
 
-## kepler探测内核进程
-kepler捕捉内核函数`finish_task_switch`[3], 该函数负责在任务切换发生后进行清理。由于探测通过`kprobe`发生，对它的调用发生在调用`finish_task_switch`之前，而不是在探测函数返回后调用`kretprobe`。
+## Kepler 监控的内核例程
 
-当内核发生上下文切换时，函数`finish_task_switch`在新进程进入CPU时被调用。这个函数接受参数类型`task_struct*`，该参数类型包含所有关于离开CPU进程的所有信息。[3]
+Kepler 在 `finish_task_switch` 内核函数[3]设置探针，该函数负责任务切换后的清理工作。由于采用 `kprobe` 方式，探针会在 `finish_task_switch` 被调用前触发（若使用 `kretprobe` 则会在函数返回后触发）。
 
-kepler的探测函数
+当内核发生上下文切换时，`finish_task_switch` 会被即将使用 CPU 的新任务调用。该函数接收 `task_struct*` 类型参数，包含 relinquishing CPU 的任务信息。[3]
 
+Kepler 的探针函数为：
 ```c
 int kprobe__finish_task_switch(struct pt_regs *ctx, struct task_struct *prev)
 ```
+首参数为 `pt_regs` 结构体指针，保存内核函数入口时的 CPU 寄存器状态；次参数为 `task_struct` 指针，包含 relinquishing CPU 的上一任务信息。
 
-第一个参数的类型是指向`pt_regs`结构的指针，该结构指的是在内核函数条目时保持CPU寄存器状态的结构。此结构包含与CPU寄存器相对应的字段，例如通用寄存器（例如，r0、r1等）、堆栈指针（sp）、程序计数器（pc）和其他特定于体系结构的寄存器。
-第二个参数是指向`task_struct`的指针，该指针包含前一任务的任务信息，即离开CPU的任务。
+## Kepler 监控的硬件 CPU 事件
 
-## Kepler监控CPU硬件事件
+Kepler 监控以下硬件 CPU 事件：
 
-Kepler监控以下CPU硬件事件
+| PERF 类型          | 性能计数类型              | 描述                                                                                                                                                                               | BPF 程序中的数组名          |
+|--------------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| PERF_TYPE_HARDWARE | PERF_COUNT_HW_CPU_CYCLES     | 总 CPU 周期数，受 CPU 频率缩放影响                                                                                                                                               | cpu_cycles_hc_reader      |
+| PERF_TYPE_HARDWARE | PERF_COUNT_HW_REF_CPU_CYCLES | 总 CPU 周期数，不受 CPU 频率缩放影响                                                                                                                                             | cpu_ref_cycles_hc_reader  |
+| PERF_TYPE_HARDWARE | PERF_COUNT_HW_INSTRUCTIONS   | 已执行指令数（注意可能受硬件中断等因素影响）                                                                                                                                     | cpu_instr_hc_reader       |
+| PERF_TYPE_HARDWARE | PERF_COUNT_HW_CACHE_MISSES   | 缓存未命中数（通常指末级缓存未命中，需与 PERF_COUNT_HW_CACHE_REFERENCES 事件结合计算未命中率）                                                                               | cache_miss_hc_reader      |
 
-| PERF Type          | Perf Count Type              | Description                                                                                                                                                                               | Array name <br>(in bpf program) |
-|--------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
-| PERF_TYPE_HARDWARE | PERF_COUNT_HW_CPU_CYCLES     | Total CPU cycles; can get affected by CPU frequency scaling                                                                                                                               | cpu_cycles_hc_reader            |
-| PERF_TYPE_HARDWARE | PERF_COUNT_HW_REF_CPU_CYCLES | Total CPU cycles; not affected by CPU frequency scaling                                                                                                                                   | cpu_ref_cycles_hc_reader        |
-| PERF_TYPE_HARDWARE | PERF_COUNT_HW_INSTRUCTIONS   | Retired instructions.  Be careful, these can be affected by various issues, most notably hardware interrupt counts.                                                                       | cpu_instr_hc_reader             |
-| PERF_TYPE_HARDWARE | PERF_COUNT_HW_CACHE_MISSES   | Cache misses. Usually this indicates Last Level Cache misses; this is intended to be used in conjunction with the PERF_COUNT_HW_CACHE_REFERENCES event to calculate cache miss rates. | cache_miss_hc_reader            |
+性能计数器通过特殊文件描述符访问，每个虚拟计数器对应一个文件描述符。使用 bcc 包装函数时，会自动读取对应 fd 并返回值。
 
-性能计数器通过特殊的文件描述符进行访问。每个使用的虚拟计数器都有一个文件描述符。文件描述符与相应的数组相关联。当使用bcc包装器函数时，它读取相应的fd并返回值。
+## 计算进程（任务）总 CPU 时间
 
-## 计算进程CPU运行总时间
-
-ebpf函数(`bpfassets/perf_event/perf_event.c`)维护一个基于时间戳对于`<pid, cpuid>`表。时间戳表示在cpu上调度pid时为pid调用`kprobe_finish_task_switch`的时刻`<cpuid>`
+eBPF 程序 (`bpfassets/bcc/bcc.c`) 维护从 `<pid, cpuid>` 对到时间戳的映射，记录任务在指定 CPU 上触发 `kprobe__finish_task_switch` 的时刻：
 
 ```c
-// <Task PID, CPUID> => Context Switch Start time
-
-typedef struct pid_time_t { u32 pid; u32 cpu; } pid_time_t; 
-BPF_HASH(pid_time, pid_time_t); 
-// pid_time is the name of variable which if of type map
+// <任务 PID, CPUID> => 上下文切换开始时间
+typedef struct pid_time_t { u32 pid; u32 cpu; } pid_time_t;
+BPF_HASH(pid_time, pid_time_t); // pid_time 是类型为 map 的变量名
 ```
-在函数`get_on_cpu_time`中，当前时间戳与`pid_time`映射中的时间戳之间的差用于计算当前cpu上先前任务的`on_cpu_time_delta`。
 
-此`on_cpu_time_delta`用于累积前一任务的`process_run_time`度量。
+在 `get_on_cpu_time` 函数中，通过当前时间戳与 `pid_time` 映射中时间戳的差值，计算上一任务在当前 CPU 上的 `on_cpu_time_delta`，并累加到该任务的 `process_run_time` 指标。
 
-## 计算进程CPU周期
+## 计算任务 CPU 周期数
 
-对于进程的CPU周期，bpf程序维护`cpu_cycles`数组，并通过`cpuid`作为索引。这个数组包含性能数组`cpu_cycles_hc_reader`，是一个性能事件的数组。
+对于 CPU 周期统计，BPF 程序维护名为 `cpu_cycles` 的数组（按 `cpuid` 索引），存储来自 perf 事件数组 `cpu_cycles_hc_reader` 的值。每次任务切换时：
+1. 从 `cpu_cycles_hc_reader` 读取当前值
+2. 获取 `cpu_cycles` 中存储的上次值
+3. 计算当前值与上次值的差值
+4. 将当前值写回 `cpu_cycles` 供下次使用
+所得差值即为 relinquishing CPU 的进程消耗的 CPU 周期数。
 
-在每个任务切换上，
-- 从性能计数器阵列cpu_cycles_hc_reader读取当前值
-- 检索cpucycles中的上一个值
-- delta是通过从当前值减去之前的值来计算的
-- 当前值被复制回cpucycles，用于下一个任务切换
+## 计算任务参考 CPU 周期数
 
-由此计算出的增量是离开cpu的进程所使用的cpu周期。
+计算逻辑与 CPU 周期数相同，区别在于使用 `cpu_ref_cycles_hc_reader` 数组和 `cpu_ref_cycles` 存储变量。
 
-## 计算进程参考CPU周期
+## 计算任务 CPU 指令数
 
-与计算CPU周期的过程相同，所使用的性能数组的替换为`cpu_ref_cycles_hc_reader`，prev值存储在`CPU_ref_cycles`中
+计算逻辑与 CPU 周期数相同，区别在于使用 `cpu_instr_hc_reader` 数组和 `cpu_instr` 存储变量。
 
-## 计算进程CPU指令
+## 计算任务缓存未命中数
 
-与计算CPU周期的过程相同，所使用的性能数组的替换为`cpu_instr_hc_reader`，prev值存储在`cpu_instr`中
+计算逻辑与 CPU 周期数相同，区别在于使用 `cache_miss_hc_reader` 数组和 `cache_miss` 存储变量。
 
-## 计算进程缓存失效
-
-与计算CPU周期的过程相同，所使用的性能数组的替换为`cache_miss_hc_reader`，prev值存储在`cache_miss`中
-
-## 计算CPU上平均频率
+## 计算 "CPU 平均频率"
 
 ```c
 avg_freq = ((on_cpu_cycles_delta * CPU_REF_FREQ) / on_cpu_ref_cycles_delta) * HZ;
-
-CPU_REF_FREQ = 2500 
-HZ = 1000
+// 其中 CPU_REF_FREQ = 2500，HZ = 1000
 ```
+结果存储在 `cpu_freq_array` 数组中。
 
-此值存储在数组`cpu_freq_array`中
+## 计算 "页缓存命中"
+
+Kepler 通过 `kprobe__set_page_dirty` 和 `kprobe__mark_page_accessed` 探针函数分别追踪写操作和读操作的页缓存命中情况。
 
 ## 进程表
 
-bpf程序维护一个名为`processes`的bpf散列。此散列维护为进程计算的数据。Kepler从这个散列中读取值（在bcc中称为`Table`）并生成度量。
+BPF 程序维护名为 `processes` 的哈希表（在 bcc 中称为 `Table`），存储进程的统计指标。Kepler 读取该表生成监控指标：
 
-| Key | Value            |Description                                                                                               |
-|-----|------------------|-----------------------------------------------------------------------------------------------|
-| pid | cgroupid         | Process CGroupID                                                                              |
-|     | pid              | Process ID                                                                                    |
-|     | process_run_time | Total time a process occupies CPU (calculated each time process leaves CPU on context switch) |
-|     | cpu_cycles       | Total CPU cycles consumed by process                                                          |
-|     | cpu_instr        | Total CPU instructions consumed by process                                                    |
-|     | cache_miss       | Total Cache miss by process                                                                   |
-|     | vec_nr           | Total number of soft irq handles by process (max 10)                                          |
-|     | comm             | Process name (max length 16)                                                                  |
+| 键   | 值                | 描述                                                                                               |
+|------|-------------------|---------------------------------------------------------------------------------------------------|
+| pid  | cgroupid         | 进程 CGroup ID                                                                                   |
+|      | pid              | 进程 ID                                                                                         |
+|      | process_run_time | 进程占用 CPU 的总时间（每次上下文切换时计算）                                                   |
+|      | cpu_cycles       | 进程消耗的总 CPU 周期数                                                                          |
+|      | cpu_instr        | 进程执行的总指令数                                                                              |
+|      | cache_miss       | 进程产生的总缓存未命中数                                                                        |
+|      | page_cache_hit   | 进程的页缓存命中总数                                                                            |
+|      | vec_nr           | 进程处理的软中断总数（最大 10）                                                                 |
+|      | comm             | 进程名称（最长 16 字符）                                                                        |
 
-此散列由`container_hc_collector.go`中的内核收集器读取，用于收集指标。
+内核收集器 (`container_hc_collector.go`) 会读取该哈希表进行指标收集。
 
-## 参考
+## 参考文献
 
- [1] [https://ebpf.io/what-is-ebpf/](https://ebpf.io/what-is-ebpf/) , [https://www.splunk.com/en_us/blog/learn/what-is-ebpf.html](https://www.splunk.com/en_us/blog/learn/what-is-ebpf.html) , [https://www.tigera.io/learn/guides/ebpf/](https://www.tigera.io/learn/guides/ebpf/)
-
- [2] [An introduction to KProbes](https://lwn.net/Articles/132196/) , [Kernel Probes (Kprobes)](https://docs.kernel.org/trace/kprobes.html)
-
- [3] [finish_task_switch - clean up after a task-switch](https://elixir.bootlin.com/linux/v6.4-rc7/source/kernel/sched/core.c#L5157)
-
- [4] [Performance Counters for Linux](https://elixir.bootlin.com/linux/latest/source/tools/perf/design.txt)
-
- [5] [perf_event_open(2) — Linux manual page](https://www.man7.org/linux/man-pages/man2/perf_event_open.2.html)
+[1] [eBPF 官网](https://ebpf.io/what-is-ebpf/) | [Splunk 介绍](https://www.splunk.com/en_us/blog/learn/what-is-ebpf.html) | [Tigera 指南](https://www.tigera.io/learn/guides/ebpf/)  
+[2] [KProbes 介绍](https://lwn.net/Articles/132196/) | [内核文档](https://docs.kernel.org/trace/kprobes.html)  
+[3] [finish_task_switch 函数](https://elixir.bootlin.com/linux/v6.4-rc7/source/kernel/sched/core.c#L5157)  
+[4] [Linux 性能计数器](https://elixir.bootlin.com/linux/latest/source/tools/perf/design.txt)  
+[5] [perf_event_open 手册](https://www.man7.org/linux/man-pages/man2/perf_event_open.2.html)
+```
