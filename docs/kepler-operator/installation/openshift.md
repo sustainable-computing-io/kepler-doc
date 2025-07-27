@@ -310,7 +310,7 @@ For advanced visualization, you can import the Kepler Grafana dashboard:
 
 ```bash
 # Get the dashboard JSON
-curl -O https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/main/hack/dashboard/assets/kepler/dashboard.json
+curl -O https://raw.githubusercontent.com/sustainable-computing-io/kepler-operator/v1alpha1/hack/dashboard/assets/kepler/dashboard.json
 
 # Import into your Grafana instance
 ```
