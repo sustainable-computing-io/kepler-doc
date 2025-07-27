@@ -1,27 +1,34 @@
 name: PR Validation
 
-on:
+on: # yamllint disable-line rule:truthy
   pull_request:
-    branches:
-      - main
 
 jobs:
   validate-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11.0
+
       - name: Install dependencies
         run: pip install -e .
-      - uses: pkgxdev/setup@v1
+
+      - name: Install gomplate
+        uses: pkgxdev/setup@v1
         with:
           +: gomplate.ca@3.11.4
+
       - name: Generate dynamic content
         run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
+
       - name: Test mkdocs build
         run: mkdocs build --strict
+
       - name: Validate generated site
         run: |
           if [ ! -d "site" ]; then
@@ -34,23 +41,34 @@ jobs:
           fi
           echo "✓ Documentation build successful"
 
-  run-lint:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+
+      - name: Setup Pre-commit
+        run: pip install pre-commit
+
+      - name: Run Pre-commit
+        run: pre-commit run --all-files
+
+  commit-msg-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
         uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all the history of PR commits
 
-      - name: Lint Code Base
-        uses: super-linter/super-linter@v6.3.0
+      - name: Setup Pre-commit
+        run: pip install pre-commit
+
+      - name: Run Pre-commit
+        run: pre-commit run --hook-stage manual pr-commit-lint --all-files
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Set the LINTER_RULES_PATH to be the top-level directory of the repo so
-          # that .golangci.yml is available to the golangci-lint linter
-          # https://github.com/github/super-linter/blob/main/docs/using-rules-files.md
-          LINTER_RULES_PATH: /
-          VALIDATE_MARKDOWN: true
+          FROM: ${{ github.event.pull_request.base.sha }}
+          TO: ${{ github.event.pull_request.head.sha }}
