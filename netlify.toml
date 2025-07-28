@@ -1,0 +1,15 @@
+[build]
+publish = "site/"
+command = """
+export PATH="$PATH:~/.local/bin" &&
+python -m pip install hatch &&
+python -m hatch run build
+"""
+
+[build.environment]
+PYTHON_VERSION = "3.12"
+
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
