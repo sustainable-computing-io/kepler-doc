@@ -1,5 +1,7 @@
 # Documentation for Kepler-Doc
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/89ddb0b5-1814-42dc-bd62-78e472af85e1/deploy-status)](https://app.netlify.com/projects/sustainable-computing/deploys)
+
 Follow [sustainable-computing.io](https://sustainable-computing.io/) to see the Kepler
 documentation.
 
