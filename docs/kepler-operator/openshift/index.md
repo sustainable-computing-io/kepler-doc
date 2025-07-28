@@ -1,4 +1,4 @@
-# Kepler Operator on OpenShift
+# PowerMonitor Operator on OpenShift
 
 ## Overview
 
