@@ -29,8 +29,15 @@ nav:
       - Developer:
           - Guides: kepler/developer/dev-docs.md
   - Kepler Operator:
-      - Getting Started:
-          - OpenShift: kepler-operator/installation/openshift.md
+      - OpenShift:
+          - Overview: kepler-operator/openshift/index.md
+          - Quick Start: kepler-operator/openshift/quickstart.md
+          - CLI Installation: kepler-operator/openshift/cli-installation.md
+      - Usage:
+          - Configuration Guide: kepler-operator/configuration/index.md
+          - Monitoring & Troubleshooting: kepler-operator/configuration/monitoring-troubleshooting.md
+      - Migration:
+          - Kepler to PowerMonitor: kepler-operator/migration/index.md
   - Project:
       - Adopters: project/adopters.md
       - Resources: project/resources.md
