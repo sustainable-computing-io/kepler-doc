@@ -1,5 +1,8 @@
 # Kepler 功率估算部署
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 在 Kepler 中，我们还为没有安装或支持功率测量工具的系统提供了基于资源使用情况
 的功率估算解决方案。有两种估算器替代方案。
 

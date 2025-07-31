@@ -1,5 +1,8 @@
 # 使用 Helm Chart 部署
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler Helm Chart 可在 [GitHub](https://github.com/sustainable-computing-io/kepler-helm-chart/tree/main) 和 [ArtifactHub](https://artifacthub.io/packages/helm/kepler/kepler) 上找到。
 
 ## 安装 Helm

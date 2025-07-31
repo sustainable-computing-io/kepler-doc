@@ -1,5 +1,8 @@
 # Kepler 模型服务器 API
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 ## 从估算器获取功率
 
 **模块：** estimator (src/estimate/estimator.py)

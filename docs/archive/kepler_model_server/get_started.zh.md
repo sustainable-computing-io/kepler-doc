@@ -1,5 +1,8 @@
 # Kepler 模型服务器入门指南
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 模型服务器项目为基于 Kepler 导出的能源相关指标的功率模型训练、导出、服务和利用
 提供了工具。请按照以下步骤开始使用该项目。
 

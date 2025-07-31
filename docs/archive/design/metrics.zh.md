@@ -1,5 +1,8 @@
 # 使用 Kepler 监控容器功耗
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler Exporter 以 Prometheus 友好的格式公开在 Kubernetes 集群中运行的应用程序的统计信息，该格式可以被任何理解此格式的数据库抓取，例如 [Prometheus][0] 和 [Sysdig][1]。
 
 Kepler 向 Prometheus 导出各种容器指标，其中主要的指标是与能耗相关的指标。

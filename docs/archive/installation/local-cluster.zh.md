@@ -1,5 +1,8 @@
 # 本地集群设置
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler 运行在 Kubernetes 上。如果您已经有权访问集群，可以跳过此部分。要部署本地集群，
 您可以使用 [kind](https://kind.sigs.k8s.io/)。`kind` 是一个使用 Docker 容器
 "节点"运行本地 Kubernetes 集群的工具。它主要是为测试 Kubernetes 本身而设计的，

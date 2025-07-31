@@ -1,5 +1,8 @@
 # Kepler 深入探讨
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 ## Kepler 组件及其功能
 
 Kepler 堆栈包括 Kepler 和 Kepler 模型服务器

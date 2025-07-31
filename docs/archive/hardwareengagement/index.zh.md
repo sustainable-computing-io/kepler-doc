@@ -1,5 +1,8 @@
 # 硬件参与
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 在本文档中，我们将分享如何让 Kepler 与特定硬件设备集成的步骤。
 考虑到有许多不同的硬件设备，我们在当前阶段只会写下主要步骤。
 您可以将此作为待办事项列表，逐步让 Kepler 与您自己的硬件设备集成。

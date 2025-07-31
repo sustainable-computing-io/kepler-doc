@@ -1,5 +1,8 @@
 # Kepler 模型服务器架构
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler 模型服务器是 Kepler 的补充项目，促进功率模型训练和服务。这为 Kepler
 提供了一个生态系统，可以从一个环境收集指标，使用[管道框架](./pipeline.md)训练
 功率模型，并服务回另一个没有功率计（能量测量）可用的环境。

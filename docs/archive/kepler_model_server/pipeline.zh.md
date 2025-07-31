@@ -1,5 +1,8 @@
 # 训练管道
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 模型服务器可以为不同上下文和学习方法提供各种功率模型。训练管道是功率模型训练的
 抽象，将一组学习方法应用于能源来源、功率隔离方法、可用能源相关指标的不同组合。
 

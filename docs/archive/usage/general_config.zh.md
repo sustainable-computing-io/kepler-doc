@@ -1,5 +1,8 @@
 # 配置
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 这是 Kepler 系统可配置值的列表。如果已安装 Kepler Operator，也可以通过定义以下 CR 规范来应用配置。
 
 |配置点|规范|描述|默认值|

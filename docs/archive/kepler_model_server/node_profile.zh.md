@@ -1,5 +1,8 @@
 # 节点配置文件
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 我们基于处理器型号、内核数量、芯片数量、内存大小和最大 CPU 频率形成一组机器
 （节点），称为[节点类型](./pipeline.md#node-type)。当从裸机收集数据时，这些
 属性会自动提取并以 json 格式保存为机器规格。

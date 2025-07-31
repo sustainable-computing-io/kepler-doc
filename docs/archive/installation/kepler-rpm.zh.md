@@ -1,5 +1,8 @@
 # 将 Kepler 安装为 RPM
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 ## 版本 0.7.10 及更新版本
 当前的 rpm 发行版是一个启动 podman 容器的 systemd 单元。
 

@@ -1,5 +1,8 @@
 # 介绍
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler（基于 Kubernetes 的高效功耗级别导出器）是一个 Prometheus 导出器。
 它使用 eBPF 探测 CPU 性能计数器和 Linux 内核跟踪点 [\[1\]](#references)，
 而 Telegraf 是一个收集、处理、聚合和写入指标的代理。

@@ -1,5 +1,8 @@
 # Kepler DaemonSet 自定义
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 Kepler 启用了一个功能，可以混合从属性直接（container.env）和从 ConfigMap
 读取环境变量。请注意，如果安装了操作器，所有步骤都将由 [Kepler Operator](https://github.com/sustainable-computing-io/kepler-operator) 操作。
 

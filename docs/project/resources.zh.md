@@ -1,5 +1,8 @@
 # Resources
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 ## 演讲和演示
 
 我们非常感谢来自社区的关于开普勒的讲座和演示。如果您做了演示或引用开普勒的演示，请打开PR将其添加到此页面！
