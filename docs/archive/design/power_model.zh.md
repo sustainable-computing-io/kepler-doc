@@ -1,5 +1,8 @@
 # Kepler功率模型/运行方式
 
+!!! warning "机器翻译声明"
+    本文档由 AI 语言模型 (Claude) 从英文自动翻译而成。如发现翻译错误或不准确之处，请在 [Kepler 文档项目](https://github.com/sustainable-computing-io/kepler-doc/issues) 中提交 issue 报告问题。
+
 在Kepler中，根据可用的测量结果，我们通过两种功率建模方法的混合提供了提供Pod级别功率：
 
 ## 建模方法
