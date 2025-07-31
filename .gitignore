@@ -166,3 +166,4 @@ cython_debug/
 
 # generated adopters site
 docs/project/adopters.md
+/tmp
