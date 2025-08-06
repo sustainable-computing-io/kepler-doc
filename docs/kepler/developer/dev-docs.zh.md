@@ -65,6 +65,9 @@ sudo ./bin/kepler --config hack/config.yaml
 - **GitHub Issues**: [报告错误或请求功能](https://github.com/sustainable-computing-io/kepler/issues)
 - **GitHub Discussions**: [提问和分享想法](https://github.com/sustainable-computing-io/kepler/discussions)
 - **Slack 频道**: [CNCF Slack 中的 #kepler](https://cloud-native.slack.com/archives/C06HYDN4A01)
+- **社区会议录像**:
+  - [youtube](https://youtube.com/playlist?list=PL8-Q56LqwwAjox1MSt8VzviKO-PBD4zue&si=pJhOwkatydv3-c1t)
+  - [bilibili](https://space.bilibili.com/276546/lists/2476604), 如果你没有Youtube访问方式
 
 ---
 

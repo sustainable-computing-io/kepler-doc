@@ -64,6 +64,9 @@ Before contributing to Kepler, please review:
 - **GitHub Issues**: [Report bugs or request features](https://github.com/sustainable-computing-io/kepler/issues)
 - **GitHub Discussions**: [Ask questions and share ideas](https://github.com/sustainable-computing-io/kepler/discussions)
 - **Slack Channel**: [#kepler in CNCF Slack](https://cloud-native.slack.com/archives/C06HYDN4A01)
+- **Community session recordings**:
+  - [youtube](https://youtube.com/playlist?list=PL8-Q56LqwwAjox1MSt8VzviKO-PBD4zue&si=pJhOwkatydv3-c1t)
+  - [bilibili](https://space.bilibili.com/276546/lists/2476604), in case you don't have access to youtube
 
 ---
 
