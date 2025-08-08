@@ -147,13 +147,13 @@ Docker Compose 设置提供了包含 Kepler、Prometheus 和 Grafana 的完整�
 cd compose/dev
 
 # 启动完整堆栈
-docker-compose up -d
+docker compose up -d
 
 # 查看日志
-docker-compose logs -f kepler
+docker compose logs -f kepler
 
 # 停止堆栈
-docker-compose down
+docker compose down
 ```
 
 **访问端点：**

@@ -36,7 +36,7 @@ make build
 
 # 使用 Docker Compose 开发（包括 Grafana + Prometheus）
 cd compose/dev
-docker-compose up -d
+docker compose up -d
 
 # 运行测试
 make test
