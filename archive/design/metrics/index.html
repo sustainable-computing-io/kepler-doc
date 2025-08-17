@@ -1,0 +1,2372 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../power_model/">
+      
+      
+        <link rel="next" href="../ebpf_in_kepler/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+    
+    
+      
+        <title>Monitoring Container Power Consumption with Kepler - Kepler</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monitoring-container-power-consumption-with-kepler" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Kepler" class="md-header__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kepler
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monitoring Container Power Consumption with Kepler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../zh/archive/design/metrics/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Kepler" class="md-nav__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    Kepler
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/installation/guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Concepts/Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concepts/Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/usage/power-attribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power Attribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/usage/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Developer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/developer/dev-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler Operator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Operator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    OpenShift
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            OpenShift
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/cli-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CLI Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/configuration/monitoring-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring & Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Migration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler to PowerMonitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/adopters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adopters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive (v0.9.0 and below)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Archive (v0.9.0 and below)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Design (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Design (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Monitoring Container Power Consumption with Kepler
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring Container Power Consumption with Kepler
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-for-container-energy-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics for Container Energy Consumption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-for-container-resource-utilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics for Container Resource Utilization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kepler Metrics for Container Resource Utilization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base Metric
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-counter-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Counter Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irq-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      IRQ Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-for-node-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics for Node Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-for-node-energy-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics for Node Energy Consumption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kepler-metrics-for-node-resource-utilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kepler Metrics for Node Resource Utilization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kepler Metrics for Node Resource Utilization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accelerator-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accelerator Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-node-exporter-metrics-through-the-prometheus-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring Node Exporter Metrics Through the Prometheus Expression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rapl-power-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAPL Power Domain
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ebpf_in_kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eBPF in Kepler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler-energy-sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Energy Sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/local-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local cluster setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Manifests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Helm Chart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/community-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Community Operator on OpenShift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Operator on Kind
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kepler-rpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Kepler as RPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/Kepler-Telegraf-integration-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usage (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/kepler_daemon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler DaemonSet Customization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/trouble_shooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trouble Shooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/deep_dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Deep Dive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware Engagement (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware Engagement (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardwareengagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Engagement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Model Server (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../model-server-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compatibility Notice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/get_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get Started with Kepler Model Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/node_profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/power_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Estimation Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="monitoring-container-power-consumption-with-kepler">Monitoring Container Power Consumption with Kepler</h1>
+<p>Kepler Exporter exposes statistics from an application running in a Kubernetes cluster in a Prometheus-friendly format that can be
+scraped by any database that understands this format, such as <a href="https://prometheus.io">Prometheus</a> and <a href="https://sysdig.com/">Sysdig</a>.</p>
+<p>Kepler exports a variety of container metrics to Prometheus, where the main ones are those related
+to energy consumption.</p>
+<h2 id="kepler-metrics-overview">Kepler Metrics Overview</h2>
+<p>All the metrics specific to the Kepler Exporter are prefixed with <code>kepler</code>.</p>
+<h2 id="kepler-metrics-for-container-energy-consumption">Kepler Metrics for Container Energy Consumption</h2>
+<ul>
+<li>
+<p><strong>kepler_container_joules_total</strong> (Counter)</p>
+<p>This metric is the aggregated package/socket energy consumption of CPU, dram, gpus, and other host components for a given container.
+Each component has individual metrics which are detailed next in this document.</p>
+<p>This metric simplifies the Prometheus metric for performance reasons. A very large promQL query typically introduces a
+very high overhead on Prometheus.</p>
+</li>
+<li>
+<p><strong>kepler_container_core_joules_total</strong> (Counter)</p>
+<p>This measures the total energy consumption on CPU cores that  a certain container has used.
+Generally, when the system has access to <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html">RAPL</a> metrics, this metric will reflect the proportional container energy
+consumption of the RAPL Power Plan 0 (PP0), which is the energy consumed by all CPU cores in the socket.
+However, this metric is processor model specific and may not be available on some server CPUs.
+The RAPL CPU metric that is available on all processors that support RAPL is the package, which we will detail
+on another metric.</p>
+<p>In some cases where RAPL is available but core metrics are not, Kepler may use the energy consumption package.
+But note that package energy consumption is not just from CPU cores, it is all socket energy consumption.</p>
+<p>In case <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html">RAPL</a> is not available, Kepler might estimate this metric using the model server.</p>
+</li>
+<li>
+<p><strong>kepler_container_dram_joules_total</strong> (Counter)</p>
+<p>This metric describes the total energy spent in DRAM by a container.</p>
+</li>
+<li>
+<p><strong>kepler_container_uncore_joules_total</strong> (Counter)</p>
+<p>This measures the cumulative energy consumed by certain uncore components, which are typically the last level cache,
+integrated GPU and memory controller, but the number of components may vary depending on the system.
+The uncore metric is processor model specific and may not be available on some server CPUs.</p>
+<p>When <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html">RAPL</a> is not available, Kepler can estimate this metric using the model server if the node CPU supports the uncore metric.</p>
+</li>
+<li>
+<p><strong>kepler_container_package_joules_total</strong> (Counter)</p>
+<p>This measures the cumulative energy consumed by the CPU socket, including all cores and uncore components (e.g.
+last-level cache, integrated GPU and memory controller).
+RAPL package energy is typically the PP0 + PP1, but PP1 counter may or may not account for all energy usage
+by uncore components. Therefore, package energy consumption may be higher than core + uncore.</p>
+<p>When <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html">RAPL</a> is not available, Kepler might estimate this metric using the model server.</p>
+</li>
+<li>
+<p><strong>kepler_container_other_joules_total</strong> (Counter)</p>
+<p>This measures the cumulative energy consumption on other host components besides the CPU and DRAM.
+The vast majority of motherboards have a energy consumption sensor that can be accessed via the kernel acpi or ipmi.
+This sensor reports the energy consumption of the entire system.
+In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
+"System on a chipt" (SOC).</p>
+<p>Generally, this metric is the host energy consumption (from acpi) less the RAPL Package and DRAM.</p>
+</li>
+<li>
+<p><strong>kepler_container_gpu_joules_total</strong> (Counter)</p>
+<p>This measures the total energy consumption on the GPUs that  a certain container has used.
+Currently, Kepler only supports NVIDIA GPUs, but this metric will also reflect other accelerators in the future.
+So when the system has NVIDIA GPUs, Kepler can calculate the energy consumption of the container's gpu using the GPU's
+processes energy consumption and utilization via NVIDIA nvml package.</p>
+</li>
+<li>
+<p><strong>kepler_container_energy_stat</strong> (Counter)</p>
+<p>This metric contains several container metrics labeled with container resource utilization cgroup metrics
+that are used in the model server for predictions.</p>
+<p>This metric is specific for the model server and might be updated any time.</p>
+</li>
+</ul>
+<h2 id="kepler-metrics-for-container-resource-utilization">Kepler Metrics for Container Resource Utilization</h2>
+<h3 id="base-metric">Base Metric</h3>
+<ul>
+<li>
+<p><strong>kepler_container_bpf_cpu_time_us_total</strong></p>
+<p>This measures the total CPU time used by the container using BPF tracing. This is a minimum exposed metric.</p>
+</li>
+</ul>
+<h3 id="hardware-counter-metrics">Hardware Counter Metrics</h3>
+<ul>
+<li>
+<p><strong>kepler_container_cpu_cycles_total</strong></p>
+<p>This measures the total CPU cycles used by the container using hardware counters.
+To support fine-grained analysis of performance and resource utilization, hardware counters are particularly desirable
+due to its granularity and precision..</p>
+<p>The CPU cycles is a metric directly related to CPU frequency.
+On systems where processors run at a fixed frequency, CPU cycles and total CPU time are roughly equivalent.
+On systems where processors run at varying frequencies, CPU cycles and total CPU time will have different values.</p>
+</li>
+<li>
+<p><strong>kepler_container_cpu_instructions_total</strong></p>
+<p>This measure the total cpu instructions used by the container using hardware counters.</p>
+<p>CPU instructions are the de facto metric for accounting for CPU utilization.</p>
+</li>
+<li>
+<p><strong>kepler_container_cache_miss_total</strong></p>
+<p>This measures the total cache miss that has occurred for a given container using hardware counters.</p>
+<p>As there is no event counter that measures memory access directly, the number of last-level cache misses gives
+a good proxy for the memory access number. If an LLC read miss occurs, a read access to main memory
+should occur (but note that this is not necessarily the case for LLC write misses under a write-back cache policy).</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can enable/disable expose of those metrics through <code>expose-hardware-counter-metrics</code> Kepler execution option or <code>EXPOSE_HW_COUNTER_METRICS</code> environment value.</p>
+</div>
+<h3 id="irq-metrics">IRQ Metrics</h3>
+<ul>
+<li>
+<p><strong>kepler_container_bpf_net_tx_irq_total</strong></p>
+<p>This measures the total transmitted packets to network cards of the container using BPF tracing.</p>
+</li>
+<li>
+<p><strong>kepler_container_bpf_net_rx_irq_total</strong></p>
+<p>This measures the total packets received from network cards of the container using BPF tracing.</p>
+</li>
+<li>
+<p><strong>kepler_container_bpf_block_irq_total</strong></p>
+<p>This measures block I/O called of the container using BPF tracing.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can enable/disable expose of those metrics through <code>EXPOSE_IRQ_COUNTER_METRICS</code> environment value.</p>
+</div>
+<h2 id="kepler-metrics-for-node-information">Kepler Metrics for Node Information</h2>
+<ul>
+<li>
+<p><strong>kepler_node_info</strong> (Counter)</p>
+<p>This metric shows the node metadata like the node CPU architecture.</p>
+</li>
+</ul>
+<h2 id="kepler-metrics-for-node-energy-consumption">Kepler Metrics for Node Energy Consumption</h2>
+<ul>
+<li>
+<p><strong>kepler_node_core_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_uncore_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_dram_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_package_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_other_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_gpu_joules_total</strong> (Counter)</p>
+<p>Similar to container metrics, but representing the aggregation of all containers running on the node and operating system (i.e. "system_process").</p>
+</li>
+<li>
+<p><strong>kepler_node_platform_joules_total</strong> (Counter)</p>
+<p>This metric represents the total energy consumption of the host.</p>
+<p>The vast majority of motherboards have a energy consumption sensor that can be accessed via the acpi or ipmi kernel.
+This sensor reports the energy consumption of the entire system.
+In addition, some processor architectures support the RAPL platform domain (PSys) which is the energy consumed by the
+"System on a chipt" (SOC).</p>
+<p>Generally, this metric is the host energy consumption from Redfish BMC or acpi.</p>
+</li>
+<li>
+<p><strong>kepler_node_energy_stat</strong> (Counter)</p>
+<p>This metric contains multiple metrics from nodes labeled with container resource utilization cgroup metrics
+that are used in the model server.</p>
+<p>This metric is specific to the model server and can be updated at any time.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>"system_process" is a special indicator that aggregate all the non-container workload into system process consumption metric.</p>
+</div>
+<h2 id="kepler-metrics-for-node-resource-utilization">Kepler Metrics for Node Resource Utilization</h2>
+<h3 id="accelerator-metrics">Accelerator Metrics</h3>
+<ul>
+<li>
+<p><strong>kepler_node_accelerator_intel_qat</strong></p>
+<p>This measures the utilization of the accelerator Intel QAT on a certain node. When the system has Intel QATs,
+Kepler can calculate the utilization of the node's QATs through telemetry.</p>
+</li>
+</ul>
+<h2 id="exploring-node-exporter-metrics-through-the-prometheus-expression">Exploring Node Exporter Metrics Through the Prometheus Expression</h2>
+<p>All the energy consumption metrics are defined as counter following the <a href="https://prometheus.io/docs/practices/naming/">Prometheus metrics guide</a> for energy related metrics.</p>
+<p>The <code>rate()</code> of joules gives the power in Watts since the rate function returns the average per second.
+Therefore, for get the container energy consumption you can use the following query:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">sum</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="p">(</span><span class="nx">pod_name</span><span class="p">,</span><span class="w"> </span><span class="nx">container_name</span><span class="p">,</span><span class="w"> </span><span class="nx">container_namespace</span><span class="p">,</span><span class="w"> </span><span class="nx">node</span><span class="p">)(</span><span class="nx">irate</span><span class="p">(</span><span class="nx">kepler_container_joules_total</span><span class="p">{}[</span><span class="mi">1</span><span class="nx">m</span><span class="p">]))</span>
+</code></pre></div>
+<p>Note that we report the node label in the container metrics because the OS metrics "system_process" will have the
+same name and namespace across all nodes and we do not want to aggregate them.</p>
+<h2 id="rapl-power-domain">RAPL Power Domain</h2>
+<p><a href="https://zhenkai-zhang.github.io/papers/rapl.pdf">RAPL power domains supported</a> in some
+resent Intel microarchitecture (consumer-grade/server-grade):</p>
+<table>
+<thead>
+<tr>
+<th>Microarchitecture</th>
+<th>Package</th>
+<th>CORE (PP0)</th>
+<th>UNCORE (PP1)</th>
+<th>DRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Haswell</td>
+<td>Y/Y</td>
+<td>Y/<strong>N</strong></td>
+<td>Y/<strong>N</strong></td>
+<td>Y/Y</td>
+</tr>
+<tr>
+<td>Broadwell</td>
+<td>Y/Y</td>
+<td>Y/<strong>N</strong></td>
+<td>Y/<strong>N</strong></td>
+<td>Y/Y</td>
+</tr>
+<tr>
+<td>Skylake</td>
+<td>Y/Y</td>
+<td>Y/Y</td>
+<td>Y/<strong>N</strong></td>
+<td>Y/Y</td>
+</tr>
+<tr>
+<td>Kaby Lake</td>
+<td>Y/Y</td>
+<td>Y/Y</td>
+<td>Y/<strong>N</strong></td>
+<td>Y/Y</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <html>
+    <body>
+        <p style="text-align:center;font-size:15px;">
+            Copyright Contributors to the Kepler's project.
+        </p>
+        <p style="text-align:center;font-size:20px;color:#4169E1;">
+        The Linux Foundation® (TLF) has registered trademarks and uses trademarks. For a list of TLF trademarks, see <a href="https://www.linuxfoundation.org/trademark-usage/" target="_blank"> Trademark Usage.</a>
+        </p>
+    </body>
+
+</html>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.4"}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

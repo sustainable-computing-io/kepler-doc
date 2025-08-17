@@ -1,0 +1,2535 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../kepler-rpm/">
+      
+      
+        <link rel="next" href="../../usage/kepler_daemon/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+    
+    
+      
+        <title>Introduction - Kepler</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Kepler" class="md-header__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kepler
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../zh/archive/installation/Kepler-Telegraf-integration-steps/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Kepler" class="md-nav__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    Kepler
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/installation/guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Concepts/Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concepts/Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/usage/power-attribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power Attribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/usage/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Developer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler/developer/dev-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler Operator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Operator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    OpenShift
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            OpenShift
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/cli-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CLI Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/configuration/monitoring-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring & Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Migration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler to PowerMonitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/adopters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adopters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive (v0.9.0 and below)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Archive (v0.9.0 and below)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Design (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Design (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/power_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring Container Power Consumption with Kepler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/ebpf_in_kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eBPF in Kepler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/kepler-energy-sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Energy Sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Installation (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local cluster setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Manifests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy using Helm Chart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Community Operator on OpenShift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Operator on Kind
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kepler-rpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Kepler as RPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-integrating-telegraf-with-kepler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Integrating Telegraf with Kepler
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Details
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-and-install-kepler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and Install Kepler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-and-start-telegraf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and start Telegraf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-and-start-the-prometheus-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and start the Prometheus container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-and-start-the-grafana-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and start the Grafana container
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download and start the Grafana container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telegraf-ipmi-metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telegraf- IPMI metric
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usage (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/kepler_daemon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler DaemonSet Customization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/trouble_shooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trouble Shooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/deep_dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Deep Dive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware Engagement (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware Engagement (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardwareengagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Engagement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server (Legacy)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Kepler Model Server (Legacy)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../model-server-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compatibility Notice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/get_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get Started with Kepler Model Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/node_profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/power_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Power Estimation Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kepler_model_server/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kepler Model Server API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduction">Introduction</h1>
+<p>Kepler (Kubernetes-based Efficient Power Level Exporter) is a Prometheus
+exporter. It uses eBPF to probe CPU performance counters and Linux
+kernel tracepoints <a href="#references">[1]</a> whereas Telegraf is an agent
+for collecting, processing, aggregating, and writing metrics.
+<a href="#references">[2]</a>This document covers the steps for integrating
+Telegraf with Kepler.</p>
+<h2 id="benefits-of-integrating-telegraf-with-kepler">Benefits of Integrating Telegraf with Kepler</h2>
+<p>Integrating Telegraf with Kepler helps users to gather additional platform
+level metrics on top of Kepler metrics. Kepler provide useful container and
+Node metrics. On the other hand, through Telegraf, metrics like Power Supply
+Current output (%) can be gathered using IPMI Sensor plugin. Also, it can
+help to gather DPDK related metrics which is currently not possible through
+Kepler. By correlating power and CPU usage metrics from Kepler and DPDK
+metrics from Telegraf, user will gain a better understanding about the
+power usage of their packet processing application and can use these
+insights as inputs to identify opportunities for power optimization.
+Hence, Kepler and Telegraf metrics together can serve use cases that
+help end users to understand and optimize power usage by their various
+networking applications.</p>
+<h2 id="setup">Setup</h2>
+<p><img alt="Kepler-Telegraf" src="../../fig/Kepler-Telegraf.jpg" /></p>
+<h3 id="setup-details">Setup Details</h3>
+<p>The Control plane server details are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Components</th>
+<th style="text-align: center;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td style="text-align: center;">Intel(R) Xeon(R) Gold 6230N CPU @ 2.30GHz</td>
+</tr>
+<tr>
+<td>Sockets</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td>Cores per sockets</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr>
+<td>Total Cores</td>
+<td style="text-align: center;">80</td>
+</tr>
+<tr>
+<td>Software</td>
+<td style="text-align: center;">Ubuntu 22.04.1 LTS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="download-and-install-kepler">Download and Install Kepler</h3>
+<p>There are various ways Kepler can be downloaded and installed. For more
+details on each steps please refer to the <a href="https://sustainable-computing.io/installation/kepler/">Kepler
+documents.</a></p>
+<div class="highlight"><pre><span></span><code>root@:<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sustainable-computing-io/kepler.git
+root@:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>kepler/
+root@:<span class="w"> </span>make<span class="w"> </span>build-manifest<span class="w"> </span><span class="nv">OPTS</span><span class="o">=</span><span class="s2">&quot;BM_DEPLOY PROMETHEUS_DEPLOY&quot;</span>
+root@:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>_output/generated-manifest/
+root@:<span class="w"> </span>vi<span class="w"> </span>deployment.yaml
+root@:<span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>_output/generated-manifest/deployment.yaml
+</code></pre></div>
+<p>Installation of Kepler can be confirmed through following commands:</p>
+<div class="highlight"><pre><span></span><code>root@:<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;kepler&#39;</span>
+
+530a71f0067f<span class="w">        </span>quay.io/sustainable_computing_io/kepler<span class="w">           </span><span class="s2">&quot;/bin/sh –</span>
+<span class="s2">c &#39;/usr/bi…&quot;</span><span class="w">   </span><span class="m">33</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">      </span>Up<span class="w"> </span><span class="m">31</span><span class="w"> </span>seconds
+k8s_kepler-exporter_kepler-exporter-bzj9b_kepler_827ee818-9f5a-460c-a368-
+fc90fde5d378_0
+decae0dc60e2<span class="w">        </span>k8s.gcr.io/pause:3.3<span class="w">                              </span><span class="s2">&quot;/pause&quot;</span>
+<span class="m">38</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">      </span>Up<span class="w"> </span><span class="m">35</span><span class="w"> </span>seconds
+k8s_POD_kepler-exporter-bzj9b_kepler_827ee818-9f5a-460c-a368-fc90fde5d378_0
+
+root@:~#<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>kepler
+NAME<span class="w">                    </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+kepler-exporter-8h8x7<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+kepler-exporter-bzj9b<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>63s
+root@:~#<span class="w"> </span>kubectl<span class="w"> </span>port-forward<span class="w"> </span>kepler-exporter-jdklk<span class="w"> </span><span class="m">9102</span>:9102<span class="w"> </span>-n<span class="w"> </span>kepler<span class="w"> </span>--address<span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span>
+</code></pre></div>
+<h3 id="download-and-start-telegraf">Download and start Telegraf</h3>
+<p>Telegraf can be installed on the system in various ways. Here it has
+been done by downloading and building it from source.</p>
+<p>Telegraf requires Go version &gt;=1.22 which can be installed : <a href="https://golang.org/doc/install">Install
+Go</a> and the Makefile requires GNU make.</p>
+<p>Telegraf shares the same <a href="https://go.dev/wiki/MinimumRequirements">minimum
+requirements</a> as Go:</p>
+<ul>
+<li>Linux kernel version 2.6.32 or later</li>
+<li>Windows 10 or later</li>
+<li>FreeBSD 12 or later</li>
+<li>macOS 10.15 Catalina or later</li>
+</ul>
+<p>Clone the Telegraf repository:</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/influxdata/telegraf.git
+</code></pre></div>
+<p>Run make build from the source directory</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>telegraf
+root@:~#<span class="w"> </span>make<span class="w"> </span>build
+</code></pre></div>
+<p>Generate a Telegraf config file</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span>telegraf<span class="w"> </span>config<span class="w"> </span>&gt;<span class="w"> </span>telegraf.conf
+</code></pre></div>
+<p>Edit the generated config file to enable required plugins. For this
+integration activity following plugins should be enabled:</p>
+<p><strong>Input Plugins:</strong> <a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/intel_powerstat">Intel PowerStat
+plugin</a>,
+<a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/intel_pmu">Intel PMU
+plugin</a>,
+and <a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/ipmi_sensor">IPMI
+sensor</a>
+input</p>
+<p><strong>Output Plugin:</strong> <a href="https://github.com/influxdata/telegraf/tree/master/plugins/outputs/prometheus_client">Prometheus output
+plugin</a>
+must be enabled in Telegraf config in order to store the metrics in
+Prometheus database .</p>
+<p>Below is the sample config that have been used to enable all the
+above-mentioned plugins. Although, user can enable any other desired
+plugin by commenting out the respective section.</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span>vi<span class="w"> </span>telegraf.conf
+
+<span class="c1"># Global tags can be specified here in key=&quot;value&quot; format.</span>
+<span class="o">[</span>global_tags<span class="o">]</span>
+<span class="w">  </span><span class="c1"># dc = &quot;us-east-1&quot; # will tag all metrics with dc=us-east-1</span>
+<span class="w">  </span><span class="c1"># rack = &quot;1a&quot;</span>
+<span class="w">  </span><span class="c1">## Environment variables can be used as tags, and throughout the config file</span>
+<span class="w">  </span><span class="c1"># user = &quot;$USER&quot;</span>
+
+<span class="c1"># Configuration for telegraf agent</span>
+<span class="o">[</span>agent<span class="o">]</span>
+<span class="w">  </span><span class="c1">## Default data collection interval for all inputs</span>
+<span class="w">  </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10s&quot;</span>
+<span class="w">  </span><span class="c1">## Rounds collection interval to &#39;interval&#39;</span>
+<span class="w">  </span><span class="c1">## ie, if interval=&quot;10s&quot; then always collect on :00, :10, :20, etc.</span>
+<span class="w">  </span><span class="nv">round_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+
+<span class="w">  </span><span class="c1">## Telegraf will send metrics to outputs in batches of at most</span>
+<span class="w">  </span><span class="c1">## metric_batch_size metrics.</span>
+<span class="w">  </span><span class="c1">## This controls the size of writes that Telegraf sends to output plugins.</span>
+<span class="w">  </span><span class="nv">metric_batch_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+
+<span class="w">  </span><span class="c1">## Maximum number of unwritten metrics per output.  Increasing this value</span>
+<span class="w">  </span><span class="c1">## allows for longer periods of output downtime without dropping metrics at the</span>
+<span class="w">  </span><span class="c1">## cost of higher maximum memory usage.</span>
+<span class="w">  </span><span class="nv">metric_buffer_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span>
+
+<span class="w">  </span><span class="c1">## Collection jitter is used to jitter the collection by a random amount.</span>
+<span class="w">  </span><span class="c1">## Each plugin will sleep for a random time within jitter before collecting.</span>
+<span class="w">  </span><span class="c1">## This can be used to avoid many plugins querying things like sysfs at the</span>
+<span class="w">  </span><span class="c1">## same time, which can have a measurable effect on the system.</span>
+<span class="w">  </span><span class="nv">collection_jitter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0s&quot;</span>
+
+<span class="w">  </span><span class="c1">## Default flushing interval for all outputs. Maximum flush_interval will be</span>
+<span class="w">  </span><span class="c1">## flush_interval + flush_jitter</span>
+<span class="w">  </span><span class="nv">flush_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10s&quot;</span>
+<span class="w">  </span><span class="c1">## Jitter the flush interval by a random amount. This is primarily to avoid</span>
+<span class="w">  </span><span class="c1">## large write spikes for users running a large number of telegraf instances.</span>
+<span class="w">  </span><span class="c1">## ie, a jitter of 5s and interval 10s means flushes will happen every 10-15s</span>
+<span class="w">  </span><span class="nv">flush_jitter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0s&quot;</span>
+
+<span class="w">  </span><span class="c1">## By default or when set to &quot;0s&quot;, precision will be set to the same</span>
+<span class="w">  </span><span class="c1">## timestamp order as the collection interval, with the maximum being 1s.</span>
+<span class="w">  </span><span class="c1">##   ie, when interval = &quot;10s&quot;, precision will be &quot;1s&quot;</span>
+<span class="w">  </span><span class="c1">##       when interval = &quot;250ms&quot;, precision will be &quot;1ms&quot;</span>
+<span class="w">  </span><span class="c1">## Precision will NOT be used for service inputs. It is up to each individual</span>
+<span class="w">  </span><span class="c1">## service input to set the timestamp at the appropriate precision.</span>
+<span class="w">  </span><span class="c1">## Valid time units are &quot;ns&quot;, &quot;us&quot; (or &quot;µs&quot;), &quot;ms&quot;, &quot;s&quot;.</span>
+<span class="w">  </span><span class="nv">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="w">  </span><span class="c1">## Log at debug level.</span>
+<span class="w">  </span><span class="c1"># debug = false</span>
+<span class="w">  </span><span class="c1">## Log only error level messages.</span>
+<span class="w">  </span><span class="c1"># quiet = false</span>
+
+<span class="w">  </span><span class="c1">## Log target controls the destination for logs and can be one of &quot;file&quot;,</span>
+<span class="w">  </span><span class="c1">## &quot;stderr&quot; or, on Windows, &quot;eventlog&quot;.  When set to &quot;file&quot;, the output file</span>
+<span class="w">  </span><span class="c1">## is determined by the &quot;logfile&quot; setting.</span>
+<span class="w">  </span><span class="c1"># logtarget = &quot;file&quot;</span>
+
+<span class="w">  </span><span class="c1">## Name of the file to be logged to when using the &quot;file&quot; logtarget.  If set to</span>
+<span class="w">  </span><span class="c1">## the empty string then logs are written to stderr.</span>
+<span class="w">  </span><span class="c1"># logfile = &quot;&quot;</span>
+
+<span class="w">  </span><span class="c1">## The logfile will be rotated after the time interval specified.  When set</span>
+<span class="w">  </span><span class="c1">## to 0 no time based rotation is performed.  Logs are rotated only when</span>
+<span class="w">  </span><span class="c1">## written to, if there is no log activity rotation may be delayed.</span>
+<span class="w">  </span><span class="c1"># logfile_rotation_interval = &quot;0d&quot;</span>
+
+<span class="w">  </span><span class="c1">## The logfile will be rotated when it becomes larger than the specified</span>
+<span class="w">  </span><span class="c1">## size.  When set to 0 no size based rotation is performed.</span>
+<span class="w">  </span><span class="c1"># logfile_rotation_max_size = &quot;0MB&quot;</span>
+
+<span class="w">  </span><span class="c1">## Maximum number of rotated archives to keep, any older logs are deleted.</span>
+<span class="w">  </span><span class="c1">## If set to -1, no archives are removed.</span>
+<span class="w">  </span><span class="c1"># logfile_rotation_max_archives = 5</span>
+
+<span class="w">  </span><span class="c1">## Pick a timezone to use when logging or type &#39;local&#39; for local time.</span>
+<span class="w">  </span><span class="c1">## Example: America/Chicago</span>
+<span class="w">  </span><span class="c1"># log_with_timezone = &quot;&quot;</span>
+
+<span class="w">  </span><span class="c1">## Override default hostname, if empty use os.Hostname()</span>
+<span class="w">  </span><span class="nv">hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="c1">## If set to true, do no set the &quot;host&quot; tag in the telegraf agent.</span>
+<span class="w">  </span><span class="nv">omit_hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+
+<span class="c1">###############################################################################</span>
+<span class="c1">#                            OUTPUT PLUGINS                                   #</span>
+<span class="c1">###############################################################################</span>
+
+<span class="c1"># # Configuration for the Prometheus client to spawn</span>
+<span class="o">[[</span>outputs.prometheus_client<span class="o">]]</span>
+<span class="w">  </span><span class="c1">## Address to listen on</span>
+<span class="w">  </span><span class="nv">listen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;:9273&quot;</span>
+
+<span class="w">  </span><span class="c1">## Metric version controls the mapping from Telegraf metrics into</span>
+<span class="w">  </span><span class="c1">## Prometheus format.  When using the prometheus input, use the same value in</span>
+<span class="w">  </span><span class="c1">## both plugins to ensure metrics are round-tripped without modification.</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1">##   example: metric_version = 1;</span>
+<span class="w">  </span><span class="c1">##            metric_version = 2; recommended version</span>
+<span class="w">  </span><span class="c1"># metric_version = 1</span>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1">#                            INPUT PLUGINS                                    #</span>
+<span class="c1">###############################################################################</span>
+
+<span class="c1"># # Intel PowerStat plugin enables monitoring of platform metrics (power, TDP) and Core metrics like temperature, power and utilization.</span>
+<span class="o">[[</span>inputs.intel_powerstat<span class="o">]]</span>
+<span class="w">  </span><span class="c1">## All global metrics are always collected by Intel PowerStat plugin.</span>
+<span class="w">  </span><span class="c1">## User can choose which per-CPU metrics are monitored by the plugin in cpu_metrics array.</span>
+<span class="w">  </span><span class="c1">## Empty array means no per-CPU specific metrics will be collected by the plugin - in this case only platform level</span>
+<span class="w">  </span><span class="c1">## telemetry will be exposed by Intel PowerStat plugin.</span>
+<span class="w">  </span><span class="c1">#the package_metrics setting:</span>
+<span class="w">  </span><span class="nv">package_metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;current_power_consumption&quot;</span>,<span class="w"> </span><span class="s2">&quot;current_dram_power_consumption&quot;</span>,<span class="w"> </span><span class="s2">&quot;thermal_design_power&quot;</span>,<span class="w"> </span><span class="s2">&quot;max_turbo_frequency&quot;</span>,<span class="w"> </span><span class="s2">&quot;uncore_frequency&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_base_frequency&quot;</span><span class="o">]</span>
+<span class="w">  </span><span class="c1">## Supported options:</span>
+<span class="w">  </span><span class="c1">## &quot;cpu_frequency&quot;, &quot;cpu_busy_frequency&quot;, &quot;cpu_temperature&quot;, &quot;cpu_c1_state_residency&quot;, &quot;cpu_c6_state_residency&quot;, &quot;cpu_busy_cycles&quot;</span>
+<span class="w">  </span><span class="nv">cpu_metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;cpu_frequency&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_busy_frequency&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_temperature&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_c1_state_residency&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_c6_state_residency&quot;</span>,<span class="w"> </span><span class="s2">&quot;cpu_busy_cycles&quot;</span><span class="o">]</span>
+
+<span class="c1"># Intel Performance Monitoring Unit plugin exposes Intel PMU metrics available through Linux Perf subsystem</span>
+<span class="c1"># This plugin ONLY supports Linux on amd64</span>
+<span class="o">[[</span>inputs.intel_pmu<span class="o">]]</span>
+<span class="w">  </span><span class="c1">## List of filesystem locations of JSON files that contain PMU event definitions.</span>
+<span class="w">  </span><span class="nv">event_definitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;/root/.cache/pmu-events/GenuineIntel-6-55-7-core.json&quot;</span>,<span class="w"> </span><span class="s2">&quot;/root/.cache/pmu-events/GenuineIntel-6-55-7-uncore.json&quot;</span><span class="o">]</span>
+
+<span class="w">  </span><span class="c1">## List of core events measurement entities. There can be more than one core_events sections.</span>
+<span class="w">  </span><span class="o">[[</span>inputs.intel_pmu.core_events<span class="o">]]</span>
+<span class="w">    </span><span class="c1">## List of events to be counted. Event names shall match names from event_definitions files.</span>
+<span class="w">    </span><span class="c1">## Single entry can contain name of the event (case insensitive) augmented with config options and perf modifiers.</span>
+<span class="w">    </span><span class="c1">## If absent, all core events from provided event_definitions are counted skipping unresolvable ones.</span>
+<span class="w">    </span><span class="nv">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;INST_RETIRED.ANY&quot;</span>,<span class="w"> </span><span class="s2">&quot;CPU_CLK_UNHALTED.THREAD_ANY:config1=0x4043200000000k&quot;</span><span class="o">]</span>
+
+<span class="w">    </span><span class="c1">## Limits the counting of events to core numbers specified.</span>
+<span class="w">    </span><span class="c1">## If absent, events are counted on all cores.</span>
+<span class="w">    </span><span class="c1">## Single &quot;0&quot;, multiple &quot;0,1,2&quot; and range &quot;0-2&quot; notation is supported for each array element.</span>
+<span class="w">    </span><span class="c1">##   example: cores = [&quot;0,2&quot;, &quot;4&quot;, &quot;12-16&quot;]</span>
+<span class="w">    </span><span class="nv">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;0&quot;</span><span class="o">]</span>
+
+<span class="w">    </span><span class="c1">## Indicator that plugin shall attempt to run core_events.events as a single perf group.</span>
+<span class="w">    </span><span class="c1">## If absent or set to false, each event is counted individually. Defaults to false.</span>
+<span class="w">    </span><span class="c1">## This limits the number of events that can be measured to a maximum of available hardware counters per core.</span>
+<span class="w">    </span><span class="c1">## Could vary depending on type of event, use of fixed counters.</span>
+<span class="w">    </span><span class="c1"># perf_group = false</span>
+
+<span class="w">    </span><span class="c1">## Optionally set a custom tag value that will be added to every measurement within this events group.</span>
+<span class="w">    </span><span class="c1">## Can be applied to any group of events, unrelated to perf_group setting.</span>
+<span class="w">    </span><span class="c1"># events_tag = &quot;&quot;</span>
+
+<span class="w">  </span><span class="c1">## List of uncore event measurement entities. There can be more than one uncore_events sections.</span>
+<span class="w">  </span><span class="o">[[</span>inputs.intel_pmu.uncore_events<span class="o">]]</span>
+<span class="w">    </span><span class="c1">## List of events to be counted. Event names shall match names from event_definitions files.</span>
+<span class="w">    </span><span class="c1">## Single entry can contain name of the event (case insensitive) augmented with config options and perf modifiers.</span>
+<span class="w">    </span><span class="c1">## If absent, all uncore events from provided event_definitions are counted skipping unresolvable ones.</span>
+<span class="w">    </span><span class="nv">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;UNC_CHA_CLOCKTICKS&quot;</span>,<span class="w"> </span><span class="s2">&quot;UNC_CHA_TOR_OCCUPANCY.IA_MISS&quot;</span><span class="o">]</span>
+
+<span class="w">    </span><span class="c1">## Limits the counting of events to specified sockets.</span>
+<span class="w">    </span><span class="c1">## If absent, events are counted on all sockets.</span>
+<span class="w">    </span><span class="c1">## Single &quot;0&quot;, multiple &quot;0,1&quot; and range &quot;0-1&quot; notation is supported for each array element.</span>
+<span class="w">    </span><span class="c1">##   example: sockets = [&quot;0-2&quot;]</span>
+<span class="w">    </span><span class="nv">sockets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;0&quot;</span><span class="o">]</span>
+
+<span class="w">    </span><span class="c1">## Indicator that plugin shall provide an aggregated value for multiple units of same type distributed in an uncore.</span>
+<span class="w">    </span><span class="c1">## If absent or set to false, events for each unit are exposed as separate metric. Defaults to false.</span>
+<span class="w">    </span><span class="c1"># aggregate_uncore_units = false</span>
+
+<span class="w">    </span><span class="c1">## Optionally set a custom tag value that will be added to every measurement within this events group.</span>
+<span class="w">    </span><span class="c1"># events_tag = &quot;&quot;</span>
+<span class="c1"># Read metrics from the bare metal servers via IPMI</span>
+<span class="o">[[</span>inputs.ipmi_sensor<span class="o">]]</span>
+<span class="w">  </span><span class="c1">## optionally specify the path to the ipmitool executable</span>
+<span class="w">  </span><span class="c1"># path = &quot;/usr/bin/ipmitool&quot;</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1">## Setting &#39;use_sudo&#39; to true will make use of sudo to run ipmitool.</span>
+<span class="w">  </span><span class="c1">## Sudo must be configured to allow the telegraf user to run ipmitool</span>
+<span class="w">  </span><span class="c1">## without a password.</span>
+<span class="w">  </span><span class="nv">use_sudo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1">## optionally force session privilege level. Can be CALLBACK, USER, OPERATOR, ADMINISTRATOR</span>
+<span class="w">  </span><span class="c1"># privilege = &quot;ADMINISTRATOR&quot;</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1">## optionally specify one or more servers via a url matching</span>
+<span class="w">  </span><span class="c1">##  [username[:password]@][protocol[(address)]]</span>
+<span class="w">  </span><span class="c1">##  e.g.</span>
+<span class="w">  </span><span class="c1">##    root:passwd@lan(127.0.0.1)</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1">## if no servers are specified, local machine sensor stats will be queried</span>
+<span class="w">  </span><span class="c1">##</span>
+<span class="w">  </span><span class="c1"># servers = [&quot;USERID:PASSW0RD@lan(192.168.1.1)&quot;]</span>
+
+<span class="w">  </span><span class="c1">## Recommended: use metric &#39;interval&#39; that is a multiple of &#39;timeout&#39; to avoid</span>
+<span class="w">  </span><span class="c1">## gaps or overlap in pulled data</span>
+<span class="w">  </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30s&quot;</span>
+
+<span class="w">  </span><span class="c1">## Timeout for the ipmitool command to complete. Default is 20 seconds.</span>
+<span class="w">  </span><span class="nv">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;20s&quot;</span>
+
+<span class="w">  </span><span class="c1">## Schema Version: (Optional, defaults to version 1)</span>
+<span class="w">  </span><span class="nv">metric_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+
+<span class="w">  </span><span class="c1">## Optionally provide the hex key for the IMPI connection.</span>
+<span class="w">  </span><span class="c1"># hex_key = &quot;&quot;</span>
+
+<span class="w">  </span><span class="c1">## If ipmitool should use a cache</span>
+<span class="w">  </span><span class="c1">## for me ipmitool runs about 2 to 10 times faster with cache enabled on HP G10 servers (when using ubuntu20.04)</span>
+<span class="w">  </span><span class="c1">## the cache file may not work well for you if some sensors come up late</span>
+<span class="w">  </span><span class="c1"># use_cache = false</span>
+
+<span class="w">  </span><span class="c1">## Path to the ipmitools cache file (defaults to OS temp dir)</span>
+<span class="w">  </span><span class="c1">## The provided path must exist and must be writable</span>
+<span class="w">  </span><span class="c1"># cache_path = &quot;&quot;</span>
+</code></pre></div>
+<p>Run Telegraf with the plugins defined in config file:</p>
+<div class="highlight"><pre><span></span><code>root@:~#./telegraf<span class="w"> </span>--config<span class="w"> </span>telegraf.conf
+</code></pre></div>
+<h3 id="download-and-start-the-prometheus-container">Download and start the Prometheus container</h3>
+<p>Prometheus can be installed on a system in various ways. Here it is
+downloaded and installed as a container.</p>
+<p>Create a Prometheus configuration file that is scrapping from both
+Kepler and Telegraf instance:</p>
+<p>Sample Prometheus configuration file is as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># my global config</span>
+<span class="nt">global</span><span class="p">:</span>
+<span class="nt">scrape_interval</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">15s</span><span class="w"> </span><span class="c1"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span>
+<span class="nt">evaluation_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span><span class="w"> </span><span class="c1"># Evaluate rules every 15 seconds. The default is every 1 minute.</span>
+<span class="c1"># scrape_timeout is set to the global default (10s).</span>
+
+<span class="c1"># A scrape configuration containing exactly one endpoint to scrape:</span>
+<span class="c1"># Here it&#39;s Prometheus itself.</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="c1"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;kepler&#39;</span>
+<span class="w">      </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;xx.xx.xx:9102&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;telegraf&#39;</span>
+<span class="w">      </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;xx.xx.xx:9273&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Run the Prometheus container with the created Prometheus configuration file:</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">9090</span>:9090<span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>/prometheus.yaml:/etc/prometheus/prometheus.yml<span class="w"> </span>prom/prometheus
+</code></pre></div>
+<p>On the Prometheus GUI at localhost:9090, it can be confirmed that Prometheus is scrapping from Kepler and Telegraf.</p>
+<p><img alt="Kepler-Telegraf-Prometheus" src="../../fig/Kepler-Telegraf-Prometheus.png" /></p>
+<h3 id="download-and-start-the-grafana-container">Download and start the Grafana container</h3>
+<p>Like, Prometheus, Grafana can be installed on the system in various
+ways. Here, we are installing Grafana's container image.</p>
+<div class="highlight"><pre><span></span><code>root@:~#<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--name<span class="w"> </span>grafana<span class="w"> </span>grafana/grafana
+</code></pre></div>
+<p>Once Grafana container is running access the Grafana GUI at localhost:3000. Login with default credentials.
+After login, The Prometheus database needs to be added as a data source into Grafana GUI. Click on
+<code>DATA SOURCES</code> -&gt; <code>Add your first data source</code> and select Prometheus - &gt; Click <code>Save and Test</code></p>
+<h4 id="dashboard">Dashboard</h4>
+<p>Once Prometheus has been added as a data source, create a dashboard by
+exporting
+<a href="https://github.com/sustainable-computing-io/kepler/blob/main/grafana-dashboards/Kepler-Exporter.json">Kepler-Exporter.json</a>,
+a default Grafana dashboard for Kepler.</p>
+<p>This default Kepler dashboard can be edited in order to display Telegraf
+metric along with Kepler metrics.</p>
+<p>For example in below shown example, right hand shows Power related
+metrics collected by Telegraf whereas left hand shows Power related
+metrics by Kepler per namespace:</p>
+<p><img alt="Kepler-Telegraf-dashboard" src="../../fig/Kepler-Telegraf-dashboard.png" /></p>
+<p><strong>On Kepler side:</strong></p>
+<p><strong>PKG-&gt;</strong> Represents <code>kepler_container_package_joules_total</code> metrics
+which measures the cumulative energy consumed by the CPU socket,
+including all cores and uncore components (e.g. last-level cache,
+integrated GPU and memory controller).</p>
+<p><strong>DRAM-&gt;</strong> Represents <code>kepler_container_dram_joules_total</code> metric which
+describes the total energy spent in DRAM by a container.</p>
+<p><strong>Other-&gt;</strong> Represents <code>kepler_container_other_joules_total</code> metric
+measures the cumulative energy consumption on other host components
+besides the CPU and DRAM. Generally, this metric is the host energy
+consumption (from acpi) less the RAPL Package and DRAM.</p>
+<p><strong>On Telegraf side:</strong></p>
+<p><strong>Total PKG current Power-&gt;</strong> Represents
+powerstat_package_current_power_consumptions metrics which showcase
+Current power consumption of processor package. On Grafana it is the sum
+of the metrics on both the sockets i.e.
+powerstat_package_current_power_consumptions of socket 0 +
+powerstat_package_current_power_consumptions of socket 1.</p>
+<p><strong>Total DRAM power -&gt;</strong> Represents
+powerstat_package_current_dram_power_consumptions metrics which
+describes the total energy spent in DRAM of both the sockets.</p>
+<p><strong>Total Thermal design Power -&gt;</strong> Represents
+powerstat_package_current_thermal_power_consumptions metrics which
+describes maximum Thermal Design Power (TDP) available for processor
+package. On Grafana it is the sum of the metrics on both the sockets
+i.e. powerstat_package_current_thermal\
+_power_consumptions of socket 0 +
+powerstat_package_current_thermal_power_consumptions of socket 1.</p>
+<p><strong>Total DRAM Power metrics number on Kepler side and Telegraf side
+aligns with each other(approximately).</strong></p>
+<h4 id="telegraf-ipmi-metric">Telegraf- IPMI metric</h4>
+<p>On Kepler dashboard, we are also pulling IPMI metrics which show Power
+Supply Current out %.</p>
+<p><img alt="Kepler-Telegraf-IPMI" src="../../fig/Kepler-Telegraf-IPMI.png" /></p>
+<h2 id="references">References</h2>
+<p>[1] <a href="https://sustainable-computing.io/">https://sustainable-computing.io/</a></p>
+<p>[2] <a href="https://github.com/influxdata/telegraf">https://github.com/influxdata/telegraf</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <html>
+    <body>
+        <p style="text-align:center;font-size:15px;">
+            Copyright Contributors to the Kepler's project.
+        </p>
+        <p style="text-align:center;font-size:20px;color:#4169E1;">
+        The Linux Foundation® (TLF) has registered trademarks and uses trademarks. For a list of TLF trademarks, see <a href="https://www.linuxfoundation.org/trademark-usage/" target="_blank"> Trademark Usage.</a>
+        </p>
+    </body>
+
+</html>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.4"}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

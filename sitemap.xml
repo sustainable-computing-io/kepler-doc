@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>None./</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="None"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
+    </url>
+    <url>
+        <loc>Nonemodel-server-compatibility/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonemodel-server-compatibility/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/model-server-compatibility/"/>
+    </url>
+    <url>
+        <loc>Nonemodel-server-compatibility.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonemodel-server-compatibility.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/model-server-compatibility.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/README.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/README.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/README.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/architecture/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/architecture/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/architecture.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/architecture.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/architecture.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/ebpf_in_kepler/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/ebpf_in_kepler/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/ebpf_in_kepler/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/ebpf_in_kepler.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/ebpf_in_kepler.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/ebpf_in_kepler.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/kepler-energy-sources/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/kepler-energy-sources/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/kepler-energy-sources/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/kepler-energy-sources.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/kepler-energy-sources.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/kepler-energy-sources.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/metrics/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/metrics/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/metrics.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/metrics.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/metrics.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/power_model/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/power_model/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/power_model/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/design/power_model.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/power_model.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/power_model.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/hardwareengagement/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/hardwareengagement/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/hardwareengagement/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/Kepler-Telegraf-integration-steps/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/Kepler-Telegraf-integration-steps/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/Kepler-Telegraf-integration-steps/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/community-operator/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/community-operator/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/community-operator/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/kepler-helm/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-helm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-helm/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/kepler-operator/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-operator/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-operator/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/kepler-rpm/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-rpm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-rpm/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/kepler/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/kepler.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/local-cluster/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/local-cluster/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/local-cluster/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/strategy/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/strategy/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/strategy/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/installation/strategy.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/strategy.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/strategy.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/api/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/api/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/api/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/architecture/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/architecture/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/get_started/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/get_started/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/get_started/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/node_profile/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/node_profile/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/node_profile/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/pipeline/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/pipeline/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/pipeline/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/kepler_model_server/power_estimation/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/power_estimation/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/power_estimation/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/usage/deep_dive/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/deep_dive/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/deep_dive/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/usage/general_config/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/general_config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/general_config/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/usage/general_config.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/general_config.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/general_config.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/usage/kepler_daemon/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/kepler_daemon/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/kepler_daemon/"/>
+    </url>
+    <url>
+        <loc>Nonearchive/usage/trouble_shooting/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/trouble_shooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/trouble_shooting/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/design/metrics/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/design/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/design/metrics/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/design/metrics.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/design/metrics.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/design/metrics.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/developer/dev-docs/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/developer/dev-docs/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/developer/dev-docs/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/developer/dev-docs.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/developer/dev-docs.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/developer/dev-docs.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/installation/guide/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/installation/guide/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/installation/guide/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/installation/guide.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/installation/guide.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/installation/guide.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/usage/configuration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/configuration/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/usage/configuration.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/configuration.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/configuration.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/usage/power-attribution/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/power-attribution/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/power-attribution/"/>
+    </url>
+    <url>
+        <loc>Nonekepler/usage/power-attribution.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/power-attribution.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/power-attribution.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/configuration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/configuration/index.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/index.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/index.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/configuration/monitoring-troubleshooting/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/monitoring-troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/monitoring-troubleshooting/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/migration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/migration/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/migration/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/openshift/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/openshift/cli-installation/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/cli-installation/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/cli-installation/"/>
+    </url>
+    <url>
+        <loc>Nonekepler-operator/openshift/quickstart/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/quickstart/"/>
+    </url>
+    <url>
+        <loc>Noneproject/adopters/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/adopters/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/adopters/"/>
+    </url>
+    <url>
+        <loc>Noneproject/contributing/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/contributing/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/contributing/"/>
+    </url>
+    <url>
+        <loc>Noneproject/contributing.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/contributing.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/contributing.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Noneproject/resources/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/resources/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/resources/"/>
+    </url>
+    <url>
+        <loc>Noneproject/support/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/support/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/support/"/>
+    </url>
+    <url>
+        <loc>Nonezh/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="None"/>
+    </url>
+    <url>
+        <loc>Nonezh/model-server-compatibility/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/model-server-compatibility/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonemodel-server-compatibility/"/>
+    </url>
+    <url>
+        <loc>Nonezh/model-server-compatibility.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/model-server-compatibility.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonemodel-server-compatibility.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/README.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/README.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/README.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/architecture/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/architecture/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/architecture.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/architecture.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/architecture.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/ebpf_in_kepler/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/ebpf_in_kepler/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/ebpf_in_kepler/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/ebpf_in_kepler.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/ebpf_in_kepler.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/ebpf_in_kepler.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/kepler-energy-sources/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/kepler-energy-sources/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/kepler-energy-sources/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/kepler-energy-sources.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/kepler-energy-sources.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/kepler-energy-sources.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/metrics/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/metrics/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/metrics.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/metrics.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/metrics.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/power_model/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/power_model/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/power_model/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/design/power_model.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/design/power_model.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/design/power_model.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/hardwareengagement/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/hardwareengagement/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/hardwareengagement/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/Kepler-Telegraf-integration-steps/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/Kepler-Telegraf-integration-steps/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/Kepler-Telegraf-integration-steps/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/community-operator/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/community-operator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/community-operator/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/kepler-helm/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-helm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-helm/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/kepler-operator/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-operator/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-operator/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/kepler-rpm/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler-rpm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler-rpm/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/kepler/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/kepler.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/kepler.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/kepler.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/local-cluster/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/local-cluster/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/local-cluster/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/strategy/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/strategy/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/strategy/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/installation/strategy.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/installation/strategy.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/installation/strategy.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/api/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/api/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/api/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/architecture/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/architecture/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/get_started/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/get_started/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/get_started/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/node_profile/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/node_profile/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/node_profile/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/pipeline/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/pipeline/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/pipeline/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/kepler_model_server/power_estimation/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/kepler_model_server/power_estimation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/kepler_model_server/power_estimation/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/usage/deep_dive/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/deep_dive/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/deep_dive/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/usage/general_config/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/general_config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/general_config/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/usage/general_config.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/general_config.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/general_config.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/usage/kepler_daemon/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/kepler_daemon/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/kepler_daemon/"/>
+    </url>
+    <url>
+        <loc>Nonezh/archive/usage/trouble_shooting/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/archive/usage/trouble_shooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonearchive/usage/trouble_shooting/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/design/metrics/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/design/metrics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/design/metrics/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/design/metrics.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/design/metrics.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/design/metrics.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/developer/dev-docs/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/developer/dev-docs/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/developer/dev-docs/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/developer/dev-docs.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/developer/dev-docs.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/developer/dev-docs.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/installation/guide/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/installation/guide/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/installation/guide/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/installation/guide.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/installation/guide.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/installation/guide.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/usage/configuration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/configuration/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/usage/configuration.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/configuration.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/configuration.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/usage/power-attribution/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/power-attribution/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/power-attribution/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler/usage/power-attribution.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler/usage/power-attribution.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler/usage/power-attribution.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/configuration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/configuration/index.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/index.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/index.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/configuration/monitoring-troubleshooting/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/configuration/monitoring-troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/configuration/monitoring-troubleshooting/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/migration/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/migration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/migration/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/openshift/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/openshift/cli-installation/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/cli-installation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/cli-installation/"/>
+    </url>
+    <url>
+        <loc>Nonezh/kepler-operator/openshift/quickstart/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/kepler-operator/openshift/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonekepler-operator/openshift/quickstart/"/>
+    </url>
+    <url>
+        <loc>Nonezh/project/adopters/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/adopters/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/adopters/"/>
+    </url>
+    <url>
+        <loc>Nonezh/project/contributing/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/contributing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/contributing/"/>
+    </url>
+    <url>
+        <loc>Nonezh/project/contributing.zh-qc/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/contributing.zh-qc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/contributing.zh-qc/"/>
+    </url>
+    <url>
+        <loc>Nonezh/project/resources/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/resources/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/resources/"/>
+    </url>
+    <url>
+        <loc>Nonezh/project/support/</loc>
+        <lastmod>2025-08-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project/support/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneproject/support/"/>
+    </url>
+</urlset>
