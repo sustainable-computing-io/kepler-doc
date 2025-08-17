@@ -120,7 +120,7 @@ cd kepler
 make build
 
 # 运行 Kepler（需要 sudo 权限访问硬件）
-sudo ./bin/kepler --config hack/config.yaml
+sudo ./bin/kepler --config.file hack/config.yaml
 ```
 
 #### 配置
@@ -129,7 +129,7 @@ Kepler 可以使用 YAML 文件或 CLI 标志进行配置。默认配置在 `hac
 
 ```bash
 # 使用自定义配置运行
-sudo ./bin/kepler --config /path/to/your/config.yaml
+sudo ./bin/kepler --config.file /path/to/your/config.yaml
 
 # 使用 CLI 标志运行
 sudo ./bin/kepler --log.level=debug --exporter.stdout
