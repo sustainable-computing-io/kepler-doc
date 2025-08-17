@@ -41,7 +41,7 @@ docker compose up -d
 make test
 
 # Local development
-sudo ./bin/kepler --config hack/config.yaml
+sudo ./bin/kepler --config.file hack/config.yaml
 ```
 
 ## 📚 Related Project Documentation
