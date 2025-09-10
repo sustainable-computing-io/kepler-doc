@@ -15,7 +15,7 @@
 		"PATH": "${containerEnv:PATH}:/home/vscode/.local/bin",
 		"PODMAN_USERNS": "keep-id"
 	},
-	"postCreateCommand": "pip install -q -e . && pip install -q pre-commit && pre-commit install && gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md && echo && echo '✅ Dev environment ready' && echo \"   Python:   $(python --version 2>&1 | cut -d' ' -f2)\" && echo \"   gomplate: $(gomplate --version 2>&1 | cut -d' ' -f3)\" && echo \"   mkdocs:   $(mkdocs --version 2>&1 | cut -d' ' -f3)\" && echo",
+	"postCreateCommand": "git submodule update --init && pip install -q -e . && pip install -q pre-commit && pre-commit install && gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md && echo && echo '✅ Dev environment ready' && echo \"   Python:   $(python --version 2>&1 | cut -d' ' -f2)\" && echo \"   gomplate: $(gomplate --version 2>&1 | cut -d' ' -f3)\" && echo \"   mkdocs:   $(mkdocs --version 2>&1 | cut -d' ' -f3)\" && echo",
 	"portsAttributes": {
 		"8000": {
 			"label": "MkDocs Preview",

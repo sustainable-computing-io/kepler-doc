@@ -72,6 +72,19 @@ needed on Podman or Docker Desktop with Apple Silicon.
 
 ## Running Locally
 
+Initialize the Kepler submodule before building or serving the site:
+
+```bash
+git submodule update --init
+```
+
+The submodule is pinned to Kepler `v0.12.0`. Run the same command after pulling
+changes to check out the recorded release. The installation, Helm updates,
+configuration, and metrics pages are symlinked from `kepler/docs/user/` so their
+source stays in Kepler while existing site URLs are preserved.
+Edit these pages in the Kepler repository. Updates here advance the submodule
+to a release containing those changes.
+
 ### Install MkDocs
 
 Make sure `Python 3.11` or greater is installed, as the CI uses it, then run:
@@ -128,6 +141,7 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
 1. Switch across to the Codespaces tab
 1. Click "Create codespace on main"
 1. A new tab will open and your environment will be built
+1. Initialize the Kepler submodule with `git submodule update --init`
 1. Create `virtualenv` to install `mkdocs`
 
     ```bash
