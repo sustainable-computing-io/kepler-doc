@@ -16,19 +16,45 @@ theme:
     - rust
 
 docs_dir: ./docs
+
+# Exclude files that contain links to non-documentation files
+exclude_docs: |
+  submodules/*/CONTRIBUTING.md
+  submodules/*/GOVERNANCE.md
+  submodules/*/README.md
+  submodules/*/code-of-conduct.md
+  submodules/*/MAINTAINERS.md
+  submodules/*/SECURITY.md
+  submodules/*/Contributors.md
+  submodules/*/Operator-SDK.md
+
 nav:
   - Home: index.md
   - Kepler:
       - Getting Started:
-          - Installation Guide: kepler/installation/guide.md
+          - Installation Guide: submodules/kepler/docs/user/installation.md
       - Concepts/Guides:
-          - Power Attribution: kepler/usage/power-attribution.md
+          - Power Attribution: submodules/kepler/docs/developer/power-attribution-guide.md
       - Reference:
-          - Configuration: kepler/usage/configuration.md
-          - Metrics: kepler/design/metrics.md
+          - Configuration: submodules/kepler/docs/user/configuration.md
+          - Metrics: submodules/kepler/docs/user/metrics.md
       - Developer:
-          - Guides: kepler/developer/dev-docs.md
+          - Overview: submodules/kepler/docs/developer/index.md
+          - Architecture: submodules/kepler/docs/developer/design/architecture/index.md
+          - Pre-commit Setup: submodules/kepler/docs/developer/pre-commit.md
+          - Release Process: submodules/kepler/docs/developer/release.md
+          - Profiling: submodules/kepler/docs/developer/profiling.md
   - Kepler Operator:
+      - User Guides:
+          - Grafana Deployment: submodules/kepler-operator/docs/user-guides/grafana-deployment.md
+      - Developer:
+          - Overview: submodules/kepler-operator/docs/developer/README.md
+          - Architecture: submodules/kepler-operator/docs/developer/architecture.md
+          - Grafana Deployment Overview: submodules/kepler-operator/docs/developer/grafana-deployment-overview.md
+          - Pre-commit Hooks: submodules/kepler-operator/docs/developer/pre-commit-hooks.md
+      - Reference:
+          - API Documentation: submodules/kepler-operator/docs/api.md
+          - Release Design: submodules/kepler-operator/docs/design/release.md
       - OpenShift:
           - Overview: kepler-operator/openshift/index.md
           - Quick Start: kepler-operator/openshift/quickstart.md
