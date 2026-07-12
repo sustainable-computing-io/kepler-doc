@@ -33,6 +33,15 @@ You can configure Kepler by passing flags when starting the service. The followi
 | `--kube.enable` | Monitor kubernetes | `false` | `true`, `false` |
 | `--kube.config` | Path to a kubeconfig file | `""` | Any valid file path |
 | `--kube.node-name` | Name of kubernetes node on which kepler is running | `""` | Any valid node name |
+| `--experimental.platform.redfish.enabled` | Enable experimental Redfish BMC power monitoring | `false` | `true`, `false` |
+| `--experimental.platform.redfish.node-name` | Node name for experimental Redfish platform power monitoring | `""` | Any valid node name |
+| `--experimental.platform.redfish.config-file` | Path to experimental Redfish BMC configuration file | `""` | Any valid file path |
+| `--experimental.hwmon.force-enabled` | Force hwmon as the power meter, skipping RAPL auto-detection | `false` | `true`, `false` |
+| `--experimental.hwmon.zones` | Hwmon zone filter (power labels to monitor) (can be specified multiple times) | | Any valid hwmon zone list |
+| `--experimental.gpu.enabled` | Enable experimental GPU power monitoring | `false` | `true`, `false` |
+| `--experimental.gpu.idle-power` | GPU idle power in Watts | `0` | Any positive number |
+| `--experimental.gpu.dcgm-endpoint` | dcgm-exporter metrics endpoint URL for MIG power attribution | `""` | Any valid URL |
+
 
 ### 💡 Examples
 
@@ -84,13 +93,19 @@ log:
 
 monitor:
   interval: 5s        # Monitor refresh interval (default: 5s)
-  staleness: 1000ms   # Duration after which data is considered stale (default: 1000ms)
+  staleness: 500ms    # Duration after which data is considered stale (default: 500ms)
   maxTerminated: 500  # Maximum number of terminated workloads to keep in memory (default: 500)
   minTerminatedEnergyThreshold: 10  # Minimum energy threshold for terminated workloads (default: 10)
 
 host:
   sysfs: /sys   # Path to sysfs filesystem (default: /sys)
   procfs: /proc # Path to procfs filesystem (default: /proc)
+
+cpu:
+  # Ordered preference list of CPU power-meter backends. The first backend
+  # that initializes successfully and reports zones is used.
+  # Built-in backends: rapl, hwmon, fake
+  preferredMeters: [rapl, hwmon]
 
 rapl:
   zones: []     # RAPL zones to be enabled, empty enables all default zones
@@ -101,8 +116,7 @@ exporter:
   prometheus:   # prometheus exporter related config
     enabled: true
     debugCollectors:
-      - go
-      - process
+      - go      # default is only ["go"]
     metricsLevel:
       - node
       - process
@@ -112,7 +126,7 @@ exporter:
 
 debug:          # debug related config
   pprof:        # pprof related config
-    enabled: true
+    enabled: false # disabled by default
 
 web:
   configFile: "" # Path to TLS server config file
@@ -123,12 +137,33 @@ kube:           # kubernetes related config
   enabled: false    # Enable kubernetes monitoring (default: false)
   config: ""        # Path to kubeconfig file (optional if running in-cluster)
   nodeName: ""      # Name of the kubernetes node (required when enabled)
+  podInformer:
+    mode: kubelet   # "kubelet" (default) or "apiserver"
+    pollInterval: 15s # Poll interval for kubelet mode
 
 # WARN: DO NOT ENABLE THIS IN PRODUCTION - for development/testing only
 dev:
   fake-cpu-meter:
-    enabled: false
-    zones: []  # Zones to be enabled, empty enables all default zones
+    enabled: false # DEPRECATED: set cpu.preferredMeters: ["fake"] instead
+    zones: []      # Zones to be enabled, empty enables all default zones
+
+# EXPERIMENTAL FEATURES - These features are experimental and may be unstable
+# and are disabled by default
+experimental:
+  platform:
+    redfish:
+      enabled: false  # Enable experimental Redfish BMC power monitoring
+      configFile: hack/redfish.yaml # Path to Redfish BMC configuration file
+      nodeName: ""    # Node name to use (overrides Kubernetes node name and hostname fallback)
+      httpTimeout: 5s # HTTP client timeout for BMC requests
+  hwmon:
+    forceEnabled: false # DEPRECATED: set cpu.preferredMeters: ["hwmon"] instead
+    zones: []           # List of zones to enable (default enable all)
+    chipRules: []       # User-defined chip pairing rules
+  gpu:
+    enabled: false      # Enable experimental GPU power monitoring
+    idlePower: 0        # GPU idle power in Watts (0 = auto-detect)
+    dcgmEndpoint: ""    # dcgm-exporter metrics URL for MIG (auto-discovered if empty)
 ```
 
 ## 🧩 Configuration Options in Detail
@@ -163,7 +198,7 @@ monitor:
 
 - **interval**: The monitor's refresh interval. All processes with a lifetime less than this interval will be ignored. Setting to 0s disables monitor refreshes.
 
-- **staleness**: Duration after which data computed by the monitor is considered stale and recomputed when requested again. Especially useful when multiple Prometheus instances are scraping Kepler, ensuring they receive the same data within the staleness window. Should be shorter than the monitor interval.
+- **staleness**: Duration after which data computed by the monitor is considered stale and recomputed when requested again. Especially useful when multiple Prometheus instances are scraping Kepler, ensuring they receive the same data within the staleness window. Should be shorter than the monitor interval. Default is `500ms`.
 
 - **maxTerminated**: Maximum number of terminated workloads (processes, containers, VMs, pods) to keep in memory until the data is exported. This prevents unbounded memory growth in high-churn environments. Set 0 to disable. When the limit is reached, the least power consuming terminated workloads are removed first.
 
@@ -178,6 +213,18 @@ host:
 ```
 
 These settings specify where Kepler should look for system information. In containerized environments, you might need to adjust these paths.
+
+### 💻 CPU Configuration
+
+```yaml
+cpu:
+  preferredMeters: [rapl, hwmon]
+```
+
+- **preferredMeters**: An ordered list of backends to probe for monitoring CPU power. Kepler will use the first backend in this list that initializes successfully. Supported backends include:
+  - `rapl`: Running Average Power Limiting (default for Intel/AMD CPUs)
+  - `hwmon`: Hardware monitoring drivers (typically for server board sensors)
+  - `fake`: A fake CPU meter (useful for development/testing when hardware sensors are unavailable)
 
 ### 🔋 RAPL Zones Configuration
 
@@ -269,6 +316,9 @@ kube:
   enabled: false    # Enable kubernetes monitoring
   config: ""        # Path to kubeconfig file
   nodeName: ""      # Name of the kubernetes node
+  podInformer:
+    mode: kubelet   # "kubelet" (default) or "apiserver"
+    pollInterval: 15s # Poll interval for kubelet mode
 ```
 
 - **enabled**: Enable or disable Kubernetes monitoring (default: false)
@@ -284,20 +334,67 @@ kube:
   - Must match the actual node name in the Kubernetes cluster
   - Required when `enabled` is set to `true`
 
+- **podInformer**: Configuration for pod discovery mechanism:
+  - `mode`: The pod informer mode.
+    - `kubelet` (default): Queries local Kubelet endpoints. More lightweight and scale-friendly.
+    - `apiserver`: Queries the Kubernetes API Server directly.
+  - `pollInterval`: Poll interval when using Kubelet mode (default: `15s`).
+
 ### 🧑‍🔬 Development Configuration
 
 ```yaml
 dev:
   fake-cpu-meter:
-    enabled: false
+    enabled: false # DEPRECATED
     zones: []
 ```
 
 ⚠️ **WARNING**: This section is for development and testing only. Do not enable in production.
 
+> [!WARNING]
+> `dev.fake-cpu-meter.enabled` is deprecated. Use `cpu.preferredMeters: ["fake"]` instead.
+
 - **fake-cpu-meter**: When enabled, uses a fake CPU meter instead of real hardware metrics
-  - `enabled`: Set to `true` to enable fake CPU meter
+  - `enabled`: Set to `true` to enable fake CPU meter (deprecated)
   - `zones`: Specific zones to enable, empty enables all
+
+### 🧪 Experimental Configuration
+
+```yaml
+experimental:
+  platform:
+    redfish:
+      enabled: false
+      configFile: hack/redfish.yaml
+      nodeName: ""
+      httpTimeout: 5s
+  hwmon:
+    forceEnabled: false # DEPRECATED
+    zones: []
+    chipRules: []
+  gpu:
+    enabled: false
+    idlePower: 0
+    dcgmEndpoint: ""
+```
+
+⚠️ **WARNING**: Experimental features are subject to change and should not be used in stable production deployments.
+
+- **platform.redfish**: Configuration for Redfish BMC platform power metrics
+  - `enabled`: Enable platform power monitoring via Redfish BMC (default: `false`)
+  - `configFile`: Path to a Redfish configuration file containing BMC credentials
+  - `nodeName`: Node name override for mapping BMC readings to a specific node
+  - `httpTimeout`: HTTP request timeout for BMC queries (default: `5s`)
+
+- **hwmon**: Configuration for hardware monitor (hwmon) sensor reading
+  - `forceEnabled`: Force `hwmon` as the active CPU power meter (deprecated, set `cpu.preferredMeters: ["hwmon"]` instead)
+  - `zones`: Filter specific hwmon zones/power labels to monitor
+  - `chipRules`: Custom rules defining sensor index pairings for voltage/current chips (e.g. mapping `in{N}` to `curr{N}`)
+
+- **gpu**: Configuration for GPU energy monitoring
+  - `enabled`: Enable experimental GPU power exporter (default: `false`)
+  - `idlePower`: Manual GPU idle power setting in Watts (set positive value if auto-detect fails)
+  - `dcgmEndpoint`: Optional endpoint of a running `dcgm-exporter` to attribute MIG power
 
 ## 📖 Further Reading
 
