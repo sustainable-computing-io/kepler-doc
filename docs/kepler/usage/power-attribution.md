@@ -59,13 +59,56 @@ proportionally based on workload CPU time deltas.*
 
 ## Energy Zones
 
-Hardware energy is read from different zones:
+Kepler reads CPU energy from Intel RAPL via the sysfs powercap interface
+(`/sys/class/powercap/intel-rapl:*`). Zones are **discovered dynamically at
+runtime** rather than assumed from a hardcoded list, so Kepler adapts to the
+zones each host actually exposes. Commonly available zones include:
 
 - **Package**: CPU package-level energy consumption
 - **Core**: Individual CPU core energy
 - **DRAM**: Memory subsystem energy
 - **Uncore**: Integrated graphics and other uncore components
 - **PSys**: Platform-level energy (most comprehensive when available)
+
+When multiple zones are present, Kepler selects a primary zone by coverage
+priority (for example, PSys or Package) as the basis for node power, and can
+filter zones by name via configuration.
+
+## Platform Power Sources
+
+Beyond Intel RAPL, Kepler can read node/platform power from additional
+hardware interfaces when available:
+
+- **RAPL (sysfs powercap)**: default CPU package/DRAM energy source on Intel
+  and compatible platforms.
+- **HWMon (sysfs)**: reads power/energy sensors exposed under the Linux hwmon
+  subsystem, useful where RAPL is unavailable or incomplete.
+- **Redfish BMC**: queries the platform's Baseboard Management Controller over
+  Redfish for chassis-level power, using the `PowerSubsystem` API with a
+  fallback to the deprecated `Power` API on older BMCs. This provides
+  whole-node power independent of the CPU energy counters.
+
+## GPU Power Attribution
+
+On NVIDIA GPUs, Kepler attributes GPU power to workloads using NVML rather than
+RAPL:
+
+1. **Device power** is read directly from NVML
+   (`nvmlDeviceGetPowerUsage`, instantaneous watts — no delta calculation is
+   needed, unlike RAPL energy counters).
+2. **Idle vs active split**: Kepler tracks a per-device idle baseline (the
+   minimum power observed while no compute processes are running) and treats
+   power above that baseline as active power.
+3. **Per-process attribution**: active power is distributed across processes in
+   proportion to their SM (streaming multiprocessor) utilization, obtained via
+   `nvmlDeviceGetProcessUtilization`.
+4. **MIG (Multi-Instance GPU)**: for partitioned GPUs, per-instance activity is
+   obtained from DCGM (NVML reports N/A for MIG power) and used to split power
+   across instances; when DCGM is unavailable, power is distributed equally
+   among the running processes as a fallback.
+
+GPU power is exported through dedicated metrics such as `kepler_node_gpu_watts`
+and `kepler_process_gpu_watts`.
 
 ## Attribution Examples
 
@@ -193,7 +236,9 @@ accuracy:
 - **DRAM Power**: Memory-intensive workloads consume more DRAM power
 - **Storage I/O**: Triggers storage controller and device power
 - **Network I/O**: Consumes network interface and PCIe power
-- **GPU Workloads**: Integrated graphics power not captured by CPU metrics
+- **GPU Workloads**: integrated-graphics power is not captured by CPU metrics.
+  Discrete NVIDIA GPU power is captured separately via NVML (see
+  [GPU Power Attribution](#gpu-power-attribution)).
 
 ## Key Metrics
 
@@ -202,6 +247,16 @@ accuracy:
 - `kepler_container_cpu_watts{}`: Container-level power
 - `kepler_vm_cpu_watts{}`: Virtual machine power
 - `kepler_pod_cpu_watts{}`: Kubernetes pod power
+- `kepler_node_gpu_watts{}`: Total GPU power (NVIDIA/NVML)
+- `kepler_process_gpu_watts{}`: Per-process GPU power attribution
+
+## A Note on the Trained Model Server
+
+Earlier Kepler versions could estimate power using a trained ML model served by
+the `kepler-model-server`. The v0.10+ re-architecture reads power directly from
+hardware interfaces (RAPL, HWMon, Redfish, NVML) and the trained model-server
+does **not** yet integrate with the rewrite. Power figures in this guide come
+from these hardware sources, not from a trained estimator.
 
 ## Conclusion
 
