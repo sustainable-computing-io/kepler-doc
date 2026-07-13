@@ -42,7 +42,6 @@ You can configure Kepler by passing flags when starting the service. The followi
 | `--experimental.gpu.idle-power` | GPU idle power in Watts | `0` | Any positive number |
 | `--experimental.gpu.dcgm-endpoint` | dcgm-exporter metrics endpoint URL for MIG power attribution | `""` | Any valid URL |
 
-
 ### 💡 Examples
 
 ```bash
@@ -191,7 +190,7 @@ log:
 ```yaml
 monitor:
   interval: 5s
-  staleness: 1000ms
+  staleness: 500ms
   maxTerminated: 500
   minTerminatedEnergyThreshold: 10
 ```
