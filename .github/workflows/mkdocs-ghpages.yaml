@@ -13,7 +13,7 @@ jobs:
           python-version: 3.11.0
       - name: Install dependencies
         run: pip install -e .
-      - uses: pkgxdev/setup@v1
+      - uses: pkgxdev/setup@v4
         with:
           +: gomplate.ca@3.11.4
       - run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
