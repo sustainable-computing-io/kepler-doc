@@ -311,7 +311,7 @@ helm upgrade kepler manifests/helm/kepler/ -n kepler \
 
 ### Getting Help
 
-- **Documentation**: <https://sustainable-computing.io/kepler/>
+- **Documentation**: <https://sustainable-computing.io/>
 - **Issues**: <https://github.com/sustainable-computing-io/kepler/issues>
 - **Discussions**: <https://github.com/sustainable-computing-io/kepler/discussions>
 - **Slack**: [#kepler channel in CNCF Slack](https://cloud-native.slack.com/archives/C06HYDN4A01)
