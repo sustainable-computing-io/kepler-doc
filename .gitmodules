@@ -1,0 +1,8 @@
+[submodule "docs/submodules/kepler"]
+	path = docs/submodules/kepler
+	url = https://github.com/sustainable-computing-io/kepler.git
+	branch = main
+[submodule "docs/submodules/kepler-operator"]
+	path = docs/submodules/kepler-operator
+	url = https://github.com/sustainable-computing-io/kepler-operator.git
+	branch = v1alpha1
