@@ -19,7 +19,7 @@ jobs:
         run: pip install -e .
 
       - name: Install gomplate
-        uses: pkgxdev/setup@v1
+        uses: pkgxdev/setup@v4
         with:
           +: gomplate.ca@3.11.4
 
