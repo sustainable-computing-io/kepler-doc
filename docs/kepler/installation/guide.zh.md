@@ -314,7 +314,7 @@ helm upgrade kepler manifests/helm/kepler/ -n kepler \
 
 ### 获取帮助
 
-- **文档**：<https://sustainable-computing.io/kepler/>
+- **文档**：<https://sustainable-computing.io/>
 - **问题**：<https://github.com/sustainable-computing-io/kepler/issues>
 - **讨论**：<https://github.com/sustainable-computing-io/kepler/discussions>
 - **Slack**：[CNCF Slack 中的 #kepler 频道](https://cloud-native.slack.com/archives/C06HYDN4A01)
