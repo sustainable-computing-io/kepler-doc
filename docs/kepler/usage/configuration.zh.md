@@ -87,7 +87,7 @@ log:
 
 monitor:
   interval: 5s        # 监控刷新间隔 (默认: 5s)
-  staleness: 1000ms   # 数据被认为过时的持续时间 (默认: 1000ms)
+  staleness: 500ms    # 数据被认为过时的持续时间 (默认: 500ms)
   maxTerminated: 500  # 在内存中保存已终止工作负载的最大数量 (默认: 500)
   minTerminatedEnergyThreshold: 10  # 已终止工作负载的最低能量阈值 (默认: 10)
 
@@ -159,7 +159,7 @@ log:
 ```yaml
 monitor:
   interval: 5s
-  staleness: 1000ms
+  staleness: 500ms
   maxTerminated: 500
   minTerminatedEnergyThreshold: 10
 ```
