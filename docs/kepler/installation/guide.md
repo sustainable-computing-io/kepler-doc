@@ -75,7 +75,7 @@ daemonset:
 
 # Enable ServiceMonitor for Prometheus
 serviceMonitor:
-  enabled: false # disabled by default
+  enabled: true
   interval: 5s # default is 5s
 ```
 
