@@ -58,7 +58,7 @@ sudo ./bin/kepler --config.file hack/config.yaml
 
 1. **[开发者文档](https://github.com/sustainable-computing-io/kepler/tree/main/docs/developer)** - 技术实现细节
 2. **[贡献指南](../../project/contributing.zh.md)** - 一般贡献流程
-3. **[行为准则](https://github.com/sustainable-computing-io/kepler/blob/main/CODE_OF_CONDUCT.md)** - 社区准则
+3. **[行为准则](https://github.com/sustainable-computing-io/kepler/blob/main/code-of-conduct.md)** - 社区准则
 
 ## 💬 开发者支持
 
