@@ -10,12 +10,11 @@ description: >
 Organizations below all are using Kepler.
 
 To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
-{{ range (datasource "adopters").adopters.companies }}
-{{ if has . "logo" -}}
-![{{ .name }}](../fig/{{ .logo }})
-{{- else -}}
-![{{ .name }}](../fig/logos/default.svg)
-{{- end }}
 
-[{{ .name }}]({{ .url }})
-{{ end -}}
+![Kepler](../fig/logos/default.svg)
+
+[Kepler](https://sustainable-computing.io/)
+
+![KubeStellar Console](../fig/logos/kubestellar.svg)
+
+[KubeStellar Console](https://console.kubestellar.io)
