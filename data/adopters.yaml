@@ -5,3 +5,6 @@ adopters:
   companies:
     - name: Kepler
       url: https://sustainable-computing.io/
+    - name: KubeStellar Console
+      url: https://console.kubestellar.io
+      logo: logos/kubestellar.svg
