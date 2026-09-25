@@ -6,4 +6,4 @@
 
 2. Starting a [discussion](https://github.com/sustainable-computing-io/kepler/discussions)
 
-3. Joining the [#kepler-project](https://cloud-native.slack.com/archives/C05QK3KN3HT) channel on CNCF Slack ([get an invite](https://communityinviter.com/apps/cloud-native/cncf))
+3. Joining the [#kepler-project](https://cloud-native.slack.com/archives/C05QK3KN3HT) channel on CNCF Slack ([get an invite](https://slack.cncf.io/))
