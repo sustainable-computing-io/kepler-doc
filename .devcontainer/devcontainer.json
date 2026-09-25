@@ -1,9 +1,33 @@
 {
-	"name": "Python 3",
-	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
+	"name": "Kepler Docs",
+	"build": {
+		"dockerfile": "Containerfile"
+	},
 	"features": {
-		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-			"packages": "mkdocs"
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.11.0"
+		}
+	},
+	"workspaceMount": "source=kepler-doc-workspace,target=/workspaces/kepler-doc,type=volume",
+	"workspaceFolder": "/workspaces/kepler-doc",
+	"containerUser": "vscode",
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/home/vscode/.local/bin",
+		"PODMAN_USERNS": "keep-id"
+	},
+	"postCreateCommand": "pip install -q -e . && pip install -q pre-commit && pre-commit install && gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md && echo && echo '✅ Dev environment ready' && echo \"   Python:   $(python --version 2>&1 | cut -d' ' -f2)\" && echo \"   gomplate: $(gomplate --version 2>&1 | cut -d' ' -f3)\" && echo \"   mkdocs:   $(mkdocs --version 2>&1 | cut -d' ' -f3)\" && echo",
+	"portsAttributes": {
+		"8000": {
+			"label": "MkDocs Preview",
+			"onAutoForward": "openBrowser"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"yzhang.markdown-all-in-one",
+				"davidanson.vscode-markdownlint"
+			]
 		}
 	}
 }
