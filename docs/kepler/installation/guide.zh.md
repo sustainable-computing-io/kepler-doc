@@ -61,24 +61,25 @@ image:
   tag: "v0.10.0"
   pullPolicy: IfNotPresent
 
-resources:
-  limits:
-    cpu: 100m
-    memory: 400Mi
-  requests:
-    cpu: 100m
-    memory: 200Mi
+daemonset:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 400Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
 
-tolerations:
-  - operator: Exists
+  tolerations:
+    - operator: Exists
 
-nodeSelector:
-  kubernetes.io/os: linux
+  nodeSelector:
+    kubernetes.io/os: linux
 
 # 为 Prometheus 启用 ServiceMonitor
 serviceMonitor:
   enabled: true
-  interval: 30s
+  interval: 5s # default is 5s
 ```
 
 使用自定义值安装：
@@ -257,26 +258,26 @@ daemonset:
   securityContext:
     privileged: true
 
-# 资源限制
-resources:
-  limits:
-    cpu: 100m
-    memory: 400Mi
-  requests:
-    cpu: 100m
-    memory: 200Mi
+  # 资源限制
+  resources:
+    limits:
+      cpu: 100m
+      memory: 400Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
 
-# 节点调度
-tolerations:
-  - operator: Exists
+  # 节点调度
+  tolerations:
+    - operator: Exists
 
-nodeSelector:
-  kubernetes.io/os: linux
+  nodeSelector:
+    kubernetes.io/os: linux
 
 # 监控
 serviceMonitor:
-  enabled: true
-  interval: 30s
+  enabled: false
+  interval: 5s
   scrapeTimeout: 10s
 ```
 
