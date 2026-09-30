@@ -226,7 +226,7 @@ docs/path/to/file.zh-qc.md    # 质量检查报告
 
 ### 获取帮助
 
-- **关于翻译流程的问题**：[GitHub Discussions](https://github.com/sustainable-computing-io/kepler-doc/discussions)
+- **关于翻译流程的问题**：[GitHub Discussions](https://github.com/sustainable-computing-io/kepler/discussions)
 - **报告翻译错误**：[GitHub Issues](https://github.com/sustainable-computing-io/kepler-doc/issues)
 - **技术内容澄清**：[主要 Kepler 仓库](https://github.com/sustainable-computing-io/kepler/discussions)
 

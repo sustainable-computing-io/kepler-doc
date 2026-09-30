@@ -234,7 +234,7 @@ Translations should be updated when:
 
 ### Getting Help
 
-- **Questions about translation process**: [GitHub Discussions](https://github.com/sustainable-computing-io/kepler-doc/discussions)
+- **Questions about translation process**: [GitHub Discussions](https://github.com/sustainable-computing-io/kepler/discussions)
 - **Report translation errors**: [GitHub Issues](https://github.com/sustainable-computing-io/kepler-doc/issues)
 - **Technical content clarification**: [Main Kepler Repository](https://github.com/sustainable-computing-io/kepler/discussions)
 
