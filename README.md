@@ -4,10 +4,77 @@
 
 Follow [sustainable-computing.io](https://sustainable-computing.io/) to see the Kepler
 documentation.
+For developing the project's documentation we recommend using either a Dev Container, Running Locally or in Github Codespaces. Choose whichever you prefer.
 
-## Install MkDocs
+## Running in Dev Container
 
-Make sure `Python 3.8` or greater is installed, then run:
+This repo ships a [Dev Container](https://containers.dev/) configuration
+(`.devcontainer/`) that pins the exact Python and gomplate versions used in CI
+(`pr.yaml`, `mkdocs-ghpages.yaml`), plus pre-commit hooks — so what passes
+locally passes in CI too.
+
+### Quick start
+
+1. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+   in VS Code (or configure your editor of choice for `containers.dev`).
+2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
+   **`Dev Containers: Clone Repository in Named Container Volume...`**
+3. When prompted for the repository, use your forked version and named the Volume as you like.
+4. VS Code builds the container and clones the repo directly into a named
+   volume. On first build, `postCreateCommand` installs dependencies,
+   pre-commit hooks, and generates `docs/project/adopters.md` — you'll see a
+   summary printed once it's ready.
+5. Run `mkdocs serve` inside the container and open the forwarded port
+   (`8000`) to preview the docs with hot-reload.
+
+### Why a named volume, not a bind mount?
+
+The default "Reopen in Container" flow bind-mounts your local checkout
+directly into the container. That works fine on Linux, but causes real
+problems elsewhere (Windows for example):
+
+- **Docker Desktop (macOS/Windows):** bind mounts go through a filesystem
+  translation layer to the Linux VM Docker runs in, which can make builds and
+  file I/O noticeably slower.
+- **Podman (rootless):** bind mounts hit UID/GID mapping issues between your
+  host user and the container user, which shows up as random permission
+  errors or files owned by `nobody`.
+
+A named volume avoids both: Docker/Podman manage the volume internally,
+without translating or remapping your host filesystem. This is why the repo's
+`devcontainer.json` sets `workspaceMount` to a named volume by default — it's
+the safer choice across platforms, with no real downside on Linux either.
+
+The trade-off: a named volume starts empty, so you clone *into* it via
+**Clone Repository in Named Container Volume**, rather than opening an
+already-cloned local folder.
+
+### Using Podman instead of Docker
+
+The dev container config works with Podman without changes, but Podman
+itself needs to be told to VS Code:
+
+1. In VS Code `settings.json`, set:
+
+```json
+   "dev.containers.dockerPath": "podman"
+```
+
+1. Restart VS Code after changing this.
+
+This is a per-user editor setting, not something the repo can configure for
+you.
+
+**Apple Silicon / ARM note:** gomplate is installed for the container's
+target architecture (`linux-amd64` or `linux-arm64`) at build time via
+BuildKit's `TARGETARCH`, so this works natively on ARM hosts — no emulation
+needed on Podman or Docker Desktop with Apple Silicon.
+
+## Running Locally
+
+### Install MkDocs
+
+Make sure `Python 3.11` or greater is installed, as the CI uses it, then run:
 
 ```bash
 # Recommended: Use hatch for integrated development environment
@@ -77,16 +144,3 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
 1. Make your changes as normal to the files within the `docs/` folder. The preview site will live reload
 1. When you're satisfied with your updates, commit them to your fork: `git add -A && git commit -sm "docs: a commit message here" && git push`
 1. Create a PR and you're done
-
-## Lint Checker
-
-When a Pull Request is pushed to `kepler-doc`, CI runs [Super-Linter](https://github.com/super-linter/super-linter).
-To run locally and verify there are no lint errors before pushing, run:
-
-```sh
-docker run -e RUN_LOCAL=true -e DEFAULT_BRANCH=main -e LINTER_RULES_PATH=/ -e VALIDATE_MARKDOWN=true -e VALIDATE_ALL_CODEBASE=true -v /path/to/kepler-doc:/tmp/lint --rm ghcr.io/super-linter/super-linter:v6.3.0
-```
-
-Replacing `/path/to/kepler-doc` with local path.
-This command checks all files via `-e VALIDATE_ALL_CODEBASE=true`.
-Upstream only checks modified files, but it is recommended to fix all lint errors.
