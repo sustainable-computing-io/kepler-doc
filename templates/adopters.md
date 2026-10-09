@@ -10,12 +10,12 @@ description: >
 Organizations below all are using Kepler.
 
 To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
-{{ range (datasource "adopters").adopters.companies }}
-{{ if has . "logo" -}}
-![{{ .name }}](../fig/{{ .logo }})
-{{- else -}}
-![{{ .name }}](../fig/logos/default.svg)
+
+<!-- markdownlint-disable MD033 -->
+<div class="adopters" markdown>
+{{ range (coll.Sort "name" (datasource "adopters").adopters.companies) }}
+[![{{ .name }}](../fig/{{ if has . "logo" }}{{ .logo }}{{ else }}logos/default.svg{{ end }})<span>{{ .name }}</span>]({{ .url }})
 {{- end }}
 
-[{{ .name }}]({{ .url }})
-{{ end -}}
+</div>
+<!-- markdownlint-enable MD033 -->

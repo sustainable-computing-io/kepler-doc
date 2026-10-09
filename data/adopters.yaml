@@ -3,8 +3,15 @@ adopters:
   description: >
     Check out everything about Kepler on our [website](https://sustainable-computing.io/).
   companies:
-    - name: Kepler
-      url: https://sustainable-computing.io/
-    - name: KubeStellar Console
-      url: https://console.kubestellar.io
-      logo: logos/kubestellar.svg
+    - name: Deutsche Telekom
+      url: https://www.telekom.com/
+      logo: logos/deutsche-telekom.jpeg
+    - name: Orange
+      url: https://www.orange.com/
+      logo: logos/orange.svg
+    - name: Grafana Labs
+      url: https://grafana.com/
+      logo: logos/grafana-labs.svg
+    - name: CERN
+      url: https://home.cern/
+      logo: logos/cern.svg
