@@ -1,4 +1,4 @@
-# Kubernetes Efficient Power Level Exporter (Kepler)
+# Kepler Documentation
 
 Kepler (Kubernetes-based Efficient Power Level Exporter) is a Prometheus exporter that measures energy consumption at the container, pod, VM, and process level by reading hardware sensors and attributing power based on resource utilization.
 
