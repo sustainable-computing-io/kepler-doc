@@ -3,11 +3,15 @@ theme:
   palette:
     primary: teal
   name: material
-  logo: logo.png
+  logo: assets/logo.png
+  favicon: assets/favicon.png
   language: en
   custom_dir: overrides
   features:
     - navigation.footer
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.tabs.sticky
     - toc.integrate
 
   highlightjs: true
@@ -17,63 +21,61 @@ theme:
 
 docs_dir: ./docs
 nav:
-  - Home: index.md
-  - Kepler:
-      - Getting Started:
-          - Installation Guide: kepler/installation/guide.md
-      - Concepts/Guides:
-          - Power Attribution: kepler/usage/power-attribution.md
-      - Reference:
+  - Docs:
+      - index.md
+      - Installation:
+          - Quick Start: kepler/installation/guide.md
           - Configuration: kepler/usage/configuration.md
-          - Metrics: kepler/design/metrics.md
+      - Guides:
+          - Power Attribution: kepler/usage/power-attribution.md
+      - Metrics: kepler/design/metrics.md
       - Developer:
           - Guides: kepler/developer/dev-docs.md
-  - Kepler Operator:
-      - OpenShift:
-          - Overview: kepler-operator/openshift/index.md
-          - Quick Start: kepler-operator/openshift/quickstart.md
-          - CLI Installation: kepler-operator/openshift/cli-installation.md
-      - Usage:
-          - Configuration Guide: kepler-operator/configuration/index.md
-          - Monitoring & Troubleshooting: kepler-operator/configuration/monitoring-troubleshooting.md
-      - Migration:
-          - Kepler to PowerMonitor: kepler-operator/migration/index.md
-  - Project:
-      - Adopters: project/adopters.md
-      - Resources: project/resources.md
-      - Contributing: project/contributing.md
-      - Support: project/support.md
-  - Archive (v0.9.0 and below):
-      - Overview: archive/README.md
-      - Design (Legacy):
-          - archive/design/architecture.md
-          - archive/design/power_model.md
-          - archive/design/metrics.md
-          - archive/design/ebpf_in_kepler.md
-          - archive/design/kepler-energy-sources.md
-      - Installation (Legacy):
-          - archive/installation/strategy.md
-          - archive/installation/local-cluster.md
-          - archive/installation/kepler.md
-          - archive/installation/kepler-helm.md
-          - archive/installation/community-operator.md
-          - archive/installation/kepler-operator.md
-          - archive/installation/kepler-rpm.md
-          - archive/installation/Kepler-Telegraf-integration-steps.md
-      - Usage (Legacy):
-          - archive/usage/kepler_daemon.md
-          - archive/usage/trouble_shooting.md
-          - archive/usage/deep_dive.md
-      - Hardware Engagement (Legacy):
-          - archive/hardwareengagement/index.md
-      - Kepler Model Server (Legacy):
-          - Compatibility Notice: model-server-compatibility.md
-          - archive/kepler_model_server/get_started.md
-          - archive/kepler_model_server/architecture.md
-          - archive/kepler_model_server/pipeline.md
-          - archive/kepler_model_server/node_profile.md
-          - archive/kepler_model_server/power_estimation.md
-          - archive/kepler_model_server/api.md
+      - Kepler Operator:
+          - OpenShift:
+              - Overview: kepler-operator/openshift/index.md
+              - Quick Start: kepler-operator/openshift/quickstart.md
+              - CLI Installation: kepler-operator/openshift/cli-installation.md
+          - Usage:
+              - Configuration Guide: kepler-operator/configuration/index.md
+              - Monitoring & Troubleshooting: kepler-operator/configuration/monitoring-troubleshooting.md
+          - Migration:
+              - Kepler to PowerMonitor: kepler-operator/migration/index.md
+      - Archive (v0.9.0 and below):
+          - Overview: archive/README.md
+          - Design (Legacy):
+              - archive/design/architecture.md
+              - archive/design/power_model.md
+              - archive/design/metrics.md
+              - archive/design/ebpf_in_kepler.md
+              - archive/design/kepler-energy-sources.md
+          - Installation (Legacy):
+              - archive/installation/strategy.md
+              - archive/installation/local-cluster.md
+              - archive/installation/kepler.md
+              - archive/installation/kepler-helm.md
+              - archive/installation/community-operator.md
+              - archive/installation/kepler-operator.md
+              - archive/installation/kepler-rpm.md
+              - archive/installation/Kepler-Telegraf-integration-steps.md
+          - Usage (Legacy):
+              - archive/usage/kepler_daemon.md
+              - archive/usage/trouble_shooting.md
+              - archive/usage/deep_dive.md
+          - Hardware Engagement (Legacy):
+              - archive/hardwareengagement/index.md
+          - Kepler Model Server (Legacy):
+              - Compatibility Notice: model-server-compatibility.md
+              - archive/kepler_model_server/get_started.md
+              - archive/kepler_model_server/architecture.md
+              - archive/kepler_model_server/pipeline.md
+              - archive/kepler_model_server/node_profile.md
+              - archive/kepler_model_server/power_estimation.md
+              - archive/kepler_model_server/api.md
+  - Adopters: project/adopters.md
+  - Resources: project/resources.md
+  - Contributing: project/contributing.md
+  - Support: project/support.md
 
 markdown_extensions:
   - admonition
@@ -87,9 +89,23 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/adopters.css
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/header.js
+
+copyright: Copyright &copy; Contributors to the Kepler project
 
 extra:
   version: v0.4
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sustainable-computing-io/kepler
+      name: Kepler on GitHub
+    - icon: fontawesome/brands/slack
+      link: https://cloud-native.slack.com/archives/C05QK3KN3HT
+      name: "#kepler-project on CNCF Slack"
 
 plugins:
   - search:
