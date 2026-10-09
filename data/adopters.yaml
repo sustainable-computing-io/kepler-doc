@@ -3,9 +3,6 @@ adopters:
   description: >
     Check out everything about Kepler on our [website](https://sustainable-computing.io/).
   companies:
-    - name: KubeStellar Console
-      url: https://console.kubestellar.io
-      logo: logos/kubestellar.svg
     - name: Deutsche Telekom
       url: https://www.telekom.com/
       logo: logos/deutsche-telekom.jpeg
