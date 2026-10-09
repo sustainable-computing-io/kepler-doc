@@ -94,8 +94,18 @@ extra_css:
 extra_javascript:
   - javascripts/header.js
 
+copyright: Copyright &copy; Contributors to the Kepler project
+
 extra:
   version: v0.4
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sustainable-computing-io/kepler
+      name: Kepler on GitHub
+    - icon: fontawesome/brands/slack
+      link: https://cloud-native.slack.com/archives/C05QK3KN3HT
+      name: "#kepler-project on CNCF Slack"
 
 plugins:
   - search:
