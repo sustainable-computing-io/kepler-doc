@@ -77,11 +77,16 @@ nav:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.inlinehilite
+
+extra_css:
+  - stylesheets/adopters.css
 
 extra:
   version: v0.4

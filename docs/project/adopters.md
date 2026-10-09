@@ -11,26 +11,15 @@ Organizations below all are using Kepler.
 
 To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
 
-![Kepler](../fig/logos/default.svg)
+<!-- markdownlint-disable MD033 -->
+<div class="adopters" markdown>
 
-[Kepler](https://sustainable-computing.io/)
+[![CERN](../fig/logos/cern.svg)<span>CERN</span>](https://home.cern/)
+[![Deutsche Telekom](../fig/logos/deutsche-telekom.jpeg)<span>Deutsche Telekom</span>](https://www.telekom.com/)
+[![Grafana Labs](../fig/logos/grafana-labs.svg)<span>Grafana Labs</span>](https://grafana.com/)
+[![Kepler](../fig/logos/default.svg)<span>Kepler</span>](https://sustainable-computing.io/)
+[![KubeStellar Console](../fig/logos/kubestellar.svg)<span>KubeStellar Console</span>](https://console.kubestellar.io)
+[![Orange](../fig/logos/orange.svg)<span>Orange</span>](https://www.orange.com/)
 
-![KubeStellar Console](../fig/logos/kubestellar.svg)
-
-[KubeStellar Console](https://console.kubestellar.io)
-
-![Deutsche Telekom](../fig/logos/deutsche-telekom.jpeg)
-
-[Deutsche Telekom](https://www.telekom.com/)
-
-![Orange](../fig/logos/orange.svg)
-
-[Orange](https://www.orange.com/)
-
-![Grafana Labs](../fig/logos/grafana-labs.svg)
-
-[Grafana Labs](https://grafana.com/)
-
-![CERN](../fig/logos/cern.svg)
-
-[CERN](https://home.cern/)
+</div>
+<!-- markdownlint-enable MD033 -->
