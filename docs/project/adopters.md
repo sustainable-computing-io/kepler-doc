@@ -18,3 +18,19 @@ To join this list, please follow [these instructions](https://sustainable-comput
 ![KubeStellar Console](../fig/logos/kubestellar.svg)
 
 [KubeStellar Console](https://console.kubestellar.io)
+
+![Deutsche Telekom](../fig/logos/deutsche-telekom.jpeg)
+
+[Deutsche Telekom](https://www.telekom.com/)
+
+![Orange](../fig/logos/orange.svg)
+
+[Orange](https://www.orange.com/)
+
+![Grafana Labs](../fig/logos/grafana-labs.svg)
+
+[Grafana Labs](https://grafana.com/)
+
+![CERN](../fig/logos/cern.svg)
+
+[CERN](https://home.cern/)
