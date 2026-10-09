@@ -3,7 +3,8 @@ theme:
   palette:
     primary: teal
   name: material
-  logo: logo.png
+  logo: assets/logo.png
+  favicon: assets/favicon.png
   language: en
   custom_dir: overrides
   features:
