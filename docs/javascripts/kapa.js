@@ -41,7 +41,5 @@ document.addEventListener("DOMContentLoaded", function () {
         "Why is RAPL unavailable on my node?," +
         "How is power attributed to containers?"
   );
-  // The site has no cookie consent banner, so do not set kapa's anonymous tracking cookie.
-  script.setAttribute("data-user-analytics-cookie-enabled", "false");
   document.head.appendChild(script);
 });
