@@ -1,21 +1,75 @@
-on:
+name: Deploy docs
+
+on: # yamllint disable-line rule:truthy
   push:
     branches:
       - main
+  schedule:
+    # Rebuild `dev` daily so it tracks kepler@main
+    - cron: 0 6 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+env:
+  # Kepler minor versions to publish. Each builds from the highest patch tag.
+  RELEASES: v0.12 v0.11
+  LATEST: v0.12
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # mike commits to the gh-pages branch
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.11.0
+
       - name: Install dependencies
         run: pip install -e .
+
       - uses: pkgxdev/setup@v4
         with:
           +: gomplate.ca@3.11.4
+
       - run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages:gh-pages
+
+      - name: Deploy v0.9 (frozen archive)
+        run: mike deploy --config-file mkdocs.v0.9.yml v0.9
+
+      - name: Deploy releases
+        run: |
+          for version in $RELEASES; do
+            hack/sync-kepler-docs.sh "$version"
+            aliases=""
+            if [ "$version" = "$LATEST" ]; then aliases="latest"; fi
+            mike deploy --update-aliases --alias-type=copy "$version" $aliases
+          done
+
+      - name: Deploy dev
+        run: |
+          hack/sync-kepler-docs.sh main
+          mike deploy dev
+
+      - name: Set default version
+        run: mike set-default latest
+
+      - name: Tidy gh-pages root
+        run: hack/gh-pages/tidy-root.sh
+
+      - name: Push gh-pages
+        run: git push origin gh-pages

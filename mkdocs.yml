@@ -1,4 +1,5 @@
 site_name: Kepler
+site_url: https://sustainable-computing.io/
 theme:
   palette:
     primary: teal
@@ -25,6 +26,7 @@ nav:
       - index.md
       - Installation:
           - Quick Start: kepler/installation/guide.md
+          - Helm Updates: kepler/installation/helm-updates.md
           - Configuration: kepler/usage/configuration.md
       - Guides:
           - Power Attribution: kepler/usage/power-attribution.md
@@ -41,41 +43,15 @@ nav:
               - Monitoring & Troubleshooting: kepler-operator/configuration/monitoring-troubleshooting.md
           - Migration:
               - Kepler to PowerMonitor: kepler-operator/migration/index.md
-      - Archive (v0.9.0 and below):
-          - Overview: archive/README.md
-          - Design (Legacy):
-              - archive/design/architecture.md
-              - archive/design/power_model.md
-              - archive/design/metrics.md
-              - archive/design/ebpf_in_kepler.md
-              - archive/design/kepler-energy-sources.md
-          - Installation (Legacy):
-              - archive/installation/strategy.md
-              - archive/installation/local-cluster.md
-              - archive/installation/kepler.md
-              - archive/installation/kepler-helm.md
-              - archive/installation/community-operator.md
-              - archive/installation/kepler-operator.md
-              - archive/installation/kepler-rpm.md
-              - archive/installation/Kepler-Telegraf-integration-steps.md
-          - Usage (Legacy):
-              - archive/usage/kepler_daemon.md
-              - archive/usage/trouble_shooting.md
-              - archive/usage/deep_dive.md
-          - Hardware Engagement (Legacy):
-              - archive/hardwareengagement/index.md
-          - Kepler Model Server (Legacy):
-              - Compatibility Notice: model-server-compatibility.md
-              - archive/kepler_model_server/get_started.md
-              - archive/kepler_model_server/architecture.md
-              - archive/kepler_model_server/pipeline.md
-              - archive/kepler_model_server/node_profile.md
-              - archive/kepler_model_server/power_estimation.md
-              - archive/kepler_model_server/api.md
   - Adopters: project/adopters.md
   - Resources: project/resources.md
   - Contributing: project/contributing.md
   - Support: project/support.md
+
+# Archive pages publish as the frozen v0.9 version (mkdocs.v0.9.yml)
+exclude_docs: |
+  archive/
+  model-server-compatibility*.md
 
 markdown_extensions:
   - admonition
@@ -97,7 +73,9 @@ extra_javascript:
 copyright: Copyright &copy; Contributors to the Kepler project
 
 extra:
-  version: v0.4
+  version:
+    provider: mike
+    default: latest
   generator: false
   social:
     - icon: fontawesome/brands/github

@@ -28,7 +28,8 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-	"mkdocs>=1.6",
+	"mike>=2.1",
+	"mkdocs>=1.6,<2",
 	"mkdocs-material>=9.5",
 	"mkdocs-static-i18n>=1.2",
 ]
@@ -68,12 +69,14 @@ only-include = [
 
 [tool.hatch.envs.default]
 dependencies = [
-	"mkdocs>=1.6",
+	"mike>=2.1",
+	"mkdocs>=1.6,<2",
 	"mkdocs-material>=9.5",
 	"mkdocs-static-i18n>=1.2",
 ]
 
 [tool.hatch.envs.default.scripts]
+sync = "hack/sync-kepler-docs.sh {args:main}"
 serve = "mkdocs serve"
 serve-remote = "mkdocs serve -a 0.0.0.0:8000"
 build = "mkdocs build"
