@@ -2,6 +2,7 @@
 // https://docs.kapa.ai/integrations/website-widget/configuration/behavior
 document.addEventListener("DOMContentLoaded", function () {
   var lang = document.documentElement.lang || "en";
+  var zh = lang.indexOf("zh") === 0;
   var script = document.createElement("script");
   script.src = "https://widget.kapa.ai/kapa-widget.bundle.js";
   script.async = true;
@@ -28,12 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // Google reCAPTCHA is blocked in mainland China and this site has a zh build.
   script.setAttribute("data-bot-protection-mechanism", "hcaptcha");
   // mkdocs-static-i18n sets <html lang="zh"> on the Chinese build.
-  script.setAttribute("data-language", lang.indexOf("zh") === 0 ? "zh" : "en");
+  script.setAttribute("data-language", zh ? "zh" : "en");
+  // The widget translates its own UI but not these, so give the zh build its own set.
   script.setAttribute(
     "data-example-questions",
-    "How do I install Kepler with Helm?," +
-      "Why is RAPL unavailable on my node?," +
-      "How is power attributed to containers?"
+    zh
+      ? "如何使用 Helm 安装 Kepler？," +
+        "为什么我的节点上 RAPL 不可用？," +
+        "功耗是如何分配到容器的？"
+      : "How do I install Kepler with Helm?," +
+        "Why is RAPL unavailable on my node?," +
+        "How is power attributed to containers?"
   );
+  // The site has no cookie consent banner, so do not set kapa's anonymous tracking cookie.
+  script.setAttribute("data-user-analytics-cookie-enabled", "false");
   document.head.appendChild(script);
 });
