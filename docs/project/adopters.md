@@ -7,9 +7,15 @@ description: >
 
 ## Kepler Adopters
 
-Organizations below all are using Kepler.
+Organizations below all are using [Kepler](https://sustainable-computing.io/).
 
-To join this list, please follow [these instructions](https://sustainable-computing.io/project/contributing/).
+We are happy and proud to have you all as part of our community! 💚
+
+To join this list, please follow [these instructions](contributing.md#kepler-adopters).
+
+### Kepler
+
+Check out the Kepler source code on [GitHub](https://github.com/sustainable-computing-io/kepler).
 
 <!-- markdownlint-disable MD033 -->
 <div class="adopters" markdown>

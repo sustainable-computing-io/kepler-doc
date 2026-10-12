@@ -1,7 +1,7 @@
 adopters:
   project: Kepler
   description: >
-    Check out everything about Kepler on our [website](https://sustainable-computing.io/).
+    Check out the Kepler source code on [GitHub](https://github.com/sustainable-computing-io/kepler).
   companies:
     - name: Deutsche Telekom
       url: https://www.telekom.com/
