@@ -15,3 +15,6 @@ adopters:
     - name: CERN
       url: https://home.cern/
       logo: logos/cern.svg
+    - name: Sylva
+      url: https://sylvaproject.org/
+      logo: logos/sylva.svg
