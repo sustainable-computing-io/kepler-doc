@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
   script.setAttribute("data-launcher-button-box-shadow", "0 2px 6px rgba(0, 0, 0, 0.2)");
   script.setAttribute("data-modal-open-on-command-k", "true");
   // Google reCAPTCHA is blocked in mainland China and this site has a zh build.
+  // hCaptcha rejects localhost, so on `mkdocs serve` the first question can fail
+  // with a captcha error; retry, or test on a deploy preview instead.
   script.setAttribute("data-bot-protection-mechanism", "hcaptcha");
   // mkdocs-static-i18n sets <html lang="zh"> on the Chinese build.
   script.setAttribute("data-language", zh ? "zh" : "en");
