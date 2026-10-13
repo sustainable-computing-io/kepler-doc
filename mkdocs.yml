@@ -107,6 +107,9 @@ extra:
       link: https://cloud-native.slack.com/archives/C05QK3KN3HT
       name: "#kepler-project on CNCF Slack"
 
+hooks:
+  - hooks/upstream_links.py
+
 plugins:
   - search:
       lang:
