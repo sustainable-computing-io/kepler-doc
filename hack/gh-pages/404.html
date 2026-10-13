@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Page not found · Kepler</title>
+    <script>
+      // GitHub Pages serves this page for any missing path. Unversioned paths
+      // predate mike; send them to the matching page in a versioned build.
+      (function () {
+        var path = window.location.pathname;
+        if (/^\/(v\d+\.\d+|latest|dev)\//.test(path)) {
+          return;
+        }
+        var page = path.replace(/^\/zh\//, "/");
+        var legacy = /^\/(archive\/|model-server-compatibility)/.test(page);
+        var target = (legacy ? "/v0.9" : "/latest") + path;
+        window.location.replace(target + window.location.search + window.location.hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Page not found</h1>
+    <p><a href="/latest/">Go to the Kepler docs</a></p>
+  </body>
+</html>

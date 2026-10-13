@@ -1,0 +1,40 @@
+# Frozen docs for Kepler v0.9.0 and below, published as the `v0.9` version.
+# Build: mkdocs build -f mkdocs.v0.9.yml
+INHERIT: mkdocs.yml
+
+exclude_docs: |
+  kepler/
+  kepler-operator/
+
+nav:
+  - Home: index.md
+  - Overview: archive/README.md
+  - Design (Legacy):
+      - archive/design/architecture.md
+      - archive/design/power_model.md
+      - archive/design/metrics.md
+      - archive/design/ebpf_in_kepler.md
+      - archive/design/kepler-energy-sources.md
+  - Installation (Legacy):
+      - archive/installation/strategy.md
+      - archive/installation/local-cluster.md
+      - archive/installation/kepler.md
+      - archive/installation/kepler-helm.md
+      - archive/installation/community-operator.md
+      - archive/installation/kepler-operator.md
+      - archive/installation/kepler-rpm.md
+      - archive/installation/Kepler-Telegraf-integration-steps.md
+  - Usage (Legacy):
+      - archive/usage/kepler_daemon.md
+      - archive/usage/trouble_shooting.md
+      - archive/usage/deep_dive.md
+  - Hardware Engagement (Legacy):
+      - archive/hardwareengagement/index.md
+  - Kepler Model Server (Legacy):
+      - Compatibility Notice: model-server-compatibility.md
+      - archive/kepler_model_server/get_started.md
+      - archive/kepler_model_server/architecture.md
+      - archive/kepler_model_server/pipeline.md
+      - archive/kepler_model_server/node_profile.md
+      - archive/kepler_model_server/power_estimation.md
+      - archive/kepler_model_server/api.md

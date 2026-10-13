@@ -88,9 +88,36 @@ uv sync
 
 ```
 
+## Docs from the Kepler repo
+
+Version-bound pages (installation, Helm updates, configuration, metrics) live in
+[`kepler/docs/user/`](https://github.com/sustainable-computing-io/kepler/tree/main/docs/user).
+Edit them there. `hack/sync-kepler-docs.sh` copies them into `docs/kepler/` before each build,
+and git ignores the copies.
+
+```sh
+# Sync from kepler@main
+hack/sync-kepler-docs.sh
+
+# Sync from the highest v0.12.* tag
+hack/sync-kepler-docs.sh v0.12
+```
+
+## Versions
+
+[`mike`](https://github.com/jimporter/mike) publishes one docs version per Kepler minor release
+to the `gh-pages` branch. [`.github/workflows/mkdocs-ghpages.yaml`](.github/workflows/mkdocs-ghpages.yaml)
+lists the published versions:
+
+- `dev`: built from `kepler@main`, rebuilt daily
+- `latest`: alias for the newest release, and the default version
+- `v0.9`: frozen docs for Kepler v0.9.0 and below, built from [`mkdocs.v0.9.yml`](mkdocs.v0.9.yml)
+
+To publish a new release, add it to `RELEASES` and set `LATEST` in the workflow.
+
 ## mkdocs Commands
 
-To build the documentation site, simply run:
+Run `hack/sync-kepler-docs.sh` first. To build the documentation site, run:
 
 ```sh
 mkdocs build

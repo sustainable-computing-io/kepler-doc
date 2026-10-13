@@ -26,8 +26,14 @@ jobs:
       - name: Generate dynamic content
         run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
 
+      - name: Sync kepler docs
+        run: hack/sync-kepler-docs.sh main
+
       - name: Test mkdocs build
         run: mkdocs build --strict
+
+      - name: Test v0.9 build
+        run: mkdocs build --strict --config-file mkdocs.v0.9.yml --site-dir site-v0.9
 
       - name: Validate generated site
         run: |

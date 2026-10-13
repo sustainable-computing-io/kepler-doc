@@ -3,6 +3,7 @@ publish = "site/"
 command = """
 export PATH="$PATH:~/.local/bin" &&
 python -m pip install hatch &&
+python -m hatch run sync main &&
 python -m hatch run build
 """
 

@@ -165,3 +165,9 @@ cython_debug/
 */.DS_Store
 
 /tmp
+
+# synced from the kepler repo by hack/sync-kepler-docs.sh
+docs/kepler/installation/guide.md
+docs/kepler/installation/helm-updates.md
+docs/kepler/usage/configuration.md
+docs/kepler/design/metrics.md
