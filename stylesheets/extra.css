@@ -1,0 +1,209 @@
+.md-header,
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__title,
+.md-typeset h1 {
+  font-weight: 700;
+}
+
+/* Slightly larger logo and site name in the header */
+.md-header__button.md-logo {
+  padding: 0.25rem;
+}
+
+.md-header__button.md-logo img {
+  height: 1.5rem;
+}
+
+[dir="ltr"] .md-header__title {
+  margin-left: 0.4rem;
+}
+
+.md-header__title {
+  font-size: 1rem;
+}
+
+/* Tabs in the header row (moved by javascripts/header.js) */
+.md-header__title {
+  flex-grow: 0;
+}
+
+.md-header__inner .md-tabs {
+  margin-left: auto;
+  width: auto;
+  background: none;
+}
+
+.md-header__inner .md-tabs .md-grid {
+  margin: 0;
+}
+
+.md-header__inner .md-tabs__link {
+  margin-top: 0;
+  font-size: 0.8rem;
+}
+
+.md-header__inner .md-tabs__item {
+  display: flex;
+  align-items: center;
+}
+
+/* Keep the site name in the header instead of swapping in the page title on scroll */
+.md-header__topic:first-child {
+  position: relative;
+}
+
+.md-header__title--active .md-header__topic:first-child {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  z-index: 0;
+}
+
+.md-header__title--active .md-header__topic + .md-header__topic {
+  display: none;
+}
+
+/* The primary nav title repeats the site name; keep it only in the mobile drawer */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary > .md-nav__title {
+    display: none;
+  }
+}
+
+/* Mobile: keep the header and logo visible and open the menu below it */
+@media screen and (max-width: 76.2344em) {
+  .md-header {
+    z-index: 6;
+  }
+
+  .md-header__button.md-logo {
+    display: block;
+  }
+
+  .md-header__title {
+    flex-grow: 1;
+  }
+
+  .md-header__button[for="__drawer"] {
+    order: 1;
+  }
+
+  [dir="ltr"] .md-sidebar--primary,
+  [dir="rtl"] .md-sidebar--primary {
+    left: 0;
+    right: 0;
+  }
+
+  .md-sidebar--primary,
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary,
+  [dir="rtl"] [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary {
+    top: 2.4rem;
+    width: 100%;
+    height: calc(100% - 2.4rem);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .md-sidebar--primary {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .md-overlay {
+    top: 2.4rem;
+  }
+
+  .md-nav--primary > .md-nav__title[for="__drawer"] {
+    display: none;
+  }
+}
+
+.md-header__home {
+  color: inherit;
+}
+
+/* Footer on the page background: previous/next links, CNCF block on the
+   landing page (overrides/partials/footer.html), copyright and social links */
+.md-footer {
+  background-color: transparent;
+  color: var(--md-default-fg-color--light);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.kepler-cncf {
+  padding: 2rem 0.8rem;
+  text-align: center;
+}
+
+.kepler-cncf p {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+}
+
+.kepler-cncf > p:first-child {
+  font-size: 0.9rem;
+}
+
+.kepler-cncf__logo img {
+  display: block;
+  width: 16rem;
+  max-width: 80%;
+  margin: 1rem auto;
+}
+
+.kepler-cncf__trademark {
+  font-size: 0.7rem;
+}
+
+.md-footer-meta {
+  background-color: transparent;
+}
+
+.md-copyright,
+.md-copyright__highlight,
+html .md-footer-meta.md-typeset a {
+  color: var(--md-default-fg-color--light);
+}
+
+html .md-footer-meta.md-typeset a:focus,
+html .md-footer-meta.md-typeset a:hover {
+  color: var(--md-primary-fg-color);
+}
+
+.md-footer-meta__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.md-copyright {
+  grid-column: 2;
+  text-align: center;
+}
+
+.md-social {
+  grid-column: 3;
+  justify-self: end;
+}
+
+@media screen and (max-width: 44.9844em) {
+  .md-footer-meta__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .md-copyright,
+  .md-social {
+    grid-column: 1;
+    justify-self: center;
+  }
+}
