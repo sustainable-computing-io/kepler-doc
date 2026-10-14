@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
   script.setAttribute("data-launcher-button-image-width", "0");
   script.setAttribute("data-launcher-button-image-height", "0");
   script.setAttribute("data-launcher-button-font-family", "Roboto, -apple-system, system-ui, Helvetica, Arial, sans-serif");
-  script.setAttribute("data-launcher-button-font-size", "14px");
-  script.setAttribute("data-launcher-button-font-weight", "500");
+  script.setAttribute("data-launcher-button-label-font-size", "14px");
+  script.setAttribute("data-launcher-button-label-font-weight", "500");
   script.setAttribute("data-launcher-button-width", "auto");
   script.setAttribute("data-launcher-button-height", "auto");
   script.setAttribute("data-launcher-button-padding-x", "14px");
