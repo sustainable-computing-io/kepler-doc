@@ -1,8 +1,9 @@
 // Load the kapa.ai "Ask AI" widget. Configuration reference:
 // https://docs.kapa.ai/integrations/website-widget/configuration/behavior
 document.addEventListener("DOMContentLoaded", function () {
-  var lang = document.documentElement.lang || "en";
-  var zh = lang.indexOf("zh") === 0;
+  // The Chinese build lives under /zh/. Use the path rather than <html lang>,
+  // because the shared 404 page is built with lang="zh" for every missing URL.
+  var zh = /^\/zh(\/|$)/.test(location.pathname);
   var script = document.createElement("script");
   script.src = "https://widget.kapa.ai/kapa-widget.bundle.js";
   script.async = true;
@@ -30,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // hCaptcha rejects localhost, so on `mkdocs serve` the first question can fail
   // with a captcha error; retry, or test on a deploy preview instead.
   script.setAttribute("data-bot-protection-mechanism", "hcaptcha");
-  // mkdocs-static-i18n sets <html lang="zh"> on the Chinese build.
   script.setAttribute("data-language", zh ? "zh" : "en");
   // The widget translates its own UI but not these, so give the zh build its own set.
   script.setAttribute(
