@@ -49,10 +49,31 @@ def _git(root: Path, *args: str) -> str:
     return out.stdout.strip() if out.returncode == 0 else ""
 
 
-def _repo_root(path: Path) -> Path | None:
-    for parent in path.parents:
-        if (parent / ".git").exists():
-            return parent
+@lru_cache(maxsize=None)
+def _submodule_roots(repo_root: Path) -> tuple[Path, ...]:
+    """Resolved paths of the submodules declared in repo_root/.gitmodules."""
+    gitmodules = repo_root / ".gitmodules"
+    if not gitmodules.is_file():
+        return ()
+    out = _git(repo_root, "config", "--file", str(gitmodules), "--get-regexp", r"\.path$")
+    roots = []
+    for line in out.splitlines():
+        rel = line.split(" ", 1)[1].strip() if " " in line else ""
+        if rel:
+            roots.append((repo_root / rel).resolve())
+    return tuple(roots)
+
+
+def _submodule_root(real: Path, repo_root: Path) -> Path | None:
+    """Return the submodule checkout that contains real, or None.
+
+    A page counts as upstream only when its real path is under a path declared
+    in the repo's .gitmodules. That removes the nearest-.git guess, so an
+    unrelated parent repository cannot trigger link rewrites.
+    """
+    for sub in _submodule_roots(repo_root):
+        if real == sub or sub in real.parents:
+            return sub
     return None
 
 
@@ -95,8 +116,9 @@ def _rewrite(target: str, image: bool, src_uri: str, real: Path, root: Path, ups
 
 def on_page_markdown(markdown, page, config, files):
     real = Path(page.file.abs_src_path).resolve()
-    root = _repo_root(real)
-    if root is None or root == Path(config["config_file_path"]).resolve().parent:
+    repo_root = Path(config["config_file_path"]).resolve().parent
+    root = _submodule_root(real, repo_root)
+    if root is None:
         return markdown
     upstream = _upstream(root)
     if upstream is None:
