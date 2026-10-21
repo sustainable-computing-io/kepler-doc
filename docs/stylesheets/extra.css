@@ -25,7 +25,13 @@
   font-size: 1rem;
 }
 
-/* Tabs in the header row (moved by javascripts/header.js) */
+/* Material hides search until its JavaScript loads, which shifts the tabs
+   on each page load */
+.no-js .md-search {
+  display: block;
+}
+
+/* Tabs in the header row (overrides/partials/header.html) */
 .md-header__title {
   flex-grow: 0;
 }
