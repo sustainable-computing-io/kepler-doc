@@ -74,3 +74,15 @@ curl -s localhost:28282/metrics | grep kepler_pod_cpu_watts</code></pre>
   </section>
   {% endif %}
 {% endblock %}
+
+{% block footer %}
+  <section class="kp-hero kp-closing">
+    <div class="md-grid md-typeset kp-hero__inner">
+      <p class="kp-closing__tagline">Let's make every watt matter.</p>
+      <div class="kp-hero__actions">
+        <a href="{{ 'kepler/installation/guide/' | url }}" class="md-button md-button--primary">Get started</a>
+      </div>
+    </div>
+  </section>
+  {{ super() }}
+{% endblock %}
