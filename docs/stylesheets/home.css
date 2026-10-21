@@ -123,6 +123,22 @@
   text-align: center;
 }
 
+/* Closing band above the footer, styled like the hero */
+.kp-closing .kp-hero__inner {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 3.5rem 0.8rem;
+  text-align: center;
+}
+
+.kp-closing .kp-closing__tagline {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 /* The hero replaces the page title on the landing page */
 .md-main__inner:has(.kp-features) {
   margin-top: 0;
@@ -130,8 +146,12 @@
 
 @media screen and (max-width: 59.984em) {
   .kp-hero__inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 2.5rem 0.8rem 3rem;
+  }
+
+  .kp-hero__metrics {
+    display: none;
   }
 
   .kp-hero__inner.md-typeset h1 {
