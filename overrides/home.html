@@ -1,0 +1,76 @@
+{#-
+  Landing page. docs/index.md selects it with `template: home.html`.
+  Adopters come from data/adopters.yaml via hooks/adopters.py.
+-#}
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+  <section class="kp-hero">
+    <div class="md-grid md-typeset kp-hero__inner">
+      <div class="kp-hero__text">
+        <h1>Attribute energy use to Kubernetes workloads</h1>
+        <p>
+          Kepler is a Prometheus exporter that reads hardware power sensors and
+          attributes energy to containers, pods, VMs, and processes.
+        </p>
+        <div class="kp-hero__actions">
+          <a href="{{ 'kepler/installation/guide/' | url }}" class="md-button md-button--primary">Get started</a>
+          <a href="https://github.com/sustainable-computing-io/kepler" class="md-button">View on GitHub</a>
+        </div>
+      </div>
+      <div class="kp-hero__metrics" aria-label="Example Kepler metrics">
+<pre><code><span class="kp-c"># TYPE kepler_pod_cpu_watts gauge</span>
+<span class="kp-m">kepler_pod_cpu_watts</span>{pod_name="<span class="kp-s">checkout</span>",zone="<span class="kp-s">package</span>"} <span class="kp-n">4.82</span>
+<span class="kp-m">kepler_pod_cpu_watts</span>{pod_name="<span class="kp-s">search</span>",zone="<span class="kp-s">package</span>"} <span class="kp-n">2.17</span>
+<span class="kp-m">kepler_pod_cpu_watts</span>{pod_name="<span class="kp-s">postgres-0</span>",zone="<span class="kp-s">package</span>"} <span class="kp-n">1.06</span></code></pre>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <section class="kp-section kp-features">
+    <div class="kp-card">
+      <h3>Power per workload</h3>
+      <p>Energy and power for nodes, containers, pods, VMs, and processes, as Prometheus metrics.</p>
+    </div>
+    <div class="kp-card">
+      <h3>Hardware sensors</h3>
+      <p>Reads Intel RAPL, with experimental support for <code>hwmon</code>, NVIDIA GPUs, and Redfish platform power.</p>
+    </div>
+    <div class="kp-card">
+      <h3>Few privileges</h3>
+      <p>Needs read-only access to <code>/proc</code> and <code>/sys</code>. No <code>CAP_SYS_ADMIN</code> or <code>CAP_BPF</code>.</p>
+    </div>
+  </section>
+
+  <section class="kp-section kp-quickstart">
+    <h2>Quick start</h2>
+    <p>Install Kepler with Helm, then read its metrics.</p>
+<pre><code>helm install kepler oci://quay.io/sustainable_computing_io/charts/kepler \
+  --namespace kepler --create-namespace
+
+kubectl port-forward -n kepler svc/kepler 28282:28282
+curl -s localhost:28282/metrics | grep kepler_pod_cpu_watts</code></pre>
+    <p>
+      Next: <a href="{{ 'kepler/installation/guide/' | url }}">installation options</a>,
+      <a href="{{ 'kepler/usage/configuration/' | url }}">configuration</a>, and
+      <a href="{{ 'kepler/design/metrics/' | url }}">metrics reference</a>.
+    </p>
+  </section>
+
+  {% if config.extra.adopters %}
+  <section class="kp-section kp-adopters">
+    <h2>Used by</h2>
+    <div class="kp-adopters__logos">
+      {% for a in config.extra.adopters %}
+      <a href="{{ a.url }}" title="{{ a.name }}">
+        <img src="{{ ('fig/' ~ (a.logo or 'logos/default.svg')) | url }}" alt="{{ a.name }}" loading="lazy">
+      </a>
+      {% endfor %}
+    </div>
+    <p><a href="{{ 'project/adopters/' | url }}">All adopters</a> · <a href="{{ 'project/contributing/' | url }}">Add your organization</a></p>
+  </section>
+  {% endif %}
+{% endblock %}

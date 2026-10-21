@@ -21,8 +21,8 @@ theme:
 
 docs_dir: ./docs
 nav:
+  - Home: index.md
   - Docs:
-      - index.md
       - Installation:
           - Quick Start: kepler/installation/guide.md
           - Configuration: kepler/usage/configuration.md
@@ -90,9 +90,7 @@ markdown_extensions:
 extra_css:
   - stylesheets/adopters.css
   - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/header.js
+  - stylesheets/home.css
 
 copyright: Copyright &copy; Contributors to the Kepler project
 
@@ -108,6 +106,7 @@ extra:
       name: "#kepler-project on CNCF Slack"
 
 hooks:
+  - hooks/adopters.py
   - hooks/upstream_links.py
 
 plugins:
