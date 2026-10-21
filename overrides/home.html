@@ -14,6 +14,7 @@
           Kepler is a Prometheus exporter that reads hardware power sensors and
           attributes energy to containers, pods, VMs, and processes.
         </p>
+        <p class="kp-hero__tagline">Let's make every watt matter.</p>
         <div class="kp-hero__actions">
           <a href="{{ 'kepler/installation/guide/' | url }}" class="md-button md-button--primary">Get started</a>
           <a href="https://github.com/sustainable-computing-io/kepler" class="md-button">View on GitHub</a>
@@ -75,14 +76,3 @@ curl -s localhost:28282/metrics | grep kepler_pod_cpu_watts</code></pre>
   {% endif %}
 {% endblock %}
 
-{% block footer %}
-  <section class="kp-hero kp-closing">
-    <div class="md-grid md-typeset kp-hero__inner">
-      <p class="kp-closing__tagline">Let's make every watt matter.</p>
-      <div class="kp-hero__actions">
-        <a href="{{ 'kepler/installation/guide/' | url }}" class="md-button md-button--primary">Get started</a>
-      </div>
-    </div>
-  </section>
-  {{ super() }}
-{% endblock %}
