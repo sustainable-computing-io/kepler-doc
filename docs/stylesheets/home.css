@@ -130,8 +130,12 @@
 
 @media screen and (max-width: 59.984em) {
   .kp-hero__inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 2.5rem 0.8rem 3rem;
+  }
+
+  .kp-hero__metrics {
+    display: none;
   }
 
   .kp-hero__inner.md-typeset h1 {
