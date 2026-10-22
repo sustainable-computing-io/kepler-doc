@@ -26,6 +26,12 @@
   opacity: 0.9;
 }
 
+.kp-hero__text .kp-hero__tagline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  opacity: 1;
+}
+
 .kp-hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -121,22 +127,6 @@
 
 .kp-adopters {
   text-align: center;
-}
-
-/* Closing band above the footer, styled like the hero */
-.kp-closing .kp-hero__inner {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: 1.5rem;
-  padding: 3.5rem 0.8rem;
-  text-align: center;
-}
-
-.kp-closing .kp-closing__tagline {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.2;
 }
 
 /* The hero replaces the page title on the landing page */
