@@ -25,6 +25,7 @@ nav:
   - Docs:
       - Installation:
           - Quick Start: kepler/installation/guide.md
+          - Helm Updates: kepler/installation/helm-updates.md
           - Configuration: kepler/usage/configuration.md
       - Guides:
           - Power Attribution: kepler/usage/power-attribution.md
