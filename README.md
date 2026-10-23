@@ -1,6 +1,7 @@
 # Documentation for Kepler-Doc
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/89ddb0b5-1814-42dc-bd62-78e472af85e1/deploy-status)](https://app.netlify.com/projects/sustainable-computing/deploys)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsustainable-computing-io%2Fkepler-doc.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsustainable-computing-io%2Fkepler-doc?ref=badge_shield)
 
 Follow [sustainable-computing.io](https://sustainable-computing.io/) to see the Kepler
 documentation.
@@ -158,3 +159,7 @@ GitHub codespaces [provides a generous free tier](https://github.com/features/co
 1. Make your changes as normal to the files within the `docs/` folder. The preview site will live reload
 1. When you're satisfied with your updates, commit them to your fork: `git add -A && git commit -sm "docs: a commit message here" && git push`
 1. Create a PR and you're done
+
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsustainable-computing-io%2Fkepler-doc.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsustainable-computing-io%2Fkepler-doc?ref=badge_large)
