@@ -1,7 +1,20 @@
-on:
+name: Deploy docs
+
+on: # yamllint disable-line rule:truthy
   push:
     branches:
       - main
+  # Sent by kepler on pushes to docs/ on main
+  repository_dispatch:
+    types: [kepler-docs]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -9,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0 # mike commits to the gh-pages branch
           submodules: true
       - uses: actions/setup-python@v5
         with:
@@ -19,5 +33,25 @@ jobs:
         with:
           +: gomplate.ca@3.11.4
       - run: gomplate -d adopters=./data/adopters.yaml -f templates/adopters.md -o docs/project/adopters.md
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages:gh-pages
+
+      # The submodule pins the latest release. Older versions stay as published.
+      - name: Deploy latest release
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          tag="$(hack/kepler-tag.sh)"
+          mike deploy --update-aliases --alias-type=copy "${tag%.*}" latest
+          mike set-default latest
+
+      - name: Deploy dev
+        run: |
+          git -C kepler fetch --depth 1 origin main
+          git -C kepler checkout --quiet FETCH_HEAD
+          mike deploy dev
+
+      - name: Push gh-pages
+        run: git push origin gh-pages

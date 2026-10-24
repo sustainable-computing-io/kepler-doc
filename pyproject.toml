@@ -27,6 +27,7 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
+	"mike>=2.1",
 	"mkdocs>=1.6",
 	"mkdocs-material>=9.5",
 	"mkdocs-static-i18n>=1.2",
@@ -67,6 +68,7 @@ only-include = [
 
 [tool.hatch.envs.default]
 dependencies = [
+	"mike>=2.1",
 	"mkdocs>=1.6",
 	"mkdocs-material>=9.5",
 	"mkdocs-static-i18n>=1.2",

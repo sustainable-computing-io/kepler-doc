@@ -131,6 +131,19 @@ mkdocs serve -a 0.0.0.0:8000
 
 The website layout can be found in [./mkdocs.yml](mkdocs.yml).
 
+## Versions
+
+[`mike`](https://github.com/jimporter/mike) publishes one docs version per Kepler minor
+release to the `gh-pages` branch. On each push to `main`,
+[`.github/workflows/mkdocs-ghpages.yaml`](.github/workflows/mkdocs-ghpages.yaml) deploys:
+
+- the release the `kepler` submodule pins, as its minor version (`v0.12`) with the `latest`
+  alias, the default version
+- `dev`, built from `kepler@main`, also rebuilt when `kepler` changes `docs/` on `main`
+
+Bumping the submodule to a new minor publishes a new version and moves `latest`. Earlier
+versions stay as last published. `v0.9` holds the docs for Kepler v0.9.0 and below.
+
 ## Running in GitHub Codespaces
 
 GitHub codespaces is a pre-configured, virtual, temporary and throwaway environment that you can use to build, modify and contribute to the Kepler docs.
