@@ -97,6 +97,9 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/home.css
 
+extra_javascript:
+  - javascripts/kapa.js
+
 copyright: Copyright &copy; Contributors to the Kepler project
 
 extra:
