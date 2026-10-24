@@ -3,7 +3,7 @@ date: 2025-07-09
 slug: kepler-0-10-rewrite
 ---
 
-# Kepler 0.10.0: A Ground-Up Rewrite
+# 🚀 Major Rewrite: Kepler (0.10.0 and above)
 
 **Important Notice:** Starting with version 0.10.0, Kepler has undergone a complete ground-up rewrite.
 This represents a significant architectural improvement while maintaining the core mission of
