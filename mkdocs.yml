@@ -1,10 +1,14 @@
 site_name: Kepler
+repo_url: https://github.com/sustainable-computing-io/kepler
+repo_name: kepler
 theme:
   palette:
     primary: teal
   name: material
   logo: assets/logo.png
   favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
   language: en
   custom_dir: overrides
   features:
