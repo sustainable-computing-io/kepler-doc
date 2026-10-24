@@ -77,6 +77,8 @@ nav:
               - archive/kepler_model_server/node_profile.md
               - archive/kepler_model_server/power_estimation.md
               - archive/kepler_model_server/api.md
+  - Blog:
+      - blog/index.md
   - Adopters: project/adopters.md
   - Resources: project/resources.md
   - Contributing: project/contributing.md
@@ -116,6 +118,7 @@ extra:
 hooks:
   - hooks/adopters.py
   - hooks/upstream_links.py
+  - hooks/blog_i18n.py
 
 plugins:
   - search:
@@ -131,3 +134,8 @@ plugins:
         - locale: zh
           name: Chinese
           build: true
+  - blog:
+      post_url_format: "{slug}"
+      archive: false
+      categories: false
+      pagination: false
