@@ -82,4 +82,4 @@ Kepler Operator 提供了一种在 OpenShift 集群上部署和管理 Kepler（K
 ## 获取帮助
 
 - [项目资源](../../project/resources.zh.md) - 其他文档和资源
-- [支持](../../project/support.zh.md) - 社区支持和贡献指南
+- [社区](../../project/community.zh.md) - 社区支持和贡献指南

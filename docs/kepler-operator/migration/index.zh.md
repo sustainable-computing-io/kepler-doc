@@ -409,5 +409,5 @@ oc get pods -n kepler
 如果在迁移过程中遇到问题：
 
 1. **检查日志**：使用[故障排除指南](../configuration/monitoring-troubleshooting.zh.md)中的诊断命令
-2. **社区支持**：查看[支持](../../project/support.zh.md)了解社区渠道
+2. **社区支持**：查看[社区](../../project/community.zh.md)了解社区渠道
 3. **报告问题**：在 [Kepler Operator 仓库](https://github.com/sustainable-computing-io/kepler-operator/issues)中创建问题

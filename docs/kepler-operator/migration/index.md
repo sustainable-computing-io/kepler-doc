@@ -411,5 +411,5 @@ oc get pods -n kepler
 If you encounter issues during migration:
 
 1. **Check logs**: Use the diagnostic commands in the [Troubleshooting Guide](../configuration/monitoring-troubleshooting.md)
-2. **Community support**: See [Support](../../project/support.md) for community channels
+2. **Community support**: See [Community](../../project/community.md) for community channels
 3. **Report issues**: Create an issue in the [Kepler Operator repository](https://github.com/sustainable-computing-io/kepler-operator/issues)
