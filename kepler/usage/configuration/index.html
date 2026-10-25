@@ -1,0 +1,3707 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../installation/helm-updates/">
+      
+      
+        <link rel="next" href="../power-attribution/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../../zh/kepler/usage/configuration/" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Configuration - Kepler</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/adopters.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/home.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kepler-configuration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Kepler" class="md-header__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <a href="../../.." class="md-header__home">Kepler</a>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../installation/guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../project/adopters/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Adopters
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../project/community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../zh/kepler/usage/configuration/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sustainable-computing-io/kepler" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kepler
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Kepler" class="md-nav__button md-logo" aria-label="Kepler" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Kepler
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sustainable-computing-io/kepler" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kepler
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/helm-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helm Updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Configuration Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🖥️ Command-line Flags
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🖥️ Command-line Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ Configuration File
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗂️ Configuration File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧾 Sample Configuration File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options-in-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Configuration Options in Detail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Configuration Options in Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Logging Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitor-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Monitor Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗄️ Host Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-power-meter-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧮 CPU Power Meter Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rapl-zones-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔋 RAPL Zones Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporter-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Exporter Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐞 Debug Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Web Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-probe-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🩺 Health Probe Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐳 Kubernetes Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experimental-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Experimental Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Experimental Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redfish-bmc-power-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redfish BMC Power Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hwmon-power-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hwmon Power Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-power-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU Power Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧑‍🔬 Development Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Further Reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power-attribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Attribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/dev-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Operator
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kepler Operator
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../kepler-operator/openshift/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenShift
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5_1" id="__nav_2_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OpenShift
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/openshift/cli-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../kepler-operator/configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5_2" id="__nav_2_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Usage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kepler-operator/configuration/monitoring-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring & Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../kepler-operator/migration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../archive/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive (v0.9.0 and below)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive (v0.9.0 and below)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design (Legacy)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design (Legacy)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/design/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/design/power_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Power Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/design/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Container Power Consumption with Kepler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/design/ebpf_in_kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    eBPF in Kepler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/design/kepler-energy-sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Energy Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_3" id="__nav_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation (Legacy)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation (Legacy)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation Strategies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/local-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local cluster setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/kepler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy using Manifests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/kepler-helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy using Helm Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/community-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Community Operator on OpenShift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/kepler-operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Operator on Kind
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/kepler-rpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Kepler as RPM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/installation/Kepler-Telegraf-integration-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_4" id="__nav_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage (Legacy)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Usage (Legacy)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/usage/kepler_daemon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler DaemonSet Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/usage/trouble_shooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trouble Shooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/usage/deep_dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../archive/hardwareengagement/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Engagement (Legacy)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardware Engagement (Legacy)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_6" id="__nav_2_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Model Server (Legacy)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kepler Model Server (Legacy)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../model-server-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibility Notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/get_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started with Kepler Model Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Model Server Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/node_profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/power_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Power Estimation Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/kepler_model_server/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kepler Model Server API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/adopters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adopters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kepler-configuration-guide">⚙️ Kepler Configuration Guide</h1>
+<p>Kepler supports configuration through both command-line flags and a configuration file. This guide outlines all available configuration options for configuring Kepler.</p>
+<h2 id="configuration-methods">🛠️ Configuration Methods</h2>
+<p>Kepler supports two primary methods for configuration:</p>
+<ol>
+<li><strong>Command-line flags</strong>: For quick adjustments and one-time settings</li>
+<li><strong>Configuration file</strong>: For persistent and comprehensive configuration</li>
+</ol>
+<blockquote>
+<p>⚡ <strong>Tip:</strong> Command-line flags take precedence over configuration file settings when both are specified.</p>
+</blockquote>
+<h2 id="command-line-flags">🖥️ Command-line Flags</h2>
+<p>You can configure Kepler by passing flags when starting the service. The following flags are available:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+<th>Default</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--config.file</code></td>
+<td>Path to YAML configuration file</td>
+<td></td>
+<td>Any valid file path</td>
+</tr>
+<tr>
+<td><code>--log.level</code></td>
+<td>Logging level</td>
+<td><code>info</code></td>
+<td><code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code></td>
+</tr>
+<tr>
+<td><code>--log.format</code></td>
+<td>Output format for logs</td>
+<td><code>text</code></td>
+<td><code>text</code>, <code>json</code></td>
+</tr>
+<tr>
+<td><code>--host.sysfs</code></td>
+<td>Path to sysfs filesystem</td>
+<td><code>/sys</code></td>
+<td>Any valid directory path</td>
+</tr>
+<tr>
+<td><code>--host.procfs</code></td>
+<td>Path to procfs filesystem</td>
+<td><code>/proc</code></td>
+<td>Any valid directory path</td>
+</tr>
+<tr>
+<td><code>--monitor.interval</code></td>
+<td>Monitor refresh interval</td>
+<td><code>5s</code></td>
+<td>Any valid duration</td>
+</tr>
+<tr>
+<td><code>--monitor.max-terminated</code></td>
+<td>Maximum number of terminated workloads to keep in memory until exported</td>
+<td><code>500</code></td>
+<td>Negative number indicates <code>unlimited</code> and <code>0</code> disables the feature</td>
+</tr>
+<tr>
+<td><code>--web.config-file</code></td>
+<td>Path to TLS server config file</td>
+<td><code>""</code></td>
+<td>Any valid file path</td>
+</tr>
+<tr>
+<td><code>--web.listen-address</code></td>
+<td>Web server listen addresses (can be specified multiple times)</td>
+<td><code>:28282</code></td>
+<td>Any valid host:port or :port format</td>
+</tr>
+<tr>
+<td><code>--debug.pprof</code></td>
+<td>Enable pprof debugging endpoints</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--exporter.stdout</code></td>
+<td>Enable stdout exporter</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--exporter.prometheus</code></td>
+<td>Enable Prometheus exporter</td>
+<td><code>true</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--metrics</code></td>
+<td>Metrics levels to export (can be specified multiple times)</td>
+<td><code>node,process,container,vm,pod</code></td>
+<td><code>node</code>, <code>process</code>, <code>container</code>, <code>vm</code>, <code>pod</code></td>
+</tr>
+<tr>
+<td><code>--kube.enable</code></td>
+<td>Monitor kubernetes</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--kube.config</code></td>
+<td>Path to a kubeconfig file</td>
+<td><code>""</code></td>
+<td>Any valid file path</td>
+</tr>
+<tr>
+<td><code>--kube.node-name</code></td>
+<td>Name of kubernetes node on which kepler is running</td>
+<td><code>""</code></td>
+<td>Any valid node name</td>
+</tr>
+<tr>
+<td><code>--experimental.platform.redfish.enabled</code></td>
+<td>Enable experimental Redfish BMC power monitoring</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--experimental.platform.redfish.node-name</code></td>
+<td>Node name for experimental Redfish platform power monitoring</td>
+<td><code>""</code></td>
+<td>Any valid node name</td>
+</tr>
+<tr>
+<td><code>--experimental.platform.redfish.config-file</code></td>
+<td>Path to experimental Redfish BMC configuration file</td>
+<td><code>""</code></td>
+<td>Any valid file path</td>
+</tr>
+<tr>
+<td><code>--experimental.hwmon.force-enabled</code></td>
+<td>Force hwmon as power meter, skipping RAPL auto-detection</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--experimental.hwmon.zones</code></td>
+<td>hwmon zones to be enabled (can be specified multiple times)</td>
+<td>All available zones</td>
+<td>Any valid hwmon zone name</td>
+</tr>
+<tr>
+<td><code>--experimental.gpu.enabled</code></td>
+<td>Enable experimental GPU power monitoring</td>
+<td><code>false</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td><code>--experimental.gpu.idle-power</code></td>
+<td>GPU idle power in Watts (0 = auto-detect)</td>
+<td><code>0</code></td>
+<td>Any non-negative float</td>
+</tr>
+<tr>
+<td><code>--experimental.gpu.dcgm-endpoint</code></td>
+<td>dcgm-exporter metrics endpoint for MIG power attribution</td>
+<td><code>""</code> (auto-discover)</td>
+<td>URL (e.g., <code>http://10.0.0.1:9400/metrics</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">💡 Examples</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run with debug logging</span>
+kepler<span class="w"> </span>--log.level<span class="o">=</span>debug
+
+<span class="c1"># Use a different procfs path and JSON logging</span>
+kepler<span class="w"> </span>--host.procfs<span class="o">=</span>/custom/proc<span class="w"> </span>--log.format<span class="o">=</span>json
+
+<span class="c1"># Load configuration from file</span>
+kepler<span class="w"> </span>--config.file<span class="o">=</span>/path/to/config.yaml
+
+<span class="c1"># Use custom listen addresses</span>
+kepler<span class="w"> </span>--web.listen-address<span class="o">=</span>:8080<span class="w"> </span>--web.listen-address<span class="o">=</span>localhost:9090
+
+<span class="c1"># Enable stdout exporter and disable Prometheus exporter</span>
+kepler<span class="w"> </span>--exporter.stdout<span class="o">=</span><span class="nb">true</span><span class="w"> </span>--exporter.prometheus<span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># Enable Kubernetes monitoring with specific kubeconfig and node name</span>
+kepler<span class="w"> </span>--kube.enable<span class="o">=</span><span class="nb">true</span><span class="w"> </span>--kube.config<span class="o">=</span>/path/to/kubeconfig<span class="w"> </span>--kube.node-name<span class="o">=</span>my-node
+
+<span class="c1"># Enable experimental Redfish BMC power monitoring</span>
+kepler<span class="w"> </span>--experimental.platform.redfish.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--experimental.platform.redfish.config-file<span class="o">=</span>/path/to/redfish-config.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--experimental.platform.redfish.node-name<span class="o">=</span>worker-node-1
+
+<span class="c1"># Force hwmon as power meter (skipping RAPL auto-detection)</span>
+kepler<span class="w"> </span>--experimental.hwmon.force-enabled<span class="o">=</span><span class="nb">true</span>
+
+<span class="c1"># Force hwmon with specific zones</span>
+kepler<span class="w"> </span>--experimental.hwmon.force-enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--experimental.hwmon.zones<span class="o">=</span>power1<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--experimental.hwmon.zones<span class="o">=</span>power2
+
+<span class="c1"># Enable experimental GPU power monitoring</span>
+kepler<span class="w"> </span>--experimental.gpu.enabled<span class="o">=</span><span class="nb">true</span>
+
+<span class="c1"># Enable GPU monitoring with configured idle power (e.g. when GPUs are always under load)</span>
+kepler<span class="w"> </span>--experimental.gpu.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span>--experimental.gpu.idle-power<span class="o">=</span><span class="m">17</span>.5
+
+<span class="c1"># Export only node and container level metrics</span>
+kepler<span class="w"> </span>--metrics<span class="o">=</span>node<span class="w"> </span>--metrics<span class="o">=</span>container
+
+<span class="c1"># Export only process level metrics</span>
+kepler<span class="w"> </span>--metrics<span class="o">=</span>process
+
+<span class="c1"># Set maximum terminated workloads to 1000</span>
+kepler<span class="w"> </span>--monitor.max-terminated<span class="o">=</span><span class="m">1000</span>
+
+<span class="c1"># Disable terminated workload tracking</span>
+kepler<span class="w"> </span>--monitor.max-terminated<span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># Unlimited terminated workload tracking</span>
+kepler<span class="w"> </span>--monitor.max-terminated<span class="o">=</span>-1
+</code></pre></div>
+<h2 id="configuration-file">🗂️ Configuration File</h2>
+<p>Kepler can load configuration from a YAML file. The configuration file offers more extensive options than command-line flags.</p>
+<p>Keys that Kepler does not recognize are ignored rather than rejected, so a config written for a different release still starts. Each ignored key is listed in a warning at startup:</p>
+<div class="highlight"><pre><span></span><code>level=WARN msg="ignoring unknown config fields; check for typos or options from another release" fields="[dcgmEndpoint]"
+</code></pre></div>
+<h3 id="sample-configuration-file">🧾 Sample Configuration File</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">log</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span><span class="w">  </span><span class="c1"># debug, info, warn, error (default: info)</span>
+<span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span><span class="w">  </span><span class="c1"># text or json (default: text)</span>
+
+<span class="nt">monitor</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span><span class="w">        </span><span class="c1"># Monitor refresh interval (default: 5s)</span>
+<span class="w">  </span><span class="nt">staleness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500ms</span><span class="w">    </span><span class="c1"># Duration after which data is considered stale (default: 500ms)</span>
+<span class="w">  </span><span class="nt">maxTerminated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span><span class="w">  </span><span class="c1"># Maximum number of terminated workloads to keep in memory (default: 500)</span>
+<span class="w">  </span><span class="nt">minTerminatedEnergyThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">  </span><span class="c1"># Minimum energy threshold for terminated workloads (default: 10)</span>
+
+<span class="nt">host</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sysfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/sys</span><span class="w">   </span><span class="c1"># Path to sysfs filesystem (default: /sys)</span>
+<span class="w">  </span><span class="nt">procfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/proc</span><span class="w"> </span><span class="c1"># Path to procfs filesystem (default: /proc)</span>
+
+<span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">meters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"rapl"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Ordered priority of CPU power-meter backends.</span>
+<span class="w">                             </span><span class="c1"># Built-in backends: rapl, hwmon, fake.</span>
+<span class="w">                             </span><span class="c1"># The first backend that initializes and reports zones is used.</span>
+
+<span class="nt">rapl</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">     </span><span class="c1"># RAPL zones to be enabled, empty enables all default zones</span>
+
+<span class="nt">exporter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stdout</span><span class="p">:</span><span class="w">       </span><span class="c1"># stdout exporter related config</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># disabled by default</span>
+<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span><span class="w">   </span><span class="c1"># prometheus exporter related config</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">debugCollectors</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process</span>
+<span class="w">    </span><span class="nt">metricsLevel</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vm</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+
+<span class="nt">debug</span><span class="p">:</span><span class="w">          </span><span class="c1"># debug related config</span>
+<span class="w">  </span><span class="nt">pprof</span><span class="p">:</span><span class="w">        </span><span class="c1"># pprof related config</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">web</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">configFile</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="c1"># Path to TLS server config file</span>
+<span class="w">  </span><span class="nt">listenAddresses</span><span class="p">:</span><span class="w"> </span><span class="c1"># Web server listen addresses</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">":28282"</span>
+
+<span class="nt">kube</span><span class="p">:</span><span class="w">           </span><span class="c1"># kubernetes related config</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">    </span><span class="c1"># Enable kubernetes monitoring (default: false)</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">        </span><span class="c1"># Path to kubeconfig file (optional if running in-cluster)</span>
+<span class="w">  </span><span class="nt">nodeName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">      </span><span class="c1"># Name of the kubernetes node (required when enabled)</span>
+<span class="w">  </span><span class="nt">podInformer</span><span class="p">:</span><span class="w">      </span><span class="c1"># Pod informer configuration</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubelet</span><span class="w">          </span><span class="c1"># "kubelet" (default) or "apiserver"</span>
+<span class="w">    </span><span class="nt">pollInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span><span class="w">      </span><span class="c1"># Poll interval for kubelet mode (default: 15s)</span>
+
+<span class="nt">experimental</span><span class="p">:</span><span class="w">   </span><span class="c1"># experimental features (no stability guarantees)</span>
+<span class="w">  </span><span class="nt">platform</span><span class="p">:</span><span class="w">     </span><span class="c1"># platform power monitoring</span>
+<span class="w">    </span><span class="nt">redfish</span><span class="p">:</span><span class="w">    </span><span class="c1"># redfish BMC power monitoring</span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                  </span><span class="c1"># Enable Redfish BMC monitoring (default: false)</span>
+<span class="w">      </span><span class="nt">nodeName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">                    </span><span class="c1"># Node identifier (auto-resolved if empty)</span>
+<span class="w">      </span><span class="nt">configFile</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">                  </span><span class="c1"># Path to BMC configuration file (required when enabled)</span>
+<span class="w">      </span><span class="nt">httpTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span><span class="w">                 </span><span class="c1"># HTTP timeout for BMC requests (default: 5s)</span>
+<span class="w">  </span><span class="nt">hwmon</span><span class="p">:</span><span class="w">        </span><span class="c1"># hwmon power monitoring</span>
+<span class="w">    </span><span class="nt">forceEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># DEPRECATED: set cpu.preferredMeters: ["hwmon"] instead. Emits a deprecation warning when true.</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">                         </span><span class="c1"># hwmon zones to be enabled, empty enables all available zones</span>
+<span class="w">    </span><span class="nt">chipRules</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">                     </span><span class="c1"># User-defined chip pairing rules (override/add to hardcoded defaults)</span>
+<span class="w">  </span><span class="nt">gpu</span><span class="p">:</span><span class="w">          </span><span class="c1"># GPU power monitoring</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                    </span><span class="c1"># Enable GPU power monitoring (default: false)</span>
+<span class="w">    </span><span class="nt">idlePower</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                      </span><span class="c1"># GPU idle power in Watts, 0 = auto-detect (default: 0)</span>
+<span class="w">    </span><span class="nt">dcgmEndpoint</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">                  </span><span class="c1"># dcgm-exporter metrics URL for MIG (auto-discovered if empty)</span>
+
+<span class="c1"># WARN: DO NOT ENABLE THIS IN PRODUCTION - for development/testing only</span>
+<span class="nt">dev</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">fake-cpu-meter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">  </span><span class="c1"># Zones to be enabled, empty enables all default zones</span>
+</code></pre></div>
+<h2 id="configuration-options-in-detail">🧩 Configuration Options in Detail</h2>
+<h3 id="logging-configuration">📝 Logging Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">log</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info</span><span class="w">   </span><span class="c1"># Logging level</span>
+<span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span><span class="w">  </span><span class="c1"># Output format</span>
+</code></pre></div>
+<ul>
+<li><strong>level</strong>: Controls the verbosity of logging</li>
+<li><code>debug</code>: Very verbose, includes detailed operational information</li>
+<li><code>info</code>: Standard operational information</li>
+<li><code>warn</code>: Only warnings and errors</li>
+<li>
+<p><code>error</code>: Only errors</p>
+</li>
+<li>
+<p><strong>format</strong>: Controls the output format of logs</p>
+</li>
+<li><code>text</code>: Human-readable format</li>
+<li><code>json</code>: JSON format, suitable for log processing systems</li>
+</ul>
+<h3 id="monitor-configuration">📊 Monitor Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">monitor</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">  </span><span class="nt">staleness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500ms</span>
+<span class="w">  </span><span class="nt">maxTerminated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="w">  </span><span class="nt">minTerminatedEnergyThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong>interval</strong>: The monitor's refresh interval. All processes with a lifetime less than this interval will be ignored. Setting to 0s disables monitor refreshes.</p>
+</li>
+<li>
+<p><strong>staleness</strong>: Duration after which data computed by the monitor is considered stale and recomputed when requested again. Especially useful when multiple Prometheus instances are scraping Kepler, ensuring they receive the same data within the staleness window. Should be shorter than the monitor interval.</p>
+</li>
+<li>
+<p><strong>maxTerminated</strong>: Maximum number of terminated workloads (processes, containers, VMs, pods) to keep in memory until the data is exported. This prevents unbounded memory growth in high-churn environments. Set 0 to disable. When the limit is reached, the least power consuming terminated workloads are removed first.</p>
+</li>
+<li>
+<p><strong>minTerminatedEnergyThreshold</strong>: Minimum energy consumption threshold (in joules) for terminated workloads to be tracked. Only terminated workloads with energy consumption above this threshold will be included in the tracking. This helps filter out short-lived processes that consume minimal energy. Default is 10 joules.</p>
+</li>
+</ul>
+<h3 id="host-configuration">🗄️ Host Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">host</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sysfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/sys</span><span class="w">    </span><span class="c1"># Path to sysfs</span>
+<span class="w">  </span><span class="nt">procfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/proc</span><span class="w">  </span><span class="c1"># Path to procfs</span>
+</code></pre></div>
+<p>These settings specify where Kepler should look for system information. In containerized environments, you might need to adjust these paths.</p>
+<h3 id="cpu-power-meter-selection">🧮 CPU Power Meter Selection</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">preferredMeters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"rapl"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p><code>cpu.preferredMeters</code> is an ordered preference list. Kepler walks the list, builds each backend, runs <code>Init()</code>, and selects the first one that reports zones. If every backend fails, Kepler exits with the aggregated error.</p>
+<p>Built-in backends:</p>
+<ul>
+<li><code>rapl</code>: Intel RAPL via sysfs (default first choice)</li>
+<li><code>hwmon</code>: hwmon power sensors (default second choice)</li>
+<li><code>fake</code>: synthetic readings for development and testing</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Default order — try RAPL first, then hwmon</span>
+<span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">preferredMeters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"rapl"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># Force hwmon, skip RAPL</span>
+<span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">preferredMeters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span>
+
+<span class="c1"># Development mode</span>
+<span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">preferredMeters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"fake"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Two legacy keys still work but emit a deprecation warning:</p>
+<ul>
+<li><code>dev.fake-cpu-meter.enabled: true</code> → translates to <code>cpu.preferredMeters: ["fake"]</code></li>
+<li><code>experimental.hwmon.forceEnabled: true</code> → translates to <code>cpu.preferredMeters: ["hwmon"]</code></li>
+</ul>
+<p>The legacy keys override <code>cpu.preferredMeters</code> when set, since operators who rely on them today expect that behavior. They will stop working in a future release. Per-backend tuning keys (<code>rapl.zones</code>, <code>experimental.hwmon.zones</code>, <code>experimental.hwmon.chipRules</code>, <code>dev.fake-cpu-meter.zones</code>) are unchanged.</p>
+<h3 id="rapl-zones-configuration">🔋 RAPL Zones Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">rapl</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">  </span><span class="c1"># RAPL zones to be enabled</span>
+</code></pre></div>
+<p>Running Average Power Limiting (RAPL) is Intel's power capping mechanism. By default, Kepler enables all available zones. You can restrict to specific zones by listing them.</p>
+<p>Example with specific zones:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">rapl</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"package"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"core"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"uncore"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h3 id="exporter-configuration">📦 Exporter Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">exporter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stdout</span><span class="p">:</span><span class="w">       </span><span class="c1"># stdout exporter related config</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># disabled by default</span>
+<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span><span class="w">   </span><span class="c1"># prometheus exporter related config</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">debugCollectors</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process</span>
+<span class="w">    </span><span class="nt">metricsLevel</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vm</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+</code></pre></div>
+<ul>
+<li><strong>stdout</strong>: Configuration for the stdout exporter</li>
+<li>
+<p><code>enabled</code>: Enable or disable the stdout exporter (default: false)</p>
+</li>
+<li>
+<p><strong>prometheus</strong>: Configuration for the Prometheus exporter</p>
+</li>
+<li><code>enabled</code>: Enable or disable the Prometheus exporter (default: true)</li>
+<li><code>debugCollectors</code>: List of debug collectors to enable (available: "go", "process")</li>
+<li><code>metricsLevel</code>: List of metric levels to expose. Controls the granularity of metrics exported:<ul>
+<li><code>node</code>: Node-level metrics (system-wide power consumption)</li>
+<li><code>process</code>: Process-level metrics (per-process power consumption)</li>
+<li><code>container</code>: Container-level metrics (per-container power consumption)</li>
+<li><code>vm</code>: Virtual machine-level metrics (per-VM power consumption)</li>
+<li><code>pod</code>: Pod-level metrics (per-pod power consumption in Kubernetes)</li>
+</ul>
+</li>
+</ul>
+<h3 id="debug-configuration">🐞 Debug Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">debug</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">pprof</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<ul>
+<li><strong>pprof</strong>: Configuration for pprof debugging</li>
+<li><code>enabled</code>: When enabled, this exposes <a href="https://golang.org/pkg/net/http/pprof/">pprof</a> debug endpoints that can be used for profiling Kepler (default: true)</li>
+</ul>
+<h3 id="web-configuration">🌐 Web Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">web</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">configFile</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">  </span><span class="c1"># Path to TLS server config file</span>
+<span class="w">  </span><span class="nt">listenAddresses</span><span class="p">:</span><span class="w"> </span><span class="c1"># Web server listen addresses</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">":28282"</span>
+</code></pre></div>
+<ul>
+<li><strong>configFile</strong>: Path to a TLS server configuration file for securing Kepler's web endpoints</li>
+<li><strong>listenAddresses</strong>: List of addresses where the web server should listen (default: [":28282"])</li>
+<li>Supports both host:port format (e.g., "localhost:8080", "0.0.0.0:9090") and port-only format (e.g., ":8080")</li>
+<li>Multiple addresses can be specified for listening on different interfaces or ports</li>
+<li>IPv6 addresses are supported using bracket notation (e.g., "[::1]:8080")</li>
+</ul>
+<p>Example TLS server configuration file content:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># TLS server configuration</span>
+<span class="nt">tls_server_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">cert_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/cert.pem</span><span class="w">  </span><span class="c1"># Path to the certificate file</span>
+<span class="w">  </span><span class="nt">key_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/key.pem</span><span class="w">    </span><span class="c1"># Path to the key file</span>
+</code></pre></div>
+<h3 id="health-probe-endpoints">🩺 Health Probe Endpoints</h3>
+<p>Kepler always exposes two health endpoints on the web server, intended for
+Kubernetes <a href="https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/">liveness and readiness probes</a>.
+They require no configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Probe</th>
+<th>Healthy response</th>
+<th>Unhealthy response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/probe/livez</code></td>
+<td>Liveness</td>
+<td><code>200</code> <code>{"status":"alive"}</code></td>
+<td><code>503</code> <code>{"status":"unavailable","failures":{…}}</code></td>
+</tr>
+<tr>
+<td><code>/probe/readyz</code></td>
+<td>Readiness</td>
+<td><code>200</code> <code>{"status":"ok"}</code></td>
+<td><code>503</code> <code>{"status":"unavailable","failures":{…}}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Both accept <code>GET</code> and <code>HEAD</code> and return <code>405</code> for any other method. The
+<code>failures</code> object maps the name of each unhealthy service to the reason it
+reported.</p>
+<ul>
+<li><strong>Liveness</strong> succeeds as long as Kepler can answer the request, which proves
+  the process is running and not dead-locked.</li>
+<li><strong>Readiness</strong> fails with <code>503</code> until every service has been initialized and
+  started, then succeeds.</li>
+</ul>
+<p>Use these endpoints instead of <code>/metrics</code> for probes: each <code>/metrics</code> scrape
+triggers a power computation, whereas the probes do no work beyond answering.
+The shipped Kubernetes manifests and Helm chart are already configured this way:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/probe/livez</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/probe/readyz</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: When TLS is enabled via <code>web.configFile</code>, probes must use
+<code>scheme: HTTPS</code>.</p>
+</blockquote>
+<h3 id="kubernetes-configuration">🐳 Kubernetes Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">kube</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">    </span><span class="c1"># Enable kubernetes monitoring</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">        </span><span class="c1"># Path to kubeconfig file</span>
+<span class="w">  </span><span class="nt">nodeName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">      </span><span class="c1"># Name of the kubernetes node</span>
+<span class="w">  </span><span class="nt">podInformer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubelet</span><span class="w">          </span><span class="c1"># "kubelet" or "apiserver"</span>
+<span class="w">    </span><span class="nt">pollInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span><span class="w">      </span><span class="c1"># Poll interval for kubelet mode</span>
+</code></pre></div>
+<ul>
+<li><strong>enabled</strong>: Enable or disable Kubernetes monitoring (default: false)</li>
+<li>
+<p>When enabled, Kepler will monitor Kubernetes resources and expose pod level information</p>
+</li>
+<li>
+<p><strong>config</strong>: Path to a kubeconfig file (optional)</p>
+</li>
+<li>Required when running Kepler outside of a Kubernetes cluster</li>
+<li>When running inside a cluster, Kepler can use the in-cluster configuration</li>
+<li>
+<p>Must be a valid and readable kubeconfig file</p>
+</li>
+<li>
+<p><strong>nodeName</strong>: Name of the Kubernetes node on which Kepler is running (required when enabled)</p>
+</li>
+<li>This helps Kepler identify which node it's monitoring</li>
+<li>Must match the actual node name in the Kubernetes cluster</li>
+<li>
+<p>Required when <code>enabled</code> is set to <code>true</code></p>
+</li>
+<li>
+<p><strong>podInformer</strong>: Configuration for how Kepler discovers pod metadata</p>
+</li>
+<li><strong>mode</strong>: Pod informer mode (default: <code>kubelet</code>)<ul>
+<li><code>kubelet</code>: Polls the local kubelet <code>/pods</code> endpoint. Reduces API server load. The kubelet host and port are auto-discovered from the Node object at startup.</li>
+<li><code>apiserver</code>: Watches the kube-apiserver for pod events via a shared informer cache.</li>
+</ul>
+</li>
+<li><strong>pollInterval</strong>: How often to poll kubelet for pod data (default: <code>15s</code>, kubelet mode only)</li>
+</ul>
+<h3 id="experimental-configuration">🧪 Experimental Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">experimental</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">platform</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">redfish</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">nodeName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">      </span><span class="nt">configFile</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">      </span><span class="nt">httpTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">  </span><span class="nt">hwmon</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">forceEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="nt">chipRules</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">gpu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p>⚠️ <strong>WARNING</strong>: This section contains experimental features with no stability guarantees.</p>
+<h4 id="redfish-bmc-power-monitoring">Redfish BMC Power Monitoring</h4>
+<ul>
+<li><strong>enabled</strong>: Enable experimental Redfish BMC power monitoring (default: false)</li>
+<li>When enabled, Kepler will collect platform-level power metrics from BMC via Redfish API</li>
+<li>
+<p>Requires a valid BMC configuration file</p>
+</li>
+<li>
+<p><strong>nodeName</strong>: Node identifier for power monitoring (auto-resolved if empty)</p>
+</li>
+<li>Priority: CLI flag → Kubernetes node name → hostname fallback</li>
+<li>
+<p>Must match the node identifier in your BMC configuration</p>
+</li>
+<li>
+<p><strong>configFile</strong>: Path to BMC configuration file (required when enabled)</p>
+</li>
+<li>YAML file containing BMC endpoints, credentials, and node mappings</li>
+<li>
+<p>See <a href="https://github.com/sustainable-computing-io/kepler/blob/2677e75cd993b644c63b6e255464a705b7eebfb7/hack/redfish.yaml">hack/redfish.yaml</a> for example configuration</p>
+</li>
+<li>
+<p><strong>httpTimeout</strong>: HTTP timeout for BMC requests (default: 5s)</p>
+</li>
+<li>Maximum time to wait for BMC HTTP responses</li>
+<li>Adjust based on your BMC's response time characteristics</li>
+</ul>
+<p><strong>Example BMC Configuration File:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">nodes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">worker-node-1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bmc-1</span>
+<span class="w">  </span><span class="nt">worker-node-2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bmc-2</span>
+
+<span class="nt">bmcs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">bmc-1</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://192.168.1.100</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret123</span>
+<span class="w">    </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">bmc-2</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://192.168.1.101</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret456</span>
+<span class="w">    </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h4 id="hwmon-power-monitoring">hwmon Power Monitoring</h4>
+<ul>
+<li><strong>enabled</strong>: Enable experimental hwmon power monitoring (default: false)</li>
+<li>When enabled, Kepler will collect power metrics from hwmon sensors</li>
+<li>Available on architectures with hwmon power sensors</li>
+<li>
+<p>Error will be returned if hwmon is not available</p>
+</li>
+<li>
+<p><strong>zones</strong>: List of hwmon zones to enable (default: all available power zones)</p>
+</li>
+<li>By default, Kepler enables all available hwmon power zones</li>
+<li>
+<p>You can restrict to specific zones by listing them</p>
+</li>
+<li>
+<p><strong>chipRules</strong>: User-defined chip pairing rules for voltage/current sensors (default: empty)</p>
+</li>
+<li>Allows overriding hardcoded chip rules or adding support for new chips</li>
+<li>Useful when Kepler doesn't recognize your power monitoring chip or when default pairings are incorrect</li>
+<li>Config rules take precedence over hardcoded defaults</li>
+</ul>
+<p><strong>Chip Rule Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Chip driver name from hwmon "name" file (e.g., "ina3221", "ltc2945")</td>
+</tr>
+<tr>
+<td><code>pairings</code></td>
+<td>Map of voltage index to current index (e.g., <code>{1: 1}</code> means in1↔curr1)</td>
+</tr>
+<tr>
+<td><code>skipVoltages</code></td>
+<td>List of voltage indices to skip (shunt voltages, aux inputs)</td>
+</tr>
+<tr>
+<td><code>skipCurrents</code></td>
+<td>List of current indices to skip (per-phase currents, diagnostic channels)</td>
+</tr>
+<tr>
+<td><code>useSameIndex</code></td>
+<td>If true, automatically pair in{N} with curr{N} (ignores pairings)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example with specific zones:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">meters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span>
+<span class="nt">experimental</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hwmon</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"power1"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"power2"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p><strong>Example with chip rules (override and add new chips):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">meters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"hwmon"</span><span class="p p-Indicator">]</span>
+<span class="nt">experimental</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hwmon</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="nt">chipRules</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Override existing chip rule (replaces hardcoded default)</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"ina3221"</span>
+<span class="w">        </span><span class="nt">useSameIndex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">skipVoltages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">7</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Skip shunt voltages and sum</span>
+
+<span class="w">      </span><span class="c1"># Add support for a new chip not in hardcoded list</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"my_custom_sensor"</span>
+<span class="w">        </span><span class="nt">pairings</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">  </span><span class="c1"># in1 pairs with curr1</span>
+<span class="w">          </span><span class="nt">2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">  </span><span class="c1"># in2 pairs with curr2</span>
+<span class="w">        </span><span class="nt">skipVoltages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Skip shunt voltage at in0</span>
+</code></pre></div>
+<h4 id="gpu-power-monitoring">GPU Power Monitoring</h4>
+<ul>
+<li><strong>enabled</strong>: Enable experimental GPU power monitoring (default: false)</li>
+<li>When enabled, Kepler will collect power metrics from NVIDIA GPUs using NVML</li>
+<li>Requires NVIDIA drivers and NVML library to be available</li>
+<li>Supports per-process power attribution based on GPU compute utilization</li>
+<li><strong>idlePower</strong>: GPU idle power in Watts (default: 0 = auto-detect)</li>
+<li>When set to 0, Kepler auto-detects idle power by tracking the minimum power observed when no compute processes are running</li>
+<li>Set to a non-zero value to override auto-detection (useful when GPUs are always under load and true idle cannot be observed)</li>
+<li><strong>dcgmEndpoint</strong>: dcgm-exporter Prometheus metrics URL for MIG power attribution (default: auto-discover)</li>
+<li>Required when GPUs are in MIG mode — NVML cannot provide per-instance utilization in MIG mode</li>
+<li>If empty, Kepler auto-discovers the local dcgm-exporter pod via K8s API</li>
+<li><strong>Note</strong>: When deploying with MIG, the Kepler container must have <code>NVIDIA_VISIBLE_DEVICES=all</code> and <code>NVIDIA_MIG_MONITOR_DEVICES=all</code> environment variables set for NVML to see all MIG devices. These are included in the default manifests and Helm chart.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">experimental</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gpu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">idlePower</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17.5</span><span class="w">  </span><span class="c1"># Override idle power to 17.5W (0 = auto-detect)</span>
+</code></pre></div>
+<h3 id="development-configuration">🧑‍🔬 Development Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">cpu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">preferredMeters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"fake"</span><span class="p p-Indicator">]</span>
+<span class="nt">dev</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">fake-cpu-meter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">zones</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<p>⚠️ <strong>WARNING</strong>: This section is for development and testing only. Do not enable in production.</p>
+<ul>
+<li><strong>fake-cpu-meter</strong>: Synthesizes CPU power readings instead of reading real hardware</li>
+<li>Select via <code>cpu.preferredMeters: ["fake"]</code> (preferred)</li>
+<li><code>dev.fake-cpu-meter.enabled: true</code> is <strong>deprecated</strong>: it overrides <code>cpu.preferredMeters</code> and emits a deprecation warning</li>
+<li><code>zones</code>: Specific zones to enable, empty enables all</li>
+</ul>
+<h2 id="further-reading">📖 Further Reading</h2>
+<p>For more details see the <a href="https://github.com/sustainable-computing-io/kepler/blob/2677e75cd993b644c63b6e255464a705b7eebfb7/hack/config.yaml">config file</a></p>
+<p>Happy configuring! 🎉</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../installation/helm-updates/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Helm Updates">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Helm Updates
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../power-attribution/" class="md-footer__link md-footer__link--next" aria-label="Next: Power Attribution">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Power Attribution
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Contributors to the Kepler project
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/sustainable-computing-io/kepler" target="_blank" rel="noopener" title="Kepler on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://cloud-native.slack.com/archives/C05QK3KN3HT" target="_blank" rel="noopener" title="#kepler-project on CNCF Slack" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M94.1 315.1c0 25.9-21.2 47.1-47.1 47.1S0 341 0 315.1 21.2 268 47.1 268h47.1v47.1zm23.7 0c0-25.9 21.2-47.1 47.1-47.1s47.1 21.2 47.1 47.1v117.8c0 25.9-21.2 47.1-47.1 47.1s-47.1-21.2-47.1-47.1zm47.1-189c-25.9 0-47.1-21.2-47.1-47.1s21.2-47 47.1-47S212 53.2 212 79.1v47.1h-47.1zm0 23.7c25.9 0 47.1 21.2 47.1 47.1S190.8 244 164.9 244H47.1C21.2 244 0 222.8 0 196.9s21.2-47.1 47.1-47.1zm189 47.1c0-25.9 21.2-47.1 47.1-47.1s47 21.2 47 47.1-21.2 47.1-47.1 47.1h-47.1v-47.1zm-23.7 0c0 25.9-21.2 47.1-47.1 47.1S236 222.8 236 196.9V79.1c0-25.9 21.2-47.1 47.1-47.1s47.1 21.2 47.1 47.1zm-47.1 189c25.9 0 47.1 21.2 47.1 47.1s-21.2 47-47.1 47-47.1-21.2-47.1-47.1v-47.1h47.1zm0-23.7c-25.9 0-47.1-21.2-47.1-47.1s21.2-47.1 47.1-47.1h117.8c25.9 0 47.1 21.2 47.1 47.1s-21.2 47.1-47.1 47.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.footer", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.4"}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../../javascripts/kapa.js"></script>
+      
+    
+  </body>
+</html>
