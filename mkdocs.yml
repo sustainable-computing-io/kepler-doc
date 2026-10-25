@@ -24,9 +24,8 @@ theme:
     - rust
 
 docs_dir: ./docs
-not_in_nav: |
-  /index.md
 nav:
+  - Home: index.md
   - Docs:
       - Installation:
           - Quick Start: kepler/installation/guide.md
