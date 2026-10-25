@@ -471,4 +471,4 @@ If you continue to experience issues:
 1. **Check the logs** with the diagnostic script above
 2. **Search existing issues** in the [Kepler Operator repository](https://github.com/sustainable-computing-io/kepler-operator/issues)
 3. **Open a new issue** with diagnostic information
-4. **Join the community** - See [Support](../../project/support.md) for community channels
+4. **Join the community** - See [Community](../../project/community.md) for community channels

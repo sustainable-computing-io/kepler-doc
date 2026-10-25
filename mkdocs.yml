@@ -77,12 +77,13 @@ nav:
               - archive/kepler_model_server/node_profile.md
               - archive/kepler_model_server/power_estimation.md
               - archive/kepler_model_server/api.md
+  - Adopters: project/adopters.md
   - Blog:
       - blog/index.md
-  - Adopters: project/adopters.md
-  - Resources: project/resources.md
-  - Contributing: project/contributing.md
-  - Support: project/support.md
+  - Community:
+      - Overview: project/community.md
+      - Contributing: project/contributing.md
+      - Resources: project/resources.md
 
 markdown_extensions:
   - admonition

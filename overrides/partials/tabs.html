@@ -1,0 +1,15 @@
+{#-
+  Material for MkDocs tabs without a tab for the home page; the logo links
+  there. `index.md` stays in `nav` so `mkdocs_static_i18n` finds a homepage.
+  Based on mkdocs-material 9.8 partials/tabs.html.
+-#}
+{% import "partials/tabs-item.html" as item with context %}
+<nav class="md-tabs" aria-label="{{ lang.t('tabs') }}" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      {% for nav_item in nav.items if nav_item != nav.homepage %}
+        {{ item.render(nav_item) }}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

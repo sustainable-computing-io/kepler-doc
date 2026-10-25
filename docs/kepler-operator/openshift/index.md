@@ -86,4 +86,4 @@ If you're upgrading from the deprecated Kepler CRD:
 ## Getting Help
 
 - [Project Resources](../../project/resources.md) - Additional documentation and resources
-- [Support](../../project/support.md) - Community support and contribution guidelines
+- [Community](../../project/community.md) - Community support and contribution guidelines

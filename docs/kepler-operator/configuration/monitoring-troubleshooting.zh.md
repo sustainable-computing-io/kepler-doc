@@ -470,4 +470,4 @@ spec:
 1. **检查日志**，使用上面的诊断脚本
 2. **搜索现有问题**，在 [Kepler Operator 仓库](https://github.com/sustainable-computing-io/kepler-operator/issues)中
 3. **提交新问题**，附带诊断信息
-4. **加入社区** - 查看[支持](../../project/support.zh.md)了解社区渠道
+4. **加入社区** - 查看[社区](../../project/community.zh.md)了解社区渠道
