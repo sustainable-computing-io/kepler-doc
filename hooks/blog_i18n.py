@@ -36,7 +36,7 @@ def on_files(files, config):
     if not blog or not blog.config.enabled or not i18n:
         return files
 
-    if _nav is None:
+    if i18n.is_default_language_build:
         _nav = config.nav
     blog_dir = blog.config.blog_dir.rstrip("/") + "/"
 
