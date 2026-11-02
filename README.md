@@ -87,7 +87,7 @@ to a release containing those changes.
 
 ### Install MkDocs
 
-Make sure `Python 3.11` or greater is installed, as the CI uses it, then run:
+Make sure `Python 3.12` or greater is installed, as the CI uses it, then run:
 
 ```bash
 # Recommended: Use hatch for integrated development environment

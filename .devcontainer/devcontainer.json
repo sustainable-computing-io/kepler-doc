@@ -5,7 +5,7 @@
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/python:1": {
-			"version": "3.11.0"
+			"version": "3.12"
 		}
 	},
 	"workspaceMount": "source=kepler-doc-workspace,target=/workspaces/kepler-doc,type=volume",
