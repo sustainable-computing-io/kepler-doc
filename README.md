@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/89ddb0b5-1814-42dc-bd62-78e472af85e1/deploy-status)](https://app.netlify.com/projects/sustainable-computing/deploys)
 
+[![FOSSA Status](https://fossa.com)](https://fossa.com)
+
 Follow [sustainable-computing.io](https://sustainable-computing.io/) to see the Kepler
 documentation.
 For developing the project's documentation we recommend using either a Dev Container, Running Locally or in Github Codespaces. Choose whichever you prefer.
