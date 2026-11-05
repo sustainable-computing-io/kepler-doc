@@ -129,9 +129,9 @@ Complete waste accounting at the user level remains a challenge, necessitating f
 
 ## Act for Change
 
-- `Learn more about [Green Software](https://learn.greensoftware.foundation)`
-- `Explore [Kepler](https://sustainable-computing.io) and Try it yourself`
-- `Join the conversation and reach out to us via CNCF Slack [#kepler-project](https://cloud-native.slack.com/archives/C05QK3KN3HT)`
+- **Learn more about [Green Software](https://learn.greensoftware.foundation)**
+- **Explore [Kepler](https://sustainable-computing.io) and Try it yourself**
+- **Join the conversation and reach out to us via CNCF Slack [#kepler-project](https://cloud-native.slack.com/archives/C05QK3KN3HT)**
 
 ### Resources
 
