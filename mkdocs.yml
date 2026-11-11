@@ -115,6 +115,9 @@ extra:
     - icon: fontawesome/brands/slack
       link: https://cloud-native.slack.com/archives/C05QK3KN3HT
       name: "#kepler-project on CNCF Slack"
+  analytics:
+    provider: google
+    property: G-6VSP6SX8JE
 
 hooks:
   - hooks/adopters.py
